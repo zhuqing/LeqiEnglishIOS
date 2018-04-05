@@ -18,7 +18,7 @@ class Content : Entity{
     
     var words:Array<String> = []
     
-   init(id:String,createTime:String,updateTime:String,status:String,title:String,content:String,timing:String,audioPath:String,imagePath:String,auther:String){
+ init(id:String,createTime:String,updateTime:String,status:String,title:String,content:String,timing:String,audioPath:String,imagePath:String,auther:String){
         super.init(id: id, createTime: createTime, updateTime: updateTime, status: status)
         self.title = title
         self.content = content
@@ -28,8 +28,8 @@ class Content : Entity{
         self.auther = auther
     }
     
-    convenience override init() {
-        super.init();
+    convenience  init() {
+     super.init()
         self.title = ""
         self.content = ""
         self.timing = ""

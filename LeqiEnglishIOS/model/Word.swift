@@ -12,7 +12,17 @@ class Word : Entity{
     var information:String
     var contentIds:Array<String> = []
     
-    override init(id: String, createTime: String, updateTime: String, status: String) {
-        <#code#>
+     init(id: String, createTime: String, updateTime: String, status: String,word:String,information:String,contentIds:Array<String>) {
+        super.init(id: id, createTime: createTime, updateTime: updateTime, status: status)
+        self.word = word
+        self.information = information;
+        self.contentIds = contentIds;
+    }
+    
+    convenience  init(){
+        super.init()
+        self.word = ""
+        self.information = ""
+        self.contentIds = []
     }
 }
