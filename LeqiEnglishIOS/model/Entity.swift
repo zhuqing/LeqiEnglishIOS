@@ -8,20 +8,9 @@
 
 import Foundation
 class Entity{
-    var id:String
-    var createTime:String
-    var updateTime:String
-    var status:String
-    
-    init(id:String,createTime:String,updateTime:String,status:String) {
-        self.id = id
-        self.createTime = createTime
-        self.updateTime = updateTime
-        self.status = status
-    }
-    
-    convenience init(){
-        self.init(id: "", createTime: "", updateTime: "", status: "")
-    }
+    var id:String?
+    var createTime:String?
+    var updateTime:String?
+    var status:String?
     
 }
