@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ContentItemPrecentCollectionViewCell" customModule="LeqiEnglishIOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="147" height="217"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="147" height="217"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="obma" translatesAutoresizingMaskIntoConstraints="NO" id="623-IH-bEw">
+                        <rect key="frame" x="0.0" y="0.0" width="147" height="176"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="147" id="KkE-Yo-JL7"/>
+                            <constraint firstAttribute="width" constant="147" id="Suv-Kb-w1o"/>
+                            <constraint firstAttribute="height" constant="176" id="XG0-AM-S7w"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="176" id="pEj-M7-LHH"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="乔布斯英语演讲：斯坦福大学2005年毕业典礼上的演讲" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Pu-Id-15D">
+                        <rect key="frame" x="0.0" y="178" width="147" height="39"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="39" id="HRM-6E-yEa"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A3t-sP-TdH">
+                        <rect key="frame" x="113.5" y="156" width="28.5" height="19"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                        <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="A3t-sP-TdH" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="156" id="4FE-yi-ZOb"/>
+                <constraint firstItem="0Pu-Id-15D" firstAttribute="leading" secondItem="623-IH-bEw" secondAttribute="leading" id="5Ye-ve-jPf"/>
+                <constraint firstAttribute="bottom" secondItem="A3t-sP-TdH" secondAttribute="bottom" constant="42" id="AEM-X0-YbJ"/>
+                <constraint firstItem="0Pu-Id-15D" firstAttribute="trailing" secondItem="623-IH-bEw" secondAttribute="trailing" id="IAc-BJ-LQt"/>
+                <constraint firstAttribute="bottom" secondItem="0Pu-Id-15D" secondAttribute="bottom" id="SaW-K1-hUK"/>
+                <constraint firstAttribute="trailing" secondItem="A3t-sP-TdH" secondAttribute="trailing" constant="5" id="SwN-4g-YAW"/>
+                <constraint firstAttribute="trailing" secondItem="0Pu-Id-15D" secondAttribute="trailing" id="dws-pu-8aC"/>
+                <constraint firstItem="0Pu-Id-15D" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="llV-gk-utD"/>
+                <constraint firstItem="0Pu-Id-15D" firstAttribute="top" secondItem="623-IH-bEw" secondAttribute="bottom" constant="2" id="qJg-jn-6sy"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="147" height="217"/>
+            <connections>
+                <outlet property="imageView" destination="623-IH-bEw" id="wln-nm-7YN"/>
+                <outlet property="precentLabel" destination="A3t-sP-TdH" id="6qZ-7R-hFH"/>
+                <outlet property="titleLabel" destination="0Pu-Id-15D" id="OhT-ck-3tj"/>
+            </connections>
+            <point key="canvasLocation" x="112.5" y="143.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="obma" width="121" height="140"/>
+    </resources>
+</document>

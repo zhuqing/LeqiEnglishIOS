@@ -7,7 +7,10 @@
 //
 
 import Foundation
-
+import Alamofire
 class Service{
-    
+    private var host="http://www.leqienglish.com"
+    class func get(path:String,param:[String:String]){
+        
+    }
 }

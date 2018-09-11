@@ -17,14 +17,24 @@
                     <view key="view" contentMode="scaleToFill" id="qqn-OW-SyO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A3q-oo-cTh">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="gyA-aW-EYq"/>
                     </view>
                     <navigationItem key="navigationItem" id="O3d-gn-vqI"/>
+                    <connections>
+                        <outlet property="rootView" destination="A3q-oo-cTh" id="OCl-nB-Ivk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cIK-Qd-5Ce" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2433" y="840"/>
+            <point key="canvasLocation" x="2432.8000000000002" y="839.73013493253382"/>
         </scene>
         <!--单词本-->
         <scene sceneID="D5P-mV-F9Y">

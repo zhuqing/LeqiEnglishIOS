@@ -11,8 +11,9 @@ import UIKit
 
 
 class WordViewController:MainViewController{
+    @IBOutlet weak var rootView: UIView!
     private lazy var pageTitleView:PageTitleView = { [weak self] in
-        let titleFrame = CGRect(x: 0, y: STATUS_BAR_HEIGHT+NAVIGATION_BAR_HEIGHT, width: SCREEN_WIDTH, height: TITLE_VIEW_HEIGHT)
+        let titleFrame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: TITLE_VIEW_HEIGHT)
         let titles=["已背" , "未背"]
         let pageTitleView = PageTitleView(frame:titleFrame,titles:titles)
         pageTitleView.pageTitleViewDelegate = self
@@ -23,7 +24,7 @@ class WordViewController:MainViewController{
     private lazy var pageContentView:PageContentView = { [weak self] in
         let contentViewH:CGFloat = SCREEN_HEIGHT - (STATUS_BAR_HEIGHT+NAVIGATION_BAR_HEIGHT+TITLE_VIEW_HEIGHT)
         
-        let frame = CGRect(x: 0, y: STATUS_BAR_HEIGHT+NAVIGATION_BAR_HEIGHT+TITLE_VIEW_HEIGHT, width: SCREEN_WIDTH, height: contentViewH)
+        let frame = CGRect(x: 0, y: TITLE_VIEW_HEIGHT, width: SCREEN_WIDTH, height: contentViewH)
         
         var childVCS = [UIViewController]()
         
@@ -52,9 +53,9 @@ extension WordViewController{
     private func setupUI(){
        automaticallyAdjustsScrollViewInsets = false
 
-        view.addSubview(pageTitleView)
-        pageContentView.backgroundColor = UIColor.purple
-        view.addSubview(pageContentView)
+        rootView.addSubview(pageTitleView)
+      
+        rootView.addSubview(pageContentView)
     }
 }
 
