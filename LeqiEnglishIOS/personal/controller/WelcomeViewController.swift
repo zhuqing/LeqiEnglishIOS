@@ -11,24 +11,26 @@ import UIKit
 
 class WelcomeViewController:UIViewController{
     
-
+    @IBOutlet weak var button: UIButton!
+    
     @IBOutlet weak var imageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
         setImageView()
+        setButton()
       
         
     }
-//    
-//    private func setButton(){
-//        button.layer.borderColor = UIColor.white.cgColor
-//        
-//        button.layer.borderWidth = 2;
-//        
-//        button.layer.cornerRadius = 16;
-//    }
+
+    private func setButton(){
+        button.layer.borderColor = UIColor.white.cgColor
+
+        button.layer.borderWidth = 2;
+
+        button.layer.cornerRadius = 16;
+    }
     
     private func setImageView(){
         imageView.layer.cornerRadius = 100

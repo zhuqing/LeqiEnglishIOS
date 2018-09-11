@@ -113,7 +113,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pBB-eu-Dne" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3100" y="-209"/>
+            <point key="canvasLocation" x="3158" y="-10"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="oc4-5J-zws">
@@ -129,9 +129,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cIK-Qd-5Ce" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2433" y="655"/>
+            <point key="canvasLocation" x="2433" y="840"/>
         </scene>
-        <!--我的-->
+        <!--View Controller-->
         <scene sceneID="pdf-SU-YTi">
             <objects>
                 <viewController id="6Ux-ea-YCL" sceneMemberID="viewController">
@@ -141,11 +141,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="p1h-CI-1kt"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="我的" id="abh-nA-gSu"/>
+                    <navigationItem key="navigationItem" id="IiG-Lr-UPu"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0sQ-Z7-sF7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1572" y="1406"/>
+            <point key="canvasLocation" x="2433" y="1840"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="44R-sH-Jgj">
@@ -160,7 +160,7 @@
                     <connections>
                         <segue destination="w2u-Hl-HOK" kind="relationship" relationship="viewControllers" id="T4s-Mc-kRR"/>
                         <segue destination="t8V-ol-xXJ" kind="relationship" relationship="viewControllers" id="qBz-Cf-SoS"/>
-                        <segue destination="6Ux-ea-YCL" kind="relationship" relationship="viewControllers" id="hxD-HI-kQN"/>
+                        <segue destination="BCD-eV-lmf" kind="relationship" relationship="viewControllers" id="hxD-HI-kQN"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UZX-C8-6AA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -171,7 +171,7 @@
         <scene sceneID="D5P-mV-F9Y">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="t8V-ol-xXJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="单词本" id="2eU-px-Q7F"/>
+                    <tabBarItem key="tabBarItem" title="单词本" image="word_normal" selectedImage="word_selected" id="2eU-px-Q7F"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4jx-Lz-APr">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -184,13 +184,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pcw-OF-5l6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1571.2" y="655.77211394302856"/>
+            <point key="canvasLocation" x="1570" y="839"/>
         </scene>
         <!--主页-->
         <scene sceneID="BJR-ez-dge">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="w2u-Hl-HOK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="主页" id="gdJ-Fe-e0e"/>
+                    <tabBarItem key="tabBarItem" title="主页" image="home_normal" selectedImage="home_selected" id="gdJ-Fe-e0e"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="THE-LA-MQU">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -205,8 +205,33 @@
             </objects>
             <point key="canvasLocation" x="1571.2" y="-8.995502248875562"/>
         </scene>
+        <!--我的-->
+        <scene sceneID="fMJ-t5-Scl">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BCD-eV-lmf" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="我的" image="main_normal" selectedImage="main_selected" id="abh-nA-gSu"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xiQ-dD-UoW">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="6Ux-ea-YCL" kind="relationship" relationship="rootViewController" id="yd2-ff-JJ0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y69-sd-5OT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1570" y="1840"/>
+        </scene>
     </scenes>
     <resources>
         <image name="default_head" width="202" height="200"/>
+        <image name="home_normal" width="32" height="32"/>
+        <image name="home_selected" width="32" height="32"/>
+        <image name="main_normal" width="32" height="32"/>
+        <image name="main_selected" width="32" height="32"/>
+        <image name="word_normal" width="32" height="32"/>
+        <image name="word_selected" width="32" height="32"/>
     </resources>
 </document>
