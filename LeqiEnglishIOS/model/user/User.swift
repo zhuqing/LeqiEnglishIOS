@@ -1,56 +1,91 @@
-//
-//  User.swift
-//  LeqiEnglishIOS
-//
-//  Created by zhuleqi on 2018/9/6.
-//  Copyright © 2018年 zhuleqi. All rights reserved.
-//
-
 import Foundation
-
 class User : Entity{
-    /**
-     * 匿名
-     */
-    var  name:String?
-    /**
-     * 性别
-     */
-    var  sex:Int?
-    /**
-     * 密码
-     */
-    var  password:String?
-    /**
-     * 邮箱
-     */
-    var  email:String?
-    
-    /**
-     * VIP截止日期
-     */
-    var  vipLastData:String?
-    /**
-     * 手机号码
-     */
-    var  phoneNumber:String?
     
     
-    /**
-     * 其他系统的Id
-     
-     */
-    var  otherSysId:String?
+    var name:String?
     
-    /**
-     * 最后一次登录时间
-     */
-    var  lastLogin:Int64?
+    var sex:Int?
     
-    /**
-     * 用户图像
-     */
-    var  imagePath:String?
+    var password:String?
     
-
+    var email:String?
+    
+    var vipLastData:String?
+    
+    var phoneNumber:String?
+    
+    var otherSysId:String?
+    
+    var lastLogin:Int64?
+    
+    var imagePath:String?
+    
+    override init() {
+        
+    }
+    convenience init(data:[String:AnyObject]) {
+        self.init()
+        setValuesForKeys(data)
+    }
+    
+    override func setValue(_ value: Any?, forKey key: String) {
+        switch key {
+        case "name":
+            self.name = value as? String
+        case "sex":
+            self.sex = value as? Int
+        case "password":
+            self.password = value as? String
+        case "email":
+            self.email = value as? String
+        case "vipLastData":
+            self.vipLastData = value as? String
+        case "phoneNumber":
+            self.phoneNumber = value as? String
+        case "otherSysId":
+            self.otherSysId = value as? String
+        case "lastLogin":
+            self.lastLogin = value as? Int64
+        case "imagePath":
+            self.imagePath = value as? String
+            
+        default:
+            super.setValue(value, forKey: key)
+            break
+        }
+    }
+    
+    override func toDictionary()->[String:NSObject]{
+        var dic = super.toDictionary()
+        
+        if  let v = self.name{
+            dic["name"] = v as NSObject
+        }
+        if  let v = self.sex{
+            dic["sex"] = v as NSObject
+        }
+        if  let v = self.password{
+            dic["password"] = v as NSObject
+        }
+        if  let v = self.email{
+            dic["email"] = v as NSObject
+        }
+        if  let v = self.vipLastData{
+            dic["vipLastData"] = v as NSObject
+        }
+        if  let v = self.phoneNumber{
+            dic["phoneNumber"] = v as NSObject
+        }
+        if  let v = self.otherSysId{
+            dic["otherSysId"] = v as NSObject
+        }
+        if  let v = self.lastLogin{
+            dic["lastLogin"] = v as NSObject
+        }
+        if  let v = self.imagePath{
+            dic["imagePath"] = v as NSObject
+        }
+        
+        return dic
+    }
 }

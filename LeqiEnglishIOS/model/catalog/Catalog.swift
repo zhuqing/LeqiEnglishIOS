@@ -8,38 +8,75 @@
 
 import Foundation
 class Catalog : Entity{
-    /**
-     * 分类的标题
-     */
-    var  title:String?
-    /**
-     * 图片路径
-     */
-    var  imagePath:String?
-    /**
-     * 书和章节
-     */
-    var  type:Int?
     
-    /**
-     * 如果是章节的话 有父节点Id
-     */
-    var  parentId:String?
     
-    /**
-     * 详情描述
-     */
-    var  description:String?
+    var title:String?
     
-    /**
-     * 创建者
-     */
-    var  userId:String?
+    var imagePath:String?
     
-    /**
-     * 订阅数
-     */
-    var  subscribeNum:Int?
+    var type:Int?
+    
+    var parentId:String?
     
 
+    
+    var userId:String?
+    
+    var subscribeNum:Int64?
+    
+    override init() {
+        
+    }
+    convenience init(data:[String:AnyObject]) {
+        self.init()
+        setValuesForKeys(data)
+    }
+    
+    override func setValue(_ value: Any?, forKey key: String) {
+        switch key {
+        case "title":
+            self.title = value as? String
+        case "imagePath":
+            self.imagePath = value as? String
+        case "type":
+            self.type = value as? Int
+        case "parentId":
+            self.parentId = value as? String
+        
+        case "userId":
+            self.userId = value as? String
+        case "subscribeNum":
+            self.subscribeNum = value as? Int64
+            
+        default:
+            super.setValue(value, forKey: key)
+            break
+        }
+    }
+    
+    override func toDictionary()->[String:NSObject]{
+        var dic = super.toDictionary()
+        
+        if  let v = self.title{
+            dic["title"] = v as NSObject
+        }
+        if  let v = self.imagePath{
+            dic["imagePath"] = v as NSObject
+        }
+        if  let v = self.type{
+            dic["type"] = v as NSObject
+        }
+        if  let v = self.parentId{
+            dic["parentId"] = v as NSObject
+        }
+     
+        if  let v = self.userId{
+            dic["userId"] = v as NSObject
+        }
+        if  let v = self.subscribeNum{
+            dic["subscribeNum"] = v as NSObject
+        }
+        
+        return dic
+    }
 }

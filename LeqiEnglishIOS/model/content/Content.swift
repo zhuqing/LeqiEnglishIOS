@@ -5,41 +5,88 @@
 //  Created by zhuleqi on 2018/4/1.
 //  Copyright © 2018年 zhuleqi. All rights reserved.
 //
-
 import Foundation
 
 class Content : Entity{
     
-    var  content:String?;
     
-    var  userId:String?;
-    /**
-     * 图片路
-     */
-    var  imagePath:String?;
-    /**
-     * 音频路径
-     */
-    var  audioPath:String?;
+    var content:String?
     
-    /**
-     * 标题
-     */
-    var  title:String?;
-    /**
-     * fu类ID
-     */
-    var  parentId:String?;
+    var userId:String?
     
-    /**
-     * 内容所属的分类
-     */
-    var  catalogId:String?;
+    var imagePath:String?
     
-    /**
-     * 阅读数
-     */
-    var  readNum:Int?;
+    var audioPath:String?
     
-   
+    var title:String?
+    
+    var parentId:String?
+    
+    var catalogId:String?
+    
+    var readNum:Int64?
+    
+    override init() {
+        
+    }
+    convenience init(data:[String:AnyObject]) {
+        self.init()
+        setValuesForKeys(data)
+    }
+    
+    override func setValue(_ value: Any?, forKey key: String) {
+        switch key {
+        case "content":
+            self.content = value as? String
+        case "userId":
+            self.userId = value as? String
+        case "imagePath":
+            self.imagePath = value as? String
+        case "audioPath":
+            self.audioPath = value as? String
+        case "title":
+            self.title = value as? String
+        case "parentId":
+            self.parentId = value as? String
+        case "catalogId":
+            self.catalogId = value as? String
+        case "readNum":
+            self.readNum = value as? Int64
+            
+        default:
+            super.setValue(value, forKey: key)
+            break
+        }
+    }
+    
+    override func toDictionary()->[String:NSObject]{
+        var dic = super.toDictionary()
+        
+        if  let v = self.content{
+            dic["content"] = v as NSObject
+        }
+        if  let v = self.userId{
+            dic["userId"] = v as NSObject
+        }
+        if  let v = self.imagePath{
+            dic["imagePath"] = v as NSObject
+        }
+        if  let v = self.audioPath{
+            dic["audioPath"] = v as NSObject
+        }
+        if  let v = self.title{
+            dic["title"] = v as NSObject
+        }
+        if  let v = self.parentId{
+            dic["parentId"] = v as NSObject
+        }
+        if  let v = self.catalogId{
+            dic["catalogId"] = v as NSObject
+        }
+        if  let v = self.readNum{
+            dic["readNum"] = v as NSObject
+        }
+        
+        return dic
+    }
 }

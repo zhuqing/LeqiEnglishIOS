@@ -10,27 +10,17 @@ import UIKit
 let  HEADER_H = 5
 
 class RecitingContentView: UIView {
+   
     
-    private lazy var recitingData:[RecitedContentVO] = {
-        var recitingData = [RecitedContentVO]()
-        for index in 0 ..< 7{
-            var recited = RecitedContentVO()
-            recited.title = "\(index).XXXXXXXXX"
-            recited.finishedPercent = 30
-             recitingData.append(recited)
-        }
-       
-        return recitingData
-    }()
+    private  var reciteContentDatas:[ReciteContentVO] = [ReciteContentVO]();
     
     private lazy var collectionView:UICollectionView={ [weak self] in
         let layout = UICollectionViewFlowLayout()
        
-        layout.itemSize = CGSize(width: 174, height: 220)
+        layout.itemSize = CGSize(width: CONTENT_CELL_WIDTH, height: CONTENT_CELL_HEIGHT)
         layout.minimumLineSpacing = 10
-        layout.minimumInteritemSpacing = 10
+        layout.minimumInteritemSpacing = 0
         layout.scrollDirection = .horizontal
-       // layout.headerReferenceSize = CGSize(width: SCREEN_WIDTH, height: 50)
         
         let collectionView = UICollectionView(frame: (self?.bounds)!, collectionViewLayout: layout)
         
@@ -40,11 +30,7 @@ class RecitingContentView: UIView {
         collectionView.dataSource = self
         
         collectionView.register(UINib(nibName: "ContentItemPrecentCollectionViewCell", bundle:nil), forCellWithReuseIdentifier: CONTENT_ITEM_ORECENT_CELL)
-        
-       // collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: CONTENT_ITEM_ORECENT_CELL)
-        
-//        collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind:UICollectionElementKindSectionHeader, withReuseIdentifier: HEADER)
-       // uiCollectionView.delegate = self
+
         collectionView.backgroundColor = UIColor.white
         return collectionView
     }()
@@ -52,6 +38,7 @@ class RecitingContentView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
+        loadData()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -62,9 +49,35 @@ class RecitingContentView: UIView {
 
 extension RecitingContentView{
     private func setupUI(){
+       
         addSubview(collectionView)
         collectionView.frame = bounds
+      
         backgroundColor = UIColor.white
+    }
+}
+
+extension RecitingContentView{
+    private func loadData(){
+         print("start load")
+        Service.get(path: "/english/content/findAll"){
+            (result) in
+          
+          let sqliteManager = SQLiteManager.init()
+          let datas:[[String:NSObject]] = Service.getDatas(data:result)!
+            
+            for  data in datas {
+
+               let content = ReciteContentVO(data: data)
+               self.reciteContentDatas.append(content)
+                guard let json = String.toString(content.toDictionary()) else {continue}
+               sqliteManager.insertData(id: content.id!, json: json, type: SQLiteManager.CONTENT_TYPE)
+               
+            }
+            
+           
+            self.collectionView.reloadData()
+        }
     }
 }
 
@@ -74,7 +87,7 @@ extension RecitingContentView:UICollectionViewDataSource{
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return recitingData.count
+        return reciteContentDatas.count
     }
     
  
@@ -82,7 +95,7 @@ extension RecitingContentView:UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:ContentItemPrecentCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: CONTENT_ITEM_ORECENT_CELL, for: indexPath) as! ContentItemPrecentCollectionViewCell
      //   cell.backgroundColor = UIColor.blue
-       cell.setItem(item: recitingData[indexPath.item])
+       cell.setItem(item: reciteContentDatas[indexPath.item])
         return cell
     }
 }

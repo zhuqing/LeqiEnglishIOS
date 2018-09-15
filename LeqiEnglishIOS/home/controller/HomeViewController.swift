@@ -23,12 +23,21 @@ class HomeViewController:MainViewController{
     //用户图像
     @IBOutlet weak var userImage: UIImageView!
     
+    //用户图像
+    @IBOutlet weak var scroller: UIScrollView!
+    
+    
+    private let homeViewModel:HomeViewMode = HomeViewMode()
+    
     let RECITING_HEIGHT:CGFloat = 230
-    let V_SPCING:CGFloat = 10
+    let HEADER_HEIGHT:CGFloat = 40
     
     private lazy var recitingContentView:RecitingContentView={[weak self] in
-        return RecitingContentView(frame: CGRect(x: 0, y: headerView.frame.origin.y+headerView.frame.height+V_SPCING, width: view.frame.width, height: RECITING_HEIGHT))
+        return RecitingContentView(frame: CGRect(x: 0, y: HEADER_HEIGHT, width: view.frame.width, height: RECITING_HEIGHT))
     }()
+    private lazy var recommend:RecomenContentView={[weak self] in
+        return RecomenContentView(frame: CGRect(x: 0, y: HEADER_HEIGHT, width: view.frame.width, height: RECITING_HEIGHT))
+        }()
 
     
     
@@ -41,7 +50,11 @@ class HomeViewController:MainViewController{
 extension HomeViewController{
     private func setupUI(){
 
-        self.view.addSubview(recitingContentView)
+        //self.scroller.addSubview(recitingContentView)
+        
+        //self.scroller.addSubview(recommend)
+        
+        scroller.alwaysBounceHorizontal = false
     }
     
     private func initRecitingCollectionView(){

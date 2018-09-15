@@ -16,6 +16,10 @@ import UIKit
     let SCREEN_WIDTH:CGFloat = UIScreen.main.bounds.width
     
     let TITLE_VIEW_HEIGHT:CGFloat = 40
-    
+    //内容头的高度
+    let CONTENT_HEADER_HEIGHT:CGFloat = 30
 
+    let SPACING:CGFloat = 5
 
+let CONTENT_CELL_HEIGHT:CGFloat = 220
+let CONTENT_CELL_WIDTH:CGFloat = 140

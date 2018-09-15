@@ -21,7 +21,7 @@ class ContentItemPrecentCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func setItem(item:RecitedContentVO){
+    func setItem(item:ReciteContentVO){
         titleLabel.text = item.title
         precentLabel.text = "\(item.finishedPercent!)%"
     }

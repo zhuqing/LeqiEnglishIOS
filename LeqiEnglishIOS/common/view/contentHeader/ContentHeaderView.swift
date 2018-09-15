@@ -38,6 +38,37 @@ class ContentHeaderView: UIView {
 extension ContentHeaderView{
     
     private func setupUI(){
+     addTitleLabel()
+        addMoreLabel()
+    }
+    
+    private func addTitleLabel(){
+        let titleLabel = UILabel();
+        
+        titleLabel.adjustsFontSizeToFitWidth = true
+        titleLabel.text = name
+        
+        titleLabel.textColor = UIColor.darkText
+       
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        titleLabel.frame = CGRect(x: 3, y: 0, width: 80, height: CONTENT_HEADER_HEIGHT)
+        addSubview(titleLabel)
+        
+    }
+    
+    private func addMoreLabel(){
+        let moreLabel = UIButton();
+        moreLabel.setTitle("更多>", for: .normal)
+        moreLabel.setTitleColor(UIColor.darkGray, for: .normal)
+
+        moreLabel.tintColor = UIColor.blue
+        
+        moreLabel.titleLabel?.textColor = UIColor.darkGray
+        moreLabel.titleLabel?.textAlignment = .center
+        moreLabel.titleLabel?.font = UIFont.boldSystemFont(ofSize: 11)
+      
+        moreLabel.frame = CGRect(x: SCREEN_WIDTH-60, y: 0, width: 50, height: CONTENT_HEADER_HEIGHT)
+        addSubview(moreLabel)
         
     }
 }
