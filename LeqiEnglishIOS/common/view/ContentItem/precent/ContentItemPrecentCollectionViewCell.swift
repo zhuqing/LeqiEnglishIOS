@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 let CONTENT_ITEM_ORECENT_CELL = "CONTENT_ITEM_ORECENT_CELL"
 class ContentItemPrecentCollectionViewCell: UICollectionViewCell {
@@ -23,7 +24,15 @@ class ContentItemPrecentCollectionViewCell: UICollectionViewCell {
     
     func setItem(item:ReciteContentVO){
         titleLabel.text = item.title
-        precentLabel.text = "\(item.finishedPercent!)%"
+        precentLabel.text = "\(item.finishedPercent ?? 0)%"
+        
+        if let imagePath = item.imagePath{
+            Service.download(path: "file/download?path=\(imagePath)", filePath: imagePath){(imagePath) in
+                self.imageView.image = UIImage(contentsOfFile: imagePath)
+            }
+        }else{
+            self.imageView.image = UIImage(named: "obma")
+        }
     }
 
 }

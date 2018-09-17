@@ -11,7 +11,7 @@ import Foundation
 class HomeViewMode{
     
     func loadUser() -> User {
-        Service.get(path: "user/findById", param: ["id" : "id"])
+        Service.get(path: "user/findById")
         {
             (result) in
             

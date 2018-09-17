@@ -8,13 +8,14 @@
 
 import UIKit
 
-class WordListController: UIViewController {
+class HomeViewController: UIViewController {
 
     let USER_BORDER_VIEW:CGFloat = 140
     
     let MY_RECITING_HEIGHT:CGFloat = 358
     
         let MY_RECOMMED_HEIGHT:CGFloat = 300
+    
     private lazy var collectionView:UICollectionView = {
         var layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: self.view.bounds.width, height: USER_BORDER_VIEW)
@@ -48,7 +49,7 @@ class WordListController: UIViewController {
 
 }
 
-extension WordListController:UICollectionViewDataSource , UICollectionViewDelegateFlowLayout{
+extension HomeViewController:UICollectionViewDataSource , UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch indexPath.section {
@@ -78,13 +79,33 @@ extension WordListController:UICollectionViewDataSource , UICollectionViewDelega
              return collectionView.dequeueReusableCell(withReuseIdentifier: MyRecitedCollectionViewCell.MYRECITEING_COLLECTION_REUSE_IDENTIFIRE, for: indexPath)
             
         case 2:
-            return collectionView.dequeueReusableCell(withReuseIdentifier: MyRecommendCollectionViewCell.MY_RECOMMEND_VIEW_REUSE_IDENTIFIRE, for: indexPath)
+            let cell:MyRecommendCollectionViewCell? = collectionView.dequeueReusableCell(withReuseIdentifier: MyRecommendCollectionViewCell.MY_RECOMMEND_VIEW_REUSE_IDENTIFIRE, for: indexPath) as? MyRecommendCollectionViewCell
+            
+            cell?.delegate = self
+            
+            return cell!
         default:
           return collectionView.dequeueReusableCell(withReuseIdentifier: UserBoardView.USER_BOARDER_VIEW_REUSE_IDENTIFIRE, for: indexPath)
         }
       
         
       
+    }
+}
+
+extension HomeViewController:MyRecommendCollectionViewCellDelegate{
+    func myRecommendCollectionViewCell(_ collectionView: UICollectionView, clickItem: Content) {
+        ////self.prepare(for: UIStoryboardSegue, sender: <#T##Any?#>)
+        print(clickItem.toDictionary())
+    
+        
+        let vc = ContentInfoViewController()
+      
+        self.present(vc, animated: true){
+              vc.content = clickItem
+        }
+        
+        
     }
 }
 

@@ -8,20 +8,12 @@
 
 import UIKit
 
-protocol DataCache {
-   func getFromService<T:Entity> ()->[T]?
-   func getFromCache<T:Entity> ()->[T]?
-   func load<T:Entity> (finished:(_ ts:[T]?)->())
-}
-
-extension DataCache{
-    func load<T:Entity>(finished:(_ ts:[T]?)->()){
-        var ts:[T]? = getFromCache()
-        
-        if ts == nil{
-            ts = getFromService()
-        }
-        
-        finished(ts);
+class DataCache<T:Entity> {
+    func getFromService(finished:@escaping (_ ts:[T]?)->()){}
+    func getFromCache(finished:@escaping (_ ts:[T]?)->())->[T]?{return nil}
+    func load(finished:@escaping (_ ts:[T]?)->()){
+        getFromService(finished: finished)
     }
 }
+
+

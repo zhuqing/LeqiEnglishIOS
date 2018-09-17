@@ -9,19 +9,45 @@
 import Foundation
 import Alamofire
 class Service{
-    private static var host="http://www.leqienglish.com"
+    static let host="http://www.leqienglish.com"
+    
+    class func download(path:String,filePath:String,finishedCallback:@escaping (_ result:String)->()){
+        let httpPath = "\(host)/\(path)"
+        
+        let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let fileURL = documentsURL.appendingPathComponent(filePath)
+            
+            return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+        }
+
+        
+        Alamofire.download(httpPath, to: destination).response { response in
+            print(response)
+            
+            if response.error == nil, let imagePath = response.destinationURL?.path {
+                print(imagePath);
+                finishedCallback(imagePath)
+            }
+        }
+    }
+    
+    
     //调用Get方法
-    class func get(path:String,param:[String:String]? = nil,finishedCallback: @escaping (_ result : [String:NSObject])->()){
+    class func get(path:String,finishedCallback: @escaping (_ result : [String:NSObject])->()){
         
-        let httpPath = "\(host)\(path)"
+        let httpPath = "\(host)/\(path)"
+    
+        print(httpPath)
         
-        Alamofire.request(httpPath, method: .get, parameters: param, encoding: URLEncoding.httpBody, headers: nil).responseJSON{
+        Alamofire.request(httpPath, method: .get, encoding: URLEncoding.httpBody, headers: nil).responseJSON{
             (response) in
+        
             guard let result = response.result.value as? [String : NSObject] else {
-                print(response.error.debugDescription)
+                print(response.result.error)
                 return
             }
-            
+            print(result)
             finishedCallback(result)
         }
     }

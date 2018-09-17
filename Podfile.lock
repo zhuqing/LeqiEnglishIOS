@@ -1,22 +1,26 @@
 PODS:
   - Alamofire (4.7.3)
+  - Kingfisher (4.9.0)
   - SQLite.swift (0.11.5):
     - SQLite.swift/standard (= 0.11.5)
   - SQLite.swift/standard (0.11.5)
 
 DEPENDENCIES:
   - Alamofire
+  - Kingfisher
   - SQLite.swift (~> 0.11.4)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Kingfisher
     - SQLite.swift
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  Kingfisher: 64539b51826b778206daa6ed815d12653caa69dd
   SQLite.swift: 6e5356850bb1791459f8c16d6ee9195b28714a2e
 
-PODFILE CHECKSUM: f37bab6aab4a6bae4b67d11f3c5eba5cd0ea0f22
+PODFILE CHECKSUM: 9ac8fdd53f034955e6ae2e5746492edff48c1b3a
 
 COCOAPODS: 1.5.3

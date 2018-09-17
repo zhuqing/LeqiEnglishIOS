@@ -8,12 +8,18 @@
 
 import UIKit
 
+protocol MyRecitedCollectionViewCellDelegate {
+    func myRecitedCollectionViewCell(cell:MyRecitedCollectionViewCell ,clickItem:Content)
+}
+
 class MyRecitedCollectionViewCell: UICollectionViewCell {
     static let  MYRECITEING_COLLECTION_REUSE_IDENTIFIRE = "MYRECITEING_COLLECTION_REUSE_IDENTIFIRE"
     
     @IBOutlet weak var moreLabel: UILabel!
     @IBOutlet weak var myRecitingNumber: NSLayoutConstraint!
     @IBOutlet weak var collectionRootView: UIView!
+    
+    var delegate:MyRecitedCollectionViewCellDelegate?
     
     var reciteContentDatas:[ReciteContentVO] = [ReciteContentVO]();
    
@@ -30,7 +36,7 @@ class MyRecitedCollectionViewCell: UICollectionViewCell {
         
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = true
-        collectionView.bounces = false
+        collectionView.bounces = true
         collectionView.dataSource = self
         
         collectionView.register(UINib(nibName: "ContentItemPrecentCollectionViewCell", bundle:nil), forCellWithReuseIdentifier: CONTENT_ITEM_ORECENT_CELL)
@@ -50,7 +56,7 @@ extension MyRecitedCollectionViewCell{
     private func setupUI(){
         
         collectionRootView.addSubview(collectionView)
-        collectionView.frame = CGRect(x: 5, y: 0, width: collectionRootView.frame.width-10, height: collectionRootView.frame.height)
+        collectionView.frame = CGRect(x: 10, y: 0, width: SCREEN_WIDTH-20, height: collectionRootView.frame.height)
         
        // backgroundColor = UIColor.white
     }

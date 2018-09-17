@@ -9,17 +9,7 @@
 import UIKit
 
 class RecommendDataCache: DataCache {
-    func load<T>(finished: ([T]?) -> ()) where T : Entity {
-       
-    }
-    
-     func getFromCache<T>() -> [T]? where T : Entity {
-        return nil
-    }
-    
-     func getFromService<T>() -> [T]? where T : Entity {
-        return nil
-    }
-    
+ 
+
    
 }

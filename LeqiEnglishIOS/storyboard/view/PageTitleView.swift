@@ -142,6 +142,11 @@ extension PageTitleView{
 
     @objc private func labelClick(uiGet:UIGestureRecognizer){
         guard let label = uiGet.view as? UILabel else {return}
+        
+        if(currentSelectedIndex == label.tag){
+            return
+        }
+        
         label.textColor = UIColor(r: SELECTED_COLOR.0, b: SELECTED_COLOR.1, y: SELECTED_COLOR.2)
       
         

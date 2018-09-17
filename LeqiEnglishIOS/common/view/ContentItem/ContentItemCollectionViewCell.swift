@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Kingfisher
+
 let CONTENT_ITEM_CELL = "CONTENT_ITEM_CELL"
 class ContentItemCollectionViewCell: UICollectionViewCell {
     
@@ -16,11 +18,18 @@ class ContentItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     func setItem(item:Content){
         titleLabel.text = item.title
+        
+        if let imagePath = item.imagePath{
+            Service.download(path: "file/download?path=\(imagePath)", filePath: imagePath){(imagePath) in
+                self.imageView.image = UIImage(contentsOfFile: imagePath)
+            }
+        }else{
+             self.imageView.image = UIImage(named: "obma")
+        }
     }
 
 }
