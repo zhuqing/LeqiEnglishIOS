@@ -47,10 +47,10 @@ class Service{
           let httpPath = getHttpPath(path)
         
         
-        Alamofire.request(httpPath, method: .post, parameters:params , encoding: URLEncoding.httpBody, headers: nil).responseJSON(){  (response) in
+        Alamofire.request(httpPath, method: .post, parameters:params , encoding: JSONEncoding.default, headers: nil).responseJSON(){  (response) in
             
             guard let result = response.result.value as? [String : NSObject] else {
-                LOG.error(response.result.description)
+                LOG.error(response.result.error.debugDescription)
                 return
             }
             finishedCallback(result)

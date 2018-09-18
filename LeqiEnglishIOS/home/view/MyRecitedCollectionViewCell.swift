@@ -21,7 +21,7 @@ class MyRecitedCollectionViewCell: UICollectionViewCell {
     
     var delegate:MyRecitedCollectionViewCellDelegate?
     
-    var reciteContentDatas:[ReciteContentVO] = [ReciteContentVO]();
+    var reciteContentDatas:[ReciteContentVO]? = [ReciteContentVO]();
    
     
     private lazy var collectionView:UICollectionView={ [weak self] in
@@ -57,32 +57,20 @@ extension MyRecitedCollectionViewCell{
         
         collectionRootView.addSubview(collectionView)
         collectionView.frame = CGRect(x: 10, y: 0, width: SCREEN_WIDTH-20, height: collectionRootView.frame.height)
-        
+        loadData()
        // backgroundColor = UIColor.white
     }
 }
 
 extension MyRecitedCollectionViewCell{
     private func loadData(){
-        print("start load")
-        Service.get(path: "/english/content/findAll"){
-            (result) in
-            
-            let sqliteManager = SQLiteManager.init()
-            let datas:[[String:NSObject]] = Service.getDatas(data:result)!
-            
-            for  data in datas {
-                
-                let content = ReciteContentVO(data: data)
-                self.reciteContentDatas.append(content)
-                guard let json = String.toString(content.toDictionary()) else {continue}
-                sqliteManager.insertData(id: content.id!, json: json, type: SQLiteManager.CONTENT_TYPE)
-                
-            }
-            
-            
+       let  recitedData = MyRecitedViewModel()
+        recitedData.getFromService(){
+            (datas) in
+            self.reciteContentDatas = datas
             self.collectionView.reloadData()
         }
+        
     }
 }
 
@@ -92,7 +80,7 @@ extension MyRecitedCollectionViewCell:UICollectionViewDataSource{
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        return (reciteContentDatas?.count)!
     }
     
     
@@ -100,7 +88,7 @@ extension MyRecitedCollectionViewCell:UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:ContentItemPrecentCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: CONTENT_ITEM_ORECENT_CELL, for: indexPath) as! ContentItemPrecentCollectionViewCell
         //   cell.backgroundColor = UIColor.blue
-       // cell.setItem(item: reciteContentDatas[indexPath.item])
+        cell.setItem(item: reciteContentDatas![indexPath.item])
         return cell
     }
 }

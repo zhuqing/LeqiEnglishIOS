@@ -14,7 +14,7 @@ class HomeViewController: UIViewController {
     
     let MY_RECITING_HEIGHT:CGFloat = 358
     
-        let MY_RECOMMED_HEIGHT:CGFloat = 300
+    let MY_RECOMMED_HEIGHT:CGFloat = 300
     
     private lazy var collectionView:UICollectionView = {
         var layout = UICollectionViewFlowLayout()

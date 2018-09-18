@@ -24,6 +24,8 @@ struct SQLiteManager {
     
     static let CONTENT_TYPE = "CONTENT_TYPE"
     
+  
+    
     init() {
         createdsqlite3()
     }

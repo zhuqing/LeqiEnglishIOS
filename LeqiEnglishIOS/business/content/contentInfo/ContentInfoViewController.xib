@@ -38,14 +38,14 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GUw-ZF-OwW" userLabel="collectionRoot">
-                            <rect key="frame" x="0.0" y="142" width="374" height="320"/>
+                            <rect key="frame" x="0.0" y="132" width="374" height="340"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="320" id="cJa-NZ-5cC"/>
+                                <constraint firstAttribute="height" constant="340" id="JAa-an-kqF"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="完成2/10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="si3-n9-Yxd">
-                            <rect key="frame" x="260" y="98" width="85" height="24"/>
+                            <rect key="frame" x="260" y="88" width="85" height="24"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                             <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>

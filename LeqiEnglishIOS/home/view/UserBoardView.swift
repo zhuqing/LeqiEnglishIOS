@@ -10,7 +10,11 @@ import UIKit
 
 class UserBoardView: UICollectionViewCell {
    static let USER_BOARDER_VIEW_REUSE_IDENTIFIRE = "USER_BOARDER_VIEW_REUSE_IDENTIFIRE"
-   // var user:User = User()
+    var user:User?{
+        didSet{
+            
+        }
+    }
    
      
     override func awakeFromNib() {
@@ -18,10 +22,5 @@ class UserBoardView: UICollectionViewCell {
         // Initialization code
     }
 
-  
-    
-//    func setUser(_ user:User){
-//        self.user = user
-//    }
     
 }

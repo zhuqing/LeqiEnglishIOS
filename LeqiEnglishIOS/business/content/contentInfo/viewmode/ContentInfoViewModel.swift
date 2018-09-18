@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContentInfoViewModel: DataCache<Segment> {
+class ContentInfoViewModel: DataCache<[Segment]> {
     
     private var content:Content?
     init(content:Content?) {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyRecommendViewModel: DataCache<Content> {
+class MyRecommendViewModel: DataCache<[Content]> {
     
 
     override func getFromService(finished: @escaping ([Content]?) -> ())  {

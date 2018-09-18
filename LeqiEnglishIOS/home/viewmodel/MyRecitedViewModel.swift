@@ -7,9 +7,22 @@
 //
 
 import Foundation
-class MyRecitedViewModel:DataCache<ReciteContentVO>{
+class MyRecitedViewModel:DataCache<[ReciteContentVO]>{
+    var LOG = LOGGER("MyRecitedViewModel");
+   
     override func getFromService(finished: @escaping ([ReciteContentVO]?) -> ())  {
-        Service.get(path: "recommend/recommendArticle?userId=userId"){
+        let userData = UserDataCache();
+        guard let user = userData.getFromCache() else{
+            LOG.error("没有User")
+            return;
+        }
+        
+        guard let userId = user.id else{
+             LOG.error("userId = nil")
+            return
+        }
+        
+        Service.get(path: "english/content/findUserReciting?userId=\(userId)"){
             (data) in
             
             let datas = Service.getDatas(data: data)
