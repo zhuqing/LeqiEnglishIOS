@@ -42,9 +42,9 @@ class ContentInfoViewController: UIViewController {
         collectionView.bounces = false
         collectionView.dataSource = self
         
-        collectionView.register(UINib(nibName: "ContentItemPrecentCollectionViewCell", bundle:nil), forCellWithReuseIdentifier: CONTENT_ITEM_ORECENT_CELL)
+        collectionView.register(UINib(nibName: "SegmentViewItem", bundle:nil), forCellWithReuseIdentifier: SegmentViewItem.SEGMENT_VIEW_ITEM_CELL)
         
-        collectionView.backgroundColor = UIColor.white
+        collectionView.backgroundColor = UIColor.clear
         return collectionView
     }()
 
@@ -67,7 +67,7 @@ class ContentInfoViewController: UIViewController {
 extension ContentInfoViewController{
     private func setupUI(){
            // self.navigationController.navigationBar.trans
-        self.navigationItem.leftBarButtonItem
+       // self.navigationItem.leftBarButtonItem
         
         collectionRootView.addSubview(collectionView)
         collectionView.frame = CGRect(x: 10, y: 0, width: SCREEN_WIDTH-20, height: collectionRootView.frame.height)
@@ -106,9 +106,9 @@ extension ContentInfoViewController : UICollectionViewDataSource{
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell:ContentItemPrecentCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: CONTENT_ITEM_ORECENT_CELL, for: indexPath) as! ContentItemPrecentCollectionViewCell
+        let cell:SegmentViewItem = collectionView.dequeueReusableCell(withReuseIdentifier: SegmentViewItem.SEGMENT_VIEW_ITEM_CELL, for: indexPath) as! SegmentViewItem
         //   cell.backgroundColor = UIColor.blue
-        // cell.setItem(item: reciteContentDatas[indexPath.item])
+         cell.segment = segments[indexPath.item]
         return cell
     }
 }

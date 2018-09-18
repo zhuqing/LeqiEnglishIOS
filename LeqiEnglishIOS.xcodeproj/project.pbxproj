@@ -47,6 +47,8 @@
 		4E990628214264EA00EE0D55 /* word.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E990626214264EA00EE0D55 /* word.storyboard */; };
 		4E99062A2142650600EE0D55 /* personal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E9906292142650600EE0D55 /* personal.storyboard */; };
 		4E9906332142779E00EE0D55 /* NavigationBarItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9906322142779E00EE0D55 /* NavigationBarItemExtension.swift */; };
+		4E9C5B9D2150A18C0079F985 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9C5B9C2150A18B0079F985 /* Logger.swift */; };
+		4E9C5B9F2150A4950079F985 /* MyRecitedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9C5B9E2150A4950079F985 /* MyRecitedViewModel.swift */; };
 		4EF2EFD7206909D900B7F447 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2EFD6206909D900B7F447 /* AppDelegate.swift */; };
 		4EF2EFD9206909D900B7F447 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2EFD8206909D900B7F447 /* ViewController.swift */; };
 		4EF2EFDC206909D900B7F447 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EF2EFDA206909D900B7F447 /* Main.storyboard */; };
@@ -111,6 +113,8 @@
 		4E990627214264EA00EE0D55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LeqiEnglishIOS/storyboard/Base.lproj/word.storyboard; sourceTree = "<group>"; };
 		4E9906292142650600EE0D55 /* personal.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = personal.storyboard; sourceTree = "<group>"; };
 		4E9906322142779E00EE0D55 /* NavigationBarItemExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarItemExtension.swift; sourceTree = "<group>"; };
+		4E9C5B9C2150A18B0079F985 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		4E9C5B9E2150A4950079F985 /* MyRecitedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRecitedViewModel.swift; sourceTree = "<group>"; };
 		4EF2EFD3206909D900B7F447 /* LeqiEnglishIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeqiEnglishIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EF2EFD6206909D900B7F447 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EF2EFD8206909D900B7F447 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -300,6 +304,7 @@
 		4E5ED4172143764F00AC709F /* tools */ = {
 			isa = PBXGroup;
 			children = (
+				4E9C5B9B2150A16F0079F985 /* log */,
 				4E5E3A962147A4CE00E88554 /* controller */,
 				4E9906312142777400EE0D55 /* extension */,
 				4E5ED4182143767100AC709F /* Common.swift */,
@@ -320,6 +325,7 @@
 			children = (
 				4E8E9CDB214CF8370004F39B /* MyRecommendViewModel.swift */,
 				4E64265B2148EB3B00D2B3FF /* HomeViewMode.swift */,
+				4E9C5B9E2150A4950079F985 /* MyRecitedViewModel.swift */,
 			);
 			path = viewmodel;
 			sourceTree = "<group>";
@@ -454,6 +460,14 @@
 				4E9906322142779E00EE0D55 /* NavigationBarItemExtension.swift */,
 			);
 			path = extension;
+			sourceTree = "<group>";
+		};
+		4E9C5B9B2150A16F0079F985 /* log */ = {
+			isa = PBXGroup;
+			children = (
+				4E9C5B9C2150A18B0079F985 /* Logger.swift */,
+			);
+			path = log;
 			sourceTree = "<group>";
 		};
 		4EF2EFCA206909D800B7F447 = {
@@ -647,6 +661,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E2DF4A1214B507700FA9BB0 /* NSDate_extension.swift in Sources */,
+				4E9C5B9D2150A18C0079F985 /* Logger.swift in Sources */,
 				4E8E9CDC214CF8370004F39B /* MyRecommendViewModel.swift in Sources */,
 				4E8E9CD4214CAFF60004F39B /* MyRecitedCollectionViewCell.swift in Sources */,
 				4E5ED41E2143B9A100AC709F /* UIColorExtension.swift in Sources */,
@@ -660,6 +675,7 @@
 				4EF2F088207196BC00B7F447 /* Service.swift in Sources */,
 				4E8E9CD0214C96990004F39B /* UserBoardView.swift in Sources */,
 				4E8E9CF1214F58BA0004F39B /* SegmentViewItem.swift in Sources */,
+				4E9C5B9F2150A4950079F985 /* MyRecitedViewModel.swift in Sources */,
 				4E64265C2148EB3B00D2B3FF /* HomeViewMode.swift in Sources */,
 				4E5ED40F214361F500AC709F /* WordViewController.swift in Sources */,
 				4EF2F06220710C1500B7F447 /* Content.swift in Sources */,

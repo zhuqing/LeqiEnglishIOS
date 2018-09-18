@@ -11,43 +11,68 @@ import Alamofire
 class Service{
     static let host="http://www.leqienglish.com"
     
+    static let ROOT="leqienglish"
+    
+    static let LOG = LOGGER("Service")
+    
     class func download(path:String,filePath:String,finishedCallback:@escaping (_ result:String)->()){
+        //拼接路径
         let httpPath = "\(host)/\(path)"
+        //拼接项目跟目录
+        let appFilePath = "\(ROOT)\\\(filePath)"
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let fileURL = documentsURL.appendingPathComponent(appFilePath)
+       
+        //如果文件存在，就不下载文件
+        if(FileManager.default.fileExists(atPath: fileURL.path)){
+            LOG.info("文件已存在")
+            finishedCallback(fileURL.path)
+            return
+        }
         
         let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            let fileURL = documentsURL.appendingPathComponent(filePath)
-            
             return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
         }
-
         
         Alamofire.download(httpPath, to: destination).response { response in
-            print(response)
-            
+           
             if response.error == nil, let imagePath = response.destinationURL?.path {
-                print(imagePath);
+                print(imagePath)
                 finishedCallback(imagePath)
             }
         }
     }
     
+    class  func post(path:String,params:[String:String]? = nil,finishedCallback:@escaping (_ resut :[String:NSObject])->() ){
+          let httpPath = getHttpPath(path)
+        
+        
+        Alamofire.request(httpPath, method: .post, parameters:params , encoding: URLEncoding.httpBody, headers: nil).responseJSON(){  (response) in
+            
+            guard let result = response.result.value as? [String : NSObject] else {
+                LOG.error(response.result.description)
+                return
+            }
+            finishedCallback(result)
+        }
+    }
+    
+   
     
     //调用Get方法
     class func get(path:String,finishedCallback: @escaping (_ result : [String:NSObject])->()){
         
         let httpPath = "\(host)/\(path)"
-    
+        
         print(httpPath)
         
         Alamofire.request(httpPath, method: .get, encoding: URLEncoding.httpBody, headers: nil).responseJSON{
             (response) in
-        
+            
             guard let result = response.result.value as? [String : NSObject] else {
-                print(response.result.error)
+                LOG.error(response.result.description)
                 return
             }
-            print(result)
             finishedCallback(result)
         }
     }
@@ -88,6 +113,15 @@ class Service{
         
         return true
         
+    }
+    
+    //拼接成完整路径
+    private class func getHttpPath(_ path:String)->String{
+        let httpPath = "\(host)/\(path)"
+        
+        LOG.info(httpPath)
+        
+        return httpPath
     }
     
     
