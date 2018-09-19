@@ -56,6 +56,8 @@
 		4E9C5BAF2150FF3E0079F985 /* PlaySementItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E9C5BAD2150FF3E0079F985 /* PlaySementItemCollectionViewCell.xib */; };
 		4E9C5BB2215101640079F985 /* PlaySegmentBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9C5BB1215101630079F985 /* PlaySegmentBar.swift */; };
 		4E9C5BB62151091C0079F985 /* SegmentPlayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9C5BB52151091C0079F985 /* SegmentPlayItem.swift */; };
+		4E9C5BB9215230370079F985 /* UIView_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9C5BB8215230370079F985 /* UIView_extension.swift */; };
+		4E9C5BBC215240520079F985 /* FileUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9C5BBB215240520079F985 /* FileUtil.swift */; };
 		4EF2EFD7206909D900B7F447 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2EFD6206909D900B7F447 /* AppDelegate.swift */; };
 		4EF2EFD9206909D900B7F447 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2EFD8206909D900B7F447 /* ViewController.swift */; };
 		4EF2EFDC206909D900B7F447 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EF2EFDA206909D900B7F447 /* Main.storyboard */; };
@@ -129,6 +131,8 @@
 		4E9C5BAD2150FF3E0079F985 /* PlaySementItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaySementItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		4E9C5BB1215101630079F985 /* PlaySegmentBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySegmentBar.swift; sourceTree = "<group>"; };
 		4E9C5BB52151091C0079F985 /* SegmentPlayItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentPlayItem.swift; sourceTree = "<group>"; };
+		4E9C5BB8215230370079F985 /* UIView_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView_extension.swift; sourceTree = "<group>"; };
+		4E9C5BBB215240520079F985 /* FileUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUtil.swift; sourceTree = "<group>"; };
 		4EF2EFD3206909D900B7F447 /* LeqiEnglishIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeqiEnglishIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EF2EFD6206909D900B7F447 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EF2EFD8206909D900B7F447 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -295,6 +299,7 @@
 		4E5ED4172143764F00AC709F /* tools */ = {
 			isa = PBXGroup;
 			children = (
+				4E9C5BBA2152403F0079F985 /* file */,
 				4E8E9CDF214CFB9A0004F39B /* cache */,
 				4E9C5B9B2150A16F0079F985 /* log */,
 				4E5E3A962147A4CE00E88554 /* controller */,
@@ -451,6 +456,7 @@
 		4E9906312142777400EE0D55 /* extension */ = {
 			isa = PBXGroup;
 			children = (
+				4E9C5BB7215230110079F985 /* view */,
 				4E2DF4A3214B8BCC00FA9BB0 /* string */,
 				4E2DF4A2214B508000FA9BB0 /* date */,
 				4E5ED41C2143B98500AC709F /* color */,
@@ -517,6 +523,22 @@
 			children = (
 			);
 			path = "New Group";
+			sourceTree = "<group>";
+		};
+		4E9C5BB7215230110079F985 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				4E9C5BB8215230370079F985 /* UIView_extension.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		4E9C5BBA2152403F0079F985 /* file */ = {
+			isa = PBXGroup;
+			children = (
+				4E9C5BBB215240520079F985 /* FileUtil.swift */,
+			);
+			path = file;
 			sourceTree = "<group>";
 		};
 		4EF2EFCA206909D800B7F447 = {
@@ -737,6 +759,7 @@
 				4E5E3AA12147A52400E88554 /* ContentItemCollectionViewCell.swift in Sources */,
 				4E5ED41621436F6E00AC709F /* PageTitleView.swift in Sources */,
 				4E9C5BA72150FCBE0079F985 /* UISegmentPlayViewController.swift in Sources */,
+				4E9C5BB9215230370079F985 /* UIView_extension.swift in Sources */,
 				4E5ED4112143626800AC709F /* MainViewController.swift in Sources */,
 				4E9906332142779E00EE0D55 /* NavigationBarItemExtension.swift in Sources */,
 				4E8E9CEB214F4F6B0004F39B /* ContentInfoViewModel.swift in Sources */,
@@ -746,6 +769,7 @@
 				4E5ED4192143767100AC709F /* Common.swift in Sources */,
 				4E0935302140CC8300592DE2 /* ReciteContentVO.swift in Sources */,
 				4E5E3AA32147A52400E88554 /* ContentItemPrecentCollectionViewCell.swift in Sources */,
+				4E9C5BBC215240520079F985 /* FileUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

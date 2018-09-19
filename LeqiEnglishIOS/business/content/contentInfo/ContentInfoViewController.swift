@@ -110,11 +110,18 @@ extension ContentInfoViewController{
         }
     }
     
+    private func loadFile(_ content:Content){
+        Service.download(filePath: content.audioPath!){(path) in
+        self.LOG.info(path)
+        }
+    }
     
-    func setContent(_ content:Content){
+    
+    private func setContent(_ content:Content){
         // self.content = content
         self.titleLabel.text = content.title!
         loadData()
+        loadFile(content)
     }
     
     private func loadData(){
@@ -141,7 +148,7 @@ extension ContentInfoViewController : UICollectionViewDataSource,UICollectionVie
         let uiView = UISegmentPlayViewController()
         
         self.present(uiView, animated: true){
-            uiView.setSegment(item: segment)
+            uiView.setSegment(item: segment,mp3Path: (self.content?.audioPath)!)
         }
     }
     

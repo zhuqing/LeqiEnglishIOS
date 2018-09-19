@@ -21,7 +21,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ttx-SQ-txy">
-                        <rect key="frame" x="0.0" y="11" width="461" height="130"/>
+                        <rect key="frame" x="0.0" y="2.5" width="461" height="130"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_head" translatesAutoresizingMaskIntoConstraints="NO" id="bKt-HV-UqF" userLabel="userImage">
                                 <rect key="frame" x="20" y="15" width="100" height="100"/>
@@ -85,8 +85,7 @@
                 <constraints>
                     <constraint firstItem="ttx-SQ-txy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="KsK-55-3H9"/>
                     <constraint firstAttribute="trailing" secondItem="ttx-SQ-txy" secondAttribute="trailing" id="aO3-aN-z4D"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="ttx-SQ-txy" secondAttribute="bottom" constant="-19" id="iEr-9O-1g9"/>
-                    <constraint firstItem="ttx-SQ-txy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="sja-Uq-XUo"/>
+                    <constraint firstAttribute="bottom" secondItem="ttx-SQ-txy" secondAttribute="bottom" id="l8P-EQ-GL3"/>
                     <constraint firstAttribute="trailing" secondItem="ttx-SQ-txy" secondAttribute="trailing" id="zoS-aY-YHT"/>
                 </constraints>
             </tableViewCellContentView>

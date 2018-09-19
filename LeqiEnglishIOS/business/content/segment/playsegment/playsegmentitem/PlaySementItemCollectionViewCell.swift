@@ -18,7 +18,7 @@ class PlaySementItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var englishTextLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.contentView.buttomBorder(width: CGFloat(2), borderColor: UIColor.black)
     }
     
     func setItem(item:SegmentPlayItem){
@@ -35,11 +35,15 @@ class PlaySementItemCollectionViewCell: UICollectionViewCell {
     }
     
     func play(bar:UIView){
-        
+        bar.frame = CGRect(x: 0, y: self.frame.height - PlaySegmentBar.HEIGHT, width: SCREEN_WIDTH, height: PlaySegmentBar.HEIGHT)
+        self.contentView.addSubview(bar)
     }
     
     func stop(bar:UIView){
-        
+        bar.removeFromSuperview()
+
     }
+    
+ 
 
 }

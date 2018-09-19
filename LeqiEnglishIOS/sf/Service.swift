@@ -11,17 +11,22 @@ import Alamofire
 class Service{
     static let host="http://www.leqienglish.com"
     
-    static let ROOT="leqienglish"
+   
     
     static let LOG = LOGGER("Service")
-    
+   
+    class func download(filePath:String,finishedCallback:@escaping (_ result:String)->()){
+        //拼接路径
+        let httpPath = "file/download?path=\(filePath)"
+
+        download(path:httpPath,filePath:filePath,finishedCallback:finishedCallback)
+    }
     class func download(path:String,filePath:String,finishedCallback:@escaping (_ result:String)->()){
         //拼接路径
         let httpPath = "\(host)/\(path)"
         //拼接项目跟目录
-        let appFilePath = "\(ROOT)\\\(filePath)"
-        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let fileURL = documentsURL.appendingPathComponent(appFilePath)
+       
+        let fileURL = FileUtil.absulateFileUrl(filePath: filePath)
        
         //如果文件存在，就不下载文件
         if(FileManager.default.fileExists(atPath: fileURL.path)){

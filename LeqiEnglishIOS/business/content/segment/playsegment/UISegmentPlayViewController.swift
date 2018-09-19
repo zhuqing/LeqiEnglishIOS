@@ -13,6 +13,16 @@ class UISegmentPlayViewController: UIViewController {
     @IBOutlet weak var startRecite: UIButton!
     @IBOutlet weak var collectionRootView: UIView!
     
+    private lazy var playBar:PlaySegmentBar? = {
+     
+        let playBar = PlaySegmentBar(frame: CGRect.zero, mp3Path: "")
+        return playBar
+    }()
+    
+    private var lastCell:PlaySementItemCollectionViewCell?
+    
+    private var selectIndex:Int = -1;
+    
     var segmentPlayItems = [SegmentPlayItem]()
     
     private lazy var collectionView:UICollectionView={ [weak self] in
@@ -29,7 +39,7 @@ class UISegmentPlayViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(UINib(nibName: "PlaySementItemCollectionViewCell", bundle:nil), forCellWithReuseIdentifier: PlaySementItemCollectionViewCell.PALY_SEGMENT_ITEM_CELL)
-        
+      
         collectionView.backgroundColor = UIColor.white
         return collectionView
         }()
@@ -50,10 +60,13 @@ class UISegmentPlayViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func setSegment(item:Segment){
+    func setSegment(item:Segment,mp3Path:String){
+        playBar?.mp3Path = mp3Path
+        
         UISegmentPlayViewController.LOG.error(item.content!)
         segmentPlayItems = SegmentPlayItem.toItems(str: item.content!)!
         collectionView.reloadData()
+        
     }
 
     /*
@@ -81,13 +94,17 @@ extension UISegmentPlayViewController : UICollectionViewDataSource,UICollectionV
         
         var height = CGFloat((length/40+1)*40)
         
-        UISegmentPlayViewController.LOG.info("height = \(height)")
+       
         if let chstr = item.chineseSenc {
              let nsChStr = NSString(string: chstr)
             let chlength = nsChStr.length
             
              height = height + CGFloat((chlength/40+1)*30)
-              UISegmentPlayViewController.LOG.info("成 height = \( CGFloat((chlength/40+1)*30))")
+            
+        }
+        
+        if(indexPath.item == selectIndex){
+            height += PlaySegmentBar.HEIGHT
         }
         
         return CGSize(width: SCREEN_WIDTH, height:height)
@@ -95,7 +112,16 @@ extension UISegmentPlayViewController : UICollectionViewDataSource,UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let lastCell = self.lastCell{
+            lastCell.stop(bar: playBar!)
+        }
+        let cell:PlaySementItemCollectionViewCell = collectionView.cellForItem(at: indexPath) as! PlaySementItemCollectionViewCell
         
+       UISegmentPlayViewController.LOG.info("selected\(indexPath.item)")
+    
+      self.selectIndex = indexPath.item
+       collectionView.reloadItems(at: [indexPath])
+       lastCell = cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -106,6 +132,11 @@ extension UISegmentPlayViewController : UICollectionViewDataSource,UICollectionV
         let cell:PlaySementItemCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: PlaySementItemCollectionViewCell.PALY_SEGMENT_ITEM_CELL, for: indexPath) as! PlaySementItemCollectionViewCell
    
         cell.setItem(item: segmentPlayItems[indexPath.item])
+        
+        if(indexPath.item == self.selectIndex){
+            cell.play(bar: playBar!)
+            playBar?.segmentPlayItem = segmentPlayItems[indexPath.item]
+        }
         return cell
     }
 }
