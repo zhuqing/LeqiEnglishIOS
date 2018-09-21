@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="WordScentenseCollectionViewCell" customModule="LeqiEnglishIOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="451" height="131"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="451" height="131"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SIl-xj-ajZ">
+                        <rect key="frame" x="0.0" y="0.0" width="451" height="131"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" text="在我年轻的时候，有一本振聋发聩的杂志叫做《全球目录》，它是我们那一代人的圣经之一。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kbm-8Q-tV0">
+                                <rect key="frame" x="0.0" y="97" width="451" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgp-BH-ZoS">
+                                <rect key="frame" x="0.0" y="5" width="451" height="87"/>
+                                <string key="text">When I was young, there was an amazing publication called The Whole Earth Catalog, which was one of the bibles of my generation.</string>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Kbm-8Q-tV0" secondAttribute="bottom" constant="5" id="0FV-up-uN4"/>
+                            <constraint firstAttribute="trailing" secondItem="qgp-BH-ZoS" secondAttribute="trailing" id="EUE-ke-CzQ"/>
+                            <constraint firstAttribute="trailing" secondItem="Kbm-8Q-tV0" secondAttribute="trailing" id="MVj-JU-aqz"/>
+                            <constraint firstItem="Kbm-8Q-tV0" firstAttribute="leading" secondItem="SIl-xj-ajZ" secondAttribute="leading" id="WLM-eh-UvS"/>
+                            <constraint firstItem="Kbm-8Q-tV0" firstAttribute="top" secondItem="qgp-BH-ZoS" secondAttribute="bottom" constant="5" id="h6A-Y0-e3r"/>
+                            <constraint firstItem="qgp-BH-ZoS" firstAttribute="top" secondItem="SIl-xj-ajZ" secondAttribute="top" constant="5" id="lG7-cD-DTG"/>
+                            <constraint firstItem="qgp-BH-ZoS" firstAttribute="leading" secondItem="SIl-xj-ajZ" secondAttribute="leading" id="t0p-ay-yaj"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="SIl-xj-ajZ" secondAttribute="trailing" id="JKe-9y-WVg"/>
+                <constraint firstItem="SIl-xj-ajZ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="PBS-lC-ARl"/>
+                <constraint firstAttribute="bottom" secondItem="SIl-xj-ajZ" secondAttribute="bottom" id="axW-Rm-tff"/>
+                <constraint firstItem="SIl-xj-ajZ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="iuk-io-KWI"/>
+                <constraint firstAttribute="trailing" secondItem="SIl-xj-ajZ" secondAttribute="trailing" id="vNa-ew-qdZ"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="451" height="131"/>
+            <point key="canvasLocation" x="32.5" y="5.5"/>
+        </collectionViewCell>
+    </objects>
+</document>

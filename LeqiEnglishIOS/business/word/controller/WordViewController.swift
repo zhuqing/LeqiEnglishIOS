@@ -49,13 +49,19 @@ class WordViewController:MainViewController{
     }
 }
 
+//MARK 界面和数据
 extension WordViewController{
     private func setupUI(){
+        
        automaticallyAdjustsScrollViewInsets = false
 
         rootView.addSubview(pageTitleView)
       
         rootView.addSubview(pageContentView)
+    }
+    
+    private func loadData(){
+        
     }
 }
 

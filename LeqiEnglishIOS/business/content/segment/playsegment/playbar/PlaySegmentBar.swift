@@ -20,23 +20,26 @@ enum PALY_STATUS{
 class PlaySegmentBar: UIView {
     
     var LOG = LOGGER("PlaySegmentBar")
+    //播放监听
+    private var timer:Timer?
     
-      private var timer:Timer?
+    //录音，播放录音工具
+    private var recordManager:RecordManager = RecordManager()
     
     private var avAudioPlayer:AVAudioPlayer?
     
     static let HEIGHT:CGFloat = 60
-     let spacing:CGFloat = 30
+    let spacing:CGFloat = 30
     
     var segmentPlayItem:SegmentPlayItem?{
         didSet{
             reset()
-            play()
+            playEventHandler()
         }
     }
-  
     
-   
+    
+    
     
     var mp3Path:String?{
         didSet{
@@ -68,7 +71,7 @@ class PlaySegmentBar: UIView {
      */
     
 }
-
+//MARK 界面布局，及事件
 extension PlaySegmentBar{
     private func setupUI(){
         addPlayButton()
@@ -89,32 +92,34 @@ extension PlaySegmentBar{
                 player.pause()
             }
         }
+        
+        NSObject.cancelPreviousPerformRequests(withTarget: self)
     }
     
     private func  addPlayButton(){
-       
+        
         let height = PlaySegmentBar.HEIGHT/CGFloat(2)
         let y = height - height/CGFloat(2)
         playButton.frame = CGRect(x: spacing, y: y, width: height, height: height)
         self.addSubview(playButton)
         
         
-        playButton.addTarget(self, action: #selector(PlaySegmentBar.play), for: .touchDown)
+        playButton.addTarget(self, action: #selector(PlaySegmentBar.playEventHandler), for: .touchDown)
     }
     
     private func addRecordButton(){
-      
+        
         let height = PlaySegmentBar.HEIGHT/CGFloat(2)
         let x = SCREEN_WIDTH/CGFloat(2)-height
         
         recordButton.frame = CGRect(x: x, y: 0, width: PlaySegmentBar.HEIGHT, height: PlaySegmentBar.HEIGHT)
         self.addSubview(recordButton)
         
-        recordButton.addTarget(self, action: #selector(PlaySegmentBar.record), for: .touchDown)
+        recordButton.addTarget(self, action: #selector(PlaySegmentBar.recordEventHandler), for: .touchDown)
     }
     
     private func addPlayRecord(){
-      
+        
         let height = PlaySegmentBar.HEIGHT/CGFloat(2)
         let y = height - height/CGFloat(2)
         let x = SCREEN_WIDTH - spacing - height
@@ -122,91 +127,136 @@ extension PlaySegmentBar{
         self.addSubview(playRecordButton)
         
         
-        playRecordButton.addTarget(self, action: #selector(PlaySegmentBar.playRecord), for: .touchDown)
+        playRecordButton.addTarget(self, action: #selector(PlaySegmentBar.playRecordEventHandler), for: .touchDown)
     }
     
-    @objc private func play(){
+    @objc private func playEventHandler(){
+        
+        self.LOG.info("playEventHandler\(status)")
+        NSObject.cancelPreviousPerformRequests(withTarget: self)
         switch status {
         case .STOP:
             status = .PLAY
-            playButton.setImage(UIImage(named: "leqi_playing"), for: .normal)
-            startPlay()
+            self.startPlay()
         case .PLAY:
             status = .STOP
-            playButton.setImage(UIImage(named: "leqi_play"), for: .normal)
-           stopPlay()
+            self.stopPlay()
         case .RECORD:
             status = .PLAY
-            recordButton.setImage(UIImage(named: "leqi_record"), for: .normal)
-            playButton.setImage(UIImage(named: "leqi_playing"), for: .normal)
-           startPlay()
+            self.stopRecord()
+            self.startPlay()
         case .PLAY_RECORD:
             status = .PLAY
-            playRecordButton.setImage(UIImage(named: "leqi_play_record"), for: .normal)
-            playButton.setImage(UIImage(named: "leqi_playing"), for: .normal)
-            startPlay()
+            self.stopPlayRecord()
+            self.startPlay()
         }
+        changeButtonImage()
     }
     
-  
     
-    @objc private func record(){
+    
+    @objc private func recordEventHandler(){
+        NSObject.cancelPreviousPerformRequests(withTarget: self)
+        self.LOG.info("recordEventHandler\(status)")
         switch status {
         case .STOP:
             status = .RECORD
-            recordButton.setImage(UIImage(named: "leqi_recording"), for: .normal)
-            
+            startRecord()
         case .PLAY:
             status = .RECORD
-            playButton.setImage(UIImage(named: "leqi_play"), for: .normal)
-            recordButton.setImage(UIImage(named: "leqi_recording"), for: .normal)
-             stopPlay()
+            self.stopPlay()
+            startRecord()
+            
         case .RECORD:
             status = .PLAY_RECORD
-            recordButton.setImage(UIImage(named: "leqi_record"), for: .normal)
-            playRecordButton.setImage(UIImage(named: "leqi_play_recording"), for: .normal)
+            self.stopRecord()
+            self.startPlayRecord()
+            
+            
         case .PLAY_RECORD:
-            status = .PLAY_RECORD
-            playRecordButton.setImage(UIImage(named: "leqi_play_record"), for: .normal)
-           recordButton.setImage(UIImage(named: "leqi_recording"), for: .normal)
+            status = .RECORD
+            self.stopPlayRecord()
+            self.startRecord()
         }
+        
+        changeButtonImage()
     }
     
-    @objc private func playRecord(){
+    @objc private func playRecordEventHandler(){
+        NSObject.cancelPreviousPerformRequests(withTarget: self)
+        self.LOG.info("playRecordEventHandler\(status)")
         switch status {
         case .STOP:
             status = .PLAY_RECORD
-            playRecordButton.setImage(UIImage(named: "leqi_play_recording"), for: .normal)
+            //self.stopRecord()
+            self.startPlayRecord()
             
         case .PLAY:
             status = .PLAY_RECORD
-            playButton.setImage(UIImage(named: "leqi_play"), for: .normal)
-            playRecordButton.setImage(UIImage(named: "leqi_play_recording"), for: .normal)
+             //self.stopRecord()
             stopPlay()
+            self.startPlayRecord()
+            
         case .RECORD:
             status = .PLAY_RECORD
-            recordButton.setImage(UIImage(named: "leqi_record"), for: .normal)
-            playRecordButton.setImage(UIImage(named: "leqi_play_recording"), for: .normal)
+            self.stopRecord()
+            self.startPlayRecord()
+            
         case .PLAY_RECORD:
             status = .STOP
-             playRecordButton.setImage(UIImage(named: "leqi_play_record"), for: .normal)
-       
+            self.stopPlayRecord()
+            
+        }
+        
+        changeButtonImage()
+    }
+    
+    private func changeButtonImage(){
+        switch status {
+        case .STOP:
+            
+            playButton.setImage(UIImage(named: "leqi_play"), for: .normal)
+            playRecordButton.setImage(UIImage(named: "leqi_play_record"), for: .normal)
+            recordButton.setImage(UIImage(named: "leqi_record"), for: .normal)
+        case .PLAY:
+            playButton.setImage(UIImage(named: "leqi_playing"), for: .normal)
+            playRecordButton.setImage(UIImage(named: "leqi_play_record"), for: .normal)
+            recordButton.setImage(UIImage(named: "leqi_record"), for: .normal)
+            
+        case .RECORD:
+            playButton.setImage(UIImage(named: "leqi_play"), for: .normal)
+            playRecordButton.setImage(UIImage(named: "leqi_play_record"), for: .normal)
+            recordButton.setImage(UIImage(named: "leqi_recording"), for: .normal)
+            
+            
+        case .PLAY_RECORD:
+            playButton.setImage(UIImage(named: "leqi_play"), for: .normal)
+            playRecordButton.setImage(UIImage(named: "leqi_play_recording"), for: .normal)
+            recordButton.setImage(UIImage(named: "leqi_record"), for: .normal)
         }
     }
+    
+    
 }
 
-//MARK 播放mp3
-extension PlaySegmentBar : AVAudioPlayerDelegate{
-  
+//MARK 播放mp3，录音，播放录音
+extension PlaySegmentBar : AVAudioPlayerDelegate , RecordManagerDelegate{
+    
     
     private func createAudioPlayer(){
         do {
             avAudioPlayer = try AVAudioPlayer(contentsOf: FileUtil.absulateFileUrl(filePath: mp3Path!))
             avAudioPlayer?.prepareToPlay()
             
+            recordManager.delegate = self
         } catch let err {
             print("创建失败:\(err.localizedDescription)")
         }
+    }
+    
+    func playFinshed() {
+        LOG.info("playFinshed")
+        self.playRecordEventHandler()
     }
     
     
@@ -225,41 +275,67 @@ extension PlaySegmentBar : AVAudioPlayerDelegate{
         LOG.info("starttime\(startTime)")
         audioPlayer.currentTime =  Double(startTime)/Double(1000)
         audioPlayer.play()
-        timer = Timer.scheduledTimer(timeInterval: Double(0.1), target: self, selector: #selector(PlaySegmentBar.checkCurrentTime), userInfo: nil, repeats:true )
         
+        self.perform(#selector(PlaySegmentBar.stopPlayAndDelayRecord), with: nil, afterDelay: Double(playItem.endTime!-playItem.startTime!)/1000.0)
         
-       // Timer.init(timeInterval: TimeInterval(bitPattern: <#T##UInt64#>), target: <#T##Any#>, selector: <#T##Selector#>, userInfo: <#T##Any?#>, repeats: <#T##Bool#>)
     }
     
-    @objc private func checkCurrentTime(){
-        
-        LOG.info("checkCurrentTime")
-        
-        guard let item = self.segmentPlayItem else{
-            if let timer = self.timer{
-                timer.invalidate()
-            }
-            return
-        }
-       
-        if( (avAudioPlayer?.currentTime)! * Double(1000) > Double(item.endTime!)){
-            timer?.invalidate()
-            play()
-        }
-    }
     
+    //停止播放两秒后开始录音
     private func stopPlay(){
+        self.LOG.info("stopPlay")
         guard let audioPlayer = self.avAudioPlayer else{
             return
         }
         if(audioPlayer.isPlaying){
-        audioPlayer.pause()
+            audioPlayer.pause()
         }
         
-        if let timer = self.timer {
-            timer.invalidate()
-        }
+        
     }
     
+    @objc private func stopPlayAndDelayRecord(){
+        stopPlay()
+        self.perform(#selector(PlaySegmentBar.startRecordAndDelayPlay), with: nil, afterDelay: 2.0)
+    }
+    
+    
+    @objc  private func startRecord(){
+        self.LOG.info("startRecord")
+        self.recordManager.beginRecord()
+        
+        
+    }
+    
+    @objc  private func startRecordAndDelayPlay(){
+        guard let playItem = self.segmentPlayItem else{
+            return
+        }
+        self.recordManager.beginRecord()
+        
+        status = .RECORD
+        self.changeButtonImage()
+        
+        self.perform(#selector(PlaySegmentBar.startPlayRecord), with: nil, afterDelay: Double(playItem.endTime!-playItem.startTime!)/1000.0+1.0)
+    }
+    
+   
+    @objc private func stopRecord(){
+        self.LOG.info("stopRecordAndPlay")
+        self.recordManager.stopRecord()
+        
+    }
+    //播放录音
+    @objc private func startPlayRecord(){
+        status = .PLAY_RECORD
+        self.changeButtonImage()
+        stopRecord()
+        self.LOG.info("startPlayRecord")
+        self.recordManager.play()
+    }
+    
+    private func stopPlayRecord(){
+        self.recordManager.stopPlay()
+    }
     
 }

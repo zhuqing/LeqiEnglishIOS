@@ -78,7 +78,7 @@ extension ContentInfoViewController{
     }
     
     private func addListener(){
-        self.add2MyReciteButton.addTarget(self, action: "btnClickEventHandler", for: UIControlEvents.touchDown)
+        self.add2MyReciteButton.addTarget(self, action: #selector(ContentInfoViewController.btnClickEventHandler), for: UIControlEvents.touchDown)
     }
     
     @objc private func btnClickEventHandler(){
@@ -130,6 +130,7 @@ extension ContentInfoViewController{
             (segments) in
             if let ss = segments {
                 self.segments = ss
+                self.segments.insert(self.createContentWords(), at: 0)
             }else{
                 self.segments = [Segment]()
             }
@@ -138,6 +139,14 @@ extension ContentInfoViewController{
             
         }
     }
+    
+    private func createContentWords()->Segment{
+        let segment = Segment()
+        segment.title = "单词列表"
+        segment.id = ""
+        
+        return segment
+    }
 }
 
 extension ContentInfoViewController : UICollectionViewDataSource,UICollectionViewDelegate{
@@ -145,11 +154,19 @@ extension ContentInfoViewController : UICollectionViewDataSource,UICollectionVie
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let segment =  segments[indexPath.item]
         
-        let uiView = UISegmentPlayViewController()
-        
-        self.present(uiView, animated: true){
-            uiView.setSegment(item: segment,mp3Path: (self.content?.audioPath)!)
+      
+        if(indexPath.item == 0){
+            let word = WordListViewController()
+            self.present(word, animated: true){
+                word.loadData(content:self.content!)
+            }
+        }else{
+            let uiView = UISegmentPlayViewController()
+            self.present(uiView, animated: true){
+                uiView.setSegment(item: segment,mp3Path: (self.content?.audioPath)!)
+            }
         }
+       
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
