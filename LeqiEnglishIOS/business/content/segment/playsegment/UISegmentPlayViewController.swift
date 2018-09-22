@@ -89,17 +89,13 @@ extension UISegmentPlayViewController : UICollectionViewDataSource,UICollectionV
             return CGSize(width: SCREEN_WIDTH, height: 60)
         }
         
-        let nsstr = NSString(string: engStr)
-        let length = nsstr.length
         
-        var height = CGFloat((length/40+1)*40)
+        var height = StringUtil.computerHeight(text: engStr, font: UIFont.systemFont(ofSize: 18), fixedWidth: SCREEN_WIDTH-20)+20
         
        
         if let chstr = item.chineseSenc {
-             let nsChStr = NSString(string: chstr)
-            let chlength = nsChStr.length
-            
-             height = height + CGFloat((chlength/40+1)*30)
+
+             height += StringUtil.computerHeight(text: chstr, font: UIFont.systemFont(ofSize: 13), fixedWidth: SCREEN_WIDTH-20)
             
         }
         

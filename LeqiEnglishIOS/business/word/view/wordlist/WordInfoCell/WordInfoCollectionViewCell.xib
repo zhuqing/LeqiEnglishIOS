@@ -130,7 +130,7 @@
                 <outlet property="ttsPlayButton" destination="nH0-cd-91b" id="WV5-iF-CbH"/>
                 <outlet property="wordInfo" destination="zu4-uU-DGG" id="dtL-dC-cB3"/>
             </connections>
-            <point key="canvasLocation" x="32.5" y="-59"/>
+            <point key="canvasLocation" x="-8" y="-115"/>
         </collectionViewCell>
     </objects>
     <resources>

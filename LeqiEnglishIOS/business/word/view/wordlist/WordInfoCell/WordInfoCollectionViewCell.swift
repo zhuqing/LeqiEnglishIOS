@@ -66,34 +66,10 @@ extension WordInfoCollectionViewCell{
         loadWordMean(item:w)
     }
     
+    //加载单词中的means
     private func loadWordMean(item:Word){
-        guard let means = item.means else {
-            return
-        }
-       
-        
-        guard let meanDatas = String.toDictionarys(means) else {
-            return
-        }
-        
-        var meanStr:String = ""
-        for data in meanDatas{
-            let arr = data["means"] as! NSArray
-            meanStr.append("\(data["part"]!)\t \(toString(arr:arr))\n")
-        }
-        
-         self.means.text = meanStr
+         self.means.text = WordUtil.getMeans(item: item)
     }
-    
-    private func toString(arr:NSArray)-> String{
-        var meanStr:String = ""
-        for data in arr{
-            meanStr.append("\(data)")
-            meanStr.append(",")
-        }
-       return meanStr
-    }
-    
     
     
     private func updateData(item:Word? = nil){

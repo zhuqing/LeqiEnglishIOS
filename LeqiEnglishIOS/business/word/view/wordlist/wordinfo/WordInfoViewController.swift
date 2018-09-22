@@ -12,6 +12,12 @@ class WordInfoViewController: UIViewController {
 
     @IBOutlet weak var rootView: UIView!
     
+     var word:Word?{
+        didSet{
+            collectionView.reloadData()
+        }
+    }
+    
     private lazy var collectionView:UICollectionView = {
         var layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: SCREEN_WIDTH, height: 160)
@@ -65,6 +71,31 @@ class WordInfoViewController: UIViewController {
 // MARK 实现 UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
 extension WordInfoViewController: UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        guard let w = self.word else{
+            return  CGSize(width: SCREEN_WIDTH, height: 70)
+        }
+        
+        let means = WordUtil.getMeans(item: w)
+        var height:CGFloat =   StringUtil.computerHeight(text:means, font: UIFont.systemFont(ofSize: CGFloat(17)), fixedWidth: SCREEN_WIDTH-20)
+        
+       
+        
+        switch indexPath.item {
+        case 0:
+             height += 90
+             
+            return  CGSize(width: SCREEN_WIDTH, height: height)
+        case 1:
+            return  CGSize(width: SCREEN_WIDTH, height: SCREEN_HEIGHT - height - 100)
+        default:
+            return CGSize(width: self.view.bounds.width, height: height)
+        }
+    }
+    
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
     }
@@ -78,10 +109,12 @@ extension WordInfoViewController: UICollectionViewDataSource,UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if(indexPath.item == 0){
          let cell =    collectionView.dequeueReusableCell(withReuseIdentifier: WordInfoCollectionViewCell.WORD_INFO_CELL_INDENTIFY, for: indexPath) as? WordInfoCollectionViewCell
+            cell?.word = self.word
          return cell!
         }
         if(indexPath.item == 1){
-            let cell =    collectionView.dequeueReusableCell(withReuseIdentifier: WordInfoCollectionViewCell.WORD_INFO_CELL_INDENTIFY, for: indexPath) as? WordInfoCollectionViewCell
+            let cell =    collectionView.dequeueReusableCell(withReuseIdentifier: WordScentenseCollectionView.WORD_SCENTENSE_COLLECTION_VIEW, for: indexPath) as? WordScentenseCollectionView
+            cell?.word = self.word
             return cell!
         }
         let cell =    collectionView.dequeueReusableCell(withReuseIdentifier: WordInfoCollectionViewCell.WORD_INFO_CELL_INDENTIFY, for: indexPath) as? WordInfoCollectionViewCell

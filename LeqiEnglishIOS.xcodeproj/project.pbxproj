@@ -43,6 +43,7 @@
 		4E64265C2148EB3B00D2B3FF /* HomeViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E64265B2148EB3B00D2B3FF /* HomeViewMode.swift */; };
 		4E6426612149568500D2B3FF /* SQLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6426602149568500D2B3FF /* SQLManager.swift */; };
 		4E7F1EA8214A58CA000D9044 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F1EA7214A58CA000D9044 /* libsqlite3.0.tbd */; };
+		4E83205B2155EF1100CD84C0 /* WordUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E83205A2155EF1100CD84C0 /* WordUtil.swift */; };
 		4E8E9CCC214C96110004F39B /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8E9CCB214C96110004F39B /* HomeController.swift */; };
 		4E8E9CD0214C96990004F39B /* UserBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8E9CCE214C96990004F39B /* UserBoardView.swift */; };
 		4E8E9CD1214C96990004F39B /* UserBoardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E8E9CCF214C96990004F39B /* UserBoardView.xib */; };
@@ -134,6 +135,7 @@
 		4E64265B2148EB3B00D2B3FF /* HomeViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewMode.swift; sourceTree = "<group>"; };
 		4E6426602149568500D2B3FF /* SQLManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLManager.swift; sourceTree = "<group>"; };
 		4E7F1EA7214A58CA000D9044 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		4E83205A2155EF1100CD84C0 /* WordUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordUtil.swift; sourceTree = "<group>"; };
 		4E8E9CCB214C96110004F39B /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		4E8E9CCE214C96990004F39B /* UserBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBoardView.swift; sourceTree = "<group>"; };
 		4E8E9CCF214C96990004F39B /* UserBoardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserBoardView.xib; sourceTree = "<group>"; };
@@ -424,6 +426,7 @@
 		4E5ED4172143764F00AC709F /* tools */ = {
 			isa = PBXGroup;
 			children = (
+				4E8320592155EE3E00CD84C0 /* word */,
 				4E45FB572154CCA400A5F03F /* string */,
 				4E45FB3F21532D7600A5F03F /* record */,
 				4E9C5BBA2152403F0079F985 /* file */,
@@ -461,6 +464,14 @@
 				336BE4373A343D3113E1DA2D /* Pods_LeqiEnglishIOS.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4E8320592155EE3E00CD84C0 /* word */ = {
+			isa = PBXGroup;
+			children = (
+				4E83205A2155EF1100CD84C0 /* WordUtil.swift */,
+			);
+			path = word;
 			sourceTree = "<group>";
 		};
 		4E8E9CCD214C96590004F39B /* view */ = {
@@ -886,6 +897,7 @@
 				4E8E9CD0214C96990004F39B /* UserBoardView.swift in Sources */,
 				4E45FB5221547B9D00A5F03F /* WordListViewController.swift in Sources */,
 				4E9C5BA32150D2E70079F985 /* UserDataCache.swift in Sources */,
+				4E83205B2155EF1100CD84C0 /* WordUtil.swift in Sources */,
 				4E8E9CF1214F58BA0004F39B /* SegmentViewItem.swift in Sources */,
 				4E9C5B9F2150A4950079F985 /* MyRecitedViewModel.swift in Sources */,
 				4E64265C2148EB3B00D2B3FF /* HomeViewMode.swift in Sources */,

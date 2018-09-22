@@ -11,14 +11,24 @@ import UIKit
 class WordScentenseCollectionView: UICollectionViewCell {
     
     static let WORD_SCENTENSE_COLLECTION_VIEW = "WORD_SCENTENSE_COLLECTION_VIEW"
-
+    
+    var word:Word?{
+        didSet{
+            if let w = self.word {
+                loadData(word: w)
+            }else{
+                clear()
+            }
+        }
+    }
+    
     @IBOutlet weak var rootView: UIView!
     
     var wordAndSegemnts = [WordAndSegment]()
     
     private lazy var collectionView:UICollectionView = {
         var layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: SCREEN_WIDTH, height: 160)
+        layout.itemSize = CGSize(width: SCREEN_WIDTH-20, height: 160)
         layout.minimumLineSpacing = 2
         layout.minimumInteritemSpacing = 0
         layout.scrollDirection = .vertical
@@ -29,7 +39,7 @@ class WordScentenseCollectionView: UICollectionViewCell {
         collectionView.bounces = false
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.backgroundColor = UIColor.lightGray
+        collectionView.backgroundColor = UIColor.white
         
         collectionView.register(UINib(nibName: "WordScentenseCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: WordScentenseCollectionViewCell.WORD_SCENTENSE_COLLECTION_VIEWCELL)
         
@@ -40,23 +50,53 @@ class WordScentenseCollectionView: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        rootView.addSubview(collectionView)
+        collectionView.frame = CGRect(x: 5, y: 0, width: SCREEN_WIDTH-10, height: SCREEN_HEIGHT)
     }
-
+    
 }
 
 extension WordScentenseCollectionView{
-    func loadData(word:Word){
+    private  func loadData(word:Word){
         let wordS = WordScentenseDataCache(word: word)
         wordS.getFromService(){
             (datas) in
             self.wordAndSegemnts = datas!
+            self.collectionView.reloadData()
         }
+    }
+    
+    private func clear(){
+        
     }
 }
 
 
 // MARK 实现 UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
 extension WordScentenseCollectionView: UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let wordAndSegment = self.wordAndSegemnts[indexPath.item]
+        
+        var height:CGFloat = 20
+        
+        guard let s = wordAndSegment.scentence else{
+            return  CGSize(width: SCREEN_WIDTH, height: height)
+        }
+        
+        let ch_am = StringUtil.toChAndEN(str: s)
+        
+        height +=   StringUtil.computerHeight(text:ch_am.0, font: UIFont.systemFont(ofSize: CGFloat(17)), fixedWidth: SCREEN_WIDTH-20)
+        
+        
+        height +=   StringUtil.computerHeight(text:ch_am.1, font: UIFont.systemFont(ofSize: CGFloat(13)), fixedWidth: SCREEN_WIDTH-20)
+        
+        
+        return  CGSize(width: SCREEN_WIDTH-20, height: height)
+        
+    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -70,7 +110,7 @@ extension WordScentenseCollectionView: UICollectionViewDataSource,UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell =    collectionView.dequeueReusableCell(withReuseIdentifier: WordScentenseCollectionViewCell.WORD_SCENTENSE_COLLECTION_VIEWCELL, for: indexPath) as? WordScentenseCollectionViewCell
-        cell?.setItem(item: wordAndSegemnts[indexPath.item])
+        cell?.wordAndSegment = wordAndSegemnts[indexPath.item]
         return cell!
     }
 }

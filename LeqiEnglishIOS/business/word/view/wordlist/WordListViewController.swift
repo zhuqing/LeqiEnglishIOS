@@ -30,7 +30,7 @@ class WordListViewController: UIViewController {
         collectionView.bounces = false
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.backgroundColor = UIColor.lightGray
+        collectionView.backgroundColor = UIColor.white
         
         collectionView.register(UINib(nibName: "WordInfoCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: WordInfoCollectionViewCell.WORD_INFO_CELL_INDENTIFY)
         
@@ -78,7 +78,11 @@ extension WordListViewController{
 extension WordListViewController: UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+       let wordInfoView = WordInfoViewController()
+       
+        self.present(wordInfoView, animated: true){
+            wordInfoView.word = self.wordList?[indexPath.item]
+        }
     }
    
     
