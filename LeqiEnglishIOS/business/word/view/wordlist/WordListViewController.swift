@@ -11,11 +11,13 @@ import UIKit
 class WordListViewController: UIViewController {
     @IBOutlet weak var rootView: UIView!
     
+    @IBOutlet weak var back: UIBarButtonItem!
     var wordList:[Word]? = [Word](){
         didSet{
             collectionView.reloadData()
         }
     }
+    @IBOutlet weak var nivagationBar: UINavigationBar!
     
     private lazy var collectionView:UICollectionView = {
         var layout = UICollectionViewFlowLayout()
@@ -43,7 +45,7 @@ class WordListViewController: UIViewController {
         super.viewDidLoad()
         self.rootView.addSubview(collectionView)
         collectionView.frame = CGRect(x: 10, y: 0, width: SCREEN_WIDTH-20, height: SCREEN_HEIGHT)
-        // Do any additional setup after loading the view.
+        navigation()
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,12 +68,22 @@ class WordListViewController: UIViewController {
 
 extension WordListViewController{
     func loadData(content:Content){
+        
        let dataCache = WordContentDataCache(content: content)
         dataCache.getFromService(){(words) in
             self.wordList = words
             
         }
     }
+    
+    private func navigation(){
+        self.back.action = #selector(WordListViewController.backEventHandler)
+    }
+    
+    @objc private func backEventHandler(){
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 }
 
 //MARK 实现 UICollectionViewDataSource,UICollectionViewDelegateFlowLayout

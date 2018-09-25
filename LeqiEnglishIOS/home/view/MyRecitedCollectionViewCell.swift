@@ -9,7 +9,7 @@
 import UIKit
 
 protocol MyRecitedCollectionViewCellDelegate {
-    func myRecitedCollectionViewCell(cell:MyRecitedCollectionViewCell ,clickItem:Content)
+    func myRecitedCollectionViewCell(clickItem:ReciteContentVO)
 }
 
 class MyRecitedCollectionViewCell: UICollectionViewCell {
@@ -38,6 +38,7 @@ class MyRecitedCollectionViewCell: UICollectionViewCell {
         collectionView.isPagingEnabled = true
         collectionView.bounces = true
         collectionView.dataSource = self
+        collectionView.delegate = self
         
         collectionView.register(UINib(nibName: "ContentItemPrecentCollectionViewCell", bundle:nil), forCellWithReuseIdentifier: CONTENT_ITEM_ORECENT_CELL)
         
@@ -74,7 +75,7 @@ extension MyRecitedCollectionViewCell{
     }
 }
 
-extension MyRecitedCollectionViewCell:UICollectionViewDataSource{
+extension MyRecitedCollectionViewCell:UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -90,5 +91,15 @@ extension MyRecitedCollectionViewCell:UICollectionViewDataSource{
         //   cell.backgroundColor = UIColor.blue
         cell.setItem(item: reciteContentDatas![indexPath.item])
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selected = reciteContentDatas![indexPath.item]
+        
+        guard let de = self.delegate else{
+            return
+        }
+        
+        de.myRecitedCollectionViewCell(clickItem: selected)
     }
 }

@@ -12,6 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WordListViewController" customModule="LeqiEnglishIOS" customModuleProvider="target">
             <connections>
+                <outlet property="back" destination="2Il-fv-Rd2" id="7XM-ag-RMR"/>
+                <outlet property="nivagationBar" destination="NPN-EE-50g" id="Y1e-PG-gV2"/>
                 <outlet property="rootView" destination="7TS-m8-9an" id="O0A-WN-MCZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -21,19 +23,34 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NPN-EE-50g">
+                    <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <items>
+                        <navigationItem largeTitleDisplayMode="never" id="YOu-ZT-w0K">
+                            <barButtonItem key="leftBarButtonItem" image="pre_pressed" largeContentSizeImage="pre_pressed" id="2Il-fv-Rd2"/>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7TS-m8-9an">
-                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7TS-m8-9an" secondAttribute="trailing" id="2F9-S4-Qry"/>
+                <constraint firstItem="NPN-EE-50g" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="9VW-k2-yJD"/>
+                <constraint firstItem="NPN-EE-50g" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="KKq-O8-5kh"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="7TS-m8-9an" secondAttribute="bottom" id="OXP-zT-OHK"/>
-                <constraint firstItem="7TS-m8-9an" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="ZJY-ff-ded"/>
                 <constraint firstItem="7TS-m8-9an" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="pCE-C3-PvL"/>
+                <constraint firstItem="7TS-m8-9an" firstAttribute="top" secondItem="NPN-EE-50g" secondAttribute="bottom" id="pGR-Ux-rAy"/>
+                <constraint firstItem="NPN-EE-50g" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="zAt-fb-NaJ"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="25.5" y="51.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="pre_pressed" width="32" height="32"/>
+    </resources>
 </document>

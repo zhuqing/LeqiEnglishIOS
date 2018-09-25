@@ -10,6 +10,7 @@ import UIKit
 
 class WordInfoViewController: UIViewController {
 
+    @IBOutlet weak var back: UIBarButtonItem!
     @IBOutlet weak var rootView: UIView!
     
      var word:Word?{
@@ -46,7 +47,7 @@ class WordInfoViewController: UIViewController {
         super.viewDidLoad()
         rootView.addSubview(collectionView)
         collectionView.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT)
-
+navigation()
         // Do any additional setup after loading the view.
     }
 
@@ -56,15 +57,13 @@ class WordInfoViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    private func navigation(){
+        self.back.action = #selector(WordInfoViewController.backEventHandler)
     }
-    */
+    
+    @objc private func backEventHandler(){
+        self.dismiss(animated: true, completion: nil)
+    }
 
 }
 
@@ -115,10 +114,20 @@ extension WordInfoViewController: UICollectionViewDataSource,UICollectionViewDel
         if(indexPath.item == 1){
             let cell =    collectionView.dequeueReusableCell(withReuseIdentifier: WordScentenseCollectionView.WORD_SCENTENSE_COLLECTION_VIEW, for: indexPath) as? WordScentenseCollectionView
             cell?.word = self.word
+            cell?.delegate = self
             return cell!
         }
         let cell =    collectionView.dequeueReusableCell(withReuseIdentifier: WordInfoCollectionViewCell.WORD_INFO_CELL_INDENTIFY, for: indexPath) as? WordInfoCollectionViewCell
         return cell!
    
+    }
+}
+
+extension WordInfoViewController : WordScentenseCollectionViewDelegate{
+    func toContentInfo(_ content: Content) {
+       let viewController = ContentInfoViewController()
+        self.present(viewController, animated: true){
+            viewController.content = content
+        }
     }
 }

@@ -49,9 +49,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pt9-ig-pSn">
-                                <rect key="frame" x="395" y="35" width="46" height="60"/>
+                                <rect key="frame" x="361" y="45" width="80" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="cp5-Ps-r50"/>
+                                    <constraint firstAttribute="height" constant="40" id="cp5-Ps-r50"/>
+                                    <constraint firstAttribute="width" constant="80" id="nwq-Ig-tdT"/>
                                 </constraints>
                                 <state key="normal" title="背单词">
                                     <color key="titleColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -91,6 +92,12 @@
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="hasLoginDaysLabel" destination="VWE-0D-6wh" id="Qxl-EY-ZQr"/>
+                <outlet property="hasRecite" destination="yJP-RM-Cyb" id="dqF-6x-H1k"/>
+                <outlet property="reciteWordButton" destination="Pt9-ig-pSn" id="3Hn-Sx-Foo"/>
+                <outlet property="userHeaderImage" destination="bKt-HV-UqF" id="o7Y-Ac-MYy"/>
+            </connections>
             <point key="canvasLocation" x="322.5" y="221.5"/>
         </tableViewCell>
     </objects>

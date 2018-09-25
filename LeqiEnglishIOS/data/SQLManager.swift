@@ -133,26 +133,7 @@ struct SQLiteManager {
         }
         return nil
     }
-    //更新数据
-    func updateData(userId: Int64, old_name: String, new_name: String) {
-        //        let currUser = users.filter(id == userId)
-        //        do {
-        //            try db.run(currUser.update(name <- name.replace(old_name, with: new_name)))
-        //        } catch {
-        //            print(error)
-        //        }
-        
-    }
-    
-    //删除数据
-    func delData(userId: Int64) {
-        //        let currUser = users.filter(id == userId)
-        //        do {
-        //            try db.run(currUser.delete())
-        //        } catch {
-        //            print(error)
-        //        }
-    }
+   
 }
 
 

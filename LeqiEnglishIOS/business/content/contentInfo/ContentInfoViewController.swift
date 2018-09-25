@@ -16,6 +16,7 @@ class ContentInfoViewController: UIViewController {
     @IBOutlet weak var finishedLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     
+    @IBOutlet weak var back: UIBarButtonItem!
     let LOG = LOGGER("ContentInfoViewController")
     
     
@@ -24,6 +25,13 @@ class ContentInfoViewController: UIViewController {
             guard let c = content else {return}
             
             setContent(c)
+            resetUI()
+        }
+    }
+    
+    static var isMyRecite:Bool? = false{
+        didSet{
+          //ContentInfoViewController.self.resetUI()
         }
     }
     
@@ -75,10 +83,36 @@ extension ContentInfoViewController{
         collectionRootView.addSubview(collectionView)
         collectionView.frame = CGRect(x: 10, y: 0, width: SCREEN_WIDTH-20, height: collectionRootView.frame.height)
         addListener()
+        resetUI()
+        navigation()
+    }
+    
+    private func navigation(){
+        self.back.action = #selector(ContentInfoViewController.backEventHandler)
+    }
+    
+    @objc private func backEventHandler(){
+        
+        var rootVC = self.presentingViewController
+        while let parent = rootVC?.presentingViewController {
+            rootVC = parent
+        }
+        //释放所有下级视图
+        rootVC?.dismiss(animated: true, completion: nil)
+        
+        
     }
     
     private func addListener(){
         self.add2MyReciteButton.addTarget(self, action: #selector(ContentInfoViewController.btnClickEventHandler), for: UIControlEvents.touchDown)
+    }
+    //重新设置UI
+    private func resetUI(){
+        if(ContentInfoViewController.isMyRecite ?? false){
+             self.add2MyReciteButton.isHidden = true
+        }else{
+             self.add2MyReciteButton.isHidden = false
+        }
     }
     
     @objc private func btnClickEventHandler(){

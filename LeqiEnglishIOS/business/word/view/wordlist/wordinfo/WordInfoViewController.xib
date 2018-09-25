@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WordInfoViewController" customModule="LeqiEnglishIOS" customModuleProvider="target">
             <connections>
+                <outlet property="back" destination="17H-wZ-5O4" id="bn3-Ht-F7X"/>
                 <outlet property="rootView" destination="d6n-uw-9dW" id="1sC-th-shs"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -21,19 +22,37 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mqD-sa-yfM">
+                    <rect key="frame" x="0.0" y="20" width="375" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="wRk-CK-DvG"/>
+                    </constraints>
+                    <items>
+                        <navigationItem id="vpx-DV-Ohl">
+                            <barButtonItem key="leftBarButtonItem" title="Item" image="pre_pressed" id="17H-wZ-5O4"/>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d6n-uw-9dW" userLabel="RootView">
-                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                    <rect key="frame" x="0.0" y="60" width="375" height="607"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="mqD-sa-yfM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="AQs-yQ-Gkn"/>
+                <constraint firstItem="mqD-sa-yfM" firstAttribute="trailing" secondItem="d6n-uw-9dW" secondAttribute="trailing" id="IZH-Tc-0a9"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="d6n-uw-9dW" secondAttribute="bottom" id="JY4-S3-feI"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="d6n-uw-9dW" secondAttribute="trailing" id="QIX-GE-q0L"/>
                 <constraint firstItem="d6n-uw-9dW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="R6z-Wb-gVK"/>
-                <constraint firstItem="d6n-uw-9dW" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="xD2-fx-5bD"/>
+                <constraint firstItem="d6n-uw-9dW" firstAttribute="top" secondItem="mqD-sa-yfM" secondAttribute="bottom" id="S6r-3N-ZWZ"/>
+                <constraint firstItem="mqD-sa-yfM" firstAttribute="leading" secondItem="d6n-uw-9dW" secondAttribute="leading" id="awm-bj-mgJ"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="25.5" y="51.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="pre_pressed" width="32" height="32"/>
+    </resources>
 </document>

@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol WordScentenseCollectionViewDelegate {
+    func toContentInfo(_ content:Content)
+}
+
 class WordScentenseCollectionView: UICollectionViewCell {
     
     static let WORD_SCENTENSE_COLLECTION_VIEW = "WORD_SCENTENSE_COLLECTION_VIEW"
@@ -21,6 +25,9 @@ class WordScentenseCollectionView: UICollectionViewCell {
             }
         }
     }
+    
+    var delegate:WordScentenseCollectionViewDelegate?
+    
     
     @IBOutlet weak var rootView: UIView!
     
@@ -66,6 +73,7 @@ extension WordScentenseCollectionView{
         }
     }
     
+   
     private func clear(){
         
     }
@@ -80,7 +88,7 @@ extension WordScentenseCollectionView: UICollectionViewDataSource,UICollectionVi
         
         let wordAndSegment = self.wordAndSegemnts[indexPath.item]
         
-        var height:CGFloat = 20
+        var height:CGFloat = 40
         
         guard let s = wordAndSegment.scentence else{
             return  CGSize(width: SCREEN_WIDTH, height: height)
@@ -111,6 +119,29 @@ extension WordScentenseCollectionView: UICollectionViewDataSource,UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell =    collectionView.dequeueReusableCell(withReuseIdentifier: WordScentenseCollectionViewCell.WORD_SCENTENSE_COLLECTION_VIEWCELL, for: indexPath) as? WordScentenseCollectionViewCell
         cell?.wordAndSegment = wordAndSegemnts[indexPath.item]
+        cell?.delegate = self
         return cell!
+    }
+}
+
+
+//点击单词相关句子的Content 标题
+extension WordScentenseCollectionView : WordScentenseCollectionViewCellDelegate{
+    
+    func clickContentTitle(_ contentId: String) {
+        
+        guard let delegate = self.delegate else{
+            return
+        }
+       
+        let singleContent = SingleContent(contentId: contentId)
+        
+        singleContent.load(){
+            (content) in
+            guard let c = content else{
+                return
+            }
+            delegate.toContentInfo(c)
+        }
     }
 }

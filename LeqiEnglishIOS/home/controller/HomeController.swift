@@ -74,9 +74,17 @@ extension HomeViewController:UICollectionViewDataSource , UICollectionViewDelega
        
         switch indexPath.section {
         case 0:
-          return collectionView.dequeueReusableCell(withReuseIdentifier: UserBoardView.USER_BOARDER_VIEW_REUSE_IDENTIFIRE, for: indexPath)
+           let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: UserBoardView.USER_BOARDER_VIEW_REUSE_IDENTIFIRE, for: indexPath) as? UserBoardView
+            cell?.delegate = self
+           return cell!
         case 1:
-             return collectionView.dequeueReusableCell(withReuseIdentifier: MyRecitedCollectionViewCell.MYRECITEING_COLLECTION_REUSE_IDENTIFIRE, for: indexPath)
+             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyRecitedCollectionViewCell.MYRECITEING_COLLECTION_REUSE_IDENTIFIRE, for: indexPath) as?
+             MyRecitedCollectionViewCell
+             
+             cell?.delegate = self
+            
+             return cell!
+            
             
         case 2:
             let cell:MyRecommendCollectionViewCell? = collectionView.dequeueReusableCell(withReuseIdentifier: MyRecommendCollectionViewCell.MY_RECOMMEND_VIEW_REUSE_IDENTIFIRE, for: indexPath) as? MyRecommendCollectionViewCell
@@ -93,6 +101,7 @@ extension HomeViewController:UICollectionViewDataSource , UICollectionViewDelega
     }
 }
 
+//MARK 实现MyRecommendCollectionViewCellDelegate
 extension HomeViewController:MyRecommendCollectionViewCellDelegate{
     func myRecommendCollectionViewCell(_ collectionView: UICollectionView, clickItem: Content) {
         ////self.prepare(for: UIStoryboardSegue, sender: <#T##Any?#>)
@@ -103,10 +112,35 @@ extension HomeViewController:MyRecommendCollectionViewCellDelegate{
       
         self.present(vc, animated: true){
               vc.content = clickItem
+            ContentInfoViewController.isMyRecite = true
         }
+    }
+    
+   
+}
+//实现MyRecitedCollectionViewCellDelegate
+extension HomeViewController:MyRecitedCollectionViewCellDelegate{
+   
+    
+    func myRecitedCollectionViewCell( clickItem: ReciteContentVO) {
+        let vc = ContentInfoViewController()
         
-        
+        self.present(vc, animated: true){
+            vc.content = clickItem as Content
+            ContentInfoViewController.isMyRecite = false
+        }
     }
 }
 
+
+//MARK 实现UserBoardViewDelegate
+extension HomeViewController : UserBoardViewDelegate{
+    func reciteWordButtonClick() {
+        let vc = ReciteWordViewController()
+        self.present(vc, animated: true){
+           
+        }
+        
+    }
+}
 

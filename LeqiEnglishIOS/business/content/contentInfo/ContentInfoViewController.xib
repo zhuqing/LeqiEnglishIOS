@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ContentInfoViewController" customModule="LeqiEnglishIOS" customModuleProvider="target">
             <connections>
                 <outlet property="add2MyReciteButton" destination="1Vy-9s-R8S" id="YqY-Or-lM9"/>
+                <outlet property="back" destination="akB-he-DjW" id="KWF-eQ-nsI"/>
                 <outlet property="collectionRootView" destination="GUw-ZF-OwW" id="4Vc-wQ-yxt"/>
                 <outlet property="finishedLabel" destination="si3-n9-Yxd" id="Gy3-Em-vUe"/>
                 <outlet property="navigationBar" destination="ufj-pM-SxP" id="1Wi-PI-77k"/>
@@ -27,6 +28,11 @@
             <subviews>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ufj-pM-SxP">
                     <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <items>
+                        <navigationItem id="las-fV-qcP">
+                            <barButtonItem key="leftBarButtonItem" tag="-1" title="Item" image="pre_pressed" id="akB-he-DjW"/>
+                        </navigationItem>
+                    </items>
                 </navigationBar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UiX-CU-huc" userLabel="root">
                     <rect key="frame" x="0.0" y="64" width="375" height="603"/>
@@ -96,4 +102,7 @@
             <point key="canvasLocation" x="1497" y="9"/>
         </view>
     </objects>
+    <resources>
+        <image name="pre_pressed" width="32" height="32"/>
+    </resources>
 </document>
