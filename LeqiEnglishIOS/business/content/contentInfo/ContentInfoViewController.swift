@@ -126,7 +126,7 @@ extension ContentInfoViewController{
             return
         }
         
-        let userData = UserDataCache()
+        let userData = UserDataCache.userDataCache
         
         guard let user = userData.getFromCache() else {
             LOG.error("没找到User")

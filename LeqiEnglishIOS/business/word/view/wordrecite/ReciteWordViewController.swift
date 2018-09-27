@@ -8,17 +8,25 @@
 
 import UIKit
 
+import AVFoundation
+
 class ReciteWordViewController: UIViewController {
+    
+    private var LOG = LOGGER("ReciteWordViewController")
 
     @IBOutlet weak var wordNumber: UILabel!
     @IBOutlet weak var wordInfoRootView: UIView!
     @IBOutlet weak var startWriteButton: UIButton!
     @IBOutlet weak var startReciteButton: UIButton!
     @IBOutlet weak var back: UIBarButtonItem!
+    
+    private var avPlayer:AVAudioPlayer?
    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigation()
+        loadword()
         // Do any additional setup after loading the view.
     }
 
@@ -38,6 +46,23 @@ class ReciteWordViewController: UIViewController {
     }
     */
 
+}
+//MARK 加载数据
+extension ReciteWordViewController{
+    private func loadword(){
+        guard let user =   UserDataCache.userDataCache.getFromCache() else{
+            self.LOG.error("没有找到用户")
+            return
+        }
+        
+       let myWords =  MyWords(user: user)
+        
+        myWords.load(){
+            (words) in
+            
+            self.wordNumber.text = "共有\(words?.count)个单词"
+        }
+    }
 }
 
 extension ReciteWordViewController{

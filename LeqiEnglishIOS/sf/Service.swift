@@ -9,9 +9,9 @@
 import Foundation
 import Alamofire
 class Service{
-    static let host="http://www.leqienglish.com"
+    //static let host ="http://www.leqienglish.com"
     
-   
+    static let host = "http://192.168.43.9:8080"
     
     static let LOG = LOGGER("Service")
    
@@ -58,6 +58,9 @@ class Service{
                 LOG.error(response.result.error.debugDescription)
                 return
             }
+            
+            LOG.info("\(result)")
+            
             finishedCallback(result)
         }
     }
@@ -67,9 +70,8 @@ class Service{
     //调用Get方法
     class func get(path:String,finishedCallback: @escaping (_ result : [String:NSObject])->()){
         
-        let httpPath = "\(host)/\(path)"
-        
-        print(httpPath)
+        let httpPath = getHttpPath(path)
+    
         
         Alamofire.request(httpPath, method: .get, encoding: URLEncoding.httpBody, headers: nil).responseJSON{
             (response) in

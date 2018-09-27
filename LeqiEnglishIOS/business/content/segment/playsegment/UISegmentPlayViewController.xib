@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UISegmentPlayViewController" customModule="LeqiEnglishIOS" customModuleProvider="target">
             <connections>
+                <outlet property="back" destination="WaY-cl-2yR" id="9Nz-eF-q1Y"/>
                 <outlet property="collectionRootView" destination="VAh-YF-DoA" id="Jl6-9N-Sxv"/>
                 <outlet property="startRecite" destination="y2h-gW-mbK" id="YaM-6W-CfV"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -22,8 +23,16 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ThA-nK-wk5">
+                    <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <items>
+                        <navigationItem id="uZ5-me-xUo">
+                            <barButtonItem key="leftBarButtonItem" title="Item" image="pre_pressed" id="WaY-cl-2yR"/>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VAh-YF-DoA" userLabel="collectionView">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="611"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="547"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2h-gW-mbK">
@@ -42,11 +51,14 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="VAh-YF-DoA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="3TD-GX-LE5"/>
+                <constraint firstItem="ThA-nK-wk5" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="6Az-Yp-Jvc"/>
                 <constraint firstItem="y2h-gW-mbK" firstAttribute="top" secondItem="VAh-YF-DoA" secondAttribute="bottom" constant="5" id="8RS-8N-76q"/>
+                <constraint firstItem="ThA-nK-wk5" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="BHs-Rq-eWZ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="y2h-gW-mbK" secondAttribute="trailing" constant="30" id="QwP-XU-N0V"/>
+                <constraint firstItem="ThA-nK-wk5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="WM8-Bp-kNy"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="y2h-gW-mbK" secondAttribute="bottom" constant="15" id="owf-5e-lYv"/>
                 <constraint firstItem="y2h-gW-mbK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="pPm-DE-2in"/>
+                <constraint firstItem="VAh-YF-DoA" firstAttribute="top" secondItem="ThA-nK-wk5" secondAttribute="bottom" id="upe-oX-8Dk"/>
                 <constraint firstItem="VAh-YF-DoA" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="wi3-v2-R3v"/>
                 <constraint firstItem="VAh-YF-DoA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="xNn-vc-05k"/>
             </constraints>
@@ -54,4 +66,7 @@
             <point key="canvasLocation" x="0.5" y="-28.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="pre_pressed" width="32" height="32"/>
+    </resources>
 </document>

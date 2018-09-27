@@ -16,6 +16,8 @@ class HomeViewController: UIViewController {
     
     let MY_RECOMMED_HEIGHT:CGFloat = 300
     
+    var  refresher:UIRefreshControl?
+    
     private lazy var collectionView:UICollectionView = {
         var layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: self.view.bounds.width, height: USER_BORDER_VIEW)
@@ -23,13 +25,15 @@ class HomeViewController: UIViewController {
         layout.minimumInteritemSpacing = 0
         layout.scrollDirection = .vertical
         
+        
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.isPagingEnabled = false
+        //collectionView.
         collectionView.bounces = false
         collectionView.dataSource = self
         collectionView.delegate = self
-     
+     collectionView.alwaysBounceVertical = true
         collectionView.register(UINib(nibName: "UserBoardView", bundle: nil), forCellWithReuseIdentifier: UserBoardView.USER_BOARDER_VIEW_REUSE_IDENTIFIRE)
         
         collectionView.register(UINib(nibName: "MyRecitedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: MyRecitedCollectionViewCell.MYRECITEING_COLLECTION_REUSE_IDENTIFIRE)
@@ -44,9 +48,31 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         self.view.addSubview(collectionView)
         collectionView.frame = view.bounds
+        addrefresh()
     }
 
 
+}
+
+
+extension HomeViewController{
+     private func addrefresh(){
+        refresher = UIRefreshControl()
+        refresher?.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.collectionView.alwaysBounceVertical = true
+        refresher?.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 50)
+        refresher?.backgroundColor = UIColor.blue
+        refresher?.tintColor = UIColor.red
+         self.collectionView.refreshControl = refresher
+      
+        refresher?.addTarget(self, action: #selector(HomeViewController.refresh), for: .valueChanged)
+         refresher!.beginRefreshing()
+    }
+    
+    @objc private func refresh(){
+       print("refresh")
+        refresher?.endRefreshing()
+    }
 }
 
 extension HomeViewController:UICollectionViewDataSource , UICollectionViewDelegateFlowLayout{
@@ -111,8 +137,9 @@ extension HomeViewController:MyRecommendCollectionViewCellDelegate{
         let vc = ContentInfoViewController()
       
         self.present(vc, animated: true){
+             ContentInfoViewController.isMyRecite = true
               vc.content = clickItem
-            ContentInfoViewController.isMyRecite = true
+           
         }
     }
     
@@ -126,8 +153,9 @@ extension HomeViewController:MyRecitedCollectionViewCellDelegate{
         let vc = ContentInfoViewController()
         
         self.present(vc, animated: true){
+             ContentInfoViewController.isMyRecite = false
             vc.content = clickItem as Content
-            ContentInfoViewController.isMyRecite = false
+           
         }
     }
 }

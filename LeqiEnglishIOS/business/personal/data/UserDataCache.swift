@@ -10,10 +10,16 @@ import UIKit
 
 class UserDataCache: DataCache<User> {
     
-    static let USER_TYPE = "USER_TYPE"
-    var sqliteManager = SQLiteManager()
+    static private let USER_TYPE = "USER_TYPE"
+    static private let sqliteManager = SQLiteManager()
+    
+    static  let userDataCache = UserDataCache()
     
     var user:User?
+    
+    private override init() {
+        super.init()
+    }
     
     override func getFromCache() -> User? {
         
@@ -21,7 +27,7 @@ class UserDataCache: DataCache<User> {
             return user
         }
       
-        var datas:[String]? = sqliteManager.readData(type: UserDataCache.USER_TYPE)
+        var datas:[String]? = UserDataCache.sqliteManager.readData(type: UserDataCache.USER_TYPE)
        
         if datas == nil || datas!.count == 0{
            user = createAndSaveUser()
@@ -42,10 +48,10 @@ class UserDataCache: DataCache<User> {
     
     
     private func createAndSaveUser() -> User{
-        var user = User()
+        let user = User()
         user.id = UUID.init().uuidString
         user.name = "Friend"
-        sqliteManager.insertData(id: user.id!, json: String.toString(user.toDictionary())!, type: UserDataCache.USER_TYPE)
+        UserDataCache.sqliteManager.insertData(id: user.id!, json: String.toString(user.toDictionary())!, type: UserDataCache.USER_TYPE)
         return user
     }
 }

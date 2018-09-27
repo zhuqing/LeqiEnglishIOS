@@ -26,7 +26,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bZV-zz-idR">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                    <rect key="frame" x="0.0" y="20" width="375" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="gYa-Wx-ish"/>
                     </constraints>
@@ -37,13 +37,13 @@
                     </items>
                 </navigationBar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6s4-K4-Jl4" userLabel="root">
-                    <rect key="frame" x="0.0" y="40" width="375" height="627"/>
+                    <rect key="frame" x="0.0" y="60" width="375" height="607"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Vf-4F-jY8" userLabel="wordView">
-                            <rect key="frame" x="0.0" y="103.5" width="375" height="300"/>
+                            <rect key="frame" x="0.0" y="122.5" width="375" height="300"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="共20个单词" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Su6-jF-4um">
-                                    <rect key="frame" x="94" y="129.5" width="187.5" height="42"/>
+                                    <rect key="frame" x="94" y="129" width="188" height="42"/>
                                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="35"/>
                                     <color key="textColor" red="0.30840110780000002" green="0.5618229508" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -56,14 +56,14 @@
                                 <constraint firstItem="Su6-jF-4um" firstAttribute="centerX" secondItem="7Vf-4F-jY8" secondAttribute="centerX" id="mCJ-lC-2g1"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftd-72-YWi">
-                            <rect key="frame" x="20" y="557" width="335" height="40"/>
-                            <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4i-L4-RDq">
+                            <rect key="frame" x="20" y="477" width="335" height="40"/>
+                            <color key="backgroundColor" red="0.30840110780000002" green="0.5618229508" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="nLC-xh-y1V"/>
+                                <constraint firstAttribute="height" constant="40" id="CRo-3e-TDU"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="19"/>
-                            <state key="normal" title="开始默写">
+                            <state key="normal" title="开始背诵">
                                 <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <userDefinedRuntimeAttributes>
@@ -72,14 +72,14 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4i-L4-RDq">
-                            <rect key="frame" x="20" y="497" width="335" height="40"/>
-                            <color key="backgroundColor" red="0.30840110780000002" green="0.5618229508" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftd-72-YWi">
+                            <rect key="frame" x="20" y="537" width="335" height="40"/>
+                            <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="CRo-3e-TDU"/>
+                                <constraint firstAttribute="height" constant="40" id="nLC-xh-y1V"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="19"/>
-                            <state key="normal" title="开始背诵">
+                            <state key="normal" title="开始默写">
                                 <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <userDefinedRuntimeAttributes>
@@ -98,7 +98,7 @@
                         <constraint firstItem="ftd-72-YWi" firstAttribute="top" secondItem="d4i-L4-RDq" secondAttribute="bottom" constant="20" id="oPe-Qs-78h"/>
                         <constraint firstItem="7Vf-4F-jY8" firstAttribute="centerX" secondItem="6s4-K4-Jl4" secondAttribute="centerX" id="rJn-Zw-AWY"/>
                         <constraint firstAttribute="trailing" secondItem="7Vf-4F-jY8" secondAttribute="trailing" id="rqe-tN-AEf"/>
-                        <constraint firstItem="7Vf-4F-jY8" firstAttribute="centerY" secondItem="6s4-K4-Jl4" secondAttribute="centerY" constant="-60" id="twP-ap-Qcf"/>
+                        <constraint firstItem="7Vf-4F-jY8" firstAttribute="centerY" secondItem="6s4-K4-Jl4" secondAttribute="centerY" constant="-31" id="twP-ap-Qcf"/>
                         <constraint firstAttribute="trailing" secondItem="ftd-72-YWi" secondAttribute="trailing" constant="20" id="xwN-CY-L6z"/>
                         <constraint firstItem="7Vf-4F-jY8" firstAttribute="leading" secondItem="6s4-K4-Jl4" secondAttribute="leading" id="y10-DR-f5T"/>
                     </constraints>
@@ -107,14 +107,16 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="bZV-zz-idR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="12h-mR-OBa"/>
+                <constraint firstItem="6s4-K4-Jl4" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="Ep6-Pv-gos"/>
                 <constraint firstItem="6s4-K4-Jl4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="HX8-pz-awf"/>
+                <constraint firstItem="bZV-zz-idR" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Ijh-V9-0Bd"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="6s4-K4-Jl4" secondAttribute="bottom" id="bTi-r9-O2H"/>
+                <constraint firstItem="6s4-K4-Jl4" firstAttribute="top" secondItem="bZV-zz-idR" secondAttribute="bottom" id="d2u-zE-SRF"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="6s4-K4-Jl4" secondAttribute="trailing" id="d3D-Ip-r6J"/>
                 <constraint firstItem="bZV-zz-idR" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="f9b-AL-Yi3"/>
-                <constraint firstItem="bZV-zz-idR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="iuq-sX-w87"/>
-                <constraint firstItem="6s4-K4-Jl4" firstAttribute="top" secondItem="bZV-zz-idR" secondAttribute="bottom" id="s8j-MF-FnC"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="25.5" y="51.5"/>
         </view>
     </objects>
     <resources>

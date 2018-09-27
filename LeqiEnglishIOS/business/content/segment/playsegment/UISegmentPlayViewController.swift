@@ -12,6 +12,7 @@ class UISegmentPlayViewController: UIViewController {
     static let  LOG = LOGGER("UISegmentPlayViewController")
     @IBOutlet weak var startRecite: UIButton!
     @IBOutlet weak var collectionRootView: UIView!
+    @IBOutlet weak var back: UIBarButtonItem!
     
     private lazy var playBar:PlaySegmentBar? = {
      
@@ -48,9 +49,8 @@ class UISegmentPlayViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        collectionRootView.addSubview(collectionView)
-        collectionView.frame = CGRect(x: 5, y: 0, width: SCREEN_WIDTH, height: collectionRootView.frame.height)
+        self.setupUI()
+      
 
         // Do any additional setup after loading the view.
     }
@@ -66,7 +66,7 @@ class UISegmentPlayViewController: UIViewController {
         UISegmentPlayViewController.LOG.error(item.content!)
         segmentPlayItems = SegmentPlayItem.toItems(str: item.content!)!
         collectionView.reloadData()
-        
+        insertUserAndWord(item)
     }
 
     /*
@@ -79,6 +79,34 @@ class UISegmentPlayViewController: UIViewController {
     }
     */
 
+}
+
+extension UISegmentPlayViewController{
+    private func setupUI(){
+        collectionRootView.addSubview(collectionView)
+        collectionView.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: collectionRootView.bounds.height)
+        navigation()
+    }
+    private func navigation(){
+        self.back.action = #selector(UISegmentPlayViewController.backEventHandler)
+    }
+    
+    @objc private func backEventHandler(){
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+extension UISegmentPlayViewController{
+    //插入本段单词和用户的关系
+    private func insertUserAndWord(_ item:Segment){
+        guard  let user =  UserDataCache.userDataCache.getFromCache() else{
+            return
+        }
+    
+        Service.post(path: "userAndWord/insertAllBySegmentId?userId=\(user.id ?? "")&segmentId=\(item.id ?? "")",params: ["userId":user.id ?? "","segmentId":item.id ?? ""]){_ in }
+        
+    }
 }
 
 extension UISegmentPlayViewController : UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
@@ -95,7 +123,7 @@ extension UISegmentPlayViewController : UICollectionViewDataSource,UICollectionV
        
         if let chstr = item.chineseSenc {
 
-             height += StringUtil.computerHeight(text: chstr, font: UIFont.systemFont(ofSize: 13), fixedWidth: SCREEN_WIDTH-20)
+             height += StringUtil.computerHeight(text: chstr, font: UIFont.systemFont(ofSize: 13), fixedWidth: SCREEN_WIDTH-20)+20
             
         }
         
