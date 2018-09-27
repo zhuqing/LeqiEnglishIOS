@@ -15,7 +15,7 @@ class UserDataCache: DataCache<User> {
     
     static  let userDataCache = UserDataCache()
     
-    var user:User?
+    private var user:User?
     
     private override init() {
         super.init()

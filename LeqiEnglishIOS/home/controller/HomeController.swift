@@ -137,7 +137,7 @@ extension HomeViewController:MyRecommendCollectionViewCellDelegate{
         let vc = ContentInfoViewController()
       
         self.present(vc, animated: true){
-             ContentInfoViewController.isMyRecite = true
+             ContentInfoViewController.isMyRecite = false
               vc.content = clickItem
            
         }
@@ -153,7 +153,7 @@ extension HomeViewController:MyRecitedCollectionViewCellDelegate{
         let vc = ContentInfoViewController()
         
         self.present(vc, animated: true){
-             ContentInfoViewController.isMyRecite = false
+             ContentInfoViewController.isMyRecite = true
             vc.content = clickItem as Content
            
         }

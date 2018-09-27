@@ -51,7 +51,7 @@
                                 <state key="normal" image="play_word"/>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Wbb-aT-zM6" firstAttribute="leading" secondItem="dZY-jM-Phg" secondAttribute="trailing" constant="7" id="1Cl-iT-QQj"/>
                             <constraint firstItem="OOD-Pe-mA8" firstAttribute="leading" secondItem="X0d-jH-8c8" secondAttribute="trailing" constant="8" symbolic="YES" id="4ej-UC-dlq"/>
@@ -98,7 +98,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EUp-l8-EzN">
-                        <rect key="frame" x="10" y="80" width="351" height="116"/>
+                        <rect key="frame" x="10" y="80" width="351" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -110,7 +110,6 @@
                 <constraint firstItem="mGD-36-CpF" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="IUQ-IU-W58"/>
                 <constraint firstAttribute="trailing" secondItem="yKe-7S-xdV" secondAttribute="trailing" id="IlZ-DK-7Qi"/>
                 <constraint firstItem="EUp-l8-EzN" firstAttribute="leading" secondItem="mGD-36-CpF" secondAttribute="leading" id="M5F-2P-txr"/>
-                <constraint firstAttribute="bottom" secondItem="EUp-l8-EzN" secondAttribute="bottom" constant="10" id="NAR-Kl-l10"/>
                 <constraint firstItem="mGD-36-CpF" firstAttribute="top" secondItem="yKe-7S-xdV" secondAttribute="bottom" id="P2s-ji-Ys3"/>
                 <constraint firstItem="yKe-7S-xdV" firstAttribute="leading" secondItem="mGD-36-CpF" secondAttribute="leading" id="YDq-SG-Pq9"/>
                 <constraint firstAttribute="trailing" secondItem="mGD-36-CpF" secondAttribute="trailing" constant="10" id="aPR-Ei-EHC"/>
@@ -127,10 +126,11 @@
                 <outlet property="enPlayButton" destination="OOD-Pe-mA8" id="HTF-Bs-yYh"/>
                 <outlet property="enPron" destination="X0d-jH-8c8" id="lJB-ed-iDl"/>
                 <outlet property="means" destination="EUp-l8-EzN" id="mhD-hY-Ckq"/>
+                <outlet property="proView" destination="mGD-36-CpF" id="acf-fr-XmW"/>
                 <outlet property="ttsPlayButton" destination="nH0-cd-91b" id="WV5-iF-CbH"/>
                 <outlet property="wordInfo" destination="zu4-uU-DGG" id="dtL-dC-cB3"/>
             </connections>
-            <point key="canvasLocation" x="-8" y="-115"/>
+            <point key="canvasLocation" x="121" y="-132"/>
         </collectionViewCell>
     </objects>
     <resources>

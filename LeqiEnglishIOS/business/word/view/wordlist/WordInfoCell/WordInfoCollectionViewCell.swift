@@ -13,6 +13,7 @@ class WordInfoCollectionViewCell: UICollectionViewCell {
     
     static let WORD_INFO_CELL_INDENTIFY = "WORD_INFO_CELL_INDENTIFY"
     
+    @IBOutlet weak var proView: UIView!
     @IBOutlet weak var means: UILabel!
     
     @IBOutlet weak var enPlayButton: UIButton!
@@ -101,21 +102,18 @@ extension WordInfoCollectionViewCell{
         }else{
             wordInfo.text = ""
         }
-        
-        
-        
     }
     
     
     
     
     private func loadAMAudio(word:Word){
-        guard let mp3 = word.amAudionPath else{
-            self.amPlayButton.isHidden = true
+        guard let mp3 =  StringUtil.exceptEmpty(word.amAudionPath) else{
+            hiddenPro()
             self.amPlayer  = nil
             return
         }
-        self.amPlayButton.isHidden = false
+        self.showPro()
         Service.download(filePath: mp3){
             (mp3Path) in
             do{
@@ -130,16 +128,27 @@ extension WordInfoCollectionViewCell{
         
     }
     
+    private func hiddenPro(){
+        LOG.info("hiddenPro")
+        proView.isHidden = true
+        ttsPlayButton.isHidden = false
+    }
+    
+    private func showPro(){
+        LOG.info("showPro")
+        proView.isHidden = false
+        ttsPlayButton.isHidden = true
+    }
+    
   
     
     private func loadEnAudio(word:Word){
-        guard let mp3 = word.enAudioPath else{
-              self.enPlayButton.isHidden = true
+        guard let mp3 = StringUtil.exceptEmpty(word.enAudioPath) else{
+            hiddenPro()
             self.enPlayer = nil
             return
         }
-        enPlayButton.isHidden = false
-        self.ttsPlayButton.isHidden = true
+        showPro()
         Service.download(filePath: mp3){
             (mp3Path) in
             do{
@@ -150,20 +159,18 @@ extension WordInfoCollectionViewCell{
             }
         }
         
-        
-        
     }
     
  
     
     private func loadTTS(word:Word){
+        LOG.info("\(word.toDictionary())")
         guard let mp3 = StringUtil.exceptEmpty(word.ttsAudioPath)  else{
             ttsPlayButton.isHidden = true
             self.ttsPlayer = nil
             return
         }
-
-        ttsPlayButton.isHidden = false
+      
         Service.download(filePath: mp3){
             (mp3Path) in
             do{
