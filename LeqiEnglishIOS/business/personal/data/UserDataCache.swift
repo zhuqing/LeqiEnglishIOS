@@ -11,7 +11,7 @@ import UIKit
 class UserDataCache: DataCache<User> {
     
     static private let USER_TYPE = "USER_TYPE"
-    static private let sqliteManager = SQLiteManager()
+    static private let sqliteManager = SQLiteManager.instance
     
     static  let userDataCache = UserDataCache()
     

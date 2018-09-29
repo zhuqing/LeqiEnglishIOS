@@ -65,6 +65,26 @@ class Service{
         }
     }
     
+    class func put(path:String,params:[String:String]? = nil, finishedCallback:@escaping (_ resut :[String:NSObject])->()){
+         request(method: .put, path: path, params: params, finishedCallback: finishedCallback)
+    }
+    
+    
+    private class func request(method: HTTPMethod, path:String,params:[String:String]? = nil, finishedCallback:@escaping (_ resut :[String:NSObject])->()){
+          let httpPath = getHttpPath(path)
+        Alamofire.request(httpPath, method: .put, parameters:params , encoding: JSONEncoding.default, headers: nil).responseJSON(){  (response) in
+            
+            guard let result = response.result.value as? [String : NSObject] else {
+                LOG.error(response.result.error.debugDescription)
+                return
+            }
+            
+            LOG.info("\(result)")
+            
+            finishedCallback(result)
+        }
+    }
+    
    
     
     //调用Get方法

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReciteWordConfigViewController" customModule="LeqiEnglishIOS" customModuleProvider="target">
+            <connections>
+                <outlet property="cancelButton" destination="cEX-q2-fi3" id="y3F-WO-1cp"/>
+                <outlet property="countTextFile" destination="f9s-xn-Ztl" id="UJa-yb-eGj"/>
+                <outlet property="okButton" destination="naT-gu-8i4" id="OBp-k3-jP7"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Be-rF-ojE" userLabel="root">
+                    <rect key="frame" x="20" y="294" width="335" height="120"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="每日背诵单词数：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RbH-Qb-L2s">
+                            <rect key="frame" x="51" y="20" width="147" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPe-5y-TRB" userLabel="operationbar">
+                            <rect key="frame" x="0.0" y="70" width="335" height="40"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cEX-q2-fi3">
+                                    <rect key="frame" x="165" y="5" width="45" height="30"/>
+                                    <state key="normal" title="cancel"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="naT-gu-8i4">
+                                    <rect key="frame" x="112.5" y="5" width="30" height="30"/>
+                                    <state key="normal" title="ok"/>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="naT-gu-8i4" firstAttribute="centerY" secondItem="pPe-5y-TRB" secondAttribute="centerY" id="BcQ-CQ-rrb"/>
+                                <constraint firstItem="naT-gu-8i4" firstAttribute="centerX" secondItem="pPe-5y-TRB" secondAttribute="centerX" constant="-40" id="HYo-Dy-xET"/>
+                                <constraint firstItem="cEX-q2-fi3" firstAttribute="centerY" secondItem="pPe-5y-TRB" secondAttribute="centerY" id="Wan-2A-JnF"/>
+                                <constraint firstAttribute="height" constant="40" id="bB4-Oy-auj"/>
+                                <constraint firstItem="cEX-q2-fi3" firstAttribute="centerX" secondItem="pPe-5y-TRB" secondAttribute="centerX" constant="20" id="uOl-RI-te9"/>
+                            </constraints>
+                        </view>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="10" borderStyle="roundedRect" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="f9s-xn-Ztl">
+                            <rect key="frame" x="190" y="16" width="70" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="70" id="DEX-eI-Ra7"/>
+                            </constraints>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="RbH-Qb-L2s" firstAttribute="centerY" secondItem="f9s-xn-Ztl" secondAttribute="centerY" id="0PL-u2-gWp"/>
+                        <constraint firstItem="RbH-Qb-L2s" firstAttribute="top" secondItem="5Be-rF-ojE" secondAttribute="top" constant="20" id="6SO-nP-vqv"/>
+                        <constraint firstItem="f9s-xn-Ztl" firstAttribute="leading" secondItem="RbH-Qb-L2s" secondAttribute="trailing" constant="-8" id="8md-Uq-IIw"/>
+                        <constraint firstItem="pPe-5y-TRB" firstAttribute="leading" secondItem="5Be-rF-ojE" secondAttribute="leading" id="SsQ-gK-tDd"/>
+                        <constraint firstAttribute="height" constant="120" id="UNA-nF-i8v"/>
+                        <constraint firstAttribute="trailing" secondItem="pPe-5y-TRB" secondAttribute="trailing" id="YHG-6E-wDY"/>
+                        <constraint firstAttribute="bottom" secondItem="pPe-5y-TRB" secondAttribute="bottom" constant="10" id="iEN-Md-xiE"/>
+                        <constraint firstItem="RbH-Qb-L2s" firstAttribute="leading" secondItem="5Be-rF-ojE" secondAttribute="leading" constant="51" id="qVD-eJ-9zQ"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.53571810787671237" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="5Be-rF-ojE" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="20" id="77f-dX-1cV"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="5Be-rF-ojE" secondAttribute="trailing" constant="20" id="ZKW-b1-3NZ"/>
+                <constraint firstItem="5Be-rF-ojE" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="tvk-st-2IA"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="32.5" y="102.5"/>
+        </view>
+    </objects>
+</document>

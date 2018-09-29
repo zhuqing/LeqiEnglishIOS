@@ -22,7 +22,13 @@ class MyReciteWords: DataCache<[Word]> {
             self.LOG.error("没有找到user")
             return
         }
-        Service.get(path: "english/word/findByUserId?userId=\(user.id ?? "")"){
+        
+        guard  let reciteConfig = MyReciteWordConfig.instance.getFromCache() else{
+            self.LOG.error("没有找到reciteConfig")
+            return
+        }
+        
+        Service.get(path: "english/word/findMyReciteByUserIdAndNumber?userId=\(user.id ?? "")&number=\(reciteConfig.reciteNumberPerDay ?? 10)"){
             (results) in
             let datas = Service.getDatas(data: results)
             
@@ -31,15 +37,9 @@ class MyReciteWords: DataCache<[Word]> {
             }
             
             var words = [Word]()
-            var i = 0
+          
             for data in array{
-                i += 1
-                let word = Word(data: data)
-                words.append(word)
-                
-                if(i == 5){
-                    break
-                }
+                words.append(Word(data: data))
             }
             finished(words)
         }

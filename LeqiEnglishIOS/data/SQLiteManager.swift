@@ -24,9 +24,10 @@ struct SQLiteManager {
     
     static let CONTENT_TYPE = "CONTENT_TYPE"
     
-  
+    static let instance = SQLiteManager()
     
-    init() {
+    
+    private init() {
         createdsqlite3()
     }
     
@@ -34,9 +35,15 @@ struct SQLiteManager {
     mutating func createdsqlite3(filePath: String = "/Documents")  {
         
         let sqlFilePath = NSHomeDirectory() + filePath + "/db2.sqlite3"
+        
+        
         do {
+            
             db = try Connection(sqlFilePath)
-           
+            if(FileManager.default.fileExists(atPath: sqlFilePath)){
+                return
+            }
+            
             try db.run(cacheTable.create { t in
                 t.column(ID, primaryKey: true)
                 t.column(JSON)
@@ -80,21 +87,21 @@ struct SQLiteManager {
     func readData(type:String) -> [String]?{
         let queryTable = cacheTable.select(JSON).filter(TYPE == type)
         
-            return readData(queryTable)
+        return readData(queryTable)
     }
     
     //读取数据
     func readData(parentId:String) -> [String]?{
         let queryTable = cacheTable.select(JSON).filter(PARENT_ID == parentId)
         
-            return readData(queryTable)
+        return readData(queryTable)
     }
     
     //读取数据
     func readData(type:String,parentId:String) -> [String]?{
         let queryTable = cacheTable.select(JSON).filter(TYPE == type).filter(PARENT_ID == parentId)
         
-      
+        
         return readData(queryTable)
     }
     
@@ -106,16 +113,36 @@ struct SQLiteManager {
         }
         
         if let pid = parentId{
-             queryTable = queryTable.select(PARENT_ID == pid)
+            queryTable = queryTable.select(PARENT_ID == pid)
         }
         
         if let idT = id{
             queryTable = queryTable.select(ID == idT)
         }
         
-      
+        
         
         return readData(queryTable)
+    }
+    
+    //g根据ID删除数据
+    func delete(id:String){
+        
+        do{
+            try db.execute("delete from CACHE_TABLE where ID = '\(id)'")
+        }catch{
+            print(error)
+        }
+    }
+    
+    //g根据ID删除数据
+    func delete(parentId:String){
+        
+        do{
+            try db.execute("delete from CACHE_TABLE where PARENT_ID = '\(parentId)'")
+        }catch{
+            print(error)
+        }
     }
     
     
@@ -133,7 +160,7 @@ struct SQLiteManager {
         }
         return nil
     }
-   
+    
 }
 
 

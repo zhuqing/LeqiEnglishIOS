@@ -13,9 +13,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReciteWordViewController" customModule="LeqiEnglishIOS" customModuleProvider="target">
             <connections>
                 <outlet property="back" destination="IPd-RF-dlN" id="eVJ-qj-lTS"/>
+                <outlet property="startButton" destination="PMk-sw-Zaw" id="GCP-6x-CXI"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="wordInfoRootView" destination="7Vf-4F-jY8" id="1jx-9Y-RQm"/>
-                <outlet property="wordNumber" destination="Su6-jF-4um" id="oEV-8B-4QH"/>
+                <outlet property="wordNumberLabel" destination="LQZ-hk-wSK" id="o7g-W1-dcF"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -40,32 +41,18 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Vf-4F-jY8" userLabel="wordView">
                             <rect key="frame" x="0.0" y="94" width="375" height="300"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今日已背诵0个单词" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Su6-jF-4um">
-                                    <rect key="frame" x="34" y="129" width="307" height="42"/>
-                                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="35"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LQZ-hk-wSK">
+                                    <rect key="frame" x="149" y="80.5" width="78.5" height="79"/>
+                                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="66"/>
                                     <color key="textColor" red="0.30840110780000002" green="0.5618229508" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KUl-EI-2c4">
-                                    <rect key="frame" x="131" y="186" width="112" height="29"/>
-                                    <state key="normal">
-                                        <attributedString key="attributedTitle">
-                                            <fragment content="点击修改每日背诵">
-                                                <attributes>
-                                                    <font key="NSFont" size="14" name="FangSong"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
-                                    </state>
-                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="300" id="AGi-gm-ac7"/>
-                                <constraint firstItem="KUl-EI-2c4" firstAttribute="centerY" secondItem="7Vf-4F-jY8" secondAttribute="centerY" constant="50" id="BwD-pL-JdX"/>
-                                <constraint firstItem="KUl-EI-2c4" firstAttribute="centerX" secondItem="7Vf-4F-jY8" secondAttribute="centerX" id="Yll-TV-UoA"/>
-                                <constraint firstItem="Su6-jF-4um" firstAttribute="centerY" secondItem="7Vf-4F-jY8" secondAttribute="centerY" id="cde-gp-WiM"/>
-                                <constraint firstItem="Su6-jF-4um" firstAttribute="centerX" secondItem="7Vf-4F-jY8" secondAttribute="centerX" id="mCJ-lC-2g1"/>
+                                <constraint firstItem="LQZ-hk-wSK" firstAttribute="centerX" secondItem="7Vf-4F-jY8" secondAttribute="centerX" id="FGt-rk-bnS"/>
+                                <constraint firstItem="LQZ-hk-wSK" firstAttribute="centerY" secondItem="7Vf-4F-jY8" secondAttribute="centerY" constant="-30" id="Faa-0s-gIn"/>
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PMk-sw-Zaw">
@@ -76,7 +63,7 @@
                                 <constraint firstAttribute="width" constant="100" id="muJ-wI-YRp"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="32"/>
-                            <state key="normal" title=" 开始">
+                            <state key="normal" title="开始">
                                 <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <userDefinedRuntimeAttributes>

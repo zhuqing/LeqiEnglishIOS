@@ -164,7 +164,7 @@ extension HomeViewController:MyRecitedCollectionViewCellDelegate{
 //MARK 实现UserBoardViewDelegate
 extension HomeViewController : UserBoardViewDelegate{
     func reciteWordButtonClick() {
-        let vc = ReciteWordViewController()
+        let vc = MyReciteWordInfoViewController()
         self.present(vc, animated: true){
            
         }

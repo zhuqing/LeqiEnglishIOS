@@ -17,6 +17,8 @@ class ReciteWordConfig : Entity{
     
     var hasReciteNumber:Int?
     
+    var myWordsNumber:Int?
+    
     override init() {
         
     }
@@ -33,6 +35,8 @@ class ReciteWordConfig : Entity{
             self.reciteNumberPerDay = value as? Int
         case "hasReciteNumber":
             self.hasReciteNumber = value as? Int
+        case "myWordsNumber":
+            self.myWordsNumber = value as? Int
             
         default:
             super.setValue(value, forKey: key)
@@ -51,6 +55,9 @@ class ReciteWordConfig : Entity{
         }
         if  let v = self.hasReciteNumber{
             dic["hasReciteNumber"] = v as NSObject
+        }
+        if  let v = self.myWordsNumber{
+            dic["myWordsNumber"] = v as NSObject
         }
         
         return dic
