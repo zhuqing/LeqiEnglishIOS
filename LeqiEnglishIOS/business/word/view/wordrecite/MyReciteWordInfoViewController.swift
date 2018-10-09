@@ -95,9 +95,11 @@ extension MyReciteWordInfoViewController{
     }
     //开始默写
     @objc private func startWriteEventHandler(){
-        let vc = ReciteWordViewController()
-        vc.isShowWord = false
-        self.present(vc, animated: true, completion: nil)
+        let vc = WriteWordViewController()
+      
+        self.present(vc, animated: true){
+            vc.loadwords()
+        }
     }
 }
 

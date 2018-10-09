@@ -82,10 +82,12 @@ class UISegmentPlayViewController: UIViewController {
 }
 
 extension UISegmentPlayViewController{
+    
     private func setupUI(){
         collectionRootView.addSubview(collectionView)
         collectionView.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: collectionRootView.bounds.height)
         navigation()
+        self.startRecite.addTarget(self, action: #selector(UISegmentPlayViewController.startReciteHandler), for: .touchDown)
     }
     private func navigation(){
         self.back.action = #selector(UISegmentPlayViewController.backEventHandler)
@@ -93,6 +95,16 @@ extension UISegmentPlayViewController{
     
     @objc private func backEventHandler(){
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    //跳转到背诵界面
+    @objc private func startReciteHandler(){
+        let vc = ReciteSegmentViewController()
+        
+        self.present(vc, animated: true){
+            
+            vc.during = Double((self.segmentPlayItems.last?.endTime)! - self.segmentPlayItems[0].startTime! )/1000.0
+        }
     }
     
 }

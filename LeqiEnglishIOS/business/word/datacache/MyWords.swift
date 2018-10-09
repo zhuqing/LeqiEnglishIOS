@@ -10,7 +10,7 @@ import UIKit
 
 class MyWords: DataCache<[Word]> {
   
-    static let myWords = MyWords()
+    static let instance = MyWords()
     
     private override init(){
         

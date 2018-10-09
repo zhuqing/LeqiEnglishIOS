@@ -122,6 +122,12 @@ class Service{
         return result
     }
     
+    class func getData2String(data:[String:NSObject]) -> String?{
+        guard let message = data["data"] as? String else {return ""}
+        
+        return message
+    }
+    
     class func getMessage(data:[String:NSObject]) -> String?{
         guard let message = data["message"] as? String else {return ""}
         

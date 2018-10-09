@@ -1,42 +1,40 @@
 //
-//  ReciteWordViewController.swift
+//  WriteWordViewController.swift
 //  LeqiEnglishIOS
 //
-//  Created by zhuleqi on 2018/9/25.
+//  Created by zhuleqi on 2018/9/30.
 //  Copyright © 2018年 zhuleqi. All rights reserved.
 //
 
 import UIKit
-
 import AVFoundation
 
-class ReciteWordViewController: UIViewController {
-    
-    private var LOG = LOGGER("ReciteWordViewController")
-    
-    @IBOutlet weak var wordNumberLabel: UILabel!
-    @IBOutlet weak var startButton: UIButton!
-    
-    @IBOutlet weak var wordInfoRootView: UIView!
+class WriteWordViewController: UIViewController {
     
     @IBOutlet weak var back: UIBarButtonItem!
+    @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet weak var countView: UIView!
+    @IBOutlet weak var collectionRootView: UIView!
+    @IBOutlet weak var startButton: UIButton!
     
+    private var LOG = LOGGER("WriteWordViewController")
     private var avPlayer:AVAudioPlayer?
     
     private var reciteWords = [Word]()
     
     
-    var isPlaying:Bool = false
     
+    var isPlaying:Bool = false
     //每个单词的背诵次数
     private var reciteCount = 0
     
     //背诵单词的索引
     private var reciteWordIndex:Int = 0
     
+    //显示单词的集合
     private lazy var collectionView:UICollectionView = {
         var layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: SCREEN_WIDTH, height: wordInfoRootView.bounds.height)
+        layout.itemSize = CGSize(width: SCREEN_WIDTH, height: collectionRootView.bounds.height)
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 5
         layout.scrollDirection = .horizontal
@@ -57,8 +55,7 @@ class ReciteWordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupUI()
-        
+        setupUI();
         // Do any additional setup after loading the view.
     }
     
@@ -79,18 +76,38 @@ class ReciteWordViewController: UIViewController {
      */
     
 }
-
-//MARK: - 加载数据
-extension ReciteWordViewController{
+//MARK: 数据
+extension WriteWordViewController{
+    private func setupUI(){
+        setCollectionView()
+        navigation()
+      
+        registButtonEvent()
+        countViewListener()
+    }
     
-    private func loadReciteWordConfig(){
+    private func countViewListener(){
+        countView.isUserInteractionEnabled = true
         
+        let labelGet = UITapGestureRecognizer(target: self, action:#selector(WriteWordViewController.countViewClick))
+        countView.addGestureRecognizer(labelGet)
+    }
+    
+    @objc private func countViewClick(){
+        countView.isHidden = true
+        self.perform(#selector(WriteWordViewController.showCountView), with: self, afterDelay: 2)
+    }
+     @objc private func showCountView(){
+         countView.isHidden = false
+    }
+    private func setCollectionView(){
+        self.collectionRootView.addSubview(collectionView)
+        collectionView.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: collectionRootView.frame.height)
     }
     //加载背诵单词
-    private func loadwords(){
-        let myWords =  MyReciteWords.instance
+    func loadwords(){
         
-        myWords.load(){
+        MyReciteWords.instance.load(){
             (words) in
             guard let wordArr = words else{
                 self.LOG.error("没有加载到单词")
@@ -99,50 +116,35 @@ extension ReciteWordViewController{
                 return;
             }
             
-            self.reciteWords = wordArr.filter(){
-                (word) in
-                if(StringUtil.exceptEmpty(word.ttsAudioPath) == nil){
-                    if(StringUtil.exceptEmpty(word.amAudionPath) == nil){
-                        if(StringUtil.exceptEmpty(word.enAudioPath) == nil){
-                            return false
-                        }
-                    }
-                }
-                
-                return true
-            }
-            self.loadAudioFile()
+            self.setWords(wordArr)
             
-            self.refreshData();
+           
         }
     }
     
-    private func refreshData(){
-        
-        self.collectionView.reloadData()
-        
-    }
-    
-    private func setupUI(){
-        
-        resetWordInfoRootView()
-        
-        navigation()
-        loadwords()
-        registButtonEvent()
-    }
-    
-    
-    private func resetWordInfoRootView(){
-       
-            for view in self.wordInfoRootView.subviews{
-                view.removeFromSuperview()
+    func setWords(_ items:[Word]){
+        //过滤没有音频的文件
+        self.reciteWords = items.filter(){
+            (word) in
+            if(StringUtil.exceptEmpty(word.ttsAudioPath) == nil){
+                if(StringUtil.exceptEmpty(word.amAudionPath) == nil){
+                    if(StringUtil.exceptEmpty(word.enAudioPath) == nil){
+                        return false
+                    }
+                }
             }
-            self.wordInfoRootView.addSubview(collectionView)
-            collectionView.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: wordInfoRootView.frame.height)
-      
+            
+            return true
+        }
+        self.loadAudioFile()
+        self.refreshData();
     }
     
+    //刷新数据
+    private func refreshData(){
+        self.collectionView.reloadData()
+        self.countLabel.text = "\(self.reciteWords.count)"
+    }
     
     //所有加载单词的发音文件
     private func loadAudioFile(){
@@ -154,8 +156,9 @@ extension ReciteWordViewController{
     }
 }
 
+
 //MARK: 实现UICollectionViewDataSource
-extension ReciteWordViewController : UICollectionViewDataSource{
+extension WriteWordViewController : UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell =    collectionView.dequeueReusableCell(withReuseIdentifier: WordInfoCollectionViewCell.WORD_INFO_CELL_INDENTIFY, for: indexPath) as? WordInfoCollectionViewCell
         cell?.word = self.reciteWords[indexPath.item]
@@ -167,10 +170,11 @@ extension ReciteWordViewController : UICollectionViewDataSource{
     }
 }
 
+
 //MARK: 导航
-extension ReciteWordViewController{
+extension WriteWordViewController{
     private func navigation(){
-        self.back.action = #selector(ReciteWordViewController.backEventHandler)
+        self.back.action = #selector(WriteWordViewController.backEventHandler)
     }
     
     @objc private func backEventHandler(){
@@ -178,13 +182,17 @@ extension ReciteWordViewController{
         self.dismiss(animated: true, completion: nil)
     }
     
+    @objc private func configEventHandler(){
+        // self.dismiss(animated: true, completion: nil)
+    }
 }
 
+
 //MARK: 背诵或有关的事件
-extension ReciteWordViewController{
+extension WriteWordViewController{
     //MARK: 点击事件注册
     private func registButtonEvent(){
-        self.startButton.addTarget(self, action: #selector(ReciteWordViewController.startRecite), for: .touchDown)
+        self.startButton.addTarget(self, action: #selector(WriteWordViewController.startRecite), for: .touchDown)
     }
     //MARK: 点击事件注册
     @objc private func startRecite(){
@@ -215,7 +223,8 @@ extension ReciteWordViewController{
     @objc private func reciteEventHandler(){
         
         if(reciteWordIndex >= self.reciteWords.count){
-            reciteFinishedAlert()
+            //reciteFinishedAlert()
+            finished()
             return
         }
         
@@ -229,8 +238,8 @@ extension ReciteWordViewController{
     
     //背诵或默写完成后显示的消息提示框
     private func reciteFinishedAlert(){
-        let message = "背诵完成！"
-       
+        let message = "默写完成！"
+        
         var reciteNumber = 10
         
         if let reciteConfig = MyReciteWordConfig.instance.getFromCache(){
@@ -239,18 +248,14 @@ extension ReciteWordViewController{
         
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
         
-        alert.addAction(UIAlertAction(title: "开始默写", style: .default, handler: {
+        alert.addAction(UIAlertAction(title: "再背\(reciteNumber)个", style: .default, handler: {
             (action) in
-            let vc = WriteWordViewController()
-          
-            self.present(vc, animated: true){
-                vc.setWords(self.reciteWords)
-            }
+            let vc = ReciteWordViewController()
+            self.present(vc, animated: true, completion: nil)
         }))
         
         alert.addAction(UIAlertAction(title: "炫耀一下", style: .default, handler: nil))
         alert.addAction(UIAlertAction(title: "关闭", style: .cancel, handler: {
-            
             (action) in
             var rootVC = self.presentingViewController
             while let parent = rootVC?.presentingViewController {
@@ -260,25 +265,30 @@ extension ReciteWordViewController{
             rootVC?.dismiss(animated: false, completion: nil)
             
         }))
-        
-        
         self.present(alert, animated: true, completion: nil)
-        
+        updateReciteCount()
+    }
+    
+    //MARK: 完成后跳转到，默写结果页面
+    private func finished(){
+        updateReciteCount()
+        let wordResult = WriteWordResultViewController()
+        self.present(wordResult, animated: true){
+            wordResult.reciteWords = self.reciteWords
+        }
     }
     //加载文件播放
     private func loadAVPlayer(){
         if(reciteWordIndex >= self.reciteWords.count){
-            
             return
         }
         let word = self.reciteWords[reciteWordIndex]
         let path = self.getWordAudioPath(word: word)
-        
         Service.download(filePath: path){(path) in
             do{
                 self.avPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
                 self.avPlayer?.prepareToPlay()
-                self.perform(#selector(ReciteWordViewController.playAgain), with: nil, afterDelay: 3)
+                self.perform(#selector(WriteWordViewController.playAgain), with: nil, afterDelay: 3)
                 
             } catch{
                 let alert = UIAlertController(title: "error", message: error.localizedDescription, preferredStyle: .alert)
@@ -293,7 +303,8 @@ extension ReciteWordViewController{
         reciteWordIndex += 1
         reciteCount = 0
         if(reciteWordIndex >= self.reciteWords.count){
-            reciteFinishedAlert()
+           // reciteFinishedAlert()
+            self.finished()
             return
         }
         self.setPageIndex(index:reciteWordIndex)
@@ -310,12 +321,12 @@ extension ReciteWordViewController{
         
         avPlayer?.play()
         
-        self.perform(#selector(ReciteWordViewController.reciteEventHandler), with: nil, afterDelay: 2+(self.avPlayer?.duration)!)
+        self.perform(#selector(WriteWordViewController.reciteEventHandler), with: nil, afterDelay: 2+(self.avPlayer?.duration)!)
     }
     
     
     private func getWordAudioPath(word:Word)->String{
-       
+        LOG.info("\(word.toDictionary())")
         if let path = StringUtil.exceptEmpty(word.amAudionPath){
             return path;
         }
@@ -338,8 +349,21 @@ extension ReciteWordViewController{
         
         collectionView.setContentOffset(CGPoint(x:offX,y:0), animated: true)
         
+        self.countLabel.text = "\(self.reciteWords.count-index)"
+        
     }
     
-    
-    
+    //更新单词的背诵次数
+    private func updateReciteCount(){
+        
+        guard let user = UserDataCache.userDataCache.getFromCache() else{
+            return
+        }
+        
+        for word in self.reciteWords{
+            Service.put(path: "userAndWord/increamReciteCount?wordId=\(word.id ?? "")&userId=\(user.id ?? "")"){_ in
+                
+            }
+        }
+    }
 }

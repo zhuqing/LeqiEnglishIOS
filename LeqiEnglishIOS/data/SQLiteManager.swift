@@ -26,6 +26,8 @@ struct SQLiteManager {
     
     static let instance = SQLiteManager()
     
+    private let LOG = LOGGER("SQLiteManager")
+    
     
     private init() {
         createdsqlite3()
@@ -66,7 +68,7 @@ struct SQLiteManager {
                 try db.run(insert)
             }
         } catch {
-            print(error)
+            LOG.error(error.localizedDescription)
         }
     }
     
@@ -78,7 +80,7 @@ struct SQLiteManager {
                 return data[JSON]
             }
         }catch{
-            print(error)
+            LOG.error(error.localizedDescription)
         }
         return nil
     }
@@ -141,7 +143,18 @@ struct SQLiteManager {
         do{
             try db.execute("delete from CACHE_TABLE where PARENT_ID = '\(parentId)'")
         }catch{
-            print(error)
+            LOG.error(error.localizedDescription)
+        }
+    }
+    
+    ///更新实体数据
+    func update(entity:Entity){
+        let update = cacheTable.filter(ID == entity.id ?? "")
+        
+        do{
+            try db.run(update.update(JSON <- entity.toJSONString() , UPDATE_DATE <- NSDate.getTime()))
+        }catch{
+            LOG.error(error.localizedDescription)
         }
     }
     

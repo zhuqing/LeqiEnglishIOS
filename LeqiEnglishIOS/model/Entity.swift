@@ -56,4 +56,12 @@ class Entity :NSObject{
         }
         return dic
     }
+    
+    func toJSONString() -> String{
+        let data = self.toDictionary()
+        guard let json = String.toString(data) else{
+            return ""
+        }
+        return  json
+    }
 }

@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 //MARK 播放状态枚举
-enum PALY_STATUS{
+enum PLAY_STATUS{
     case STOP
     case PLAY
     case RECORD
@@ -47,7 +47,7 @@ class PlaySegmentBar: UIView {
         }
     }
     
-    private var status = PALY_STATUS.STOP
+    private var status = PLAY_STATUS.STOP
     private var playButton:UIButton = UIButton(frame: CGRect.zero)
     private var recordButton:UIButton = UIButton(frame: CGRect.zero)
     private var playRecordButton:UIButton = UIButton(frame: CGRect.zero)
@@ -82,7 +82,7 @@ extension PlaySegmentBar{
     }
     
     func reset(){
-        status = PALY_STATUS.STOP
+        status = PLAY_STATUS.STOP
         playButton.setImage(UIImage(named: "leqi_play"), for: .normal)
         recordButton.setImage(UIImage(named: "leqi_record"), for: .normal)
         playRecordButton.setImage(UIImage(named: "leqi_play_record"), for: .normal)
