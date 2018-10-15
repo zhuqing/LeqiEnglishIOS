@@ -10,11 +10,15 @@ import UIKit
 
 protocol MyRecitedCollectionViewCellDelegate {
     func myRecitedCollectionViewCell(clickItem:ReciteContentVO)
+    func addMoreReciteContents()
+    
+    func showMoreMyContents()
 }
 
 class MyRecitedCollectionViewCell: UICollectionViewCell {
     static let  MYRECITEING_COLLECTION_REUSE_IDENTIFIRE = "MYRECITEING_COLLECTION_REUSE_IDENTIFIRE"
     
+    @IBOutlet weak var add2MyReciteButton: UIButton!
     @IBOutlet weak var moreLabel: UILabel!
     @IBOutlet weak var myRecitingNumber: NSLayoutConstraint!
     @IBOutlet weak var collectionRootView: UIView!
@@ -50,7 +54,24 @@ class MyRecitedCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         setupUI()
+        regist()
+       
     }
+}
+
+extension MyRecitedCollectionViewCell : RefreshDataCacheDelegate{
+    private func regist(){
+        HomeViewMode.instance.regist(self)
+       
+    }
+    func refresh() {
+        loadData()
+    }
+    
+    func getId() -> String {
+        return "MyRecommendCollectionViewCell"
+    }
+  
 }
 
 extension MyRecitedCollectionViewCell{
@@ -60,6 +81,32 @@ extension MyRecitedCollectionViewCell{
         collectionView.frame = CGRect(x: 10, y: 0, width: SCREEN_WIDTH-20, height: collectionRootView.frame.height)
         loadData()
        // backgroundColor = UIColor.white
+        initListener()
+    }
+    
+    private func initListener(){
+        self.add2MyReciteButton.addTarget(self, action: #selector(MyRecitedCollectionViewCell.add2MyReciteHandler), for: .touchDown)
+        
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(MyRecitedCollectionViewCell.showMore))
+        moreLabel.isUserInteractionEnabled = true
+        moreLabel.addGestureRecognizer(gesture)
+        
+    }
+    
+    @objc private func showMore(){
+        guard let delegate = self.delegate  else{
+            return
+        }
+        
+        delegate.showMoreMyContents()
+    }
+    
+    @objc private func add2MyReciteHandler(){
+        guard let delegate = self.delegate  else{
+            return
+        }
+        
+        delegate.addMoreReciteContents()
     }
 }
 

@@ -193,6 +193,7 @@ extension ContentInfoViewController : UICollectionViewDataSource,UICollectionVie
             let word = WordListViewController()
             self.present(word, animated: true){
                 word.loadData(content:self.content!)
+                self.insertWordsToUser(self.content?.id ?? "")
             }
         }else{
             let uiView = UISegmentPlayViewController()
@@ -214,5 +215,18 @@ extension ContentInfoViewController : UICollectionViewDataSource,UICollectionVie
         //   cell.backgroundColor = UIColor.blue
         cell.segment = segments[indexPath.item]
         return cell
+    }
+}
+
+extension ContentInfoViewController{
+    
+    //把当前content下关联的单词，关联给用户
+    private func insertWordsToUser(_ contentId:String){
+        guard let user = UserDataCache.userDataCache.getFromCache() else{
+            return
+        }
+        Service.post(path: "userAndWord/insertAllByContentId?contentId=\(contentId)&userId=\(user.id ?? "")"){
+            (_) in
+        }
     }
 }

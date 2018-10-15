@@ -38,12 +38,85 @@ class UserDataCache: DataCache<User> {
         return user
     }
     
-    func login(name:String,password:String) -> User? {
-        return nil
+    func regist(user:User,error:((String?)->())?,finished: ((User?) -> ())?){
+        
+        Service.post(path: "user/regist",params: DictionaryUtil.toStringString(data: user.toDictionary())){
+            (results) in
+            
+            if(!Service.isSuccess(data: results)){
+                guard let er = error else{
+                    return
+                }
+                let message = Service.getMessage(data: results)
+                
+                er(message)
+                return
+            }
+            
+            guard let data = Service.getData(data: results) else {
+                guard let er = error else{
+                    return
+                }
+                
+                er("注册失败")
+                
+                return
+            }
+           
+            self.user = User(data: data)
+            self.cacheData(data:self.user)
+            guard let f = finished else{
+                return
+            }
+            f(self.user)
+        }
+    }
+    
+    func login(name:String,password:String,error:((String?)->())?,finished: ((User?) -> ())?) {
+        
+        Service.get(path: "user/login?userName=\(name)&password=\(password)"){
+            (results) in
+            if(!Service.isSuccess(data: results)){
+                guard let er = error else{
+                    return
+                }
+                let message = Service.getMessage(data: results)
+                
+                er(message)
+                return
+            }
+            
+            guard let data = Service.getData(data: results) else {
+                guard let er = error else{
+                    return
+                }
+                
+                er("登录失败")
+                
+                return
+            }
+           
+            self.user = User(data: data)
+            self.cacheData(data:self.user)
+            
+            guard let f = finished else{
+                return
+            }
+            f(self.user)
+            
+        }
     }
     
     override func getFromService(finished: @escaping (User?) -> ()) {
      
+    }
+    
+    override func cacheData(data:User?){
+        guard let user = data else{
+            return
+        }
+         UserDataCache.sqliteManager.delete(type: UserDataCache.USER_TYPE)
+         UserDataCache.sqliteManager.insertData(id: user.id!, json: String.toString(user.toDictionary())!, type: UserDataCache.USER_TYPE)
     }
     
     

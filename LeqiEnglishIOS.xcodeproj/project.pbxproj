@@ -29,6 +29,8 @@
 		4E45FB6C2154FFFB00A5F03F /* WordScentenseCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E45FB6A2154FFFB00A5F03F /* WordScentenseCollectionView.xib */; };
 		4E45FB6E2155088300A5F03F /* WordAndSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E45FB6D2155088300A5F03F /* WordAndSegment.swift */; };
 		4E45FB70215508CD00A5F03F /* WordScentenseDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E45FB6F215508CD00A5F03F /* WordScentenseDataCache.swift */; };
+		4E5A56EB21730498004AB28C /* ContentSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5A56E921730498004AB28C /* ContentSearchViewController.swift */; };
+		4E5A56EC21730498004AB28C /* ContentSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E5A56EA21730498004AB28C /* ContentSearchViewController.xib */; };
 		4E5E3AA12147A52400E88554 /* ContentItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5E3A9A2147A52300E88554 /* ContentItemCollectionViewCell.swift */; };
 		4E5E3AA22147A52400E88554 /* ContentItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E5E3A9B2147A52300E88554 /* ContentItemCollectionViewCell.xib */; };
 		4E5E3AA32147A52400E88554 /* ContentItemPrecentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5E3A9D2147A52400E88554 /* ContentItemPrecentCollectionViewCell.swift */; };
@@ -42,6 +44,8 @@
 		4E5ED41E2143B9A100AC709F /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5ED41D2143B9A100AC709F /* UIColorExtension.swift */; };
 		4E64265C2148EB3B00D2B3FF /* HomeViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E64265B2148EB3B00D2B3FF /* HomeViewMode.swift */; };
 		4E6426612149568500D2B3FF /* SQLiteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6426602149568500D2B3FF /* SQLiteManager.swift */; };
+		4E67DB4F216ED6010057D606 /* WordHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E67DB4D216ED6010057D606 /* WordHeaderCollectionViewCell.swift */; };
+		4E67DB50216ED6010057D606 /* WordHeaderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E67DB4E216ED6010057D606 /* WordHeaderCollectionViewCell.xib */; };
 		4E7F1EA8214A58CA000D9044 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7F1EA7214A58CA000D9044 /* libsqlite3.0.tbd */; };
 		4E83205B2155EF1100CD84C0 /* WordUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E83205A2155EF1100CD84C0 /* WordUtil.swift */; };
 		4E891F8321606A2B00A1893A /* WriteWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E891F8121606A2B00A1893A /* WriteWordViewController.swift */; };
@@ -50,6 +54,9 @@
 		4E891F882160A9BF00A1893A /* WriteWordResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E891F862160A9BE00A1893A /* WriteWordResultViewController.xib */; };
 		4E891F8C2160AF1400A1893A /* SimpleTextCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E891F8A2160AF1400A1893A /* SimpleTextCollectionViewCell.swift */; };
 		4E891F8D2160AF1400A1893A /* SimpleTextCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E891F8B2160AF1400A1893A /* SimpleTextCollectionViewCell.xib */; };
+		4E8CCDA6216DA37D0040C8B9 /* UIViewController_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8CCDA5216DA37D0040C8B9 /* UIViewController_extension.swift */; };
+		4E8CCDAA216DA9280040C8B9 /* UserRegistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8CCDA8216DA9280040C8B9 /* UserRegistViewController.swift */; };
+		4E8CCDAB216DA9280040C8B9 /* UserRegistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E8CCDA9216DA9280040C8B9 /* UserRegistViewController.xib */; };
 		4E8E9CCC214C96110004F39B /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8E9CCB214C96110004F39B /* HomeController.swift */; };
 		4E8E9CD0214C96990004F39B /* UserBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8E9CCE214C96990004F39B /* UserBoardView.swift */; };
 		4E8E9CD1214C96990004F39B /* UserBoardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E8E9CCF214C96990004F39B /* UserBoardView.xib */; };
@@ -103,7 +110,18 @@
 		4EC0C3DA215A042C004CE967 /* ReciteWordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EC0C3D8215A042C004CE967 /* ReciteWordViewController.xib */; };
 		4EC0C3DE215A0F35004CE967 /* MyWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC0C3DD215A0F35004CE967 /* MyWords.swift */; };
 		4EC0C3E1215A6F84004CE967 /* DictionaryUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC0C3E0215A6F84004CE967 /* DictionaryUtil.swift */; };
+		4EC98134217045EA001A2E9B /* LoadWordsDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC98133217045EA001A2E9B /* LoadWordsDataCache.swift */; };
+		4EC98138217079FD001A2E9B /* WordListSimpleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC98136217079FD001A2E9B /* WordListSimpleViewController.swift */; };
+		4EC98139217079FE001A2E9B /* WordListSimpleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EC98137217079FD001A2E9B /* WordListSimpleViewController.xib */; };
+		4EC9813B21708261001A2E9B /* RefreshDataCacheDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC9813A21708261001A2E9B /* RefreshDataCacheDelegate.swift */; };
 		4EE46725216B3AED005232FF /* LongDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE46724216B3AED005232FF /* LongDataCache.swift */; };
+		4EEDD1072174308E00AFF170 /* ContentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEDD1062174308E00AFF170 /* ContentListView.swift */; };
+		4EEDD10A21745EC400AFF170 /* CatalogDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEDD10921745EC400AFF170 /* CatalogDataCache.swift */; };
+		4EEDD10C217467A700AFF170 /* ContentsDataCatche.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEDD10B217467A600AFF170 /* ContentsDataCatche.swift */; };
+		4EEDD11121749DA200AFF170 /* MyContentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEDD10F21749DA200AFF170 /* MyContentsViewController.swift */; };
+		4EEDD11221749DA200AFF170 /* MyContentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EEDD11021749DA200AFF170 /* MyContentsViewController.xib */; };
+		4EEDD1152174A2B000AFF170 /* ContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEDD1132174A2B000AFF170 /* ContentListViewController.swift */; };
+		4EEDD1162174A2B000AFF170 /* ContentListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EEDD1142174A2B000AFF170 /* ContentListViewController.xib */; };
 		4EF2EFD7206909D900B7F447 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2EFD6206909D900B7F447 /* AppDelegate.swift */; };
 		4EF2EFD9206909D900B7F447 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2EFD8206909D900B7F447 /* ViewController.swift */; };
 		4EF2EFDC206909D900B7F447 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EF2EFDA206909D900B7F447 /* Main.storyboard */; };
@@ -150,6 +168,8 @@
 		4E45FB6A2154FFFB00A5F03F /* WordScentenseCollectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordScentenseCollectionView.xib; sourceTree = "<group>"; };
 		4E45FB6D2155088300A5F03F /* WordAndSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordAndSegment.swift; sourceTree = "<group>"; };
 		4E45FB6F215508CD00A5F03F /* WordScentenseDataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordScentenseDataCache.swift; sourceTree = "<group>"; };
+		4E5A56E921730498004AB28C /* ContentSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSearchViewController.swift; sourceTree = "<group>"; };
+		4E5A56EA21730498004AB28C /* ContentSearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentSearchViewController.xib; sourceTree = "<group>"; };
 		4E5E3A9A2147A52300E88554 /* ContentItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		4E5E3A9B2147A52300E88554 /* ContentItemCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		4E5E3A9D2147A52400E88554 /* ContentItemPrecentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentItemPrecentCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -163,6 +183,8 @@
 		4E5ED41D2143B9A100AC709F /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		4E64265B2148EB3B00D2B3FF /* HomeViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewMode.swift; sourceTree = "<group>"; };
 		4E6426602149568500D2B3FF /* SQLiteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteManager.swift; sourceTree = "<group>"; };
+		4E67DB4D216ED6010057D606 /* WordHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
+		4E67DB4E216ED6010057D606 /* WordHeaderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordHeaderCollectionViewCell.xib; sourceTree = "<group>"; };
 		4E7F1EA7214A58CA000D9044 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		4E83205A2155EF1100CD84C0 /* WordUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordUtil.swift; sourceTree = "<group>"; };
 		4E891F8121606A2B00A1893A /* WriteWordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteWordViewController.swift; sourceTree = "<group>"; };
@@ -171,6 +193,10 @@
 		4E891F862160A9BE00A1893A /* WriteWordResultViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WriteWordResultViewController.xib; sourceTree = "<group>"; };
 		4E891F8A2160AF1400A1893A /* SimpleTextCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextCollectionViewCell.swift; sourceTree = "<group>"; };
 		4E891F8B2160AF1400A1893A /* SimpleTextCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimpleTextCollectionViewCell.xib; sourceTree = "<group>"; };
+		4E8CCDA5216DA37D0040C8B9 /* UIViewController_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController_extension.swift; sourceTree = "<group>"; };
+		4E8CCDA8216DA9280040C8B9 /* UserRegistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistViewController.swift; sourceTree = "<group>"; };
+		4E8CCDA9216DA9280040C8B9 /* UserRegistViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserRegistViewController.xib; sourceTree = "<group>"; };
+		4E8CCDAE216DD8460040C8B9 /* CommonCrypto-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CommonCrypto-Bridging-Header.h"; sourceTree = "<group>"; };
 		4E8E9CCB214C96110004F39B /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		4E8E9CCE214C96990004F39B /* UserBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBoardView.swift; sourceTree = "<group>"; };
 		4E8E9CCF214C96990004F39B /* UserBoardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserBoardView.xib; sourceTree = "<group>"; };
@@ -224,7 +250,18 @@
 		4EC0C3D8215A042C004CE967 /* ReciteWordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReciteWordViewController.xib; sourceTree = "<group>"; };
 		4EC0C3DD215A0F35004CE967 /* MyWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWords.swift; sourceTree = "<group>"; };
 		4EC0C3E0215A6F84004CE967 /* DictionaryUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryUtil.swift; sourceTree = "<group>"; };
+		4EC98133217045EA001A2E9B /* LoadWordsDataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadWordsDataCache.swift; sourceTree = "<group>"; };
+		4EC98136217079FD001A2E9B /* WordListSimpleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListSimpleViewController.swift; sourceTree = "<group>"; };
+		4EC98137217079FD001A2E9B /* WordListSimpleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordListSimpleViewController.xib; sourceTree = "<group>"; };
+		4EC9813A21708261001A2E9B /* RefreshDataCacheDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshDataCacheDelegate.swift; sourceTree = "<group>"; };
 		4EE46724216B3AED005232FF /* LongDataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongDataCache.swift; sourceTree = "<group>"; };
+		4EEDD1062174308E00AFF170 /* ContentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListView.swift; sourceTree = "<group>"; };
+		4EEDD10921745EC400AFF170 /* CatalogDataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogDataCache.swift; sourceTree = "<group>"; };
+		4EEDD10B217467A600AFF170 /* ContentsDataCatche.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsDataCatche.swift; sourceTree = "<group>"; };
+		4EEDD10F21749DA200AFF170 /* MyContentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyContentsViewController.swift; sourceTree = "<group>"; };
+		4EEDD11021749DA200AFF170 /* MyContentsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyContentsViewController.xib; sourceTree = "<group>"; };
+		4EEDD1132174A2B000AFF170 /* ContentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListViewController.swift; sourceTree = "<group>"; };
+		4EEDD1142174A2B000AFF170 /* ContentListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentListViewController.xib; sourceTree = "<group>"; };
 		4EF2EFD3206909D900B7F447 /* LeqiEnglishIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeqiEnglishIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EF2EFD6206909D900B7F447 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EF2EFD8206909D900B7F447 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -356,11 +393,12 @@
 		4E45FB48215473C100A5F03F /* wordlist */ = {
 			isa = PBXGroup;
 			children = (
+				4EC9813C21708400001A2E9B /* contentwordList */,
+				4EC98135217079C8001A2E9B /* list */,
+				4E8CCDAF216DED5E0040C8B9 /* wordheader */,
 				4E45FB5F2154FB3500A5F03F /* wordscentense */,
 				4E45FB5A2154D7C500A5F03F /* wordinfo */,
 				4E45FB432153B43D00A5F03F /* WordInfoCell */,
-				4E45FB5021547B9D00A5F03F /* WordListViewController.swift */,
-				4E45FB5121547B9D00A5F03F /* WordListViewController.xib */,
 			);
 			path = wordlist;
 			sourceTree = "<group>";
@@ -383,6 +421,7 @@
 				4EC0C3DD215A0F35004CE967 /* MyWords.swift */,
 				4E91DD0E215C6911001F5E22 /* MyReciteWords.swift */,
 				4E91DD12215C76FD001F5E22 /* MyReciteWordConfig.swift */,
+				4EC98133217045EA001A2E9B /* LoadWordsDataCache.swift */,
 			);
 			path = datacache;
 			sourceTree = "<group>";
@@ -513,6 +552,16 @@
 			path = color;
 			sourceTree = "<group>";
 		};
+		4E5F50D72170E79300F62896 /* contentFilter */ = {
+			isa = PBXGroup;
+			children = (
+				4EEDD10821745E8900AFF170 /* datamodel */,
+				4E5A56E921730498004AB28C /* ContentSearchViewController.swift */,
+				4E5A56EA21730498004AB28C /* ContentSearchViewController.xib */,
+			);
+			path = contentFilter;
+			sourceTree = "<group>";
+		};
 		4E64265A2148EB1900D2B3FF /* viewmodel */ = {
 			isa = PBXGroup;
 			children = (
@@ -550,6 +599,32 @@
 			path = collectioncell;
 			sourceTree = "<group>";
 		};
+		4E8CCDA4216DA3530040C8B9 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				4E8CCDA5216DA37D0040C8B9 /* UIViewController_extension.swift */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		4E8CCDA7216DA8AC0040C8B9 /* regist */ = {
+			isa = PBXGroup;
+			children = (
+				4E8CCDA8216DA9280040C8B9 /* UserRegistViewController.swift */,
+				4E8CCDA9216DA9280040C8B9 /* UserRegistViewController.xib */,
+			);
+			path = regist;
+			sourceTree = "<group>";
+		};
+		4E8CCDAF216DED5E0040C8B9 /* wordheader */ = {
+			isa = PBXGroup;
+			children = (
+				4E67DB4D216ED6010057D606 /* WordHeaderCollectionViewCell.swift */,
+				4E67DB4E216ED6010057D606 /* WordHeaderCollectionViewCell.xib */,
+			);
+			path = wordheader;
+			sourceTree = "<group>";
+		};
 		4E8E9CCD214C96590004F39B /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -568,6 +643,7 @@
 			children = (
 				4E8E9CE0214CFBAB0004F39B /* common */,
 				4E8E9CDD214CF8790004F39B /* DataCache.swift */,
+				4EC9813A21708261001A2E9B /* RefreshDataCacheDelegate.swift */,
 			);
 			path = cache;
 			sourceTree = "<group>";
@@ -583,6 +659,10 @@
 		4E8E9CE3214E2E980004F39B /* content */ = {
 			isa = PBXGroup;
 			children = (
+				4EEDD10E21749D6C00AFF170 /* mycontent */,
+				4EEDD10D2174761D00AFF170 /* userContentList */,
+				4EEDD1052174301C00AFF170 /* contentlist */,
+				4E5F50D72170E79300F62896 /* contentFilter */,
 				4E5E3A992147A52300E88554 /* contentItem */,
 				4E8E9CF3214F9E540004F39B /* segment */,
 				4E8E9CE8214F4F290004F39B /* contentInfo */,
@@ -719,6 +799,7 @@
 		4E9906312142777400EE0D55 /* extension */ = {
 			isa = PBXGroup;
 			children = (
+				4E8CCDA4216DA3530040C8B9 /* controller */,
 				4E9C5BB7215230110079F985 /* view */,
 				4E2DF4A3214B8BCC00FA9BB0 /* string */,
 				4E2DF4A2214B508000FA9BB0 /* date */,
@@ -807,6 +888,7 @@
 		4EB231B6215F063F004933F7 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				4E8CCDA7216DA8AC0040C8B9 /* regist */,
 				4E957DC1216CA78000BCF9E4 /* login */,
 				4E957DBD216C911A00BCF9E4 /* feedback */,
 				4EB231B7215F064F004933F7 /* ReciteWordConfig */,
@@ -846,9 +928,63 @@
 			path = dictionary;
 			sourceTree = "<group>";
 		};
+		4EC98135217079C8001A2E9B /* list */ = {
+			isa = PBXGroup;
+			children = (
+				4EC98136217079FD001A2E9B /* WordListSimpleViewController.swift */,
+				4EC98137217079FD001A2E9B /* WordListSimpleViewController.xib */,
+			);
+			path = list;
+			sourceTree = "<group>";
+		};
+		4EC9813C21708400001A2E9B /* contentwordList */ = {
+			isa = PBXGroup;
+			children = (
+				4E45FB5021547B9D00A5F03F /* WordListViewController.swift */,
+				4E45FB5121547B9D00A5F03F /* WordListViewController.xib */,
+			);
+			path = contentwordList;
+			sourceTree = "<group>";
+		};
+		4EEDD1052174301C00AFF170 /* contentlist */ = {
+			isa = PBXGroup;
+			children = (
+				4EEDD1062174308E00AFF170 /* ContentListView.swift */,
+				4EEDD1132174A2B000AFF170 /* ContentListViewController.swift */,
+				4EEDD1142174A2B000AFF170 /* ContentListViewController.xib */,
+			);
+			path = contentlist;
+			sourceTree = "<group>";
+		};
+		4EEDD10821745E8900AFF170 /* datamodel */ = {
+			isa = PBXGroup;
+			children = (
+				4EEDD10921745EC400AFF170 /* CatalogDataCache.swift */,
+				4EEDD10B217467A600AFF170 /* ContentsDataCatche.swift */,
+			);
+			path = datamodel;
+			sourceTree = "<group>";
+		};
+		4EEDD10D2174761D00AFF170 /* userContentList */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = userContentList;
+			sourceTree = "<group>";
+		};
+		4EEDD10E21749D6C00AFF170 /* mycontent */ = {
+			isa = PBXGroup;
+			children = (
+				4EEDD10F21749DA200AFF170 /* MyContentsViewController.swift */,
+				4EEDD11021749DA200AFF170 /* MyContentsViewController.xib */,
+			);
+			path = mycontent;
+			sourceTree = "<group>";
+		};
 		4EF2EFCA206909D800B7F447 = {
 			isa = PBXGroup;
 			children = (
+				4E8CCDAE216DD8460040C8B9 /* CommonCrypto-Bridging-Header.h */,
 				4EF2EFD5206909D900B7F447 /* LeqiEnglishIOS */,
 				4EF2EFD4206909D900B7F447 /* Products */,
 				4E64265D2149565800D2B3FF /* Frameworks */,
@@ -867,8 +1003,8 @@
 		4EF2EFD5206909D900B7F447 /* LeqiEnglishIOS */ = {
 			isa = PBXGroup;
 			children = (
-				4E9C5BA42150FC110079F985 /* business */,
 				4E5ED4172143764F00AC709F /* tools */,
+				4E9C5BA42150FC110079F985 /* business */,
 				4E99062B2142676D00EE0D55 /* home */,
 				4E9906222142648C00EE0D55 /* main */,
 				4E093536214105DF00592DE2 /* data */,
@@ -967,11 +1103,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E957DB8216C894300BCF9E4 /* NavigationCollectionViewCell.xib in Resources */,
+				4EEDD1162174A2B000AFF170 /* ContentListViewController.xib in Resources */,
 				4EB231C3215F1A66004933F7 /* ReciteWordConfigViewController.xib in Resources */,
 				4E891F882160A9BF00A1893A /* WriteWordResultViewController.xib in Resources */,
 				4E990628214264EA00EE0D55 /* word.storyboard in Resources */,
 				4E8E9CD9214CE9D60004F39B /* MyRecommendCollectionViewCell.xib in Resources */,
 				4E5E3AA22147A52400E88554 /* ContentItemCollectionViewCell.xib in Resources */,
+				4E67DB50216ED6010057D606 /* WordHeaderCollectionViewCell.xib in Resources */,
 				4E9C5BA82150FCBE0079F985 /* UISegmentPlayViewController.xib in Resources */,
 				4E91DD17215CCB1A001F5E22 /* MyReciteWordInfoViewController.xib in Resources */,
 				4EF2EFE1206909D900B7F447 /* LaunchScreen.storyboard in Resources */,
@@ -984,6 +1122,7 @@
 				4EF2EFDE206909D900B7F447 /* Assets.xcassets in Resources */,
 				4E8E9CF6214F9E880004F39B /* playsegment.storyboard in Resources */,
 				4E8E9CF2214F58BA0004F39B /* SegmentViewItem.xib in Resources */,
+				4E5A56EC21730498004AB28C /* ContentSearchViewController.xib in Resources */,
 				4EC0C3DA215A042C004CE967 /* ReciteWordViewController.xib in Resources */,
 				4EF2EFDC206909D900B7F447 /* Main.storyboard in Resources */,
 				4E957DBC216C911300BCF9E4 /* FeedbackViewController.xib in Resources */,
@@ -991,9 +1130,12 @@
 				4E45FB5321547B9D00A5F03F /* WordListViewController.xib in Resources */,
 				4E45FB6C2154FFFB00A5F03F /* WordScentenseCollectionView.xib in Resources */,
 				4E9C5BAF2150FF3E0079F985 /* PlaySementItemCollectionViewCell.xib in Resources */,
+				4E8CCDAB216DA9280040C8B9 /* UserRegistViewController.xib in Resources */,
 				4E957DB3216C40EB00BCF9E4 /* ReciteSegmentViewController.xib in Resources */,
 				4E45FB472153B49100A5F03F /* WordInfoCollectionViewCell.xib in Resources */,
 				4E9906212142647100EE0D55 /* home.storyboard in Resources */,
+				4EC98139217079FE001A2E9B /* WordListSimpleViewController.xib in Resources */,
+				4EEDD11221749DA200AFF170 /* MyContentsViewController.xib in Resources */,
 				4E45FB682154FBF300A5F03F /* WordScentenseCollectionViewCell.xib in Resources */,
 				4E891F8421606A2B00A1893A /* WriteWordViewController.xib in Resources */,
 				4E8E9CD5214CAFF60004F39B /* MyRecitedCollectionViewCell.xib in Resources */,
@@ -1030,12 +1172,14 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-LeqiEnglishIOS/Pods-LeqiEnglishIOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1050,8 +1194,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E8CCDA6216DA37D0040C8B9 /* UIViewController_extension.swift in Sources */,
 				4E2DF4A1214B507700FA9BB0 /* NSDate_extension.swift in Sources */,
 				4E9C5B9D2150A18C0079F985 /* Logger.swift in Sources */,
+				4E8CCDAA216DA9280040C8B9 /* UserRegistViewController.swift in Sources */,
 				4E45FB4F21547B1400A5F03F /* Word.swift in Sources */,
 				4E957DBB216C911300BCF9E4 /* FeedbackViewController.swift in Sources */,
 				4E8E9CDC214CF8370004F39B /* MyRecommendViewModel.swift in Sources */,
@@ -1083,11 +1229,16 @@
 				4E45FB5221547B9D00A5F03F /* WordListViewController.swift in Sources */,
 				4EE46725216B3AED005232FF /* LongDataCache.swift in Sources */,
 				4E957DB2216C40EB00BCF9E4 /* ReciteSegmentViewController.swift in Sources */,
+				4EEDD1072174308E00AFF170 /* ContentListView.swift in Sources */,
 				4E9C5BA32150D2E70079F985 /* UserDataCache.swift in Sources */,
+				4EEDD11121749DA200AFF170 /* MyContentsViewController.swift in Sources */,
 				4E891F8321606A2B00A1893A /* WriteWordViewController.swift in Sources */,
 				4E91DD0F215C6911001F5E22 /* MyReciteWords.swift in Sources */,
 				4E957DC4216CA79800BCF9E4 /* LoginViewController.swift in Sources */,
 				4E83205B2155EF1100CD84C0 /* WordUtil.swift in Sources */,
+				4EC98134217045EA001A2E9B /* LoadWordsDataCache.swift in Sources */,
+				4EC98138217079FD001A2E9B /* WordListSimpleViewController.swift in Sources */,
+				4EEDD1152174A2B000AFF170 /* ContentListViewController.swift in Sources */,
 				4E8E9CF1214F58BA0004F39B /* SegmentViewItem.swift in Sources */,
 				4E9C5B9F2150A4950079F985 /* MyRecitedViewModel.swift in Sources */,
 				4E891F8C2160AF1400A1893A /* SimpleTextCollectionViewCell.swift in Sources */,
@@ -1098,6 +1249,8 @@
 				4E91DD16215CCB1A001F5E22 /* MyReciteWordInfoViewController.swift in Sources */,
 				4EC0C3D9215A042C004CE967 /* ReciteWordViewController.swift in Sources */,
 				4E8E9CDE214CF8790004F39B /* DataCache.swift in Sources */,
+				4E67DB4F216ED6010057D606 /* WordHeaderCollectionViewCell.swift in Sources */,
+				4EEDD10A21745EC400AFF170 /* CatalogDataCache.swift in Sources */,
 				4E6426612149568500D2B3FF /* SQLiteManager.swift in Sources */,
 				4E09352B2140C57100592DE2 /* User.swift in Sources */,
 				4E45FB70215508CD00A5F03F /* WordScentenseDataCache.swift in Sources */,
@@ -1106,6 +1259,7 @@
 				4E5ED41621436F6E00AC709F /* PageTitleView.swift in Sources */,
 				4E9C5BA72150FCBE0079F985 /* UISegmentPlayViewController.swift in Sources */,
 				4E9C5BB9215230370079F985 /* UIView_extension.swift in Sources */,
+				4EEDD10C217467A700AFF170 /* ContentsDataCatche.swift in Sources */,
 				4E957DB7216C894300BCF9E4 /* NavigationCollectionViewCell.swift in Sources */,
 				4E5ED4112143626800AC709F /* MainViewController.swift in Sources */,
 				4E9906332142779E00EE0D55 /* NavigationBarItemExtension.swift in Sources */,
@@ -1113,7 +1267,9 @@
 				4E8E9CEB214F4F6B0004F39B /* ContentInfoViewModel.swift in Sources */,
 				4EF2EFD7206909D900B7F447 /* AppDelegate.swift in Sources */,
 				4E8E9CED214F4FB70004F39B /* Segment.swift in Sources */,
+				4EC9813B21708261001A2E9B /* RefreshDataCacheDelegate.swift in Sources */,
 				4E8E9CCC214C96110004F39B /* HomeController.swift in Sources */,
+				4E5A56EB21730498004AB28C /* ContentSearchViewController.swift in Sources */,
 				4E5ED4192143767100AC709F /* Common.swift in Sources */,
 				4E45FB6B2154FFFB00A5F03F /* WordScentenseCollectionView.swift in Sources */,
 				4E0935302140CC8300592DE2 /* ReciteContentVO.swift in Sources */,
@@ -1216,6 +1372,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = /Users/zhuleqi/GitHub/LeqiEnglishIOS/LeqiEnglishIOS/tools/extension/string/CommonCrypto_bridge.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -1265,6 +1422,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = /Users/zhuleqi/GitHub/LeqiEnglishIOS/LeqiEnglishIOS/tools/extension/string/CommonCrypto_bridge.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1282,7 +1440,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Leqienglish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = SQLite_Bridge.h;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "CommonCrypto-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1300,7 +1459,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Leqienglish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = SQLite_Bridge.h;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "CommonCrypto-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

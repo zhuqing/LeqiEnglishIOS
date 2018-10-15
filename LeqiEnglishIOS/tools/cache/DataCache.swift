@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DataCache<T> {
+class DataCache<T> :RefreshDataCacheDelegate{
     func getFromService(finished:@escaping (_ ts:T?)->()){}
     func getFromCache()->T?{return nil}
     func load(finished:@escaping (_ ts:T?)->()){
@@ -16,7 +16,11 @@ class DataCache<T> {
             finished(data)
             return
         }
-        getFromService(finished: finished)
+        getFromService(finished: {
+            (ts) in
+            self.cacheData(data: ts)
+            finished(ts)
+        })
     }
     
     func cacheData(data:T?){}
@@ -26,6 +30,10 @@ class DataCache<T> {
             (data) in
             self.cacheData(data: data)
         }
+    }
+    
+    func getId() -> String {
+       return ""
     }
 }
 

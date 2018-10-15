@@ -13,6 +13,7 @@ class WordInfoCollectionViewCell: UICollectionViewCell {
     
     static let WORD_INFO_CELL_INDENTIFY = "WORD_INFO_CELL_INDENTIFY"
     
+    @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var proView: UIView!
     @IBOutlet weak var means: UILabel!
     
@@ -216,5 +217,15 @@ extension WordInfoCollectionViewCell{
     
     @objc func buttonRecover(button:UIButton){
          button.setImage(UIImage(named: "play_word"), for: .normal)
+    }
+}
+
+extension WordInfoCollectionViewCell{
+    func showBottomView(){
+        self.bottomView.isHidden = false
+    }
+    
+    func hiddenBottomView(){
+         self.bottomView.isHidden = true
     }
 }

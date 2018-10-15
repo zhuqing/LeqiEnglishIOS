@@ -135,14 +135,17 @@ class Service{
     }
     
     class func isSuccess(data:[String:NSObject]) ->Bool{
-        guard let status:String = data["status"] as? String else {
+        guard let status = data["status"]  else {
+
             return false
             
         }
         
-        if status == "-1" {
+        if "\(status)" == "-1" {
+            LOG.info("\(status)")
             return false
         }
+      
         
         return true
         

@@ -65,6 +65,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oRe-zB-9uZ">
                                         <rect key="frame" x="30" y="10" width="299" height="37"/>
                                         <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="A6S-bv-Lrr"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <state key="normal" title="添加背诵">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -78,10 +81,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="oRe-zB-9uZ" firstAttribute="leading" secondItem="f2i-Pj-FLS" secondAttribute="leading" constant="30" id="CCQ-Zg-tow"/>
-                                    <constraint firstItem="oRe-zB-9uZ" firstAttribute="centerX" secondItem="f2i-Pj-FLS" secondAttribute="centerX" id="EhJ-h7-rT5"/>
-                                    <constraint firstAttribute="bottom" secondItem="oRe-zB-9uZ" secondAttribute="bottom" constant="10" id="Sfl-J5-UCy"/>
-                                    <constraint firstItem="oRe-zB-9uZ" firstAttribute="top" secondItem="f2i-Pj-FLS" secondAttribute="top" constant="10" id="ckP-Fa-fM2"/>
+                                    <constraint firstItem="oRe-zB-9uZ" firstAttribute="centerX" secondItem="f2i-Pj-FLS" secondAttribute="centerX" id="jhL-Ms-NG5"/>
+                                    <constraint firstItem="oRe-zB-9uZ" firstAttribute="centerY" secondItem="f2i-Pj-FLS" secondAttribute="centerY" id="kTO-Tj-8MO"/>
+                                    <constraint firstAttribute="trailing" secondItem="oRe-zB-9uZ" secondAttribute="trailing" constant="20" id="vIo-iD-Fci"/>
+                                    <constraint firstItem="oRe-zB-9uZ" firstAttribute="leading" secondItem="f2i-Pj-FLS" secondAttribute="leading" constant="20" id="wWu-gp-dpV"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -112,6 +115,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="359" height="342"/>
             <connections>
+                <outlet property="add2MyReciteButton" destination="oRe-zB-9uZ" id="SWn-KA-wkN"/>
                 <outlet property="collectionRootView" destination="PyG-yE-hbx" id="poT-Ke-Cad"/>
                 <outlet property="moreLabel" destination="7cr-Ae-EiO" id="7XQ-I9-n4B"/>
                 <outlet property="myRecitingNumber" destination="EMG-Nf-Es9" id="Ake-gl-8Vc"/>

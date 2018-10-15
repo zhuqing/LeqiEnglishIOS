@@ -13,8 +13,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WordListViewController" customModule="LeqiEnglishIOS" customModuleProvider="target">
             <connections>
                 <outlet property="back" destination="2Il-fv-Rd2" id="7XM-ag-RMR"/>
+                <outlet property="navigationBar" destination="NPN-EE-50g" id="YEh-9S-bXF"/>
                 <outlet property="nivagationBar" destination="NPN-EE-50g" id="Y1e-PG-gV2"/>
                 <outlet property="rootView" destination="7TS-m8-9an" id="O0A-WN-MCZ"/>
+                <outlet property="startReciteWord" destination="oSr-gO-LoS" id="Wvd-sC-orw"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -32,18 +34,37 @@
                     </items>
                 </navigationBar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7TS-m8-9an">
-                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="538"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oSr-gO-LoS">
+                    <rect key="frame" x="20" y="607" width="335" height="40"/>
+                    <color key="backgroundColor" red="0.0" green="0.56031829119999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="6vX-bx-4eH"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="19"/>
+                    <state key="normal" title="背诵单词">
+                        <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7TS-m8-9an" secondAttribute="trailing" id="2F9-S4-Qry"/>
                 <constraint firstItem="NPN-EE-50g" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="9VW-k2-yJD"/>
                 <constraint firstItem="NPN-EE-50g" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="KKq-O8-5kh"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="7TS-m8-9an" secondAttribute="bottom" id="OXP-zT-OHK"/>
+                <constraint firstAttribute="bottom" secondItem="oSr-gO-LoS" secondAttribute="bottom" constant="20" symbolic="YES" id="TXQ-SL-IhX"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="oSr-gO-LoS" secondAttribute="trailing" constant="20" id="cqV-Na-FOs"/>
+                <constraint firstItem="oSr-gO-LoS" firstAttribute="top" secondItem="7TS-m8-9an" secondAttribute="bottom" constant="5" id="ecM-gw-Qdl"/>
                 <constraint firstItem="7TS-m8-9an" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="pCE-C3-PvL"/>
                 <constraint firstItem="7TS-m8-9an" firstAttribute="top" secondItem="NPN-EE-50g" secondAttribute="bottom" id="pGR-Ux-rAy"/>
+                <constraint firstItem="oSr-gO-LoS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="tGo-WY-hQk"/>
                 <constraint firstItem="NPN-EE-50g" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="zAt-fb-NaJ"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

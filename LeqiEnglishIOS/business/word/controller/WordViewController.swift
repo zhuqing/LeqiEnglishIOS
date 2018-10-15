@@ -28,11 +28,16 @@ class WordViewController:MainViewController{
         
         var childVCS = [UIViewController]()
         
-        for _ in 0..<2{
-            let uiViewController:UIViewController = UIViewController()
-            uiViewController.view.backgroundColor = UIColor(r: CGFloat(arc4random_uniform(255)), b: CGFloat(arc4random_uniform(255)), y: CGFloat(arc4random_uniform(255)))
-            childVCS.append(uiViewController)
-        }
+        
+        let unrecite = WordListSimpleViewController()
+        self?.loadUnReciteData(unrecite)
+        childVCS.append(unrecite)
+        
+        
+        let hasRecite = WordListSimpleViewController()
+        self?.loadHasReciteData(hasRecite)
+        childVCS.append(hasRecite)
+        
         
         let pageContentView = PageContentView(frame: frame, childVCs: childVCS, parentVC: self)
         
@@ -45,15 +50,44 @@ class WordViewController:MainViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+    }
+}
+
+extension WordViewController{
+    private func loadUnReciteData(_ wordListViewController:WordListSimpleViewController){
+    //    wordListViewController.navigationBar.isHidden = true
+        guard let user = UserDataCache.userDataCache.getFromCache() else{
+            return
+        }
         
+        let dataCache = LoadWordsDataCache(path: "english/word/findUnReciteByUserId?userId=\(user.id ?? "")")
+        
+        dataCache.load(finished: {
+            (words) in
+            wordListViewController.wordList = words
+        })
+    }
+    
+    private func loadHasReciteData(_ wordListViewController:WordListSimpleViewController){
+       //  wordListViewController.navigationBar.isHidden = true
+        guard let user = UserDataCache.userDataCache.getFromCache() else{
+            return
+        }
+        
+        let dataCache = LoadWordsDataCache(path: "english/word/findHasReciteByUserId?userId=\(user.id ?? "")")
+        
+        dataCache.load(finished: {
+            (words) in
+            wordListViewController.wordList = words
+        })
     }
 }
 
 //MARK 界面和数据
 extension WordViewController{
     private func setupUI(){
-        
-       automaticallyAdjustsScrollViewInsets = false
+      
+      // automaticallyAdjustsScrollViewInsets = false
 
         rootView.addSubview(pageTitleView)
       

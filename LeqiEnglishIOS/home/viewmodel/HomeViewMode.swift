@@ -9,25 +9,31 @@
 import Foundation
 
 class HomeViewMode{
+    var refreshList = [RefreshDataCacheDelegate]()
     
-    func loadUser() -> User {
-        Service.get(path: "user/findById")
-        {
-            (result) in
-            
-            if !Service.isSuccess(data: result) {
-                return
-            }
-            
-          //  User(data:Service.getData(data: result))
+    static let instance = HomeViewMode()
+    
+    private init(){
+        
+    }
+    
+    func regist(_ refreshDataCache:RefreshDataCacheDelegate){
+        refreshList.append(refreshDataCache)
+    }
+    
+    func remove(_ refreshDataCache:RefreshDataCacheDelegate){
+       guard let index =  refreshList.index(where: {
+            (re) in
+            return re.getId() == refreshDataCache.getId()
+       }) else {
+        return
         }
-        return User()
-    }
-    func loadMyRecitedData(user:User) -> [ReciteContentVO] {
-        return [ReciteContentVO]()
+        refreshList.remove(at: index)
     }
     
-    func loadMyRecomendDat(user:User)->[Content]{
-        return [Content]()
+    func refresh(){
+        for refresh in refreshList {
+            refresh.refresh()
+        }
     }
 }

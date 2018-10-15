@@ -18,6 +18,7 @@ class MyRecommendCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         setupUI()
+         HomeViewMode.instance.regist(self)
     }
     
     var delegate:MyRecommendCollectionViewCellDelegate?
@@ -41,7 +42,7 @@ class MyRecommendCollectionViewCell: UICollectionViewCell {
         collectionView.bounces = true
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(UINib(nibName: "ContentItemCollectionViewCell", bundle:nil), forCellWithReuseIdentifier: CONTENT_ITEM_CELL)
+        collectionView.register(UINib(nibName: "ContentItemCollectionViewCell", bundle:nil), forCellWithReuseIdentifier: ContentItemCollectionViewCell.CONTENT_ITEM_CELL)
         
         collectionView.backgroundColor = UIColor.white
         return collectionView
@@ -84,7 +85,7 @@ extension MyRecommendCollectionViewCell:UICollectionViewDataSource,UICollectionV
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell:ContentItemCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: CONTENT_ITEM_CELL, for: indexPath) as! ContentItemCollectionViewCell
+        let cell:ContentItemCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentItemCollectionViewCell.CONTENT_ITEM_CELL, for: indexPath) as! ContentItemCollectionViewCell
         //   cell.backgroundColor = UIColor.blue
         cell.setItem(item: recommendDatas[indexPath.item])
         return cell
@@ -102,4 +103,14 @@ extension MyRecommendCollectionViewCell:UICollectionViewDataSource,UICollectionV
     }
     
   
+}
+
+extension MyRecommendCollectionViewCell : RefreshDataCacheDelegate{
+    func refresh() {
+       loadData()
+    }
+    
+    func getId() -> String {
+       return "MyRecommendCollectionViewCell"
+    }
 }

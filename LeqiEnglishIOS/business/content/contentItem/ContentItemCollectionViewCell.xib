@@ -45,7 +45,11 @@
             </view>
             <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="6Kd-2b-5gw" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="3l6-mg-Rpv"/>
+                <constraint firstItem="JQ5-2M-hiO" firstAttribute="top" secondItem="6Kd-2b-5gw" secondAttribute="bottom" constant="5" id="Iug-su-9vC"/>
                 <constraint firstAttribute="trailing" secondItem="JQ5-2M-hiO" secondAttribute="trailing" constant="5" id="Rwc-pO-oi0"/>
+                <constraint firstAttribute="trailing" secondItem="6Kd-2b-5gw" secondAttribute="trailing" id="Y9T-1O-ATS"/>
+                <constraint firstItem="6Kd-2b-5gw" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="dZN-q8-On3"/>
                 <constraint firstItem="JQ5-2M-hiO" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="ewq-xg-sPz"/>
                 <constraint firstItem="6Kd-2b-5gw" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="kzd-Ku-xZu"/>
                 <constraint firstAttribute="bottom" secondItem="JQ5-2M-hiO" secondAttribute="bottom" id="pqv-gC-oR4"/>

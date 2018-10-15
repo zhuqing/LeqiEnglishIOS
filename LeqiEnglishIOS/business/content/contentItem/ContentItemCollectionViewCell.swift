@@ -9,10 +9,10 @@
 import UIKit
 import Kingfisher
 
-let CONTENT_ITEM_CELL = "CONTENT_ITEM_CELL"
+
 class ContentItemCollectionViewCell: UICollectionViewCell {
     
-
+   static let CONTENT_ITEM_CELL = "CONTENT_ITEM_CELL"
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!

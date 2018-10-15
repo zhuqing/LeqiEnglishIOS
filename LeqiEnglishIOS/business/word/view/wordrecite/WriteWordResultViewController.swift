@@ -103,12 +103,7 @@ extension WriteWordResultViewController{
     
     @objc private func clickCloseHandler(){
         updateHasRecited()
-        var rootVC = self.presentingViewController
-        while let parent = rootVC?.presentingViewController {
-            rootVC = parent
-        }
-        //释放所有下级视图
-        rootVC?.dismiss(animated: false, completion: nil)
+        returnHome()
     }
 }
 

@@ -68,14 +68,22 @@ extension PersonalViewController{
     }
     
     private func addCatalogs(){
+       
+        catalogs.append(createCatalog(id:"01",title:"意见反馈"))
+        
+        catalogs.append(createCatalog(id:"02",title:"当前版本\t 1.0.1"))
+        
+        
+        collectionView.reloadData()
+        
+    }
+    
+    private func createCatalog(id:String,title:String) -> Catalog{
         let catalog = Catalog()
         catalog.title = "意见反馈"
         catalog.id = "01"
         
-        catalogs.append(catalog)
-        
-        collectionView.reloadData()
-        
+        return catalog
     }
     
     private func turn2(_ catalog:Catalog){

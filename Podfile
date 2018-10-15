@@ -8,6 +8,7 @@ target 'LeqiEnglishIOS' do
 pod 'Alamofire'
 pod 'SQLite.swift', '~> 0.11.4'
 pod 'Kingfisher'
+pod 'MJRefresh'
   # Pods for LeqiEnglishIOS
 
 end
