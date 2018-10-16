@@ -85,7 +85,7 @@ extension LoginViewController{
             return
         }
         
-        UserDataCache.userDataCache.login(name: userName, password: password,error: {
+        UserDataCache.instance.login(name: userName, password: password,error: {
             (message) in
             self.showAlert(message: message!)
         },finished: {

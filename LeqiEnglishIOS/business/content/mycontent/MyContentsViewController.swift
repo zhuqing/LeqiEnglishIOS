@@ -92,7 +92,7 @@ extension MyContentsViewController{
     }
     
     private func loadData(_ contentListView:ContentListViewController , path:String){
-        guard let user = UserDataCache.userDataCache.getFromCache() else{
+        guard let user = UserDataCache.instance.getFromCache() else{
             return
         }
         

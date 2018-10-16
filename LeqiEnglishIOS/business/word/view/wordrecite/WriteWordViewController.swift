@@ -356,7 +356,7 @@ extension WriteWordViewController{
     //更新单词的背诵次数
     private func updateReciteCount(){
         
-        guard let user = UserDataCache.userDataCache.getFromCache() else{
+        guard let user = UserDataCache.instance.getFromCache() else{
             return
         }
         

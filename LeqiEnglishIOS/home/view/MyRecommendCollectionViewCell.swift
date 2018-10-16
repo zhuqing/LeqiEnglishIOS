@@ -10,16 +10,15 @@ import UIKit
 
 protocol MyRecommendCollectionViewCellDelegate {
     func myRecommendCollectionViewCell(_ collectionView:UICollectionView ,clickItem:Content)
+    func moreLabelTap()
 }
 class MyRecommendCollectionViewCell: UICollectionViewCell {
+    
     static let MY_RECOMMEND_VIEW_REUSE_IDENTIFIRE = "MY_RECOMMEND_VIEW_REUSE_IDENTIFIRE"
+    
     private var recommendViewModel = MyRecommendViewModel()
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-        setupUI()
-         HomeViewMode.instance.regist(self)
-    }
+    
+    @IBOutlet weak var moreLabel: UILabel!
     
     var delegate:MyRecommendCollectionViewCellDelegate?
     
@@ -48,8 +47,14 @@ class MyRecommendCollectionViewCell: UICollectionViewCell {
         return collectionView
         }()
     
-    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+        setupUI()
+        AppRefreshManager.instance.regist(self)
+    }
 }
+
 
 extension MyRecommendCollectionViewCell{
     private func setupUI(){
@@ -57,6 +62,23 @@ extension MyRecommendCollectionViewCell{
         collectionRootView.addSubview(collectionView)
         collectionView.frame = CGRect(x: 10, y: 0, width: SCREEN_WIDTH-20, height: collectionRootView.frame.height)
         loadData()
+        initListener()
+    }
+    
+    private func initListener(){
+        self.moreLabel.isUserInteractionEnabled = true
+        
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(MyRecommendCollectionViewCell.showMore))
+        
+        self.moreLabel.addGestureRecognizer(gesture)
+    }
+    
+    @objc private func showMore(){
+        guard let delegate = self.delegate else{
+            return
+        }
+        
+        delegate.moreLabelTap()
     }
     
     private func loadData(){

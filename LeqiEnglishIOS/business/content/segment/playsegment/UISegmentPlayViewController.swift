@@ -100,10 +100,14 @@ extension UISegmentPlayViewController{
     //跳转到背诵界面
     @objc private func startReciteHandler(){
         let vc = ReciteSegmentViewController()
-        
+        let during = (self.segmentPlayItems.last?.endTime)! - self.segmentPlayItems[0].startTime!
         self.present(vc, animated: true){
             
-            vc.during = Double((self.segmentPlayItems.last?.endTime)! - self.segmentPlayItems[0].startTime! )/1000.0
+            vc.during = Double(during)/1000.0
+            guard let userRecord = UserReciteRecordDataCache.instance.getFromCache() else{
+                return
+            }
+            Service.put(path: "userReciteRecord/updateReciteMinutes?id=\(userRecord.id ?? "")&minutes=\( Int(vc.during) )"){(_) in}
         }
     }
     
@@ -112,7 +116,7 @@ extension UISegmentPlayViewController{
 extension UISegmentPlayViewController{
     //插入本段单词和用户的关系
     private func insertUserAndWord(_ item:Segment){
-        guard  let user =  UserDataCache.userDataCache.getFromCache() else{
+        guard  let user =  UserDataCache.instance.getFromCache() else{
             return
         }
     

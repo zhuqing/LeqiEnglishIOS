@@ -17,7 +17,7 @@ class MyWords: DataCache<[Word]> {
     }
     
     override func getFromService(finished: @escaping ([Word]?) -> ()) {
-        guard  let user = UserDataCache.userDataCache.getFromCache() else{
+        guard  let user = UserDataCache.instance.getFromCache() else{
             return
         }
         Service.get(path: "english/word/findByUserId?userId=\(user.id ?? "")"){

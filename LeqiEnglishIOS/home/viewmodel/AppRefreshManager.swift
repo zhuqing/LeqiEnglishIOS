@@ -8,10 +8,10 @@
 
 import Foundation
 
-class HomeViewMode{
+class AppRefreshManager{
     var refreshList = [RefreshDataCacheDelegate]()
     
-    static let instance = HomeViewMode()
+    static let instance = AppRefreshManager()
     
     private init(){
         

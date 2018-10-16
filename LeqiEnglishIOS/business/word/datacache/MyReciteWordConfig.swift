@@ -18,7 +18,7 @@ class MyReciteWordConfig: DataCache<ReciteWordConfig> {
     
     
     override func getFromService(finished: @escaping (ReciteWordConfig?) -> ()) {
-        guard let user = UserDataCache.userDataCache.getFromCache() else{
+        guard let user = UserDataCache.instance.getFromCache() else{
             self.LOG.error("没有加载到用户")
             return
         }
@@ -38,7 +38,7 @@ class MyReciteWordConfig: DataCache<ReciteWordConfig> {
     }
     
     override func getFromCache() -> ReciteWordConfig? {
-        guard let user = UserDataCache.userDataCache.getFromCache() else{
+        guard let user = UserDataCache.instance.getFromCache() else{
             self.LOG.error("没有加载到用户")
             return nil
         }
@@ -61,7 +61,7 @@ class MyReciteWordConfig: DataCache<ReciteWordConfig> {
     
     override func cacheData(data: ReciteWordConfig?) {
         
-        guard let user = UserDataCache.userDataCache.getFromCache() else{
+        guard let user = UserDataCache.instance.getFromCache() else{
             self.LOG.error("没有加载到用户")
             return
         }

@@ -119,7 +119,7 @@ extension WriteWordResultViewController{
     }
     
     private func updateHasRecited(){
-        guard let user = UserDataCache.userDataCache.getFromCache() else{
+        guard let user = UserDataCache.instance.getFromCache() else{
             return
         }
         for word in self.selectReciteWords {
@@ -132,7 +132,7 @@ extension WriteWordResultViewController{
     }
     //更新以背诵的单词的数量
     private func updateRciteNumber(){
-        guard let user = UserDataCache.userDataCache.getFromCache() else{
+        guard let user = UserDataCache.instance.getFromCache() else{
             return
         }
         Service.put(path: "reciteWordConfig/addHasReciteNumber?userId=\(user.id ?? "")&number=\(self.selectReciteWords.count)"){

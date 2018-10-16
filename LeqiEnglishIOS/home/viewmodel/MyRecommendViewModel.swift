@@ -10,9 +10,13 @@ import UIKit
 
 class MyRecommendViewModel: DataCache<[Content]> {
     
+    static let instance = MyRecommendViewModel()
 
     override func getFromService(finished: @escaping ([Content]?) -> ())  {
-        Service.get(path: "recommend/recommendArticle?userId=userId"){
+        guard let user = UserDataCache.instance.getFromCache() else{
+            return
+        }
+        Service.get(path: "recommend/recommendArticle?userId=\(user.id ?? "")"){
             (data) in
            
             let datas = Service.getDatas(data: data)

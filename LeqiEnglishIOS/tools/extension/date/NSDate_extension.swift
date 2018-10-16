@@ -12,4 +12,9 @@ extension NSDate{
     class func getTime()->Int64{
       return Int64(self.timeIntervalSinceReferenceDate*1000)
     }
+    
+    class func toDate(time:Int64)->NSDate{
+        
+       return NSDate(timeIntervalSince1970:  Double(time)/1000)
+    }
 }

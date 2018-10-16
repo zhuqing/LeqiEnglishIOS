@@ -23,12 +23,7 @@ class UserBoardView: UICollectionViewCell {
     
     var delegate:UserBoardViewDelegate?
     
-    var user:User?{
-        didSet{
-            
-        }
-    }
-   
+    
      
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -42,9 +37,41 @@ class UserBoardView: UICollectionViewCell {
 extension UserBoardView{
     private func setUpUI(){
         initListener()
+        loadData()
+        loadUserImage()
+        AppRefreshManager.instance.regist(self)
+    }
+    
+    private func loadData(){
+        UserReciteRecordDataCache.instance.load(finished: {
+            (userReciteRecord) in
+            guard let userRR = userReciteRecord else{
+                return
+            }
+            self.hasLoginDaysLabel.text = "累计打卡\(userRR.learnDay ?? 0)天"
+            
+            self.hasRecite.text = "\(Int((userRR.learnTime ?? 0)/60))"
+        })
+    }
+    
+    //加载用户的图像
+    private func loadUserImage(){
+        guard let user = UserDataCache.instance.getFromCache() else{
+            return
+        }
+        
+        guard let imagePath = user.imagePath else{
+            return
+        }
+        
+        Service.download(filePath: imagePath){
+            (path) in
+            self.userHeaderImage.image = UIImage(contentsOfFile: path)
+        }
     }
     
     private func initListener(){
+        
         reciteWordButton.addTarget(self, action: #selector(UserBoardView.reciteWordButtonClick), for: .touchDown)
     }
     
@@ -54,5 +81,17 @@ extension UserBoardView{
         }
         
         delegate.reciteWordButtonClick()
+    }
+}
+
+extension UserBoardView:RefreshDataCacheDelegate{
+    func getId() -> String {
+       return "UserBoardView"
+    }
+    
+    func refresh() {
+       UserReciteRecordDataCache.instance.claerData()
+       self.loadData()
+       self.loadUserImage()
     }
 }

@@ -97,7 +97,7 @@ extension UserRegistViewController{
         let sex = self.manOrWomenControl.selectedSegmentIndex
         
         
-        guard var user = UserDataCache.userDataCache.getFromCache() else {
+        guard var user = UserDataCache.instance.getFromCache() else {
             return
         }
         
@@ -112,7 +112,7 @@ extension UserRegistViewController{
         
         LOG.info("\(user.toDictionary())")
         
-        UserDataCache.userDataCache.regist(user: user, error:{
+        UserDataCache.instance.regist(user: user, error:{
             (message) in
             self.showAlert(message: message!)
         }, finished: {

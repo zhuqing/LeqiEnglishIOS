@@ -51,7 +51,7 @@ extension FeedbackViewController{
     
     @objc private func commit(){
         let suggestion = Suggestion()
-        guard let user = UserDataCache.userDataCache.getFromCache() else{
+        guard let user = UserDataCache.instance.getFromCache() else{
             return
         }
         suggestion.userId = user.id

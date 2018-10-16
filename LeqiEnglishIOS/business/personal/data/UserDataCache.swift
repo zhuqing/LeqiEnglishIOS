@@ -10,15 +10,17 @@ import UIKit
 
 class UserDataCache: DataCache<User> {
     
-    static private let USER_TYPE = "USER_TYPE"
-    static private let sqliteManager = SQLiteManager.instance
+    static  let USER_TYPE = "USER_TYPE"
     
-    static  let userDataCache = UserDataCache()
+    static  let UPDATE_TYPE = "USER_UPDATE_TYPE"
+    
+    static  let instance = UserDataCache()
     
     private var user:User?
     
     private override init() {
         super.init()
+        AppRefreshManager.instance.regist(self)
     }
     
     override func getFromCache() -> User? {
@@ -26,18 +28,35 @@ class UserDataCache: DataCache<User> {
         if(user != nil){
             return user
         }
-      
-        var datas:[String]? = UserDataCache.sqliteManager.readData(type: UserDataCache.USER_TYPE)
-       
+        
+        var datas:[String]? = SQLiteManager.instance.readData(type: UserDataCache.USER_TYPE)
+        
         if datas == nil || datas!.count == 0{
-           user = createAndSaveUser()
+            user = createAndSaveUser()
         }else{
             user = User(data:String.toDictionary(datas![0])!)
         }
-      
+        
         return user
     }
     
+    override func refresh() {
+        guard let user = self.getFromCache() else{
+            return
+        }
+        
+        Service.get(path: "user/findById?id=\(user.id ?? "")"){
+            (results) in
+            
+            guard let data = Service.getData(data: results) else{
+                return
+            }
+            
+            self.cacheData(data: User(data:data))
+        }
+    }
+    
+    //用户注册
     func regist(user:User,error:((String?)->())?,finished: ((User?) -> ())?){
         
         Service.post(path: "user/regist",params: DictionaryUtil.toStringString(data: user.toDictionary())){
@@ -62,7 +81,7 @@ class UserDataCache: DataCache<User> {
                 
                 return
             }
-           
+            
             self.user = User(data: data)
             self.cacheData(data:self.user)
             guard let f = finished else{
@@ -72,6 +91,7 @@ class UserDataCache: DataCache<User> {
         }
     }
     
+    //登录
     func login(name:String,password:String,error:((String?)->())?,finished: ((User?) -> ())?) {
         
         Service.get(path: "user/login?userName=\(name)&password=\(password)"){
@@ -95,7 +115,7 @@ class UserDataCache: DataCache<User> {
                 
                 return
             }
-           
+            
             self.user = User(data: data)
             self.cacheData(data:self.user)
             
@@ -108,23 +128,29 @@ class UserDataCache: DataCache<User> {
     }
     
     override func getFromService(finished: @escaping (User?) -> ()) {
-     
+        
     }
     
     override func cacheData(data:User?){
         guard let user = data else{
             return
         }
-         UserDataCache.sqliteManager.delete(type: UserDataCache.USER_TYPE)
-         UserDataCache.sqliteManager.insertData(id: user.id!, json: String.toString(user.toDictionary())!, type: UserDataCache.USER_TYPE)
+        claerData()
+        SQLiteManager.instance.insertData(id: user.id!, json: String.toString(user.toDictionary())!, type: UserDataCache.USER_TYPE)
+    }
+    
+    
+    override func claerData() {
+        SQLiteManager.instance.delete(type: UserDataCache.USER_TYPE)
     }
     
     
     private func createAndSaveUser() -> User{
         let user = User()
         user.id = UUID.init().uuidString
+        user.status = 0
         user.name = "Friend"
-        UserDataCache.sqliteManager.insertData(id: user.id!, json: String.toString(user.toDictionary())!, type: UserDataCache.USER_TYPE)
+        SQLiteManager.instance.insertData(id: user.id!, json: String.toString(user.toDictionary())!, type: UserDataCache.USER_TYPE)
         return user
     }
 }

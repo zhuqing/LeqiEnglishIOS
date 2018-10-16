@@ -126,7 +126,7 @@ extension ContentInfoViewController{
             return
         }
         
-        let userData = UserDataCache.userDataCache
+        let userData = UserDataCache.instance
         
         guard let user = userData.getFromCache() else {
             LOG.error("没找到User")
@@ -222,7 +222,7 @@ extension ContentInfoViewController{
     
     //把当前content下关联的单词，关联给用户
     private func insertWordsToUser(_ contentId:String){
-        guard let user = UserDataCache.userDataCache.getFromCache() else{
+        guard let user = UserDataCache.instance.getFromCache() else{
             return
         }
         Service.post(path: "userAndWord/insertAllByContentId?contentId=\(contentId)&userId=\(user.id ?? "")"){

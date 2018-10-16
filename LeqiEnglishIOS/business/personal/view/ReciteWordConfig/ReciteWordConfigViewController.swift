@@ -67,7 +67,7 @@ extension ReciteWordConfigViewController{
              self.dismiss(animated: true, completion: nil)
             return
         }
-        guard let user = UserDataCache.userDataCache.getFromCache() else{
+        guard let user = UserDataCache.instance.getFromCache() else{
             self.dismiss(animated: true, completion: nil)
             return
         }

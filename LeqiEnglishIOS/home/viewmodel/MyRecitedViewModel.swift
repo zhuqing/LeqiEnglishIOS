@@ -11,7 +11,7 @@ class MyRecitedViewModel:DataCache<[ReciteContentVO]>{
     var LOG = LOGGER("MyRecitedViewModel");
    
     override func getFromService(finished: @escaping ([ReciteContentVO]?) -> ())  {
-        let userData = UserDataCache.userDataCache
+        let userData = UserDataCache.instance
         guard let user = userData.getFromCache() else{
             LOG.error("没有User")
             return;

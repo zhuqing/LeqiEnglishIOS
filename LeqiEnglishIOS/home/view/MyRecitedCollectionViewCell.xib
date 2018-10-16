@@ -63,7 +63,7 @@
                                 <rect key="frame" x="0.0" y="285" width="359" height="57"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oRe-zB-9uZ">
-                                        <rect key="frame" x="30" y="10" width="299" height="37"/>
+                                        <rect key="frame" x="20" y="8.5" width="319" height="40"/>
                                         <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="A6S-bv-Lrr"/>
@@ -118,6 +118,7 @@
                 <outlet property="add2MyReciteButton" destination="oRe-zB-9uZ" id="SWn-KA-wkN"/>
                 <outlet property="collectionRootView" destination="PyG-yE-hbx" id="poT-Ke-Cad"/>
                 <outlet property="moreLabel" destination="7cr-Ae-EiO" id="7XQ-I9-n4B"/>
+                <outlet property="myRecitNumberLabel" destination="n8p-Mc-eeV" id="2Ll-fE-bRZ"/>
                 <outlet property="myRecitingNumber" destination="EMG-Nf-Es9" id="Ake-gl-8Vc"/>
             </connections>
             <point key="canvasLocation" x="70.5" y="100"/>

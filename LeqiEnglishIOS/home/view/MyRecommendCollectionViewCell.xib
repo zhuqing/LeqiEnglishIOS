@@ -76,6 +76,7 @@
             <size key="customSize" width="331" height="291"/>
             <connections>
                 <outlet property="collectionRootView" destination="H66-hY-9Tg" id="2Xk-ex-n9T"/>
+                <outlet property="moreLabel" destination="GcM-Br-j2I" id="1IA-Bz-Reg"/>
             </connections>
             <point key="canvasLocation" x="172.5" y="201.5"/>
         </collectionViewCell>

@@ -138,6 +138,16 @@ struct SQLiteManager {
     }
     
     //g根据ID删除数据
+    func delete(type:String,parentId:String){
+        
+        do{
+            try db.execute("delete from CACHE_TABLE where TYPE = '\(type)' AND  PARENT_ID = '\(parentId)'")
+        }catch{
+            print(error)
+        }
+    }
+    
+    //g根据ID删除数据
     func delete(type:String){
         
         do{

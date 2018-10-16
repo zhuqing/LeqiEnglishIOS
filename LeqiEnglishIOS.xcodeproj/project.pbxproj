@@ -11,6 +11,8 @@
 		4E09352B2140C57100592DE2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E09352A2140C57100592DE2 /* User.swift */; };
 		4E09352E2140CBBB00592DE2 /* Catalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E09352D2140CBBB00592DE2 /* Catalog.swift */; };
 		4E0935302140CC8300592DE2 /* ReciteContentVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E09352F2140CC8300592DE2 /* ReciteContentVO.swift */; };
+		4E1EB60F21757F5B0070E064 /* UserReciteRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EB60E21757F5A0070E064 /* UserReciteRecord.swift */; };
+		4E1EB611217580EB0070E064 /* UserReciteRecordDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1EB610217580EB0070E064 /* UserReciteRecordDataCache.swift */; };
 		4E2DF4A1214B507700FA9BB0 /* NSDate_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2DF4A0214B507700FA9BB0 /* NSDate_extension.swift */; };
 		4E2DF4A5214B8C0100FA9BB0 /* String_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2DF4A4214B8C0100FA9BB0 /* String_extension.swift */; };
 		4E45FB4121532D9600A5F03F /* RecordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E45FB4021532D9600A5F03F /* RecordManager.swift */; };
@@ -42,7 +44,7 @@
 		4E5ED4192143767100AC709F /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5ED4182143767100AC709F /* Common.swift */; };
 		4E5ED41B2143B69400AC709F /* PageContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5ED41A2143B69400AC709F /* PageContentView.swift */; };
 		4E5ED41E2143B9A100AC709F /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5ED41D2143B9A100AC709F /* UIColorExtension.swift */; };
-		4E64265C2148EB3B00D2B3FF /* HomeViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E64265B2148EB3B00D2B3FF /* HomeViewMode.swift */; };
+		4E64265C2148EB3B00D2B3FF /* AppRefreshManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E64265B2148EB3B00D2B3FF /* AppRefreshManager.swift */; };
 		4E6426612149568500D2B3FF /* SQLiteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E6426602149568500D2B3FF /* SQLiteManager.swift */; };
 		4E67DB4F216ED6010057D606 /* WordHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E67DB4D216ED6010057D606 /* WordHeaderCollectionViewCell.swift */; };
 		4E67DB50216ED6010057D606 /* WordHeaderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E67DB4E216ED6010057D606 /* WordHeaderCollectionViewCell.xib */; };
@@ -115,7 +117,6 @@
 		4EC98139217079FE001A2E9B /* WordListSimpleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EC98137217079FD001A2E9B /* WordListSimpleViewController.xib */; };
 		4EC9813B21708261001A2E9B /* RefreshDataCacheDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC9813A21708261001A2E9B /* RefreshDataCacheDelegate.swift */; };
 		4EE46725216B3AED005232FF /* LongDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE46724216B3AED005232FF /* LongDataCache.swift */; };
-		4EEDD1072174308E00AFF170 /* ContentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEDD1062174308E00AFF170 /* ContentListView.swift */; };
 		4EEDD10A21745EC400AFF170 /* CatalogDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEDD10921745EC400AFF170 /* CatalogDataCache.swift */; };
 		4EEDD10C217467A700AFF170 /* ContentsDataCatche.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEDD10B217467A600AFF170 /* ContentsDataCatche.swift */; };
 		4EEDD11121749DA200AFF170 /* MyContentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEDD10F21749DA200AFF170 /* MyContentsViewController.swift */; };
@@ -150,6 +151,8 @@
 		4E09352A2140C57100592DE2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4E09352D2140CBBB00592DE2 /* Catalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catalog.swift; sourceTree = "<group>"; };
 		4E09352F2140CC8300592DE2 /* ReciteContentVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReciteContentVO.swift; sourceTree = "<group>"; };
+		4E1EB60E21757F5A0070E064 /* UserReciteRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReciteRecord.swift; sourceTree = "<group>"; };
+		4E1EB610217580EB0070E064 /* UserReciteRecordDataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReciteRecordDataCache.swift; sourceTree = "<group>"; };
 		4E2DF4A0214B507700FA9BB0 /* NSDate_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDate_extension.swift; sourceTree = "<group>"; };
 		4E2DF4A4214B8C0100FA9BB0 /* String_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String_extension.swift; sourceTree = "<group>"; };
 		4E45FB4021532D9600A5F03F /* RecordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordManager.swift; sourceTree = "<group>"; };
@@ -181,7 +184,7 @@
 		4E5ED4182143767100AC709F /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		4E5ED41A2143B69400AC709F /* PageContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageContentView.swift; sourceTree = "<group>"; };
 		4E5ED41D2143B9A100AC709F /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
-		4E64265B2148EB3B00D2B3FF /* HomeViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewMode.swift; sourceTree = "<group>"; };
+		4E64265B2148EB3B00D2B3FF /* AppRefreshManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRefreshManager.swift; sourceTree = "<group>"; };
 		4E6426602149568500D2B3FF /* SQLiteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteManager.swift; sourceTree = "<group>"; };
 		4E67DB4D216ED6010057D606 /* WordHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
 		4E67DB4E216ED6010057D606 /* WordHeaderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordHeaderCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -255,7 +258,6 @@
 		4EC98137217079FD001A2E9B /* WordListSimpleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordListSimpleViewController.xib; sourceTree = "<group>"; };
 		4EC9813A21708261001A2E9B /* RefreshDataCacheDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshDataCacheDelegate.swift; sourceTree = "<group>"; };
 		4EE46724216B3AED005232FF /* LongDataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongDataCache.swift; sourceTree = "<group>"; };
-		4EEDD1062174308E00AFF170 /* ContentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListView.swift; sourceTree = "<group>"; };
 		4EEDD10921745EC400AFF170 /* CatalogDataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogDataCache.swift; sourceTree = "<group>"; };
 		4EEDD10B217467A600AFF170 /* ContentsDataCatche.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsDataCatche.swift; sourceTree = "<group>"; };
 		4EEDD10F21749DA200AFF170 /* MyContentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyContentsViewController.swift; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 			children = (
 				4E0935292140C52700592DE2 /* New Group */,
 				4E09352A2140C57100592DE2 /* User.swift */,
+				4E1EB60E21757F5A0070E064 /* UserReciteRecord.swift */,
 			);
 			path = user;
 			sourceTree = "<group>";
@@ -566,8 +569,9 @@
 			isa = PBXGroup;
 			children = (
 				4E8E9CDB214CF8370004F39B /* MyRecommendViewModel.swift */,
-				4E64265B2148EB3B00D2B3FF /* HomeViewMode.swift */,
+				4E64265B2148EB3B00D2B3FF /* AppRefreshManager.swift */,
 				4E9C5B9E2150A4950079F985 /* MyRecitedViewModel.swift */,
+				4E1EB610217580EB0070E064 /* UserReciteRecordDataCache.swift */,
 			);
 			path = viewmodel;
 			sourceTree = "<group>";
@@ -949,7 +953,6 @@
 		4EEDD1052174301C00AFF170 /* contentlist */ = {
 			isa = PBXGroup;
 			children = (
-				4EEDD1062174308E00AFF170 /* ContentListView.swift */,
 				4EEDD1132174A2B000AFF170 /* ContentListViewController.swift */,
 				4EEDD1142174A2B000AFF170 /* ContentListViewController.xib */,
 			);
@@ -1199,6 +1202,7 @@
 				4E9C5B9D2150A18C0079F985 /* Logger.swift in Sources */,
 				4E8CCDAA216DA9280040C8B9 /* UserRegistViewController.swift in Sources */,
 				4E45FB4F21547B1400A5F03F /* Word.swift in Sources */,
+				4E1EB611217580EB0070E064 /* UserReciteRecordDataCache.swift in Sources */,
 				4E957DBB216C911300BCF9E4 /* FeedbackViewController.swift in Sources */,
 				4E8E9CDC214CF8370004F39B /* MyRecommendViewModel.swift in Sources */,
 				4E45FB592154CCBD00A5F03F /* StringUtil.swift in Sources */,
@@ -1229,7 +1233,6 @@
 				4E45FB5221547B9D00A5F03F /* WordListViewController.swift in Sources */,
 				4EE46725216B3AED005232FF /* LongDataCache.swift in Sources */,
 				4E957DB2216C40EB00BCF9E4 /* ReciteSegmentViewController.swift in Sources */,
-				4EEDD1072174308E00AFF170 /* ContentListView.swift in Sources */,
 				4E9C5BA32150D2E70079F985 /* UserDataCache.swift in Sources */,
 				4EEDD11121749DA200AFF170 /* MyContentsViewController.swift in Sources */,
 				4E891F8321606A2B00A1893A /* WriteWordViewController.swift in Sources */,
@@ -1242,7 +1245,8 @@
 				4E8E9CF1214F58BA0004F39B /* SegmentViewItem.swift in Sources */,
 				4E9C5B9F2150A4950079F985 /* MyRecitedViewModel.swift in Sources */,
 				4E891F8C2160AF1400A1893A /* SimpleTextCollectionViewCell.swift in Sources */,
-				4E64265C2148EB3B00D2B3FF /* HomeViewMode.swift in Sources */,
+				4E64265C2148EB3B00D2B3FF /* AppRefreshManager.swift in Sources */,
+				4E1EB60F21757F5B0070E064 /* UserReciteRecord.swift in Sources */,
 				4E5ED40F214361F500AC709F /* WordViewController.swift in Sources */,
 				4EF2F06220710C1500B7F447 /* Content.swift in Sources */,
 				4EF2F06520710C7A00B7F447 /* Entity.swift in Sources */,

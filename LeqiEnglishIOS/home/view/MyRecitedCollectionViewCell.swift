@@ -18,6 +18,7 @@ protocol MyRecitedCollectionViewCellDelegate {
 class MyRecitedCollectionViewCell: UICollectionViewCell {
     static let  MYRECITEING_COLLECTION_REUSE_IDENTIFIRE = "MYRECITEING_COLLECTION_REUSE_IDENTIFIRE"
     
+    @IBOutlet weak var myRecitNumberLabel: UILabel!
     @IBOutlet weak var add2MyReciteButton: UIButton!
     @IBOutlet weak var moreLabel: UILabel!
     @IBOutlet weak var myRecitingNumber: NSLayoutConstraint!
@@ -61,7 +62,7 @@ class MyRecitedCollectionViewCell: UICollectionViewCell {
 
 extension MyRecitedCollectionViewCell : RefreshDataCacheDelegate{
     private func regist(){
-        HomeViewMode.instance.regist(self)
+        AppRefreshManager.instance.regist(self)
        
     }
     func refresh() {
@@ -117,6 +118,7 @@ extension MyRecitedCollectionViewCell{
             (datas) in
             self.reciteContentDatas = datas
             self.collectionView.reloadData()
+            self.myRecitNumberLabel.text = "我的背诵(\(self.reciteContentDatas!.count))"
         }
         
     }

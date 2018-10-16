@@ -56,7 +56,7 @@ class WordViewController:MainViewController{
 extension WordViewController{
     private func loadUnReciteData(_ wordListViewController:WordListSimpleViewController){
     //    wordListViewController.navigationBar.isHidden = true
-        guard let user = UserDataCache.userDataCache.getFromCache() else{
+        guard let user = UserDataCache.instance.getFromCache() else{
             return
         }
         
@@ -70,7 +70,7 @@ extension WordViewController{
     
     private func loadHasReciteData(_ wordListViewController:WordListSimpleViewController){
        //  wordListViewController.navigationBar.isHidden = true
-        guard let user = UserDataCache.userDataCache.getFromCache() else{
+        guard let user = UserDataCache.instance.getFromCache() else{
             return
         }
         

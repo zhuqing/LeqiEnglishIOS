@@ -18,7 +18,7 @@ class MyReciteWords: DataCache<[Word]> {
     }
     
     override func getFromService(finished: @escaping ([Word]?) -> ()) {
-        guard  let user = UserDataCache.userDataCache.getFromCache() else{
+        guard  let user = UserDataCache.instance.getFromCache() else{
             self.LOG.error("没有找到user")
             return
         }
