@@ -9,11 +9,11 @@
 import UIKit
 
 class WordInfoViewController: UIViewController {
-
+    
     @IBOutlet weak var back: UIBarButtonItem!
     @IBOutlet weak var rootView: UIView!
     
-     var word:Word?{
+    var word:Word?{
         didSet{
             collectionView.reloadData()
         }
@@ -35,7 +35,7 @@ class WordInfoViewController: UIViewController {
         collectionView.backgroundColor = UIColor.lightGray
         
         collectionView.register(UINib(nibName: "WordInfoCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: WordInfoCollectionViewCell.WORD_INFO_CELL_INDENTIFY)
-         collectionView.register(UINib(nibName: "WordScentenseCollectionView", bundle: nil), forCellWithReuseIdentifier: WordScentenseCollectionView.WORD_SCENTENSE_COLLECTION_VIEW)
+        collectionView.register(UINib(nibName: "WordScentenseCollectionView", bundle: nil), forCellWithReuseIdentifier: WordScentenseCollectionView.WORD_SCENTENSE_COLLECTION_VIEW)
         
         
         
@@ -47,16 +47,16 @@ class WordInfoViewController: UIViewController {
         super.viewDidLoad()
         rootView.addSubview(collectionView)
         collectionView.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT)
-navigation()
+        navigation()
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     private func navigation(){
         self.back.action = #selector(WordInfoViewController.backEventHandler)
     }
@@ -64,7 +64,7 @@ navigation()
     @objc private func backEventHandler(){
         self.dismiss(animated: true, completion: nil)
     }
-
+    
 }
 
 // MARK 实现 UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
@@ -80,12 +80,12 @@ extension WordInfoViewController: UICollectionViewDataSource,UICollectionViewDel
         let means = WordUtil.getMeans(item: w)
         var height:CGFloat =   StringUtil.computerHeight(text:means, font: UIFont.systemFont(ofSize: CGFloat(17)), fixedWidth: SCREEN_WIDTH-20)
         
-       
+        
         
         switch indexPath.item {
         case 0:
-             height += 90
-             
+            height += 90
+            
             return  CGSize(width: SCREEN_WIDTH, height: height)
         case 1:
             return  CGSize(width: SCREEN_WIDTH, height: SCREEN_HEIGHT - height - 100)
@@ -101,15 +101,15 @@ extension WordInfoViewController: UICollectionViewDataSource,UICollectionViewDel
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       
+        
         return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if(indexPath.item == 0){
-         let cell =    collectionView.dequeueReusableCell(withReuseIdentifier: WordInfoCollectionViewCell.WORD_INFO_CELL_INDENTIFY, for: indexPath) as? WordInfoCollectionViewCell
+            let cell =    collectionView.dequeueReusableCell(withReuseIdentifier: WordInfoCollectionViewCell.WORD_INFO_CELL_INDENTIFY, for: indexPath) as? WordInfoCollectionViewCell
             cell?.word = self.word
-         return cell!
+            return cell!
         }
         if(indexPath.item == 1){
             let cell =    collectionView.dequeueReusableCell(withReuseIdentifier: WordScentenseCollectionView.WORD_SCENTENSE_COLLECTION_VIEW, for: indexPath) as? WordScentenseCollectionView
@@ -119,13 +119,13 @@ extension WordInfoViewController: UICollectionViewDataSource,UICollectionViewDel
         }
         let cell =    collectionView.dequeueReusableCell(withReuseIdentifier: WordInfoCollectionViewCell.WORD_INFO_CELL_INDENTIFY, for: indexPath) as? WordInfoCollectionViewCell
         return cell!
-   
+        
     }
 }
 
 extension WordInfoViewController : WordScentenseCollectionViewDelegate{
     func toContentInfo(_ content: Content) {
-       let viewController = ContentInfoViewController()
+        let viewController = ContentInfoViewController()
         self.present(viewController, animated: true){
             viewController.content = content
         }

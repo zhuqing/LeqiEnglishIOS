@@ -47,25 +47,66 @@ class DataCache<T> :RefreshDataCacheDelegate{
     
     //是否刷新数据
     func isRefresh() -> Bool {
-        return false
+        guard let updateTimeType = self.getUpdateTimeType() else{
+            return true
+        }
+        
+        guard let datas =  SQLiteManager.instance.readData(type: updateTimeType)  else{
+            self.insertUpdateTime(updateTimeType)
+            return true
+        }
+        
+        let update = self.getUpdateTime(updateTimeType)
+        self.insertUpdateTime(updateTimeType)
+        if(update == 0){
+            return true
+        }
+        
+        return self.compareCouldRefresh(oldTime: update, newTime: NSDate.getTime())
+        
+        
+    }
+    
+    func getUpdateTimeType()->String?{
+        return nil
+    }
+    //比较两个日期，默认一天更新一次
+    func compareCouldRefresh(oldTime:Int64 , newTime:Int64) -> Bool{
+        let updateDay = oldTime/(24*60*60*1000)
+        let currentDay = newTime/(24*60*60*1000)
+        
+        return updateDay < currentDay
     }
     
     func getId() -> String {
         return ""
     }
     
-    //插入数据更新的时间
-    func insertUpdateTime(_ type:String){
-        SQLiteManager.instance.delete(type: type)
-        SQLiteManager.instance.insertData(id: type, json: "\(NSDate.getTime())", type: type)
-    }
     
     func claerData(){
         
     }
     
+    //获取当前登录的用户的ID
+    func getCurrentUserId() ->String{
+        guard let user = UserDataCache.instance.getFromCache() else{
+            return ""
+            
+        }
+        
+        return user.id ?? ""
+        
+    }
+    
+    //插入数据更新的时间
+    private func insertUpdateTime(_ type:String){
+        SQLiteManager.instance.delete(type: type)
+        SQLiteManager.instance.insertData(id: type, json: "\(NSDate.getTime())", type: type)
+    }
+  
+    
     //获取数据更新的时间
-    func getUpdateTime(_ type:String)->Int64{
+    private func getUpdateTime(_ type:String)->Int64{
         guard let datas = SQLiteManager.instance.readData(type: type) else {
             return 0
         }

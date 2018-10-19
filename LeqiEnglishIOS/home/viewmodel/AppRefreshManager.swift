@@ -9,7 +9,8 @@
 import Foundation
 
 class AppRefreshManager{
-    var refreshList = [RefreshDataCacheDelegate]()
+    private var refreshList = [RefreshDataCacheDelegate]()
+    private var refreshDic = [String:RefreshDataCacheDelegate]()
     
     static let instance = AppRefreshManager()
     
@@ -17,23 +18,17 @@ class AppRefreshManager{
         
     }
     
-    func regist(_ refreshDataCache:RefreshDataCacheDelegate){
-        refreshList.append(refreshDataCache)
+    func regist(id:String , _ refreshDataCache:RefreshDataCacheDelegate){
+       refreshDic[id] = refreshDataCache
     }
     
-    func remove(_ refreshDataCache:RefreshDataCacheDelegate){
-       guard let index =  refreshList.index(where: {
-            (re) in
-            return re.getId() == refreshDataCache.getId()
-       }) else {
-        return
-        }
-        refreshList.remove(at: index)
+    func remove(id:String){
+      refreshDic[id] = nil
     }
     
     func refresh(){
-        for refresh in refreshList {
-            refresh.refresh()
+        for (_,ref) in refreshDic {
+            ref.refresh()
         }
     }
 }

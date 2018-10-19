@@ -30,7 +30,7 @@ class CatalogDataCache: DataCache<[Catalog]> {
         return catalogs
     }
     
-    override func getFromService(finished: @escaping ([Catalog]?) -> ()) {CATALOG_TYPE
+    override func getFromService(finished: @escaping ([Catalog]?) -> ()) {
         Service.get(path: "english/catalog?type=\(CATALOG_TYPE)"){
             (results) in
             guard let datas = Service.getDatas(data: results) else {
@@ -54,7 +54,7 @@ class CatalogDataCache: DataCache<[Catalog]> {
         SQLiteManager.instance.delete(type: CatalogDataCache.TYPE)
        
         for d in data! {
-            let josn =
+           
             SQLiteManager.instance.insertData(id: d.id ?? "", json: d.toJSONString(), type: CatalogDataCache.TYPE)
         }
         

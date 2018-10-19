@@ -20,7 +20,15 @@ class UserDataCache: DataCache<User> {
     
     private override init() {
         super.init()
-        AppRefreshManager.instance.regist(self)
+        
+    }
+    
+    func getUserId()->String{
+        guard let user = self.getFromCache() else{
+            return ""
+        }
+        
+        return user.id ?? ""
     }
     
     override func getFromCache() -> User? {

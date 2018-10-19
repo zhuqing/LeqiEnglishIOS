@@ -42,9 +42,9 @@ struct SQLiteManager {
         do {
             
             db = try Connection(sqlFilePath)
-            if(FileManager.default.fileExists(atPath: sqlFilePath)){
-                return
-            }
+            
+            
+           
             
             try db.run(cacheTable.create { t in
                 t.column(ID, primaryKey: true)
@@ -144,6 +144,8 @@ struct SQLiteManager {
             try db.execute("delete from CACHE_TABLE where TYPE = '\(type)' AND  PARENT_ID = '\(parentId)'")
         }catch{
             print(error)
+            
+             print("deleteTypeAndParent")
         }
     }
     

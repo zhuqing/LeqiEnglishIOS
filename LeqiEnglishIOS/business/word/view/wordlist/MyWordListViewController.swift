@@ -1,16 +1,21 @@
 //
-//  WordViewController.swift
+//  MyWordListViewController.swift
 //  LeqiEnglishIOS
 //
-//  Created by zhuleqi on 2018/9/8.
+//  Created by zhuleqi on 2018/10/17.
 //  Copyright © 2018年 zhuleqi. All rights reserved.
 //
+
+
+
 
 import Foundation
 import UIKit
 
 
-class WordViewController:UIViewController{
+class MyWordListViewController:UIViewController{
+    
+    @IBOutlet weak var back: UIBarButtonItem!
     @IBOutlet weak var rootView: UIView!
     private lazy var pageTitleView:PageTitleView = { [weak self] in
         let titleFrame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: TITLE_VIEW_HEIGHT)
@@ -42,9 +47,9 @@ class WordViewController:UIViewController{
         let pageContentView = PageContentView(frame: frame, childVCs: childVCS, parentVC: self)
         
         pageContentView.delegate = self
-  
+        
         return pageContentView
-    }()
+        }()
     
     
     override func viewDidLoad() {
@@ -53,9 +58,9 @@ class WordViewController:UIViewController{
     }
 }
 
-extension WordViewController{
+extension MyWordListViewController{
     private func loadUnReciteData(_ wordListViewController:WordListSimpleViewController){
-    //    wordListViewController.navigationBar.isHidden = true
+        //    wordListViewController.navigationBar.isHidden = true
         guard let user = UserDataCache.instance.getFromCache() else{
             return
         }
@@ -69,7 +74,7 @@ extension WordViewController{
     }
     
     private func loadHasReciteData(_ wordListViewController:WordListSimpleViewController){
-       //  wordListViewController.navigationBar.isHidden = true
+        //  wordListViewController.navigationBar.isHidden = true
         guard let user = UserDataCache.instance.getFromCache() else{
             return
         }
@@ -81,32 +86,38 @@ extension WordViewController{
             wordListViewController.wordList = words
         })
     }
+    
 }
 
 //MARK 界面和数据
-extension WordViewController{
+extension MyWordListViewController{
     private func setupUI(){
-      
-      // automaticallyAdjustsScrollViewInsets = false
-
+        
+        // automaticallyAdjustsScrollViewInsets = false
+        
         rootView.addSubview(pageTitleView)
-      
+        
         rootView.addSubview(pageContentView)
+        navigation()
     }
     
-    private func loadData(){
-        
+    private func navigation(){
+        self.back.action = #selector(MyWordListViewController.backEventHandler)
+    }
+    
+    @objc private func backEventHandler(){
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
-extension WordViewController :PageTitleViewDelegate {
+extension MyWordListViewController :PageTitleViewDelegate {
     func pageTitleView(pageTitleView: PageTitleView, selectIndex index: Int) {
         pageContentView.setPageIndex(index: index)
     }
 }
 
 //MARK: 实现PageContentViewDelegate
-extension WordViewController:PageContentViewDelegate{
+extension MyWordListViewController:PageContentViewDelegate{
     func pageContentView(pageContentView: PageContentView, progress: CGFloat, sourceIdex: Int, targetIndex: Int) {
         pageTitleView.moveScrollLine(progress: progress, sourceIndex: sourceIdex, targetIndex: targetIndex)
     }

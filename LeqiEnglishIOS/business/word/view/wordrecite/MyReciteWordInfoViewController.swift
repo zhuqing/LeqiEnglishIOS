@@ -103,7 +103,7 @@ extension MyReciteWordInfoViewController{
     }
 }
 
-extension MyReciteWordInfoViewController : RefreshDelegate{
+extension MyReciteWordInfoViewController :RefreshDataCacheDelegate{
     func refresh() {
         loadData()
     }

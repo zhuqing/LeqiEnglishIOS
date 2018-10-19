@@ -25,7 +25,7 @@
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zsk-dA-axk">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                     <items>
-                        <navigationItem title="Title" id="Yol-mq-MEu">
+                        <navigationItem id="Yol-mq-MEu">
                             <barButtonItem key="leftBarButtonItem" title="Item" image="pre_pressed" id="S1W-Rd-WcK"/>
                         </navigationItem>
                     </items>

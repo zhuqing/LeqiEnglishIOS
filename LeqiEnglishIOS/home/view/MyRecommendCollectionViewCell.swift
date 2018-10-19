@@ -51,7 +51,7 @@ class MyRecommendCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         setupUI()
-        AppRefreshManager.instance.regist(self)
+        AppRefreshManager.instance.regist(id: "MyRecommendCollectionViewCell", self)
     }
 }
 
@@ -129,10 +129,9 @@ extension MyRecommendCollectionViewCell:UICollectionViewDataSource,UICollectionV
 
 extension MyRecommendCollectionViewCell : RefreshDataCacheDelegate{
     func refresh() {
+        
        loadData()
     }
     
-    func getId() -> String {
-       return "MyRecommendCollectionViewCell"
-    }
+  
 }

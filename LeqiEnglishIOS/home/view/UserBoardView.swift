@@ -39,7 +39,7 @@ extension UserBoardView{
         initListener()
         loadData()
         loadUserImage()
-        AppRefreshManager.instance.regist(self)
+        AppRefreshManager.instance.regist(id: "UserBoardView", self)
     }
     
     private func loadData(){
@@ -85,9 +85,7 @@ extension UserBoardView{
 }
 
 extension UserBoardView:RefreshDataCacheDelegate{
-    func getId() -> String {
-       return "UserBoardView"
-    }
+  
     
     func refresh() {
        UserReciteRecordDataCache.instance.claerData()

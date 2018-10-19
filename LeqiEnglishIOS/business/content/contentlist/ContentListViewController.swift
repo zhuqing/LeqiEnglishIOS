@@ -8,8 +8,9 @@
 
 import UIKit
 protocol ContentListViewControllerDelegate {
-    func addMoreDatas(finished:(_ contents:[Content])->Void)
+    func addMoreDatas(contentListViewController:ContentListViewController,finished:(_ contents:[Content])->Void)
   
+    func selected(contentListViewController:ContentListViewController,_ content:Content)
 }
 class ContentListViewController: UIViewController {
 
@@ -50,9 +51,8 @@ class ContentListViewController: UIViewController {
         collectionView.register(UINib(nibName: "ContentItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: ContentItemCollectionViewCell.CONTENT_ITEM_CELL)
         
         
-        footer.setRefreshingTarget(self, refreshingAction: #selector(ContentListViewController.addMoreDatas))
-        collectionView.mj_footer = footer
-        
+       
+        addFooter(collectionView)
         return collectionView
     }()
     
@@ -74,18 +74,25 @@ extension ContentListViewController{
         
     }
     
-    private func addFooter(){
-        LOG.info("delegate")
-        
+    private func addFooter(_ collectionView:UICollectionView){
+        footer.setRefreshingTarget(self, refreshingAction: #selector(ContentListViewController.addMoreDatas))
+        footer.setTitle("", for: .idle)
+        footer.setTitle("", for: .pulling)
+        footer.setTitle("没有更多的数据了", for: .noMoreData)
+        footer.setTitle("数据加载中", for: .refreshing)
+        footer.setTitle("释放加载更多", for: .willRefresh)
+        collectionView.mj_footer = footer
     }
     
     @objc private func addMoreDatas(){
         guard let delegate = self.delegate else{
+             footer.setTitle("没有更多的数据了", for: .noMoreData)
+            
              collectionView.mj_footer.endRefreshing()
             return
         }
         
-        delegate.addMoreDatas(){
+        delegate.addMoreDatas(contentListViewController: self){
             (contents) in
             self.datas?.append(contentsOf: contents)
             collectionView.mj_footer.endRefreshing()
@@ -106,6 +113,10 @@ extension ContentListViewController{
     }
     
     func didSelected(content: Content) {
+        if let d = self.delegate {
+            d.selected(contentListViewController:self,content)
+            return
+        }
         let vc = ContentInfoViewController()
         ContentInfoViewController.isMyRecite = false
         self.present(vc, animated: true, completion: {
@@ -125,6 +136,7 @@ extension ContentListViewController : UICollectionViewDataSource,UICollectionVie
         
         let content = self.datas![indexPath.item]
         didSelected(content: content)
+        
     }
     
     

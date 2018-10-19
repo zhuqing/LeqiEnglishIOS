@@ -9,10 +9,14 @@
 import UIKit
 
 class UISegmentPlayViewController: UIViewController {
-    static let  LOG = LOGGER("UISegmentPlayViewController")
+    let  LOG = LOGGER("UISegmentPlayViewController")
     @IBOutlet weak var startRecite: UIButton!
     @IBOutlet weak var collectionRootView: UIView!
     @IBOutlet weak var back: UIBarButtonItem!
+    
+    var content:Content?
+    
+    var segment:Segment?
     
     private lazy var playBar:PlaySegmentBar? = {
      
@@ -63,8 +67,14 @@ class UISegmentPlayViewController: UIViewController {
     func setSegment(item:Segment,mp3Path:String){
         playBar?.mp3Path = mp3Path
         
-        UISegmentPlayViewController.LOG.error(item.content!)
+        self.segment = item
+        let start = NSDate.getTime()
+        LOG.info("\(start)")
+
         segmentPlayItems = SegmentPlayItem.toItems(str: item.content!)!
+        
+         LOG.info("\(NSDate.getTime()-start)")
+        
         collectionView.reloadData()
         insertUserAndWord(item)
     }
@@ -78,6 +88,7 @@ class UISegmentPlayViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+ 
 
 }
 
@@ -108,8 +119,26 @@ extension UISegmentPlayViewController{
                 return
             }
             Service.put(path: "userReciteRecord/updateReciteMinutes?id=\(userRecord.id ?? "")&minutes=\( Int(vc.during) )"){(_) in}
+           
+            if let content = self.content {
+            
+                 let userSegmentDataCache =  UserSegmentDataCache(contentId: content.id ?? "")
+                
+                    let userAndSegment = UserAndSegment()
+                userAndSegment.contentId = content.id
+                userAndSegment.segmentId = self.segment?.id
+                userAndSegment.userId = userSegmentDataCache.getCurrentUserId()
+                
+                userSegmentDataCache.commit(userAndSegment)
+            }
+            
+          
         }
     }
+    
+   
+    
+  
     
 }
 
@@ -157,7 +186,7 @@ extension UISegmentPlayViewController : UICollectionViewDataSource,UICollectionV
         }
         let cell:PlaySementItemCollectionViewCell = collectionView.cellForItem(at: indexPath) as! PlaySementItemCollectionViewCell
         
-       UISegmentPlayViewController.LOG.info("selected\(indexPath.item)")
+     
     
       self.selectIndex = indexPath.item
        collectionView.reloadItems(at: [indexPath])

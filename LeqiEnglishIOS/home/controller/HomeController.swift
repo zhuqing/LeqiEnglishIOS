@@ -73,6 +73,11 @@ class HomeViewController: UIViewController {
 extension HomeViewController{
     
     // @objc private func
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        AppRefreshManager.instance.refresh()
+    }
     
     private func initHeader(_ collectionView:UICollectionView){
         header.setRefreshingTarget(self, refreshingAction: #selector(HomeViewController.refresh))

@@ -11,6 +11,4 @@ import Foundation
 protocol RefreshDataCacheDelegate {
     //刷新数据
     func refresh()
-    
-    func getId() ->String
 }

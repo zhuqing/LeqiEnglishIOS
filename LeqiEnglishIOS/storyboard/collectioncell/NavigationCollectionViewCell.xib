@@ -23,8 +23,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="427" height="84"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KhW-Gt-A5P">
-                                <rect key="frame" x="10" y="31.5" width="359" height="21"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
+                                <rect key="frame" x="10" y="33.5" width="359" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -32,6 +32,8 @@
                                 <rect key="frame" x="377" y="22" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Ry4-D4-L3w"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="35" id="VIF-nG-wfy"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="YFB-rJ-oWh"/>
                                     <constraint firstAttribute="width" constant="40" id="lCj-YN-IrA"/>
                                 </constraints>
                             </imageView>

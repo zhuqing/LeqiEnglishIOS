@@ -20,7 +20,7 @@ class UserReciteRecordDataCache: DataCache<UserReciteRecord> {
     
     private override init(){
         super.init()
-        AppRefreshManager.instance.regist(self)
+       
     }
     
     override func getFromCache() -> UserReciteRecord? {
@@ -38,24 +38,18 @@ class UserReciteRecordDataCache: DataCache<UserReciteRecord> {
         return UserReciteRecord(data: String.toDictionary(datas[0])!)
     }
     
-    override func isRefresh() -> Bool {
-        guard let datas =  SQLiteManager.instance.readData(type: UserReciteRecordDataCache.UPDATE_TYPE)  else{
-            super.insertUpdateTime(UserReciteRecordDataCache.UPDATE_TYPE)
-            return true
-        }
-        
-        let update = self.getUpdateTime(UserReciteRecordDataCache.UPDATE_TYPE)
-        super.insertUpdateTime(UserReciteRecordDataCache.UPDATE_TYPE)
-        if(update == 0){
-            return true
-        }
-        let updateDay = update/(24*60*60*1000)
-        let currentDay = NSDate.getTime()/(24*60*60*1000)
-        
-        LOG.info("update:\(update)\tupdateDay:\(updateDay)\tcurrentDay:\(currentDay)")
+    //不在同一天就可以刷新
+    override func compareCouldRefresh(oldTime: Int64, newTime: Int64) -> Bool {
+        let updateDay = oldTime/(24*60*60*1000)
+        let currentDay = newTime/(24*60*60*1000)
         
         return updateDay < currentDay
     }
+    
+    override func getUpdateTimeType() -> String? {
+        return UserReciteRecordDataCache.UPDATE_TYPE
+    }
+   
     
     override func getFromService(finished: @escaping (UserReciteRecord?) -> ()) {
         guard let user = UserDataCache.instance.getFromCache() else{

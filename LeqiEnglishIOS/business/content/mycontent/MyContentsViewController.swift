@@ -32,11 +32,12 @@ class MyContentsViewController: UIViewController {
         
         let unrecite = ContentListViewController()
         self?.loadUnRecitedData(unrecite)
-        
+        unrecite.delegate = self
         childVCS.append(unrecite)
         
         
         let hasRecite = ContentListViewController()
+        hasRecite.delegate = self
         self?.loadHasRecitedData(hasRecite)
         childVCS.append(hasRecite)
         
@@ -71,6 +72,20 @@ class MyContentsViewController: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
+    
+}
+
+extension MyContentsViewController:ContentListViewControllerDelegate{
+    func selected(contentListViewController:ContentListViewController,_ content: Content) {
+        let vc = ContentInfoViewController()
+        self.present(vc, animated: true, completion: {
+            vc.content = content
+        })
+    }
+    
+    func addMoreDatas(contentListViewController:ContentListViewController,finished:(_ contents:[Content])->Void){
+        
+    }
     
 }
 

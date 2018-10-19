@@ -14,7 +14,7 @@ class ReciteWordConfigViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var okButton: UIButton!
     
-    var refreshDelegate:RefreshDelegate?
+    var refreshDelegate:RefreshDataCacheDelegate?
     
     var rectieWordConfig:ReciteWordConfig?{
         didSet{

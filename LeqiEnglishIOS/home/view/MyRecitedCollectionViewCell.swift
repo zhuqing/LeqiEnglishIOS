@@ -62,16 +62,16 @@ class MyRecitedCollectionViewCell: UICollectionViewCell {
 
 extension MyRecitedCollectionViewCell : RefreshDataCacheDelegate{
     private func regist(){
-        AppRefreshManager.instance.regist(self)
+        AppRefreshManager.instance.regist(id: "MyRecitedCollectionViewCell", self)
        
     }
+    
     func refresh() {
+        MyRecitingContentDataCache.instance.claerData()
         loadData()
     }
     
-    func getId() -> String {
-        return "MyRecommendCollectionViewCell"
-    }
+    
   
 }
 
@@ -113,8 +113,7 @@ extension MyRecitedCollectionViewCell{
 
 extension MyRecitedCollectionViewCell{
     private func loadData(){
-       let  recitedData = MyRecitedViewModel()
-        recitedData.getFromService(){
+      MyRecitingContentDataCache.instance.load(){
             (datas) in
             self.reciteContentDatas = datas
             self.collectionView.reloadData()

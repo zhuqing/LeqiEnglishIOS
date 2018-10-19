@@ -137,6 +137,9 @@ extension ContentSearchViewController{
     }
 }
 
+
+
+//MARK:UISearchBarDelegate
 extension ContentSearchViewController:UISearchBarDelegate{
    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -147,8 +150,16 @@ extension ContentSearchViewController:UISearchBarDelegate{
 
 //MARK:ContentListViewDelegate
 extension ContentSearchViewController: ContentListViewControllerDelegate{
-    func addMoreDatas(finished: ([Content]) -> Void) {
+    func addMoreDatas(contentListViewController:ContentListViewController,finished: ([Content]) -> Void) {
         finished([Content]())
+    }
+    
+    func selected(contentListViewController:ContentListViewController,_ content: Content) {
+        let vc = ContentInfoViewController()
+        ContentInfoViewController.isMyRecite = false
+        self.present(vc, animated: true, completion: {
+            vc.content = content
+        })
     }
 }
 

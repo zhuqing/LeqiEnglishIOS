@@ -73,6 +73,11 @@ class ContentInfoViewController: UIViewController {
     
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.refresh()
+    }
 }
 
 extension ContentInfoViewController{
@@ -84,7 +89,7 @@ extension ContentInfoViewController{
         collectionView.frame = CGRect(x: 10, y: 0, width: SCREEN_WIDTH-20, height: collectionRootView.frame.height)
         addListener()
         resetUI()
-        navigation()
+       
     }
     
     private func navigation(){
@@ -92,19 +97,12 @@ extension ContentInfoViewController{
     }
     
     @objc private func backEventHandler(){
-        
-        var rootVC = self.presentingViewController
-        while let parent = rootVC?.presentingViewController {
-            rootVC = parent
-        }
-        //释放所有下级视图
-        rootVC?.dismiss(animated: true, completion: nil)
-        
-        
+        self.dismiss(animated: true, completion: nil)
     }
-    
+    //按钮时间监听
     private func addListener(){
         self.add2MyReciteButton.addTarget(self, action: #selector(ContentInfoViewController.btnClickEventHandler), for: UIControlEvents.touchDown)
+         navigation()
     }
     //重新设置UI
     private func resetUI(){
@@ -141,13 +139,22 @@ extension ContentInfoViewController{
         Service.post(path: "userAndContent/create",params: ["userId":userId,"contentId":contentId,"finishedPercent":"0"]){
             (result) in
             self.LOG.info(result.description)
+            self.hasAdd2Recited()
+            
         }
     }
     
     private func loadFile(_ content:Content){
         Service.download(filePath: content.audioPath!){(path) in
-        self.LOG.info(path)
+      ///  self.LOG.info(path)
         }
+    }
+    
+    //已经添加到了我的背诵
+    func hasAdd2Recited(){
+        self.add2MyReciteButton.setTitle("已经添加到了我的背诵", for: .normal)
+        self.add2MyReciteButton.backgroundColor = UIColor.red
+       // self.add2MyReciteButton.isHidden = true
     }
     
     
@@ -158,6 +165,20 @@ extension ContentInfoViewController{
         loadFile(content)
     }
     
+   
+    
+    private func createContentWords()->Segment{
+        let segment = Segment()
+        segment.title = "单词列表"
+        segment.id = ""
+        
+        return segment
+    }
+}
+
+
+extension ContentInfoViewController{
+    //加载数据
     private func loadData(){
         let segmentDatas = ContentInfoViewModel(content: self.content)
         segmentDatas.load(){
@@ -170,16 +191,21 @@ extension ContentInfoViewController{
             }
             
             self.collectionView.reloadData()
-            
+            self.loadHasRecitedSegmentData(self.content!)
         }
     }
     
-    private func createContentWords()->Segment{
-        let segment = Segment()
-        segment.title = "单词列表"
-        segment.id = ""
-        
-        return segment
+    //加载已经背诵的段的数据
+    private func loadHasRecitedSegmentData(_ content:Content){
+      LOG.info("loadHasRecitedSegmentData")
+        UserSegmentDataCache(contentId: content.id ?? "").load(finished: {
+            (userAndSegments) in
+            guard let us = userAndSegments else{
+                 self.finishedLabel.text = "已完成0/\( self.segments.count - 1)"
+                return
+            }
+            self.finishedLabel.text = "已完成\(us.count)/\( self.segments.count - 1)"
+        })
     }
 }
 
@@ -199,6 +225,7 @@ extension ContentInfoViewController : UICollectionViewDataSource,UICollectionVie
             let uiView = UISegmentPlayViewController()
             self.present(uiView, animated: true){
                 uiView.setSegment(item: segment,mp3Path: (self.content?.audioPath)!)
+                uiView.content = self.content
             }
         }
        
@@ -215,6 +242,12 @@ extension ContentInfoViewController : UICollectionViewDataSource,UICollectionVie
         //   cell.backgroundColor = UIColor.blue
         cell.segment = segments[indexPath.item]
         return cell
+    }
+}
+
+extension ContentInfoViewController : RefreshDataCacheDelegate{
+    func refresh() {
+       self.loadData()
     }
 }
 

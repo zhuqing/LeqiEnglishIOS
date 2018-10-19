@@ -43,10 +43,21 @@ class FeedbackViewController: UIViewController {
 
 extension FeedbackViewController{
     
+    private func navigation(){
+        self.back.action = #selector(FeedbackViewController.backEventHandler)
+    }
+    
+    @objc private func backEventHandler(){
+        self.dismiss(animated: true, completion: nil)
+    }
+
+    
     private func initListener(){
         self.commitButton.addTarget(self, action: #selector(FeedbackViewController.commit), for: .touchDown)
         
         self.closeButton.addTarget(self, action: #selector(FeedbackViewController.close), for: .touchDown)
+        
+        navigation()
     }
     
     @objc private func commit(){
