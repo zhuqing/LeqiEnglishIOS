@@ -158,12 +158,13 @@ extension UISegmentPlayViewController : UICollectionViewDataSource,UICollectionV
     
       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let item = segmentPlayItems[indexPath.row]
+       // var height = 0
         guard let engStr = item.englishSenc else{
             return CGSize(width: SCREEN_WIDTH, height: 60)
         }
         
         
-        var height = StringUtil.computerHeight(text: engStr, font: UIFont.systemFont(ofSize: 18), fixedWidth: SCREEN_WIDTH-20)+20
+        var height = StringUtil.computerHeight(text: engStr, font: UIFont.systemFont(ofSize: 16), fixedWidth: SCREEN_WIDTH-20)+50
         
        
         if let chstr = item.chineseSenc {

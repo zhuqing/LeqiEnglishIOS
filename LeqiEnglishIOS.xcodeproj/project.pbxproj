@@ -129,6 +129,8 @@
 		4EEDD11221749DA200AFF170 /* MyContentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EEDD11021749DA200AFF170 /* MyContentsViewController.xib */; };
 		4EEDD1152174A2B000AFF170 /* ContentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEDD1132174A2B000AFF170 /* ContentListViewController.swift */; };
 		4EEDD1162174A2B000AFF170 /* ContentListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EEDD1142174A2B000AFF170 /* ContentListViewController.xib */; };
+		4EF12113218AA1FF007BFDD8 /* ActionSheetDialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF12111218AA1FF007BFDD8 /* ActionSheetDialogViewController.swift */; };
+		4EF12114218AA1FF007BFDD8 /* ActionSheetDialogViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EF12112218AA1FF007BFDD8 /* ActionSheetDialogViewController.xib */; };
 		4EF2EFD7206909D900B7F447 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2EFD6206909D900B7F447 /* AppDelegate.swift */; };
 		4EF2EFD9206909D900B7F447 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2EFD8206909D900B7F447 /* ViewController.swift */; };
 		4EF2EFDC206909D900B7F447 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EF2EFDA206909D900B7F447 /* Main.storyboard */; };
@@ -276,6 +278,8 @@
 		4EEDD11021749DA200AFF170 /* MyContentsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyContentsViewController.xib; sourceTree = "<group>"; };
 		4EEDD1132174A2B000AFF170 /* ContentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListViewController.swift; sourceTree = "<group>"; };
 		4EEDD1142174A2B000AFF170 /* ContentListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentListViewController.xib; sourceTree = "<group>"; };
+		4EF12111218AA1FF007BFDD8 /* ActionSheetDialogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetDialogViewController.swift; sourceTree = "<group>"; };
+		4EF12112218AA1FF007BFDD8 /* ActionSheetDialogViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActionSheetDialogViewController.xib; sourceTree = "<group>"; };
 		4EF2EFD3206909D900B7F447 /* LeqiEnglishIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeqiEnglishIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EF2EFD6206909D900B7F447 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EF2EFD8206909D900B7F447 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -819,6 +823,7 @@
 		4E9906222142648C00EE0D55 /* main */ = {
 			isa = PBXGroup;
 			children = (
+				4EF12110218AA1C7007BFDD8 /* sheetdialog */,
 				4E891F892160AEDC00A1893A /* collectioncell */,
 				4E5ED41421436F3800AC709F /* view */,
 				4EF2EFDA206909D900B7F447 /* Main.storyboard */,
@@ -879,10 +884,11 @@
 		4E9C5BA42150FC110079F985 /* business */ = {
 			isa = PBXGroup;
 			children = (
+				4E99062B2142676D00EE0D55 /* home */,
 				4E781B4D2176D95C003EFE3B /* version */,
-				4E5ED4042143617300AC709F /* word */,
 				4E5ED40D2143618B00AC709F /* personal */,
 				4E8E9CE3214E2E980004F39B /* content */,
+				4E5ED4042143617300AC709F /* word */,
 			);
 			path = business;
 			sourceTree = "<group>";
@@ -1025,6 +1031,15 @@
 			path = mycontent;
 			sourceTree = "<group>";
 		};
+		4EF12110218AA1C7007BFDD8 /* sheetdialog */ = {
+			isa = PBXGroup;
+			children = (
+				4EF12111218AA1FF007BFDD8 /* ActionSheetDialogViewController.swift */,
+				4EF12112218AA1FF007BFDD8 /* ActionSheetDialogViewController.xib */,
+			);
+			path = sheetdialog;
+			sourceTree = "<group>";
+		};
 		4EF2EFCA206909D800B7F447 = {
 			isa = PBXGroup;
 			children = (
@@ -1049,7 +1064,6 @@
 			children = (
 				4E5ED4172143764F00AC709F /* tools */,
 				4E9C5BA42150FC110079F985 /* business */,
-				4E99062B2142676D00EE0D55 /* home */,
 				4E9906222142648C00EE0D55 /* main */,
 				4E093536214105DF00592DE2 /* data */,
 				4EF2F06320710C6500B7F447 /* model */,
@@ -1167,6 +1181,7 @@
 				4EF2EFDE206909D900B7F447 /* Assets.xcassets in Resources */,
 				4E8E9CF6214F9E880004F39B /* playsegment.storyboard in Resources */,
 				4E8E9CF2214F58BA0004F39B /* SegmentViewItem.xib in Resources */,
+				4EF12114218AA1FF007BFDD8 /* ActionSheetDialogViewController.xib in Resources */,
 				4E781B572177193E003EFE3B /* MyWordListViewController.xib in Resources */,
 				4E5A56EC21730498004AB28C /* ContentSearchViewController.xib in Resources */,
 				4EC0C3DA215A042C004CE967 /* ReciteWordViewController.xib in Resources */,
@@ -1259,6 +1274,7 @@
 				4E5ED413214362EB00AC709F /* PersonalViewController.swift in Sources */,
 				4E9C5BB2215101640079F985 /* PlaySegmentBar.swift in Sources */,
 				4E9C5BAE2150FF3E0079F985 /* PlaySementItemCollectionViewCell.swift in Sources */,
+				4EF12113218AA1FF007BFDD8 /* ActionSheetDialogViewController.swift in Sources */,
 				4EC0C3DE215A0F35004CE967 /* MyWords.swift in Sources */,
 				4E781B532176DAA1003EFE3B /* VersionDataCache.swift in Sources */,
 				4E91DD13215C76FD001F5E22 /* MyReciteWordConfig.swift in Sources */,
