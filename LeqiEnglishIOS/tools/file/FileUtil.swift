@@ -18,4 +18,14 @@ class FileUtil{
         FileUtil.LOG.warn(documentsURL.appendingPathComponent(appFilePath).path)
         return documentsURL.appendingPathComponent(appFilePath)
     }
+    
+    //判断文件是否存在
+    class func hasFile(path:String) ->Bool{
+        let absulatePath = FileUtil.absulateFileUrl(filePath: path)
+        if(FileManager.default.fileExists(atPath: absulatePath.path)){
+            return true
+        }
+        
+        return false
+    }
 }

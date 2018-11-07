@@ -10,4 +10,7 @@
 #define CommonCrypto_Bridging_Header_h
 #import <CommonCrypto/CommonDigest.h>//md5
 #import <MJRefresh/MJRefresh.h>//md5
+
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKUI/ShareSDK+SSUI.h>
 #endif /* CommonCrypto_Bridging_Header_h */

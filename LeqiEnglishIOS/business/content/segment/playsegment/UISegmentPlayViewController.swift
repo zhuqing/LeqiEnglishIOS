@@ -33,13 +33,14 @@ class UISegmentPlayViewController: UIViewController {
     private lazy var collectionView:UICollectionView={ [weak self] in
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 10
+        layout.minimumLineSpacing = 10
         //layout.itemSize = CGSize(width: SCREEN_WIDTH, height: 200)
         layout.scrollDirection = .vertical
         
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.isPagingEnabled = true
+        collectionView.isPagingEnabled = false
         collectionView.bounces = true
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -105,6 +106,7 @@ extension UISegmentPlayViewController{
     }
     
     @objc private func backEventHandler(){
+        self.playBar?.reset()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -157,31 +159,39 @@ extension UISegmentPlayViewController{
 extension UISegmentPlayViewController : UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     
       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let item = segmentPlayItems[indexPath.row]
+        
+        let item = segmentPlayItems[indexPath.item]
        // var height = 0
         guard let engStr = item.englishSenc else{
             return CGSize(width: SCREEN_WIDTH, height: 60)
         }
         
-        
-        var height = StringUtil.computerHeight(text: engStr, font: UIFont.systemFont(ofSize: 16), fixedWidth: SCREEN_WIDTH-20)+50
+    
+        var height = StringUtil.computerHeight(text: engStr, font: UIFont.boldSystemFont(ofSize: 18), fixedWidth: SCREEN_WIDTH-10)+5
         
        
         if let chstr = item.chineseSenc {
-
-             height += StringUtil.computerHeight(text: chstr, font: UIFont.systemFont(ofSize: 13), fixedWidth: SCREEN_WIDTH-20)+20
+            let chStrHeight = StringUtil.computerHeight(text: chstr, font: UIFont.systemFont(ofSize: 13), fixedWidth: SCREEN_WIDTH-10)+10
+            
+            
+             height += chStrHeight
+        }
+       
+        if(indexPath.item == selectIndex){
+            height += PlaySegmentBar.HEIGHT+10
             
         }
         
-        if(indexPath.item == selectIndex){
-            height += PlaySegmentBar.HEIGHT
-        }
         
-        return CGSize(width: SCREEN_WIDTH, height:height)
+        return CGSize(width: SCREEN_WIDTH, height:CGFloat(Int(height+30)))
       
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if( self.selectIndex == indexPath.item){
+            return
+        }
+        
         if let lastCell = self.lastCell{
             lastCell.stop(bar: playBar!)
         }
@@ -190,7 +200,7 @@ extension UISegmentPlayViewController : UICollectionViewDataSource,UICollectionV
      
     
       self.selectIndex = indexPath.item
-       collectionView.reloadItems(at: [indexPath])
+       collectionView.reloadData()
        lastCell = cell
     }
     
@@ -202,11 +212,92 @@ extension UISegmentPlayViewController : UICollectionViewDataSource,UICollectionV
         let cell:PlaySementItemCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: PlaySementItemCollectionViewCell.PALY_SEGMENT_ITEM_CELL, for: indexPath) as! PlaySementItemCollectionViewCell
    
         cell.setItem(item: segmentPlayItems[indexPath.item])
-        
+        cell.delegate = self
+      
         if(indexPath.item == self.selectIndex){
             cell.play(bar: playBar!)
             playBar?.segmentPlayItem = segmentPlayItems[indexPath.item]
+        }else{
+             cell.removeIfHave(bar: playBar!)
         }
         return cell
     }
+}
+
+extension UISegmentPlayViewController : PlaySementItemCollectionViewCellDelegate{
+    func textViewClick(cell:PlaySementItemCollectionViewCell){
+        guard let index = collectionView.indexPath(for: cell) else{
+            return
+        }
+        
+        if( self.selectIndex == index.item){
+            return
+        }
+        
+        
+        self.selectIndex = index.item
+        self.lastCell = cell
+        self.collectionView.reloadData()
+    }
+    func showWord(word: String) {
+        if(self.playBar != nil){
+            playBar?.reset()
+        }
+        let alert = ActionSheetDialogViewController()
+        // alert.alert
+        alert.modalPresentationStyle = .overCurrentContext
+        alert.delegate = self
+        alert.data = word as NSObject
+        self.present(alert, animated: true, completion:{
+          self.loadWordInfo(word: word,alert: alert)
+        })
+    }
+    
+    func loadWordInfo(word:String,alert:ActionSheetDialogViewController){
+        let view:SimpleWordInfo? = alert.contentView?.subviews[0] as? SimpleWordInfo
+        
+        guard let swifo = view else{
+            return
+        }
+        
+        swifo.loadWord(word: word)
+       
+        
+    }
+}
+
+extension UISegmentPlayViewController :ActionSheetDialogViewControllerDelegate{
+    func getContentViewWidth(viewController: ActionSheetDialogViewController) -> CGFloat? {
+        return CGFloat(200)
+    }
+    
+    func getContentView(viewController: ActionSheetDialogViewController) -> UIView? {
+        
+        return SimpleWordInfo()
+    }
+    
+    func getOperation(viewController: ActionSheetDialogViewController) -> [String : () -> ()]? {
+        var title = [String:()->()]()
+        title["查看详情"] = {() in
+            let view:SimpleWordInfo? = viewController.contentView?.subviews[0] as? SimpleWordInfo
+            
+            guard let swifo = view else{
+                return
+            }
+            
+            let word = swifo.word
+            
+            let wordInfo = WordInfoViewController()
+            self.present(wordInfo, animated: true, completion:{
+               wordInfo.word = word
+            })
+        }
+        return title;
+    }
+    
+    func closeEventHandler(viewController: ActionSheetDialogViewController) {
+       
+    }
+    
+  
 }

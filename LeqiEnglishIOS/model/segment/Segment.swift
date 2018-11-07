@@ -19,6 +19,8 @@ class Segment : Entity{
     
     var contentId:String?
     
+    var audioPath:String?
+    
     var readNum:Int64?
     
     var indexNo:Int?
@@ -41,6 +43,8 @@ class Segment : Entity{
             self.userId = value as? String
         case "contentId":
             self.contentId = value as? String
+        case "audioPath":
+            self.audioPath = value as? String
         case "readNum":
             self.readNum = value as? Int64
         case "indexNo":
@@ -66,6 +70,9 @@ class Segment : Entity{
         }
         if  let v = self.contentId{
             dic["contentId"] = v as NSObject
+        }
+        if  let v = self.audioPath{
+            dic["audioPath"] = v as NSObject
         }
         if  let v = self.readNum{
             dic["readNum"] = v as NSObject

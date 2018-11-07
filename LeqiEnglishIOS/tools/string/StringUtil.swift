@@ -67,10 +67,12 @@ class StringUtil: NSObject {
         
         let size = CGSize(width:fixedWidth, height:CGFloat(Int64.max))
         let nsText = NSString(string: text)
-   
-  
+   let uiTextView = UITextView(frame: CGRect.zero)
+        uiTextView.text = text
+        uiTextView.font = font
+  let realSize = uiTextView.sizeThatFits(size)
         let rect = nsText.boundingRect(with: size, options:.usesLineFragmentOrigin, attributes: [   NSAttributedStringKey.font: font], context:nil)
         
-        return rect.size.height
+        return realSize.height
     }
 }

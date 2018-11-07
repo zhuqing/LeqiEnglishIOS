@@ -14,6 +14,37 @@ class Service{
     static let host = "http://192.168.43.9:8080"
     
     static let LOG = LOGGER("Service")
+    
+    class func download(filePath:String , hasLoaded: @escaping( _ percent:CGFloat)->(),finishedCallback:@escaping (_ result:String)->()){
+          let path = "file/download?path=\(filePath)"
+        //拼接路径
+        let httpPath = "\(host)/\(path)"
+        //拼接项目跟目录
+        
+        let fileURL = FileUtil.absulateFileUrl(filePath: filePath)
+        
+        //如果文件存在，就不下载文件
+//        if(FileManager.default.fileExists(atPath: fileURL.path)){
+//            LOG.info("文件已存在")
+//            finishedCallback(fileURL.path)
+//            return
+//        }
+        
+        let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+            return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+        }
+        
+        Alamofire.download(httpPath, to: destination).downloadProgress(queue: DispatchQueue.main, closure: {
+            (progress) in
+               hasLoaded(CGFloat(progress.fractionCompleted))
+        }).response { response in
+            
+            if response.error == nil, let imagePath = response.destinationURL?.path {
+                print(imagePath)
+                finishedCallback(imagePath)
+            }
+        }
+    }
    
     class func download(filePath:String,finishedCallback:@escaping (_ result:String)->()){
         //拼接路径

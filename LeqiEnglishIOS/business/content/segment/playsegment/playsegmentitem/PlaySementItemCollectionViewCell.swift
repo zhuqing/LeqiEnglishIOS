@@ -9,60 +9,125 @@
 import UIKit
 protocol PlaySementItemCollectionViewCellDelegate {
     func showWord(word:String)
+    func textViewClick(cell:PlaySementItemCollectionViewCell)
 }
 
 class PlaySementItemCollectionViewCell: UICollectionViewCell {
-    
+    let LOG = LOGGER("PlaySementItemCollectionViewCell")
     static let PALY_SEGMENT_ITEM_CELL = "PALY_SEGMENT_ITEM_CELL"
     
     var segmentPlayItem:SegmentPlayItem?
     
     var delegate:PlaySementItemCollectionViewCellDelegate?
 
-    @IBOutlet weak var chineseTextLabel: UILabel!
+    private lazy var chineseTextLabel: UILabel? = {
+        let uiLabel = UILabel(frame: CGRect.zero)
+        uiLabel.font = UIFont.systemFont(ofSize: 13)
+        uiLabel.numberOfLines = 0
+        return uiLabel
+    }()
+    
+    private lazy var blackLine:UIView? = {
+        let line = UIView(frame: CGRect.zero)
+        line.backgroundColor = UIColor.black
+        
+        return line
+    }()
   
-    @IBOutlet weak var englishTextView: UITextView!
+    private lazy  var englishTextView: UITextView? = {
+       let uiTextView = UITextView(frame: CGRect.zero)
+        uiTextView.font = UIFont.boldSystemFont(ofSize: 18)
+        uiTextView.isEditable = false
+        uiTextView.isScrollEnabled = false
+        uiTextView.autoresizingMask = .flexibleHeight
+        return uiTextView
+    }()
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.contentView.buttomBorder(width: CGFloat(2), borderColor: UIColor.black)
-        englishTextView.autoresizingMask = .flexibleHeight
+   
         addMenu()
+        addTap()
     }
     
     func setItem(item:SegmentPlayItem){
         self.segmentPlayItem = item
-        
         if let text = item.englishSenc{
-            englishTextView.text = text
-            
-           
- 
+            englishTextView?.text = text
+        }else{
+             return
         }
         
+        var y = CGFloat(5)
+        
+         let enHeight =  CGFloat(Int(StringUtil.computerHeight(text: item.englishSenc!, font: UIFont.boldSystemFont(ofSize: 18), fixedWidth: SCREEN_WIDTH-10)+5))
+        self.addSubview(self.englishTextView!)
+        
+        englishTextView?.frame = CGRect(x:  CGFloat(5), y:y, width: SCREEN_WIDTH-10, height: CGFloat(enHeight+5))
+        y += enHeight + CGFloat(5)
         if let text = item.chineseSenc{
-            chineseTextLabel.text = text
-             let enHeight =  StringUtil.computerHeight(text: item.englishSenc!, font: UIFont.systemFont(ofSize: 16), fixedWidth: SCREEN_WIDTH-20)+10
+            chineseTextLabel?.text = text
+            self.addSubview(self.chineseTextLabel!)
             
-            let height =  StringUtil.computerHeight(text: text, font: UIFont.systemFont(ofSize: 13), fixedWidth: SCREEN_WIDTH-20)+10
+            let height =  CGFloat(Int(StringUtil.computerHeight(text: text, font: UIFont.systemFont(ofSize: 13), fixedWidth: SCREEN_WIDTH-10)+5))
             
-              chineseTextLabel.frame = CGRect(x:  CGFloat(5), y:CGFloat(enHeight+10), width: englishTextView.frame.width, height: CGFloat(height))
+            chineseTextLabel?.frame = CGRect(x:  CGFloat(5), y:y, width: SCREEN_WIDTH-10, height: CGFloat(height))
+            y += height + CGFloat(5)
         }
+        
+         self.addSubview(self.blackLine!)
+        self.blackLine?.frame = CGRect(x: 0, y: self.frame.height - 1, width: SCREEN_WIDTH, height: 1)
         
     }
     
+    private func  addTap(){
+        let tap = UITapGestureRecognizer(target: self, action: #selector(PlaySementItemCollectionViewCell.tapHandler))
+    
+        self.englishTextView?.addGestureRecognizer(tap)
+    }
+    
+    @objc private func tapHandler(){
+        LOG.info("tapHandler")
+        guard let delegate = self.delegate else{
+            return
+        }
+        
+        delegate.textViewClick(cell: self)
+    }
+    
+    //进入播放状态
     func play(bar:UIView){
-        bar.frame = CGRect(x: 0, y: self.frame.height - PlaySegmentBar.HEIGHT, width: SCREEN_WIDTH, height: PlaySegmentBar.HEIGHT)
-        self.contentView.addSubview(bar)
+        bar.removeFromSuperview()
+        bar.frame = CGRect(x: 0, y: self.frame.height - PlaySegmentBar.HEIGHT - 3, width: SCREEN_WIDTH, height: 0)
+        
+        self.addSubview(bar)
+        UIView.animate(withDuration: 1) {
+             bar.frame = CGRect(x: 0, y: self.frame.height - PlaySegmentBar.HEIGHT - 3, width: SCREEN_WIDTH, height: PlaySegmentBar.HEIGHT)
+        }
+      
+        
+          self.blackLine?.frame = CGRect(x: 0, y: self.frame.height - 1, width: SCREEN_WIDTH, height: 1)
+       
+    }
+    
+    //如果有播放进度条，移除
+    func removeIfHave(bar :UIView){
+        if(self.subviews.contains(bar)){
+            bar.removeFromSuperview()
+            self.blackLine?.frame = CGRect(x: 0, y: self.frame.height - 1, width: SCREEN_WIDTH, height: 1)
+        }
     }
     
     func stop(bar:UIView){
         bar.removeFromSuperview()
-
+        self.blackLine?.frame = CGRect(x: 0, y: self.frame.height - 1, width: SCREEN_WIDTH, height: 1)
     }
     
  
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-        return true
+        if(action == #selector(PlaySementItemCollectionViewCell.showWords)){
+            return true
+        }
+        return super.canPerformAction(action, withSender: sender)
     }
     
     override func becomeFirstResponder() -> Bool {
@@ -77,9 +142,6 @@ class PlaySementItemCollectionViewCell: UICollectionViewCell {
         
         menuController.menuItems = [showWordMenu]
         
-       // self.englishTextView.ca
-       
-        
     }
     
     @objc  private func canPerform() ->Bool{
@@ -87,7 +149,11 @@ class PlaySementItemCollectionViewCell: UICollectionViewCell {
     }
     
     @objc  private func showWords(){
-        
+        guard let delegate = self.delegate else{
+            return
+        }
+      
+        delegate.showWord(word:  (self.englishTextView?.text(in: (self.englishTextView?.selectedTextRange!)!)!)!)
     }
 
 }

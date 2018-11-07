@@ -14,28 +14,51 @@ protocol  ActionSheetDialogViewControllerDelegate{
     func getContentView(viewController:ActionSheetDialogViewController)->UIView?
     
     func getOperation(viewController:ActionSheetDialogViewController)->[String:()->()]?
+    
+    func closeEventHandler(viewController:ActionSheetDialogViewController)
 }
 
 class ActionSheetDialogViewController: UIViewController {
+    
+    let LOG = LOGGER("ActionSheetDialogViewController")
 
-    @IBOutlet weak var rootView: UIView!
+    var data:NSObject?
     
-    @IBOutlet weak var operationView: UIView!
+     lazy var rootView: UIView? = {
+        let root  = UIView(frame: CGRect.zero)
+        root.backgroundColor = UIColor.white
+        return root
+    }()
     
-    @IBOutlet weak var contentView: UIView!
+      lazy var operationView: UIView? = {
+        return  UIView(frame: CGRect.zero)
+    }()
     
-    @IBOutlet weak var closeButton: UIButton!
+     lazy var contentView: UIView? = {
+         return  UIView(frame: CGRect.zero)
+    }()
+    
+    private lazy var closeButton: UIButton? = {
+        let button = UIButton(frame:CGRect.zero )
+        button.setTitle("关闭", for: .normal)
+        button.backgroundColor = UIColor.red
+        button.layer.cornerRadius = 20
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.addTarget(self, action: #selector(ActionSheetDialogViewController.closeEventHandler), for: .touchDown)
+        return button
+    }()
     
     
     var delegate:ActionSheetDialogViewControllerDelegate?
     
-   
+    private var operations:[String:()->()]?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setViewUI()
-        
+        initListener()
         // Do any additional setup after loading the view.
     }
 
@@ -58,49 +81,102 @@ class ActionSheetDialogViewController: UIViewController {
 }
 extension ActionSheetDialogViewController{
     private func setViewUI(){
-        
+      
         guard let delegate = self.delegate else{
             return
         }
-        
+       var y = CGFloat(20)
       var rootViewHeight = 90
         
       let contentHeight = delegate.getContentViewWidth(viewController: self)
         
         if contentHeight != nil{
             rootViewHeight += Int(contentHeight!)
+          
         }
-        
         
         if let operations = delegate.getOperation(viewController: self){
             rootViewHeight += operations.count*50
+           
+        }
+        self.view.addSubview(rootView!)
+        
+        self.rootView?.frame = CGRect(x: CGFloat(0), y: SCREEN_HEIGHT - CGFloat(rootViewHeight)-10, width: SCREEN_WIDTH, height: CGFloat(rootViewHeight))
+        
+     
+        
+        if let contentView = delegate.getContentView(viewController: self){
+            self.rootView?.addSubview(self.contentView!)
+            self.contentView?.frame = CGRect(x: CGFloat(0), y: y, width: SCREEN_WIDTH, height: contentHeight!)
+            self.contentView?.addSubview(contentView)
+            
+            contentView.frame =  CGRect(x: CGFloat(0), y: 0, width: SCREEN_WIDTH, height: contentHeight!)
+              y += contentHeight!
+           
+        }
+        
+        self.operations = delegate.getOperation(viewController: self)
+        
+        if let operations = self.operations {
+            self.rootView?.addSubview(self.operationView!)
+            self.operationView?.frame = CGRect(x: CGFloat(20), y: y, width: SCREEN_WIDTH - 40, height: CGFloat(operations.count*50))
+           
             setOperation(operations: operations)
         }
         
-          rootView.frame = CGRect(x: CGFloat(0), y: SCREEN_WIDTH - CGFloat(rootViewHeight), width: SCREEN_WIDTH, height: CGFloat(rootViewHeight))
-        
-        if let contentView = delegate.getContentView(viewController: self){
-            self.contentView.frame = CGRect(x: CGFloat(0), y: 10, width: self.contentView.frame.width, height: contentHeight!)
-        }
-        
+        self.rootView?.addSubview(self.closeButton!)
+        self.closeButton?.frame = CGRect(x: 20, y: (self.rootView?.frame.height)! - CGFloat(50), width: SCREEN_WIDTH - 40, height: CGFloat(40));
+      
       
     }
     
     private func setOperation(operations:[String:()->()]){
+    
+        
         var y = CGFloat(0)
-        self.operationView.frame = CGRect(x: CGFloat(0), y: operationView.frame.origin.y -  CGFloat(operations.count*50) - CGFloat(10), width: operationView.frame.width, height: CGFloat(operations.count*50))
+        
         for (title,_) in operations{
-            let button = UIButton(frame: CGRect(x: 0, y: y, width: SCREEN_WIDTH - 40, height: CGFloat(40)))
+            let button = UIButton(frame: CGRect.zero)
             
-            y += CGFloat(50)
+           
             
             button.setTitle(title, for: .normal)
             button.backgroundColor = UIColor.green
             button.layer.cornerRadius = 20
             button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
             button.setTitleColor(UIColor.white, for: .normal)
-            self.operationView.addSubview(button)
+            button.addTarget(self, action: #selector(ActionSheetDialogViewController.customeButtonEventHandler(button:)), for: .touchDown)
+            
+            self.operationView?.addSubview(button)
+            button.frame =  CGRect(x: 0, y: y, width: SCREEN_WIDTH - 40, height: CGFloat(40))
+            
+            y += CGFloat(50)
         }
+    }
+    
+    private func initListener(){
+        self.closeButton?.addTarget(self, action: #selector(ActionSheetDialogViewController.closeEventHandler), for: .touchDown)
+    }
+    
+    @objc private func customeButtonEventHandler(button:UIButton){
+        LOG.info((button.titleLabel?.text)!)
+        self.dismiss(animated: true, completion: nil)
+        guard let operation = operations![(button.titleLabel?.text)!] else{
+            return;
+        }
+       
+       operation()
+        
+    }
+    
+    @objc private func closeEventHandler(){
+        self.dismiss(animated: true, completion: nil)
+        
+        guard let delegate = self.delegate else{
+            return
+        }
+        
+        delegate.closeEventHandler(viewController: self)
     }
 }
 

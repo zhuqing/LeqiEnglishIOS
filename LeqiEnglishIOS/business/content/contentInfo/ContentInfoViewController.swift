@@ -144,12 +144,7 @@ extension ContentInfoViewController{
         }
     }
     
-    private func loadFile(_ content:Content){
-        
-        Service.download(filePath: content.audioPath!){(path) in
-      ///  self.LOG.info(path)
-        }
-    }
+  
     
     //已经添加到了我的背诵
     func hasAdd2Recited(){
@@ -163,7 +158,7 @@ extension ContentInfoViewController{
         // self.content = content
         self.titleLabel.text = content.title!
         loadData()
-        loadFile(content)
+        //loadFile(content)
     }
     
    
@@ -213,8 +208,7 @@ extension ContentInfoViewController{
 extension ContentInfoViewController : UICollectionViewDataSource,UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let segment =  segments[indexPath.item]
-        
+       
       
         if(indexPath.item == 0){
             let word = WordListViewController()
@@ -223,11 +217,9 @@ extension ContentInfoViewController : UICollectionViewDataSource,UICollectionVie
                 self.insertWordsToUser(self.content?.id ?? "")
             }
         }else{
-            let uiView = UISegmentPlayViewController()
-            self.present(uiView, animated: true){
-                uiView.setSegment(item: segment,mp3Path: (self.content?.audioPath)!)
-                uiView.content = self.content
-            }
+           let segment =  segments[indexPath.item]
+            
+           toSegment(segment: segment)
         }
        
     }
@@ -253,6 +245,45 @@ extension ContentInfoViewController : RefreshDataCacheDelegate{
 }
 
 extension ContentInfoViewController{
+    
+    private func toSegment(segment:Segment){
+        var path:String = ""
+        if(segment.audioPath != nil){
+            path = segment.audioPath!
+        }else if(content?.audioPath != nil){
+            path = (content?.audioPath!)!
+        }
+        
+        if(path.count == 0){
+            toSegmentInfo(segment: segment)
+            return
+        }
+       // if(FileUtil.hasFile(path: path)){
+          //  toSegmentInfo(segment: segment)
+       // }else{
+            toLoadView(segment: segment, path: path)
+      //  }
+      
+    }
+    
+    private func toLoadView(segment:Segment,path:String){
+        let loadView = LoadingViewController()
+        self.present(loadView, animated: true, completion: {
+            () in
+            loadView.load(path: path, callback: {() in
+                loadView.dismiss(animated: false, completion: nil)
+                self.toSegmentInfo(segment: segment)
+            })
+        })
+    }
+    
+    private func toSegmentInfo(segment:Segment){
+        let uiView = UISegmentPlayViewController()
+        self.present(uiView, animated: true){
+            uiView.setSegment(item: segment,mp3Path: (self.content?.audioPath)!)
+            uiView.content = self.content
+        }
+    }
     
     //把当前content下关联的单词，关联给用户
     private func insertWordsToUser(_ contentId:String){

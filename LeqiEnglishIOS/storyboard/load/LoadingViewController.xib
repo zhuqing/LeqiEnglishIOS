@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoadingViewController" customModule="LeqiEnglishIOS" customModuleProvider="target">
+            <connections>
+                <outlet property="downLoadPersent" destination="1x8-dm-L7c" id="gs8-Qa-Lgf"/>
+                <outlet property="progressView" destination="RdD-ZW-bRu" id="hBm-Z9-orC"/>
+                <outlet property="tipLabel" destination="tgR-IZ-zcR" id="Om4-Z8-OTn"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RdD-ZW-bRu">
+                    <rect key="frame" x="20" y="293" width="335" height="2"/>
+                </progressView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已下载0%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1x8-dm-L7c">
+                    <rect key="frame" x="157.5" y="257" width="61" height="16"/>
+                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="13"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提示：长安文本选中单词，可查看当前单词的信息" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tgR-IZ-zcR">
+                    <rect key="frame" x="40" y="325" width="295" height="33.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="RdD-ZW-bRu" secondAttribute="trailing" constant="20" id="61A-FH-5Xa"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="tgR-IZ-zcR" secondAttribute="trailing" constant="40" id="FJl-Oc-j7y"/>
+                <constraint firstItem="RdD-ZW-bRu" firstAttribute="top" secondItem="1x8-dm-L7c" secondAttribute="bottom" constant="20" id="HDV-Jp-pVP"/>
+                <constraint firstItem="RdD-ZW-bRu" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="NRP-CF-J8t"/>
+                <constraint firstItem="tgR-IZ-zcR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="WcI-cR-GZi"/>
+                <constraint firstItem="tgR-IZ-zcR" firstAttribute="top" secondItem="RdD-ZW-bRu" secondAttribute="bottom" constant="30" id="c5B-rn-2JY"/>
+                <constraint firstItem="RdD-ZW-bRu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="f8X-8o-NwK"/>
+                <constraint firstItem="RdD-ZW-bRu" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-40" id="jpn-bN-MMP"/>
+                <constraint firstItem="1x8-dm-L7c" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="p8G-3f-MfH"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+</document>

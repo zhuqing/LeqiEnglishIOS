@@ -110,7 +110,20 @@ extension LoginViewController{
     }
     
     @objc private func qqHandler(){
-        
+        ShareSDK.authorize(.subTypeQZone, settings: nil, onStateChanged: {
+            (state,user,error) in
+            switch state{
+                
+            case SSDKResponseState.success:
+                
+                print("授权成功,用户信息为\(user)\n ----- 授权凭证为\(user?.icon)")
+            case SSDKResponseState.fail:    print("授权失败,错误描述:\(error)")
+            case SSDKResponseState.cancel:  print("操作取消")
+                
+            default:
+                break
+            }
+        })
     }
     
     @objc private func weiboHandler(){
