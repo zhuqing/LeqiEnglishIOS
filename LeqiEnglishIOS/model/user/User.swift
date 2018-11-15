@@ -18,6 +18,8 @@ class User : Entity{
     
     var lastLogin:Int64?
     
+    var type:Int?
+    
     var imagePath:String?
     
     override init() {
@@ -46,6 +48,8 @@ class User : Entity{
             self.otherSysId = value as? String
         case "lastLogin":
             self.lastLogin = value as? Int64
+        case "type":
+            self.type = value as? Int
         case "imagePath":
             self.imagePath = value as? String
             
@@ -81,6 +85,9 @@ class User : Entity{
         }
         if  let v = self.lastLogin{
             dic["lastLogin"] = v as NSObject
+        }
+        if  let v = self.type{
+            dic["type"] = v as NSObject
         }
         if  let v = self.imagePath{
             dic["imagePath"] = v as NSObject

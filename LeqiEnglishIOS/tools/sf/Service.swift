@@ -87,6 +87,7 @@ class Service{
             
             guard let result = response.result.value as? [String : NSObject] else {
                 LOG.error(response.result.error.debugDescription)
+                  finishedCallback([String : NSObject]())
                 return
             }
             
@@ -107,6 +108,7 @@ class Service{
             
             guard let result = response.result.value as? [String : NSObject] else {
                 LOG.error(response.result.error.debugDescription)
+                  finishedCallback([String : NSObject]())
                 return
             }
             
@@ -129,6 +131,7 @@ class Service{
             
             guard let result = response.result.value as? [String : NSObject] else {
                 LOG.error(response.result.description)
+                 finishedCallback([String : NSObject]())
                 return
             }
             finishedCallback(result)

@@ -7,7 +7,7 @@ target 'LeqiEnglishIOS' do
 
 pod 'Alamofire'
 pod 'SQLite.swift', '~> 0.11.4'
-pod 'Kingfisher'
+#pod 'Kingfisher'
 pod 'MJRefresh'
 
 # 主模块(必须)
@@ -22,7 +22,7 @@ pod 'mob_sharesdk/ShareSDKPlatforms/SinaWeibo'
 #（微信sdk不带支付的命令）
 pod 'mob_sharesdk/ShareSDKPlatforms/WeChat'
 
-# pod 'mob_sharesdk/ShareSDKPlatforms/WeChatFull'
+#pod 'mob_sharesdk/ShareSDKPlatforms/WeChatFull'
 #（微信sdk带支付的命令，和上面不带支付的不能共存，只能选择一个）
 
 # 使用配置文件分享模块（非必需）
@@ -30,6 +30,13 @@ pod 'mob_sharesdk/ShareSDKConfigFile'
 
 # 扩展模块（在调用可以弹出我们UI分享方法的时候是必需的）
 pod 'mob_sharesdk/ShareSDKExtension'
+
+# ShareSDK目前支持一下平台移除平台SDK（不影响分享和授权等功能）
+# 使用以下平台语句替换ShareSDKPlatforms模块的语句即可
+#pod 'ShareSDK3/PlatformConnector/QQ'
+#pod 'ShareSDK3/PlatformConnector/SinaWeibo'
+#pod 'ShareSDK3/PlatformConnector/WeChat'
+#pod 'ShareSDK3/PlatformConnector/AliPaySocial'
   # Pods for LeqiEnglishIOS
 
 end

@@ -51,6 +51,15 @@ class PersonalViewController:UIViewController{
 
 extension PersonalViewController{
     
+    // @objc private func
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        addCatalogs()
+        changeUserLister()
+        loadUser()
+    }
+    
     private func changeUserLister(){
         self.chengUserButton.addTarget(self, action: #selector(PersonalViewController.changeUserHandler), for: .touchDown)
     }
@@ -63,9 +72,7 @@ extension PersonalViewController{
     private func setUI(){
         collectionRootView.addSubview(collectionView)
         collectionView.frame = CGRect(x: 0, y: 5, width: SCREEN_WIDTH-10, height: collectionRootView.frame.height)
-        addCatalogs()
-        changeUserLister()
-        loadUser()
+       
     }
     
     private func loadUser(){
@@ -99,6 +106,7 @@ extension PersonalViewController{
     }
     
     private func addCatalogs(){
+        catalogs.removeAll()
         catalogs.append(createCatalog(id:"01",title:"意见反馈"))
         
         catalogs.append(createCatalog(id:"03",title:"演讲背诵"))

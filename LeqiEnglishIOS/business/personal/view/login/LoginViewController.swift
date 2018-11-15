@@ -9,6 +9,7 @@
 import UIKit
 
 class LoginViewController: UIViewController {
+    private let LOG = LOGGER("LoginViewController")
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var userNameField: UITextField!
     
@@ -106,18 +107,29 @@ extension LoginViewController{
     }
     
     @objc private func weixinHandler(){
-        
+        // thirdPartLoginHandler(SSDKPlatformType.typeWechat,type: 2)
+        SharePlateformUtil.share()
     }
     
     @objc private func qqHandler(){
-        ShareSDK.authorize(.subTypeQZone, settings: nil, onStateChanged: {
+        thirdPartLoginHandler(SSDKPlatformType.typeQQ,type: 1)
+    }
+    
+    @objc private func weiboHandler(){
+        thirdPartLoginHandler(SSDKPlatformType.typeSinaWeibo,type: 3)
+    }
+    
+    private func thirdPartLoginHandler(_ platformType:SSDKPlatformType,type:Int){
+        ShareSDK.authorize(platformType, settings: nil, onStateChanged: {
             (state,user,error) in
             switch state{
                 
             case SSDKResponseState.success:
+                self.register(user!,type: type)
                 
-                print("授权成功,用户信息为\(user)\n ----- 授权凭证为\(user?.icon)")
-            case SSDKResponseState.fail:    print("授权失败,错误描述:\(error)")
+            case SSDKResponseState.fail:
+                 self.showAlert(message: "授权失败")
+                 self.LOG.error(error.debugDescription)
             case SSDKResponseState.cancel:  print("操作取消")
                 
             default:
@@ -125,8 +137,47 @@ extension LoginViewController{
             }
         })
     }
+    //ssUserssUser 419882849
+    private func register(_ ssUser:SSDKUser,type:Int){
+        print(ssUser.gender)
+        print(ssUser.icon)
+        print(ssUser.nickname)
+        //根据uid查询，检测是否已经注册，已注册返回
+        UserDataCache.instance.getUserByOtherSysId(ssUser.uid){
+            (user) in
+            if(user == nil){
+                self.startRegist(ssUser,type:type)
+                return;
+            }
+             self.LOG.info("已注册过")
+            UserDataCache.instance.cacheData(data: user)
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+     
+    }
     
-    @objc private func weiboHandler(){
+    private func startRegist(_ ssUser:SSDKUser,type:Int){
+        let user = User()
+        user.imagePath = ssUser.icon
+        user.name = ssUser.nickname
+        user.sex = ssUser.gender
+        user.otherSysId = ssUser.uid
+        user.type = type
+        
+        UserDataCache.instance.regist(user: user, error: {
+            (mess) in
+            self.showAlert(message: "登录失败")
+        }, finished: {
+            (user) in
+            guard let uu = user else{
+                 self.showAlert(message: "登录失败")
+                return
+            }
+            
+            self.LOG.info("注册成功")
+            self.dismiss(animated: true, completion: nil)
+        })
         
     }
 }

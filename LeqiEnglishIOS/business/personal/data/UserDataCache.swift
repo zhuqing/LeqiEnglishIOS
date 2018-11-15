@@ -91,11 +91,29 @@ class UserDataCache: DataCache<User> {
             }
             
             self.user = User(data: data)
+          
             self.cacheData(data:self.user)
+            
             guard let f = finished else{
                 return
             }
             f(self.user)
+        }
+    }
+    
+    //根据其他系统的ID获取User数据
+    func getUserByOtherSysId(_ otherSysId:String,callback:@escaping (_ user:User?)->()){
+        Service.get(path: "user/findUserByOtherSysId?otherSysId=\(otherSysId)"){
+            (results) in
+            guard let data = Service.getData(data: results) else{
+                callback(nil)
+                return
+            }
+            
+            let user = User(data: data)
+            self.user = user
+            self.cacheData(data:self.user)
+            callback(user)
         }
     }
     
@@ -145,6 +163,7 @@ class UserDataCache: DataCache<User> {
         }
         claerData()
         SQLiteManager.instance.insertData(id: user.id!, json: String.toString(user.toDictionary())!, type: UserDataCache.USER_TYPE)
+        self.user = data
     }
     
     

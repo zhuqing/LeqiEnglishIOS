@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 let CONTENT_ITEM_ORECENT_CELL = "CONTENT_ITEM_ORECENT_CELL"
 class ContentItemPrecentCollectionViewCell: UICollectionViewCell {

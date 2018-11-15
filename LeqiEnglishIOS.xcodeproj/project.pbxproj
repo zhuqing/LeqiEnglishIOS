@@ -113,6 +113,7 @@
 		4E9C5BB62151091C0079F985 /* SegmentPlayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9C5BB52151091C0079F985 /* SegmentPlayItem.swift */; };
 		4E9C5BB9215230370079F985 /* UIView_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9C5BB8215230370079F985 /* UIView_extension.swift */; };
 		4E9C5BBC215240520079F985 /* FileUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9C5BBB215240520079F985 /* FileUtil.swift */; };
+		4EA4668621953D9C003A6533 /* SharePlateformUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EA4668521953D9C003A6533 /* SharePlateformUtil.swift */; };
 		4EB231C2215F1A66004933F7 /* ReciteWordConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB231C0215F1A66004933F7 /* ReciteWordConfigViewController.swift */; };
 		4EB231C3215F1A66004933F7 /* ReciteWordConfigViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EB231C1215F1A66004933F7 /* ReciteWordConfigViewController.xib */; };
 		4EC0C3D62159CCF5004CE967 /* SingleContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC0C3D52159CCF5004CE967 /* SingleContent.swift */; };
@@ -268,6 +269,7 @@
 		4E9C5BB52151091C0079F985 /* SegmentPlayItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentPlayItem.swift; sourceTree = "<group>"; };
 		4E9C5BB8215230370079F985 /* UIView_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView_extension.swift; sourceTree = "<group>"; };
 		4E9C5BBB215240520079F985 /* FileUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUtil.swift; sourceTree = "<group>"; };
+		4EA4668521953D9C003A6533 /* SharePlateformUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePlateformUtil.swift; sourceTree = "<group>"; };
 		4EB231C0215F1A66004933F7 /* ReciteWordConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReciteWordConfigViewController.swift; sourceTree = "<group>"; };
 		4EB231C1215F1A66004933F7 /* ReciteWordConfigViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReciteWordConfigViewController.xib; sourceTree = "<group>"; };
 		4EC0C3D52159CCF5004CE967 /* SingleContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleContent.swift; sourceTree = "<group>"; };
@@ -574,6 +576,7 @@
 		4E5ED4172143764F00AC709F /* tools */ = {
 			isa = PBXGroup;
 			children = (
+				4EA4668421953D6F003A6533 /* share */,
 				4EC0C3DF215A6F62004CE967 /* dictionary */,
 				4E8320592155EE3E00CD84C0 /* word */,
 				4E45FB572154CCA400A5F03F /* string */,
@@ -960,6 +963,14 @@
 			path = file;
 			sourceTree = "<group>";
 		};
+		4EA4668421953D6F003A6533 /* share */ = {
+			isa = PBXGroup;
+			children = (
+				4EA4668521953D9C003A6533 /* SharePlateformUtil.swift */,
+			);
+			path = share;
+			sourceTree = "<group>";
+		};
 		4EB231B6215F063F004933F7 /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -1269,14 +1280,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-LeqiEnglishIOS/Pods-LeqiEnglishIOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
 			);
@@ -1367,6 +1376,7 @@
 				4EC98138217079FD001A2E9B /* WordListSimpleViewController.swift in Sources */,
 				4EEDD1152174A2B000AFF170 /* ContentListViewController.swift in Sources */,
 				4E8E9CF1214F58BA0004F39B /* SegmentViewItem.swift in Sources */,
+				4EA4668621953D9C003A6533 /* SharePlateformUtil.swift in Sources */,
 				4E9C5B9F2150A4950079F985 /* MyRecitingContentDataCache.swift in Sources */,
 				4E891F8C2160AF1400A1893A /* SimpleTextCollectionViewCell.swift in Sources */,
 				4E64265C2148EB3B00D2B3FF /* AppRefreshManager.swift in Sources */,
