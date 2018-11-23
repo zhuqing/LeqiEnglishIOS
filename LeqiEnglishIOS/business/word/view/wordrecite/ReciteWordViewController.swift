@@ -248,17 +248,10 @@ extension ReciteWordViewController{
             }
         }))
         
-        alert.addAction(UIAlertAction(title: "炫耀一下", style: .default, handler: nil))
+       // alert.addAction(UIAlertAction(title: "分享给朋友", style: .default, handler: ))
         alert.addAction(UIAlertAction(title: "关闭", style: .cancel, handler: {
-            
             (action) in
-            var rootVC = self.presentingViewController
-            while let parent = rootVC?.presentingViewController {
-                rootVC = parent
-            }
-            //释放所有下级视图
-            rootVC?.dismiss(animated: false, completion: nil)
-            
+          self.returnHome()
         }))
         
         

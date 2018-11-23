@@ -13,7 +13,8 @@ class MyRecitingContentDataCache:DataCache<[ReciteContentVO]>{
     
     static let instance = MyRecitingContentDataCache()
     static let DATA_TYPE = "MyRecitingContentDataCache"
-      static let UPDATE_TYPE = "MyRecitingContentDataCache_UPDATE_TYPE"
+    static let UPDATE_TYPE = "MyRecitingContentDataCache_UPDATE_TYPE"
+    
     private override init(){
         
     }
@@ -30,19 +31,35 @@ class MyRecitingContentDataCache:DataCache<[ReciteContentVO]>{
         return updateDay < currentDay
     }
     
+    override func getFromCache() -> [ReciteContentVO]? {
+      
+        guard let datas =  SQLiteManager.instance.readData(type: MyRecitingContentDataCache.DATA_TYPE, parentId: UserDataCache.instance.getUserId())  else{
+            return nil
+        }
+        
+      
+        if(datas.count == 0){
+            return  nil
+        }
+          var reciteContentVOs = [ReciteContentVO]()
+        for data in datas{
+            reciteContentVOs.append(ReciteContentVO(data: String.toDictionary(data)!))
+        }
+        
+        return reciteContentVOs
+        
+    }
+    
     override func cacheData(data: [ReciteContentVO]?) {
         guard let ds = data else {
             return
         }
-        
-        guard let user = UserDataCache.instance.getFromCache() else{
-            return
-        }
+      
         
         self.claerData()
         
         for d in ds{
-             SQLiteManager.instance.insertData(id: d.id ?? "", json: d.toJSONString(), parentId: user.id, type: MyRecitingContentDataCache.DATA_TYPE)
+             SQLiteManager.instance.insertData(id: d.id ?? "", json: d.toJSONString(), parentId:  UserDataCache.instance.getUserId(), type: MyRecitingContentDataCache.DATA_TYPE)
         }
         
        
@@ -51,11 +68,10 @@ class MyRecitingContentDataCache:DataCache<[ReciteContentVO]>{
     
         
     override func claerData() {
-        guard let user = UserDataCache.instance.getFromCache() else{
-            return
-        }
+        super.claerData()
+
         
-        SQLiteManager.instance.delete(type: MyRecitingContentDataCache.DATA_TYPE, parentId: user.id ?? "")
+        SQLiteManager.instance.delete(type: MyRecitingContentDataCache.DATA_TYPE, parentId: UserDataCache.instance.getUserId())
         
     }
    
@@ -73,10 +89,13 @@ class MyRecitingContentDataCache:DataCache<[ReciteContentVO]>{
         Service.get(path: "english/content/findUserReciting?userId=\(userId)"){
             (data) in
             
-            let datas = Service.getDatas(data: data)
-            
+            guard let datas = Service.getDatas(data: data) else{
+                return
+            }
+          
+           
             var contents:[ReciteContentVO]? = [ReciteContentVO]()
-            for d in datas!{
+            for d in datas{
                 contents?.append(ReciteContentVO(data:d))
             }
             

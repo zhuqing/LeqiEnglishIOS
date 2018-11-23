@@ -20,12 +20,22 @@ class SimpleWordInfo: UIView {
     
     //加载单词
     func loadWord(word:String){
+        self.loading.startAnimating()
         WordDataCache(word: word).load(finished: {
             (word) in
+            self.loading.removeFromSuperview()
+            self.addSubview(self.collectionView)
             self.LOG.info((word?.toJSONString())!)
             self.word = word
+            
         })
     }
+    
+    private lazy var loading:UIActivityIndicatorView = {
+        let loading = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        loading.activityIndicatorViewStyle = .gray
+        return loading
+    }()
     
     private lazy var collectionView:UICollectionView = {
         var layout = UICollectionViewFlowLayout()
@@ -50,7 +60,15 @@ class SimpleWordInfo: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-         self.addSubview(collectionView)
+        self.addSubview(self.loading)
+        //self.backgroundColor = UIColor.blue
+       
+    }
+
+    
+    override func draw(_ rect: CGRect) {
+       super.draw(rect)
+       self.loading.frame = rect
     }
     
     required init?(coder aDecoder: NSCoder) {

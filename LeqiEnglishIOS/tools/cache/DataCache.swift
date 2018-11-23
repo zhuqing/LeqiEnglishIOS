@@ -9,6 +9,12 @@
 import UIKit
 
 class DataCache<T> :RefreshDataCacheDelegate{
+   
+    
+    
+    private let LOG = LOGGER("DataCache")
+    
+    var cacheData:T?
     
     //从服务端获取数据
     func getFromService(finished:@escaping (_ ts:T?)->()){}
@@ -20,10 +26,61 @@ class DataCache<T> :RefreshDataCacheDelegate{
     func load(finished:@escaping (_ ts:T?)->()){
         
         //是否需要刷新，如需要直接从服务端加载并
+        if(!isRefresh()){//isRefresh = false ,不需要刷新
+            
+            if(cacheData != nil){//有已经加载的缓存数据
+                finished(cacheData!)
+                return
+            }
+            
+            //异步从缓存中加载
+            DispatchQueueUtil.run(excutor: {() in
+                self.cacheData =  self.getFromCache()
+            }, callback: {() in
+                if(self.cacheData != nil){
+                     finished(self.cacheData)
+                }else{
+                    //从服务端加载并放入缓存
+                    self.getFromService(finished: {
+                        (ts) in
+                        self.cacheData = ts
+                        self.cacheData(data: ts)
+                        finished(ts)
+                    })
+                }
+               
+            })
+            return
+           
+        }else{//isRefresh = true ,需要刷新缓存
+            self.claerData()
+        }
+        
+        //从服务端加载并放入缓存
+        getFromService(finished: {
+            (ts) in
+           
+           
+            self.cacheData(data: ts)
+            self.cacheData = ts
+            finished(ts)
+        })
+    }
+    
+    
+    //加载数据
+    func loadAndThenRefresh(finished:@escaping (_ ts:T?)->()){
+        
+        //是否需要刷新，如需要直接从服务端加载并
         if(!isRefresh()){
             if let data = getFromCache(){
                 finished(data)
                 return
+            }
+        }else{
+            //如果有缓存数据，获取缓存数据，刷新缓存数据
+            if let data = getFromCache(){
+                finished(data)
             }
         }
         //从服务端加载并放入缓存
@@ -36,36 +93,31 @@ class DataCache<T> :RefreshDataCacheDelegate{
     
     //缓存数据
     func cacheData(data:T?){}
-    
-    //刷新数据
-    func refresh(){
-        getFromService(){
-            (data) in
-            self.cacheData(data: data)
-        }
-    }
+  
     
     //是否刷新数据
     func isRefresh() -> Bool {
         guard let updateTimeType = self.getUpdateTimeType() else{
-            return true
+            return false
         }
         
-        guard let datas =  SQLiteManager.instance.readData(type: updateTimeType)  else{
+        guard SQLiteManager.instance.readData(type: updateTimeType) != nil  else{
             self.insertUpdateTime(updateTimeType)
-            return true
+            return false
         }
         
         let update = self.getUpdateTime(updateTimeType)
-        self.insertUpdateTime(updateTimeType)
+       
         if(update == 0){
             return true
         }
-        
+        self.insertUpdateTime(updateTimeType)
         return self.compareCouldRefresh(oldTime: update, newTime: NSDate.getTime())
-        
+       
         
     }
+    
+    
     
     func getUpdateTimeType()->String?{
         return nil
@@ -75,6 +127,8 @@ class DataCache<T> :RefreshDataCacheDelegate{
         let updateDay = oldTime/(24*60*60*1000)
         let currentDay = newTime/(24*60*60*1000)
         
+        LOG.info("\(updateDay),\(currentDay)")
+        
         return updateDay < currentDay
     }
     
@@ -82,9 +136,9 @@ class DataCache<T> :RefreshDataCacheDelegate{
         return ""
     }
     
-    
+    //清空缓存
     func claerData(){
-        
+        cacheData = nil
     }
     
     //获取当前登录的用户的ID
@@ -100,8 +154,12 @@ class DataCache<T> :RefreshDataCacheDelegate{
     
     //插入数据更新的时间
     private func insertUpdateTime(_ type:String){
-        SQLiteManager.instance.delete(type: type)
-        SQLiteManager.instance.insertData(id: type, json: "\(NSDate.getTime())", type: type)
+        //异步执行
+        DispatchQueueUtil.run(excutor: {() in
+            SQLiteManager.instance.delete(type: type)
+            SQLiteManager.instance.insertData(id: type, json: "\(NSDate.getTime())", type: type)
+        }, callback: nil)
+      
     }
   
     
@@ -117,6 +175,23 @@ class DataCache<T> :RefreshDataCacheDelegate{
         
         return Int64(datas[0])!
     }
+    //
+    func clearnCacheThenRefresh() {
+        self.cacheData = nil
+        self.claerData()
+        refresh()
+    }
+    
+    
+    //重新刷新缓存中的数据
+    func refresh(){
+        DispatchQueueUtil.run(excutor: {() in
+            self.getFromService(){
+                (data) in
+                self.cacheData = data
+                self.cacheData(data: data)
+            }
+        }, callback:nil)
+       
+    }
 }
-
-

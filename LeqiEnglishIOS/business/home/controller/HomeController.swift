@@ -100,14 +100,12 @@ extension HomeViewController{
         
     }
     
-    @objc private func drag(){
-        
-    }
+  
     
     @objc private func refresh(){
         
-        print("refresh")
-        AppRefreshManager.instance.refresh()
+     
+        AppRefreshManager.instance.clearCacheThenRefresh()
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2){
             // self.refresher!.endRefreshing()
             self.collectionView.mj_header.endRefreshing()

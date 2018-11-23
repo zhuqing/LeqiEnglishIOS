@@ -85,10 +85,14 @@ extension UserBoardView{
 }
 
 extension UserBoardView:RefreshDataCacheDelegate{
+    func clearnCacheThenRefresh() {
+        UserReciteRecordDataCache.instance.claerData()
+        refresh()
+    }
+    
   
     
     func refresh() {
-       UserReciteRecordDataCache.instance.claerData()
        self.loadData()
        self.loadUserImage()
     }

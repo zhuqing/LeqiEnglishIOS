@@ -9,7 +9,7 @@
 import UIKit
 
 protocol  ActionSheetDialogViewControllerDelegate{
-    func getContentViewWidth(viewController:ActionSheetDialogViewController)->CGFloat?
+    func getContentViewHeight(viewController:ActionSheetDialogViewController)->CGFloat?
     
     func getContentView(viewController:ActionSheetDialogViewController)->UIView?
     
@@ -31,11 +31,21 @@ class ActionSheetDialogViewController: UIViewController {
     }()
     
       lazy var operationView: UIView? = {
-        return  UIView(frame: CGRect.zero)
+        let root  = UIView(frame: CGRect.zero)
+          root.backgroundColor = UIColor.white
+        return root
     }()
     
      lazy var contentView: UIView? = {
-         return  UIView(frame: CGRect.zero)
+        let root  = UIView(frame: CGRect.zero)
+          root.backgroundColor = UIColor.white
+        return root
+    }()
+    
+    lazy var outsideView:UIView? = {
+        let root  = UIView(frame: CGRect.zero)
+        root.backgroundColor = UIColor.clear
+        return root
     }()
     
     private lazy var closeButton: UIButton? = {
@@ -85,10 +95,13 @@ extension ActionSheetDialogViewController{
         guard let delegate = self.delegate else{
             return
         }
+        
+        clickOutside()
+        
        var y = CGFloat(20)
       var rootViewHeight = 90
         
-      let contentHeight = delegate.getContentViewWidth(viewController: self)
+      let contentHeight = delegate.getContentViewHeight(viewController: self)
         
         if contentHeight != nil{
             rootViewHeight += Int(contentHeight!)
@@ -108,9 +121,12 @@ extension ActionSheetDialogViewController{
         if let contentView = delegate.getContentView(viewController: self){
             self.rootView?.addSubview(self.contentView!)
             self.contentView?.frame = CGRect(x: CGFloat(0), y: y, width: SCREEN_WIDTH, height: contentHeight!)
-            self.contentView?.addSubview(contentView)
             
-            contentView.frame =  CGRect(x: CGFloat(0), y: 0, width: SCREEN_WIDTH, height: contentHeight!)
+            
+            self.contentView?.addSubview(contentView)
+            self.contentView?.layer.cornerRadius = 5
+            
+            contentView.frame =  CGRect(x: CGFloat(10), y: 10, width: SCREEN_WIDTH-20, height: contentHeight!)
               y += contentHeight!
            
         }
@@ -128,6 +144,25 @@ extension ActionSheetDialogViewController{
         self.closeButton?.frame = CGRect(x: 20, y: (self.rootView?.frame.height)! - CGFloat(50), width: SCREEN_WIDTH - 40, height: CGFloat(40));
       
       
+        self.view.addSubview(self.outsideView!)
+        self.outsideView?.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT - CGFloat(rootViewHeight))
+    }
+    
+    private func clickOutside(){
+        self.outsideView?.isUserInteractionEnabled = true
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ActionSheetDialogViewController.clickOutsideHandler))
+        
+        self.outsideView?.addGestureRecognizer(gestureRecognizer)
+    }
+    
+    @objc private func clickOutsideHandler(){
+        
+        self.dismiss(animated: false, completion: nil)
+        guard let delegate = self.delegate else{
+            return
+        }
+        
+        delegate.closeEventHandler(viewController: self)
     }
     
     private func setOperation(operations:[String:()->()]){
@@ -137,9 +172,7 @@ extension ActionSheetDialogViewController{
         
         for (title,_) in operations{
             let button = UIButton(frame: CGRect.zero)
-            
-           
-            
+
             button.setTitle(title, for: .normal)
             button.backgroundColor = UIColor.green
             button.layer.cornerRadius = 20

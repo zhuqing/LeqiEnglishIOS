@@ -12,10 +12,13 @@ import UIKit
 
 class ReciteSegmentViewController: UIViewController {
 
+    @IBOutlet weak var shareBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var back: UIBarButtonItem!
     @IBOutlet weak var startButton: UIButton!
     
     @IBOutlet weak var duringLabel: UILabel!
+    
+    var segment:Segment?
     
     var cutDownTimer:Timer?
     
@@ -23,7 +26,7 @@ class ReciteSegmentViewController: UIViewController {
         didSet{
            
             countDownDuring = Int(during)
-             resetDuringLabel(during)
+            resetDuringLabel(during)
         }
     }
     
@@ -64,8 +67,41 @@ extension ReciteSegmentViewController : RecordManagerDelegate{
      func playFinshed() {
         currentPlayStatus = .STOP
         changeButton()
+        showSheet()
+       
+    }
+    
+    private func showSheet(){
+        guard let player = self.recordManager.player else{
+            return
+        }
+        //如果背诵时间不到播放时间的2/3，继续背书
+        if( player.duration < self.during*0.6){
+            //return
+        }
+        
+        
+        let alert = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "关闭", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "返回主页", style: .default, handler: {
+            (action) in
+            self.returnHome()
+        }))
+        alert.addAction(UIAlertAction(title: "复习一下", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "分享给朋友", style: .default, handler: {
+            (act) in
+            let share = ActionSheetDialogViewController()
+            share.modalPresentationStyle = .overCurrentContext
+            share.delegate = ShareViewActionSheetDelegate(segment:self.segment!)
+            
+            self.present(share, animated: true, completion: nil)
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
     }
 }
+
+
 
 
 //MARK: 事件相关
@@ -120,6 +156,7 @@ extension ReciteSegmentViewController{
         }
     }
     
+    //开始倒计时
     private func startCuntDown(){
           countDownDuring = Int(during)
         
@@ -159,6 +196,15 @@ extension ReciteSegmentViewController{
     
     private func navigation(){
         self.back.action = #selector(ReciteSegmentViewController.backEventHandler)
+        self.shareBarButtonItem.action = #selector(ReciteSegmentViewController.shareEventHandler)
+    }
+    
+    @objc private func shareEventHandler(){
+        let share = ActionSheetDialogViewController()
+        share.modalPresentationStyle = .overCurrentContext
+        share.delegate = ShareViewActionSheetDelegate(segment: self.segment!)
+        
+        self.present(share, animated: true, completion: nil)
     }
     
     @objc private func backEventHandler(){
@@ -169,6 +215,11 @@ extension ReciteSegmentViewController{
        let minute = Int(during / 60.0)
        let second = Int(during) % 60
         
-       self.duringLabel.text = "\(minute):\(second)"
+       let minuteStr = String(format: "%.2d", arguments: [minute])
+           let secondStr = String(format: "%.2d", arguments: [second])
+        
+       self.duringLabel.text = "\(minuteStr):\(secondStr)"
     }
 }
+
+

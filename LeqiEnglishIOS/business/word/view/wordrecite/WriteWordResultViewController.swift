@@ -9,6 +9,9 @@
 import UIKit
 
 class WriteWordResultViewController: UIViewController {
+    
+    private let LOG = LOGGER("WriteWordResultViewController")
+    
     @IBOutlet weak var collectionRootView: UIView!
     
     @IBOutlet weak var shareToFriendsButton: UIButton!
@@ -98,7 +101,11 @@ extension WriteWordResultViewController{
     }
     
     @objc private func clickShareHandler(){
-        updateHasRecited()
+         updateHasRecited()
+        let alert = ActionSheetDialogViewController()
+        alert.modalPresentationStyle = .overCurrentContext
+        alert.delegate = self
+        self.present(alert, animated: true, completion: nil)
     }
     
     @objc private func clickCloseHandler(){
@@ -184,5 +191,45 @@ extension WriteWordResultViewController:UICollectionViewDataSource,UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.reciteWords!.count
+    }
+}
+
+extension WriteWordResultViewController:ActionSheetDialogViewControllerDelegate{
+    func getContentViewHeight(viewController: ActionSheetDialogViewController) -> CGFloat? {
+        return CGFloat(100)
+    }
+    
+    func getContentView(viewController: ActionSheetDialogViewController) -> UIView? {
+      let shareView =   ShareView(frame: CGRect(x: 10, y: 0, width: SCREEN_WIDTH-20, height: 70))
+        shareView.delegate = self
+        return shareView
+    }
+    
+    func getOperation(viewController: ActionSheetDialogViewController) -> [String : () -> ()]? {
+        return nil
+    }
+    
+    func closeEventHandler(viewController: ActionSheetDialogViewController) {
+       //self.returnHome()
+    }
+}
+
+extension WriteWordResultViewController:ShareViewDelegate{
+    func click(view: ShareView, data: (String, String, UIImage)) {
+        
+        let url = "\(Service.host)/html/share/shareWordRecite.html?&userId=\(UserDataCache.instance.getUserId())"
+        
+        LOG.info(url)
+        
+        let title = "\(UserDataCache.instance.getUserName())完成了单词的背诵"
+        switch data.0 {
+        case "1":
+            SharePlateformUtil.share(.subTypeWechatTimeline, url: url, title: title)
+        case "2":
+             SharePlateformUtil.share(.subTypeQZone,  url: url, title: title)
+        default:
+            print("ee")
+        }
+         //self.returnHome()
     }
 }

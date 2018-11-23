@@ -130,7 +130,7 @@ extension ContentListViewController{
 extension ContentListViewController : UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        guard let delegate = self.delegate else{
+        guard self.delegate != nil else{
             return
         }
         

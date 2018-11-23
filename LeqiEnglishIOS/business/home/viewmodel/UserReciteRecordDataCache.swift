@@ -70,6 +70,7 @@ class UserReciteRecordDataCache: DataCache<UserReciteRecord> {
     }
     
     override func claerData() {
+        super.claerData()
         guard let user = UserDataCache.instance.getFromCache() else{
             return
         }
@@ -77,12 +78,7 @@ class UserReciteRecordDataCache: DataCache<UserReciteRecord> {
         SQLiteManager.instance.delete(type: UserReciteRecordDataCache.TYPE, parentId:user.id ?? "")
     }
     
-    override func refresh() {
-        self.getFromService(){
-            (userData) in
-            self.cacheData(data: userData)
-        }
-    }
+   
     
     
     override func cacheData(data: UserReciteRecord?) {

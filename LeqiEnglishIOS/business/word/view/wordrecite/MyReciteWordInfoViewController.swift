@@ -104,6 +104,11 @@ extension MyReciteWordInfoViewController{
 }
 
 extension MyReciteWordInfoViewController :RefreshDataCacheDelegate{
+    func clearnCacheThenRefresh() {
+         MyReciteWordConfig.instance.claerData()
+        refresh()
+    }
+    
     func refresh() {
         loadData()
     }

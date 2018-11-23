@@ -11,4 +11,6 @@ import Foundation
 protocol RefreshDataCacheDelegate {
     //刷新数据
     func refresh()
+    //清空缓存后再刷新
+    func clearnCacheThenRefresh()
 }

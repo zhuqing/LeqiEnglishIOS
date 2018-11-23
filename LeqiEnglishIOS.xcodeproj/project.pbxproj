@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,8 @@
 		4E21D3C9218FD7B300B9C02A /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E21D3C7218FD7B300B9C02A /* LoadingViewController.xib */; };
 		4E2DF4A1214B507700FA9BB0 /* NSDate_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2DF4A0214B507700FA9BB0 /* NSDate_extension.swift */; };
 		4E2DF4A5214B8C0100FA9BB0 /* String_extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2DF4A4214B8C0100FA9BB0 /* String_extension.swift */; };
+		4E3C2B2721A2630E00854B24 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3C2B2621A2630E00854B24 /* LaunchViewController.swift */; };
+		4E4073F521A7A6620037A408 /* DispatchQueueUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4073F421A7A6610037A408 /* DispatchQueueUtil.swift */; };
 		4E45FB4121532D9600A5F03F /* RecordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E45FB4021532D9600A5F03F /* RecordManager.swift */; };
 		4E45FB462153B49100A5F03F /* WordInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E45FB442153B49100A5F03F /* WordInfoCollectionViewCell.swift */; };
 		4E45FB472153B49100A5F03F /* WordInfoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E45FB452153B49100A5F03F /* WordInfoCollectionViewCell.xib */; };
@@ -142,10 +144,16 @@
 		4EF2EFD9206909D900B7F447 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2EFD8206909D900B7F447 /* ViewController.swift */; };
 		4EF2EFDC206909D900B7F447 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EF2EFDA206909D900B7F447 /* Main.storyboard */; };
 		4EF2EFDE206909D900B7F447 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EF2EFDD206909D900B7F447 /* Assets.xcassets */; };
-		4EF2EFE1206909D900B7F447 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EF2EFDF206909D900B7F447 /* LaunchScreen.storyboard */; };
 		4EF2F06220710C1500B7F447 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2F06120710C1500B7F447 /* Content.swift */; };
 		4EF2F06520710C7A00B7F447 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2F06420710C7A00B7F447 /* Entity.swift */; };
 		4EF2F088207196BC00B7F447 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2F087207196BC00B7F447 /* Service.swift */; };
+		4EFB895521A28591008C25DC /* launchImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EFB895421A28591008C25DC /* launchImage.png */; };
+		4EFB895721A285E0008C25DC /* slogan.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EFB895621A285DF008C25DC /* slogan.png */; };
+		4EFB895921A285FB008C25DC /* le_240.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EFB895821A285FB008C25DC /* le_240.png */; };
+		4EFB895B21A286A9008C25DC /* userSet.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EFB895A21A286A9008C25DC /* userSet.xcassets */; };
+		4EFB895F21A287DC008C25DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EFB895E21A287DC008C25DC /* LaunchScreen.storyboard */; };
+		4EFB896721A29722008C25DC /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFB896621A29722008C25DC /* ShareView.swift */; };
+		4EFB896921A2C459008C25DC /* ShareViewActionSheetDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFB896821A2C459008C25DC /* ShareViewActionSheetDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -172,6 +180,8 @@
 		4E21D3C7218FD7B300B9C02A /* LoadingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingViewController.xib; sourceTree = "<group>"; };
 		4E2DF4A0214B507700FA9BB0 /* NSDate_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDate_extension.swift; sourceTree = "<group>"; };
 		4E2DF4A4214B8C0100FA9BB0 /* String_extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String_extension.swift; sourceTree = "<group>"; };
+		4E3C2B2621A2630E00854B24 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		4E4073F421A7A6610037A408 /* DispatchQueueUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueueUtil.swift; sourceTree = "<group>"; };
 		4E45FB4021532D9600A5F03F /* RecordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordManager.swift; sourceTree = "<group>"; };
 		4E45FB442153B49100A5F03F /* WordInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		4E45FB452153B49100A5F03F /* WordInfoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordInfoCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -298,12 +308,19 @@
 		4EF2EFD6206909D900B7F447 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EF2EFD8206909D900B7F447 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4EF2EFDB206909D900B7F447 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		4EF2EFDD206909D900B7F447 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		4EF2EFE0206909D900B7F447 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4EF2EFDD206909D900B7F447 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../../../../../GitHub/LeqiEnglishIOS/LeqiEnglishIOS/Assets.xcassets; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EF2EFE2206909D900B7F447 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EF2F06120710C1500B7F447 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		4EF2F06420710C7A00B7F447 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		4EF2F087207196BC00B7F447 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		4EFB895421A28591008C25DC /* launchImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchImage.png; sourceTree = "<group>"; };
+		4EFB895621A285DF008C25DC /* slogan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slogan.png; sourceTree = "<group>"; };
+		4EFB895821A285FB008C25DC /* le_240.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = le_240.png; sourceTree = "<group>"; };
+		4EFB895A21A286A9008C25DC /* userSet.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = userSet.xcassets; sourceTree = "<group>"; };
+		4EFB895E21A287DC008C25DC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4EFB896021A29100008C25DC /* LeqiEnglishIOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LeqiEnglishIOS.entitlements; sourceTree = "<group>"; };
+		4EFB896621A29722008C25DC /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
+		4EFB896821A2C459008C25DC /* ShareViewActionSheetDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewActionSheetDelegate.swift; sourceTree = "<group>"; };
 		BA80D4FBEEB9C72186E7D4B3 /* Pods-LeqiEnglishIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeqiEnglishIOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-LeqiEnglishIOS/Pods-LeqiEnglishIOS.release.xcconfig"; sourceTree = "<group>"; };
 		DFFAD7CA82B991F0B115AED3 /* Pods-LeqiEnglishIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeqiEnglishIOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LeqiEnglishIOS/Pods-LeqiEnglishIOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -404,6 +421,26 @@
 				4E2DF4A4214B8C0100FA9BB0 /* String_extension.swift */,
 			);
 			path = string;
+			sourceTree = "<group>";
+		};
+		4E3C2B1F21A24E9900854B24 /* welcome */ = {
+			isa = PBXGroup;
+			children = (
+				4EFB895821A285FB008C25DC /* le_240.png */,
+				4EFB895421A28591008C25DC /* launchImage.png */,
+				4EFB895621A285DF008C25DC /* slogan.png */,
+				4E3C2B2621A2630E00854B24 /* LaunchViewController.swift */,
+				4EFB895E21A287DC008C25DC /* LaunchScreen.storyboard */,
+			);
+			path = welcome;
+			sourceTree = "<group>";
+		};
+		4E4073F321A7A6360037A408 /* thread */ = {
+			isa = PBXGroup;
+			children = (
+				4E4073F421A7A6610037A408 /* DispatchQueueUtil.swift */,
+			);
+			path = thread;
 			sourceTree = "<group>";
 		};
 		4E45FB3F21532D7600A5F03F /* record */ = {
@@ -576,6 +613,7 @@
 		4E5ED4172143764F00AC709F /* tools */ = {
 			isa = PBXGroup;
 			children = (
+				4E4073F321A7A6360037A408 /* thread */,
 				4EA4668421953D6F003A6533 /* share */,
 				4EC0C3DF215A6F62004CE967 /* dictionary */,
 				4E8320592155EE3E00CD84C0 /* word */,
@@ -798,6 +836,7 @@
 				4E8E9CF5214F9E880004F39B /* playsegment.storyboard */,
 				4E9C5BA52150FCBE0079F985 /* UISegmentPlayViewController.swift */,
 				4E9C5BA62150FCBE0079F985 /* UISegmentPlayViewController.xib */,
+				4EFB896821A2C459008C25DC /* ShareViewActionSheetDelegate.swift */,
 			);
 			path = playsegment;
 			sourceTree = "<group>";
@@ -911,6 +950,8 @@
 		4E9C5BA42150FC110079F985 /* business */ = {
 			isa = PBXGroup;
 			children = (
+				4EFB896521A296E6008C25DC /* share */,
+				4E3C2B1F21A24E9900854B24 /* welcome */,
 				4E99062B2142676D00EE0D55 /* home */,
 				4E781B4D2176D95C003EFE3B /* version */,
 				4E5ED40D2143618B00AC709F /* personal */,
@@ -1107,6 +1148,7 @@
 		4EF2EFD5206909D900B7F447 /* LeqiEnglishIOS */ = {
 			isa = PBXGroup;
 			children = (
+				4EFB896021A29100008C25DC /* LeqiEnglishIOS.entitlements */,
 				4E5ED4172143764F00AC709F /* tools */,
 				4E9C5BA42150FC110079F985 /* business */,
 				4E9906222142648C00EE0D55 /* main */,
@@ -1115,8 +1157,8 @@
 				4EF2EFD6206909D900B7F447 /* AppDelegate.swift */,
 				4EF2EFD8206909D900B7F447 /* ViewController.swift */,
 				4EF2EFDD206909D900B7F447 /* Assets.xcassets */,
-				4EF2EFDF206909D900B7F447 /* LaunchScreen.storyboard */,
 				4EF2EFE2206909D900B7F447 /* Info.plist */,
+				4EFB895A21A286A9008C25DC /* userSet.xcassets */,
 			);
 			path = LeqiEnglishIOS;
 			sourceTree = "<group>";
@@ -1142,6 +1184,14 @@
 				4EF2F087207196BC00B7F447 /* Service.swift */,
 			);
 			path = sf;
+			sourceTree = "<group>";
+		};
+		4EFB896521A296E6008C25DC /* share */ = {
+			isa = PBXGroup;
+			children = (
+				4EFB896621A29722008C25DC /* ShareView.swift */,
+			);
+			path = share;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1181,11 +1231,19 @@
 					4EF2EFD2206909D900B7F447 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 0;
+							};
+							com.apple.InterAppAudio = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
 			buildConfigurationList = 4EF2EFCE206909D800B7F447 /* Build configuration list for PBXProject "LeqiEnglishIOS" */;
-			compatibilityVersion = "Xcode 8.0";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -1217,15 +1275,19 @@
 				4E67DB50216ED6010057D606 /* WordHeaderCollectionViewCell.xib in Resources */,
 				4E9C5BA82150FCBE0079F985 /* UISegmentPlayViewController.xib in Resources */,
 				4E91DD17215CCB1A001F5E22 /* MyReciteWordInfoViewController.xib in Resources */,
-				4EF2EFE1206909D900B7F447 /* LaunchScreen.storyboard in Resources */,
 				4E8E9CE7214E2F020004F39B /* ContentInfoViewController.xib in Resources */,
 				4E957DC5216CA79800BCF9E4 /* LoginViewController.xib in Resources */,
 				4E8E9CD1214C96990004F39B /* UserBoardView.xib in Resources */,
 				4E45FB5E2154D7F100A5F03F /* WordInfoViewController.xib in Resources */,
 				4E891F8D2160AF1400A1893A /* SimpleTextCollectionViewCell.xib in Resources */,
+				4EFB895B21A286A9008C25DC /* userSet.xcassets in Resources */,
 				4E5E3AA42147A52400E88554 /* ContentItemPrecentCollectionViewCell.xib in Resources */,
+				4EFB895721A285E0008C25DC /* slogan.png in Resources */,
+				4EFB895F21A287DC008C25DC /* LaunchScreen.storyboard in Resources */,
 				4EF2EFDE206909D900B7F447 /* Assets.xcassets in Resources */,
 				4E8E9CF6214F9E880004F39B /* playsegment.storyboard in Resources */,
+				4EFB895921A285FB008C25DC /* le_240.png in Resources */,
+				4EFB895521A28591008C25DC /* launchImage.png in Resources */,
 				4EC2E655218C32200036D48E /* SimpleWordInfoViewController.xib in Resources */,
 				4E8E9CF2214F58BA0004F39B /* SegmentViewItem.xib in Resources */,
 				4EF12114218AA1FF007BFDD8 /* ActionSheetDialogViewController.xib in Resources */,
@@ -1334,8 +1396,11 @@
 				4E1EB611217580EB0070E064 /* UserReciteRecordDataCache.swift in Sources */,
 				4E957DBB216C911300BCF9E4 /* FeedbackViewController.swift in Sources */,
 				4E8E9CDC214CF8370004F39B /* MyRecommendViewModel.swift in Sources */,
+				4E4073F521A7A6620037A408 /* DispatchQueueUtil.swift in Sources */,
+				4EFB896921A2C459008C25DC /* ShareViewActionSheetDelegate.swift in Sources */,
 				4E45FB592154CCBD00A5F03F /* StringUtil.swift in Sources */,
 				4E8E9CD4214CAFF60004F39B /* MyRecitedCollectionViewCell.swift in Sources */,
+				4E3C2B2721A2630E00854B24 /* LaunchViewController.swift in Sources */,
 				4EC0C3E1215A6F84004CE967 /* DictionaryUtil.swift in Sources */,
 				4E45FB6E2155088300A5F03F /* WordAndSegment.swift in Sources */,
 				4EC2E654218C32200036D48E /* SimpleWordInfoViewController.swift in Sources */,
@@ -1390,6 +1455,7 @@
 				4E8E9CDE214CF8790004F39B /* DataCache.swift in Sources */,
 				4E781B5A21771B0A003EFE3B /* MyWordListView.swift in Sources */,
 				4E67DB4F216ED6010057D606 /* WordHeaderCollectionViewCell.swift in Sources */,
+				4EFB896721A29722008C25DC /* ShareView.swift in Sources */,
 				4EEDD10A21745EC400AFF170 /* CatalogDataCache.swift in Sources */,
 				4E6426612149568500D2B3FF /* SQLiteManager.swift in Sources */,
 				4E09352B2140C57100592DE2 /* User.swift in Sources */,
@@ -1449,14 +1515,6 @@
 				4EF2EFDB206909D900B7F447 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		4EF2EFDF206909D900B7F447 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4EF2EFE0206909D900B7F447 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1565,8 +1623,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = /Users/zhuleqi/GitHub/LeqiEnglishIOS/LeqiEnglishIOS/tools/extension/string/CommonCrypto_bridge.h;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1577,16 +1636,22 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HFKQZU25VP;
 				INFOPLIST_FILE = LeqiEnglishIOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.leqienglish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "CommonCrypto-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s arm64e arm64 armv6";
 			};
 			name = Debug;
 		};
@@ -1596,16 +1661,22 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HFKQZU25VP;
 				INFOPLIST_FILE = LeqiEnglishIOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.leqienglish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "CommonCrypto-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s arm64e arm64 armv6";
 			};
 			name = Release;
 		};

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="back" destination="TgT-jA-6Yo" id="KXr-mZ-Cp6"/>
                 <outlet property="duringLabel" destination="vtH-3I-dFL" id="dHr-Kb-dni"/>
+                <outlet property="shareBarButtonItem" destination="PKm-yf-Iq0" id="1ci-eP-EP2"/>
                 <outlet property="startButton" destination="MKz-Eh-YLp" id="fpv-co-Wlw"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -28,6 +29,7 @@
                     <items>
                         <navigationItem id="3fy-a7-G4o">
                             <barButtonItem key="leftBarButtonItem" image="pre_pressed" id="TgT-jA-6Yo"/>
+                            <barButtonItem key="rightBarButtonItem" title="Item" image="share32" id="PKm-yf-Iq0"/>
                         </navigationItem>
                     </items>
                 </navigationBar>
@@ -35,7 +37,7 @@
                     <rect key="frame" x="0.0" y="120" width="375" height="347"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtH-3I-dFL">
-                            <rect key="frame" x="127" y="141" width="122" height="64"/>
+                            <rect key="frame" x="126.5" y="141.5" width="122" height="64"/>
                             <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="53"/>
                             <color key="textColor" red="0.0" green="0.56031829119999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -48,7 +50,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKz-Eh-YLp">
-                    <rect key="frame" x="137" y="525" width="100" height="100"/>
+                    <rect key="frame" x="137.5" y="525" width="100" height="100"/>
                     <color key="backgroundColor" red="0.0" green="0.56031829119999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="x8J-e7-XD2"/>
@@ -83,5 +85,6 @@
     </objects>
     <resources>
         <image name="pre_pressed" width="32" height="32"/>
+        <image name="share32" width="32" height="32"/>
     </resources>
 </document>

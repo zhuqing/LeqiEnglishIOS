@@ -10,7 +10,7 @@ import UIKit
 
 
 
-    let STATUS_BAR_HEIGHT:CGFloat = 20
+    let STATUS_BAR_HEIGHT:CGFloat = 40
     let NAVIGATION_BAR_HEIGHT:CGFloat = 44
     let SCREEN_HEIGHT:CGFloat = UIScreen.main.bounds.height
     let SCREEN_WIDTH:CGFloat = UIScreen.main.bounds.width

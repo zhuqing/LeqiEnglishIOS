@@ -51,6 +51,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         return true
     }
+    
+    func application(application: UIApplication,didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        //设置启动图片停留时间
+        Thread.sleep(forTimeInterval: 6.0)
+        return true
+    }
+    
 //
 //    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
 //

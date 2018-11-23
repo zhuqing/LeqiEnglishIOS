@@ -33,14 +33,14 @@ class SharePlateformUtil{
         }
     }
     
-    class func share(_ type:SSDKPlatformType,content:String,title:String){
+    class func share(_ type:SSDKPlatformType,url:String,title:String){
         
         let params = NSMutableDictionary()
         
         
-        params.ssdkSetupShareParams(byText: "test", images: "http://c.hiphotos.baidu.com/image/pic/item/b58f8c5494eef01f40ef23e9edfe9925bc317d26.jpg", url: nil, title: nil, type: .image)
+        params.ssdkSetupShareParams(byText: "test", images: UIImage(named: "leqienglish64"), url: URL(string: url), title: title, type: .webPage)
         //2.进行分享
-        ShareSDK.share(.typeSinaWeibo, parameters: params) { (state, userdata, contentEntity, error) in
+        ShareSDK.share(type, parameters: params) { (state, userdata, contentEntity, error) in
             
             switch state
             {

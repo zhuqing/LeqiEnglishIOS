@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,6 +14,8 @@
             <connections>
                 <outlet property="back" destination="WaY-cl-2yR" id="9Nz-eF-q1Y"/>
                 <outlet property="collectionRootView" destination="VAh-YF-DoA" id="Jl6-9N-Sxv"/>
+                <outlet property="loading" destination="aCZ-hp-Aj9" id="P79-Yb-Ckl"/>
+                <outlet property="share" destination="gSR-sD-7Ji" id="r9j-Yp-kFk"/>
                 <outlet property="startRecite" destination="y2h-gW-mbK" id="YaM-6W-CfV"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -28,12 +30,26 @@
                     <items>
                         <navigationItem id="uZ5-me-xUo">
                             <barButtonItem key="leftBarButtonItem" title="Item" image="pre_pressed" id="WaY-cl-2yR"/>
+                            <barButtonItem key="rightBarButtonItem" title="Item" image="share32" id="gSR-sD-7Ji"/>
                         </navigationItem>
                     </items>
                 </navigationBar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VAh-YF-DoA" userLabel="collectionView">
                     <rect key="frame" x="0.0" y="64" width="375" height="547"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="aCZ-hp-Aj9">
+                            <rect key="frame" x="137.5" y="223.5" width="100" height="100"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="100" id="he0-Q5-Myj"/>
+                                <constraint firstAttribute="width" constant="100" id="mOq-nL-G7J"/>
+                            </constraints>
+                        </activityIndicatorView>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="aCZ-hp-Aj9" firstAttribute="centerY" secondItem="VAh-YF-DoA" secondAttribute="centerY" id="Bvy-vv-L9t"/>
+                        <constraint firstItem="aCZ-hp-Aj9" firstAttribute="centerX" secondItem="VAh-YF-DoA" secondAttribute="centerX" id="cCY-ee-Eaf"/>
+                    </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2h-gW-mbK">
                     <rect key="frame" x="30" y="616" width="315" height="36"/>
@@ -68,5 +84,6 @@
     </objects>
     <resources>
         <image name="pre_pressed" width="32" height="32"/>
+        <image name="share32" width="32" height="32"/>
     </resources>
 </document>

@@ -9,11 +9,22 @@
 import Foundation
 import Alamofire
 class Service{
-    //static let host ="http://www.leqienglish.com"
+//    static let host = "http://www.leqienglish.com"
     
     static let host = "http://192.168.43.9:8080"
     
     static let LOG = LOGGER("Service")
+    
+    
+    
+  
+    
+  
+    private static  var  alamoFireManager = { () -> SessionManager in
+        let   configuration = URLSessionConfiguration.default
+          configuration.timeoutIntervalForResource = 6 //秒
+         return Alamofire.SessionManager(configuration: configuration)
+    }()
     
     class func download(filePath:String , hasLoaded: @escaping( _ percent:CGFloat)->(),finishedCallback:@escaping (_ result:String)->()){
           let path = "file/download?path=\(filePath)"
@@ -24,11 +35,11 @@ class Service{
         let fileURL = FileUtil.absulateFileUrl(filePath: filePath)
         
         //如果文件存在，就不下载文件
-//        if(FileManager.default.fileExists(atPath: fileURL.path)){
-//            LOG.info("文件已存在")
-//            finishedCallback(fileURL.path)
-//            return
-//        }
+        if(FileManager.default.fileExists(atPath: fileURL.path)){
+            LOG.info("文件已存在")
+            finishedCallback(fileURL.path)
+            return
+        }
         
         let destination: DownloadRequest.DownloadFileDestination = { _, _ in
             return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
@@ -52,6 +63,7 @@ class Service{
 
         download(path:httpPath,filePath:filePath,finishedCallback:finishedCallback)
     }
+    
     class func download(path:String,filePath:String,finishedCallback:@escaping (_ result:String)->()){
         //拼接路径
         let httpPath = "\(host)/\(path)"
@@ -70,7 +82,7 @@ class Service{
             return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
         }
         
-        Alamofire.download(httpPath, to: destination).response { response in
+        alamoFireManager.download(httpPath, to: destination).response { response in
            
             if response.error == nil, let imagePath = response.destinationURL?.path {
                 print(imagePath)
@@ -84,17 +96,18 @@ class Service{
         
         
         Alamofire.request(httpPath, method: .post, parameters:params , encoding: JSONEncoding.default, headers: nil).responseJSON(){  (response) in
-            
+
             guard let result = response.result.value as? [String : NSObject] else {
                 LOG.error(response.result.error.debugDescription)
-                  finishedCallback([String : NSObject]())
+                  //finishedCallback([String : NSObject]())
                 return
             }
-            
+
             LOG.info("\(result)")
-            
+
             finishedCallback(result)
         }
+        //request(method: .post, path: path, params: params, finishedCallback: finishedCallback)
     }
     
     class func put(path:String,params:[String:String]? = nil, finishedCallback:@escaping (_ resut :[String:NSObject])->()){
@@ -104,11 +117,16 @@ class Service{
     
     private class func request(method: HTTPMethod, path:String,params:[String:String]? = nil, finishedCallback:@escaping (_ resut :[String:NSObject])->()){
           let httpPath = getHttpPath(path)
-        Alamofire.request(httpPath, method: .put, parameters:params , encoding: JSONEncoding.default, headers: nil).responseJSON(){  (response) in
+        
+        
+       
+
+        
+        alamoFireManager.request(httpPath, method: method, parameters:params , encoding: JSONEncoding.default, headers: nil).responseJSON(){  (response) in
             
             guard let result = response.result.value as? [String : NSObject] else {
                 LOG.error(response.result.error.debugDescription)
-                  finishedCallback([String : NSObject]())
+                  //finishedCallback([String : NSObject]())
                 return
             }
             
@@ -128,14 +146,16 @@ class Service{
         
         Alamofire.request(httpPath, method: .get, encoding: URLEncoding.httpBody, headers: nil).responseJSON{
             (response) in
-            
+
             guard let result = response.result.value as? [String : NSObject] else {
                 LOG.error(response.result.description)
-                 finishedCallback([String : NSObject]())
+               //  finishedCallback([String : NSObject]())
                 return
             }
             finishedCallback(result)
         }
+        
+        //  request(method: .get, path: path, params: nil, finishedCallback: finishedCallback)
     }
     
     class func getData(data:[String:NSObject])->[String:NSObject]?{

@@ -19,10 +19,12 @@ class MyRecommendViewModel: DataCache<[Content]> {
         Service.get(path: "recommend/recommendArticle?userId=\(user.id ?? "")"){
             (data) in
            
-            let datas = Service.getDatas(data: data)
+            guard let datas = Service.getDatas(data: data) else{
+                return
+            }
             
             var contents:[Content]? = [Content]()
-            for d in datas!{
+            for d in datas{
                 contents?.append(Content(data:d))
             }
             

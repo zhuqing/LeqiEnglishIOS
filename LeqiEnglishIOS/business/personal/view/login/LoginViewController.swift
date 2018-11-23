@@ -68,9 +68,9 @@ extension LoginViewController{
         quickRegistButton.addTarget(self, action: #selector(LoginViewController.registHandler), for: .touchDown)
         cancelButton.addTarget(self, action: #selector(LoginViewController.cancelHandler), for: .touchDown)
         
-        weiboButton.addTarget(self, action: #selector(LoginViewController.weiboHandler), for: .touchDown)
-        
-        weixinButton.addTarget(self, action: #selector(LoginViewController.weixinHandler), for: .touchDown)
+//        weiboButton.addTarget(self, action: #selector(LoginViewController.weiboHandler), for: .touchDown)
+//        
+//        weixinButton.addTarget(self, action: #selector(LoginViewController.weixinHandler), for: .touchDown)
         
         qqButton.addTarget(self, action: #selector(LoginViewController.qqHandler), for: .touchDown)
    navigation()
@@ -108,7 +108,7 @@ extension LoginViewController{
     
     @objc private func weixinHandler(){
         // thirdPartLoginHandler(SSDKPlatformType.typeWechat,type: 2)
-        SharePlateformUtil.share()
+       // SharePlateformUtil.share()
     }
     
     @objc private func qqHandler(){
@@ -170,7 +170,7 @@ extension LoginViewController{
             self.showAlert(message: "登录失败")
         }, finished: {
             (user) in
-            guard let uu = user else{
+            guard user != nil else{
                  self.showAlert(message: "登录失败")
                 return
             }

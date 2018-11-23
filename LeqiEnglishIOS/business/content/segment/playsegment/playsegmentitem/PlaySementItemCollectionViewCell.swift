@@ -118,6 +118,7 @@ class PlaySementItemCollectionViewCell: UICollectionViewCell {
     }
     
     func stop(bar:UIView){
+      
         bar.removeFromSuperview()
         self.blackLine?.frame = CGRect(x: 0, y: self.frame.height - 1, width: SCREEN_WIDTH, height: 1)
     }

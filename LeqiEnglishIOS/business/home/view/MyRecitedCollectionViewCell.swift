@@ -61,13 +61,18 @@ class MyRecitedCollectionViewCell: UICollectionViewCell {
 }
 
 extension MyRecitedCollectionViewCell : RefreshDataCacheDelegate{
+    func clearnCacheThenRefresh() {
+       MyRecitingContentDataCache.instance.claerData()
+       refresh()
+    }
+    
     private func regist(){
         AppRefreshManager.instance.regist(id: "MyRecitedCollectionViewCell", self)
        
     }
     
     func refresh() {
-        MyRecitingContentDataCache.instance.claerData()
+       
         loadData()
     }
     
@@ -117,7 +122,8 @@ extension MyRecitedCollectionViewCell{
             (datas) in
             self.reciteContentDatas = datas
             self.collectionView.reloadData()
-            self.myRecitNumberLabel.text = "我的背诵(\(self.reciteContentDatas!.count))"
+      
+            self.myRecitNumberLabel.text = "我的背诵(\(self.reciteContentDatas?.count ?? 0 ))"
         }
         
     }

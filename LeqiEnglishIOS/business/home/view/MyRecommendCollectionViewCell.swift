@@ -16,7 +16,7 @@ class MyRecommendCollectionViewCell: UICollectionViewCell {
     
     static let MY_RECOMMEND_VIEW_REUSE_IDENTIFIRE = "MY_RECOMMEND_VIEW_REUSE_IDENTIFIRE"
     
-    private var recommendViewModel = MyRecommendViewModel()
+   
     
     @IBOutlet weak var moreLabel: UILabel!
     
@@ -82,7 +82,7 @@ extension MyRecommendCollectionViewCell{
     }
     
     private func loadData(){
-        recommendViewModel.load(){
+        MyRecommendViewModel.instance.load(){
             (contents) in
             if contents == nil{
                 self.recommendDatas = [Content]()
@@ -128,8 +128,13 @@ extension MyRecommendCollectionViewCell:UICollectionViewDataSource,UICollectionV
 }
 
 extension MyRecommendCollectionViewCell : RefreshDataCacheDelegate{
+    func clearnCacheThenRefresh() {
+        MyRecommendViewModel.instance.claerData()
+        loadData()
+    }
+    
     func refresh() {
-        
+      MyRecommendViewModel.instance.claerData()
        loadData()
     }
     

@@ -31,4 +31,10 @@ class AppRefreshManager{
             ref.refresh()
         }
     }
+    
+    func clearCacheThenRefresh(){
+        for (_,ref) in refreshDic {
+            ref.clearnCacheThenRefresh()
+        }
+    }
 }

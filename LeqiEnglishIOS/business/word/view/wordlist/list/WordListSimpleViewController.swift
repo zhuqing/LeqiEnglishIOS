@@ -36,7 +36,8 @@ class WordListSimpleViewController: UIViewController {
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.showsVerticalScrollIndicator = true
         collectionView.isPagingEnabled = false
-        collectionView.bounces = false
+        collectionView.bounces = true
+        
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = UIColor.white

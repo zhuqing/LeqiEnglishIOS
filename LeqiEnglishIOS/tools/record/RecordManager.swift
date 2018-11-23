@@ -105,9 +105,7 @@ class RecordManager :NSObject{
 
 extension RecordManager:AVAudioPlayerDelegate{
   
-   
-   
-    
+
  func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         
         guard let delegate = self.delegate else{

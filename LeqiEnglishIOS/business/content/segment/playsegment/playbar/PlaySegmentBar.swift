@@ -92,6 +92,9 @@ extension PlaySegmentBar{
                 player.pause()
             }
         }
+        recordManager.stopRecord()
+        recordManager.stopPlay()
+      
         
         NSObject.cancelPreviousPerformRequests(withTarget: self)
     }

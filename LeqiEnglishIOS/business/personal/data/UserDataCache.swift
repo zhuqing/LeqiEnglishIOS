@@ -24,11 +24,22 @@ class UserDataCache: DataCache<User> {
     }
     
     func getUserId()->String{
+        if(user != nil){
+            return user?.id ?? ""
+        }
         guard let user = self.getFromCache() else{
             return ""
         }
         
         return user.id ?? ""
+    }
+    
+    func getUserName()->String{
+        guard let user = self.getFromCache() else{
+            return ""
+        }
+        
+        return user.name ?? ""
     }
     
     override func getFromCache() -> User? {

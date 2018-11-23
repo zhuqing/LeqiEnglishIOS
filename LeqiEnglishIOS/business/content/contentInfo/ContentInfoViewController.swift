@@ -214,7 +214,7 @@ extension ContentInfoViewController : UICollectionViewDataSource,UICollectionVie
             let word = WordListViewController()
             self.present(word, animated: true){
                 word.loadData(content:self.content!)
-                self.insertWordsToUser(self.content?.id ?? "")
+                //self.insertWordsToUser(self.content?.id ?? "")
             }
         }else{
            let segment =  segments[indexPath.item]
@@ -239,7 +239,13 @@ extension ContentInfoViewController : UICollectionViewDataSource,UICollectionVie
 }
 
 extension ContentInfoViewController : RefreshDataCacheDelegate{
+    func clearnCacheThenRefresh() {
+        UserSegmentDataCache(contentId: self.content?.id ?? "").claerData()
+        refresh()
+    }
+    
     func refresh() {
+        
        self.loadData()
     }
 }
@@ -258,11 +264,11 @@ extension ContentInfoViewController{
             toSegmentInfo(segment: segment)
             return
         }
-       // if(FileUtil.hasFile(path: path)){
-          //  toSegmentInfo(segment: segment)
-       // }else{
+        if(FileUtil.hasFile(path: path)){
+            toSegmentInfo(segment: segment)
+        }else{
             toLoadView(segment: segment, path: path)
-      //  }
+        }
       
     }
     
@@ -280,7 +286,11 @@ extension ContentInfoViewController{
     private func toSegmentInfo(segment:Segment){
         let uiView = UISegmentPlayViewController()
         self.present(uiView, animated: true){
-            uiView.setSegment(item: segment,mp3Path: (self.content?.audioPath)!)
+            var audioPath = self.content?.audioPath
+            if(audioPath == nil){
+                audioPath = segment.audioPath
+            }
+            uiView.setSegment(item: segment,mp3Path: (audioPath)!)
             uiView.content = self.content
         }
     }
