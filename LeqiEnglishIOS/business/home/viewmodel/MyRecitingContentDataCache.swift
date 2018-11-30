@@ -12,7 +12,7 @@ class MyRecitingContentDataCache:DataCache<[ReciteContentVO]>{
     var LOG = LOGGER("MyRecitedViewModel");
     
     static let instance = MyRecitingContentDataCache()
-    static let DATA_TYPE = "MyRecitingContentDataCache"
+    private let DATA_TYPE = "MyRecitingContentDataCache"
     static let UPDATE_TYPE = "MyRecitingContentDataCache_UPDATE_TYPE"
     
     private override init(){
@@ -24,25 +24,18 @@ class MyRecitingContentDataCache:DataCache<[ReciteContentVO]>{
     }
     
     //不在同一天就可以刷新
-    override func compareCouldRefresh(oldTime: Int64, newTime: Int64) -> Bool {
-        let updateDay = oldTime/(24*60*60*1000)
-        let currentDay = newTime/(24*60*60*1000)
-        
-        return updateDay < currentDay
-    }
+   
     
     override func getFromCache() -> [ReciteContentVO]? {
       
-        guard let datas =  SQLiteManager.instance.readData(type: MyRecitingContentDataCache.DATA_TYPE, parentId: UserDataCache.instance.getUserId())  else{
-            return nil
-        }
+        let datas =  SQLiteManager.instance.readData(type: DATA_TYPE, parentId: UserDataCache.instance.getUserId())
         
       
-        if(datas.count == 0){
+        if(datas == nil || datas?.isEmpty ?? true){
             return  nil
         }
-          var reciteContentVOs = [ReciteContentVO]()
-        for data in datas{
+        var reciteContentVOs = [ReciteContentVO]()
+        for data in datas!{
             reciteContentVOs.append(ReciteContentVO(data: String.toDictionary(data)!))
         }
         
@@ -55,23 +48,19 @@ class MyRecitingContentDataCache:DataCache<[ReciteContentVO]>{
             return
         }
       
-        
-        self.claerData()
-        
+
         for d in ds{
-             SQLiteManager.instance.insertData(id: d.id ?? "", json: d.toJSONString(), parentId:  UserDataCache.instance.getUserId(), type: MyRecitingContentDataCache.DATA_TYPE)
+             SQLiteManager.instance.insertData(id: d.id ?? "", json: d.toJSONString(), parentId: UserDataCache.instance.getUserId(), type: DATA_TYPE)
         }
         
        
     }
     
     
-        
+    //清理掉以前的数据
     override func claerData() {
         super.claerData()
-
-        
-        SQLiteManager.instance.delete(type: MyRecitingContentDataCache.DATA_TYPE, parentId: UserDataCache.instance.getUserId())
+        SQLiteManager.instance.delete(type: DATA_TYPE, parentId: UserDataCache.instance.getUserId())
         
     }
    

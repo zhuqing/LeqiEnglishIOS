@@ -16,6 +16,7 @@ class UISegmentPlayViewController: UIViewController {
     
     @IBOutlet weak var loading: UIActivityIndicatorView!
     @IBOutlet weak var share: UIBarButtonItem!
+    @IBOutlet weak var showWords: UIButton!
     var content:Content?
     
     var segment:Segment?
@@ -100,6 +101,7 @@ extension UISegmentPlayViewController{
     private func setupUI(){
        
         navigation()
+        showWords.addTarget(self, action: #selector(UISegmentPlayViewController.showWordsEventHandler), for: .touchDown)
         self.startRecite.addTarget(self, action: #selector(UISegmentPlayViewController.startReciteHandler), for: .touchDown)
     }
     
@@ -112,6 +114,14 @@ extension UISegmentPlayViewController{
     private func navigation(){
         self.back.action = #selector(UISegmentPlayViewController.backEventHandler)
         self.share.action = #selector(UISegmentPlayViewController.shareEventHandler)
+    }
+    
+    @objc private func showWordsEventHandler(){
+        let words = SegmentWordViewController()
+        
+        self.present(words, animated: true, completion: {() in
+            words.currentSegment = self.segment
+        })
     }
     
     @objc private func shareEventHandler(){

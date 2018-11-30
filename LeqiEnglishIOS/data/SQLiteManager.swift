@@ -42,10 +42,7 @@ struct SQLiteManager {
         do {
             
             db = try Connection(sqlFilePath)
-            
-            
-           
-            
+
             try db.run(cacheTable.create { t in
                 t.column(ID, primaryKey: true)
                 t.column(JSON)

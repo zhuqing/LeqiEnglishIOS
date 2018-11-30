@@ -19,9 +19,20 @@ class FileUtil{
         return documentsURL.appendingPathComponent(appFilePath)
     }
     
+    class func removeFile(filePath:String){
+        do {
+            try FileManager.default.removeItem(atPath: filePath)
+        }
+        catch{
+            print(error)
+        }
+       
+    }
+    
     //判断文件是否存在
     class func hasFile(path:String) ->Bool{
         let absulatePath = FileUtil.absulateFileUrl(filePath: path)
+   //     removeFile(filePath: absulatePath.path)
         if(FileManager.default.fileExists(atPath: absulatePath.path)){
             return true
         }

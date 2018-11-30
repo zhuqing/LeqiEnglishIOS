@@ -140,6 +140,7 @@ extension ContentInfoViewController{
             (result) in
             self.LOG.info(result.description)
             self.hasAdd2Recited()
+            MyRecitingContentDataCache.instance.claerData()
             
         }
     }
@@ -264,6 +265,7 @@ extension ContentInfoViewController{
             toSegmentInfo(segment: segment)
             return
         }
+        
         if(FileUtil.hasFile(path: path)){
             toSegmentInfo(segment: segment)
         }else{
@@ -296,12 +298,5 @@ extension ContentInfoViewController{
     }
     
     //把当前content下关联的单词，关联给用户
-    private func insertWordsToUser(_ contentId:String){
-        guard let user = UserDataCache.instance.getFromCache() else{
-            return
-        }
-        Service.post(path: "userAndWord/insertAllByContentId?contentId=\(contentId)&userId=\(user.id ?? "")"){
-            (_) in
-        }
-    }
+   
 }

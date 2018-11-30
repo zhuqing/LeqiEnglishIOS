@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 class WordDataCache:DataCache<Word>{
     static let TYPE = "WORD"
        let LOG = LOGGER("WordDataCache")

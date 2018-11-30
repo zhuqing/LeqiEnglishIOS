@@ -66,7 +66,12 @@ extension UserBoardView{
         
         Service.download(filePath: imagePath){
             (path) in
-            self.userHeaderImage.image = UIImage(contentsOfFile: path)
+            if(path.isEmpty){
+                self.userHeaderImage.image = UIImage(named: "default_head")
+            }else{
+                self.userHeaderImage.image = UIImage(contentsOfFile: path)
+            }
+            
         }
     }
     

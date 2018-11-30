@@ -24,13 +24,13 @@ class UserDataCache: DataCache<User> {
     }
     
     func getUserId()->String{
-        if(user != nil){
+        if(user != nil && user?.id != nil){
             return user?.id ?? ""
         }
         guard let user = self.getFromCache() else{
             return ""
         }
-        
+        self.user = user
         return user.id ?? ""
     }
     

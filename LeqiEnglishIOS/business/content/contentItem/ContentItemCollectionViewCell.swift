@@ -25,7 +25,12 @@ class ContentItemCollectionViewCell: UICollectionViewCell {
         
         if let imagePath = item.imagePath{
             Service.download(path: "file/download?path=\(imagePath)", filePath: imagePath){(imagePath) in
-                self.imageView.image = UIImage(contentsOfFile: imagePath)
+                if(imagePath.isEmpty){
+                    self.imageView.backgroundColor = UIColor.lightGray
+                }else{
+                    self.imageView.image = UIImage(contentsOfFile: imagePath)
+                }
+               
             }
         }else{
              self.imageView.image = UIImage(named: "obma")

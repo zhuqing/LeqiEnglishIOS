@@ -11,9 +11,14 @@ import UIKit
 class ContentInfoViewModel: DataCache<[Segment]> {
     
     private var content:Content?
+    
+    private let LOG = LOGGER("ContentInfoViewModel")
+    private let TYPE = "ContentInfoViewModel"
+    
     init(content:Content?) {
         self.content = content
     }
+    
     override func getFromService(finished: @escaping ([Segment]?) -> ()) {
         
         guard let c = content else {return}
@@ -30,5 +35,39 @@ class ContentInfoViewModel: DataCache<[Segment]> {
             
             finished(contents)
         }
+    }
+    
+    override func getFromCache() -> [Segment]? {
+        if(self.content == nil){
+            return nil
+        }
+        
+        let datas = SQLiteManager.instance.readData(type: TYPE, parentId: self.content?.id ?? "")
+
+        if(datas == nil || datas?.isEmpty ?? true){
+            return nil
+        }
+        
+        var segments = [Segment]()
+        for d in datas!{
+            segments.append(Segment(data: String.toDictionary(d)!))
+        }
+        
+        return segments
+        
+    }
+    
+    override func cacheData(data: [Segment]?) {
+        guard let arr = data else{
+            return
+        }
+        
+        if(self.content == nil){
+            return
+        }
+        for  d  in arr {
+               SQLiteManager.instance.insertData(id: d.id ?? "", json: d.toJSONString(), parentId: self.content?.id ?? "", type: TYPE)
+        }
+   
     }
 }

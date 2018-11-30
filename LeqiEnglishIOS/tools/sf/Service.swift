@@ -15,7 +15,7 @@ class Service{
     
     static let LOG = LOGGER("Service")
     
-    
+    static let isConnect = true;
     
   
     
@@ -30,6 +30,10 @@ class Service{
           let path = "file/download?path=\(filePath)"
         //拼接路径
         let httpPath = "\(host)/\(path)"
+        if(!Service.isConnect){
+            finishedCallback("")
+            return;
+        }
         //拼接项目跟目录
         
         let fileURL = FileUtil.absulateFileUrl(filePath: filePath)
@@ -53,6 +57,9 @@ class Service{
             if response.error == nil, let imagePath = response.destinationURL?.path {
                 print(imagePath)
                 finishedCallback(imagePath)
+            }else{
+                FileUtil.removeFile(filePath: filePath)
+                finishedCallback("")
             }
         }
     }
@@ -63,6 +70,37 @@ class Service{
 
         download(path:httpPath,filePath:filePath,finishedCallback:finishedCallback)
     }
+    
+    class func checkNetWork(result:@escaping (_ result:String)->()){
+        
+    }
+    
+    class func currentNetReachability() {
+        let manager = NetworkReachabilityManager(host: host)
+        manager?.listener = { status in
+            var statusStr: String?
+            switch status {
+            case .unknown:
+                statusStr = "未识别的网络"
+                isConnect = false;
+                break
+            case .notReachable:
+                statusStr = "不可用的网络(未连接)"
+                isConnect = false;
+            case .reachable:
+                if (manager?.isReachableOnWWAN)! {
+                    statusStr = "2G,3G,4G...的网络"
+                } else if (manager?.isReachableOnEthernetOrWiFi)! {
+                    statusStr = "wifi的网络";
+                }
+                 isConnect = true;
+                break
+            }
+           // self.debugLog(statusStr as Any)
+        }
+        manager?.startListening()
+    }
+  
     
     class func download(path:String,filePath:String,finishedCallback:@escaping (_ result:String)->()){
         //拼接路径
@@ -87,6 +125,9 @@ class Service{
             if response.error == nil, let imagePath = response.destinationURL?.path {
                 print(imagePath)
                 finishedCallback(imagePath)
+            }else{
+                FileUtil.removeFile(filePath: filePath)
+                finishedCallback("")
             }
         }
     }
