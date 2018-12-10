@@ -83,6 +83,7 @@ class RecordManager :NSObject{
         do {
             player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: file_path!))
             player?.delegate = self
+            player?.volume = 100
             print("歌曲长度：\(player!.duration)")
             player!.play()
             

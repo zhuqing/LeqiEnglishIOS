@@ -166,7 +166,7 @@ extension PersonalViewController{
         let alertView = UIAlertController(title: "有最新版本了", message: nil, preferredStyle: .alert)
         alertView.addAction(UIAlertAction(title: "更新", style: .default, handler: {
             (a) in
-              VersionDataCache.instance.cacheData(data: version)
+            self.updateApp(appId: version.versionCode ?? "")
         }))
         
         alertView.addAction(UIAlertAction(title: "不更新", style: .cancel, handler: nil))

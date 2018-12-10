@@ -9,21 +9,22 @@
 import Foundation
 import Alamofire
 class Service{
-//    static let host = "http://www.leqienglish.com"
+    static let host = "http://www.leqienglish.com"
     
-    static let host = "http://192.168.43.9:8080"
+//    static let host = "http://192.168.43.9:8080"
     
     static let LOG = LOGGER("Service")
     
-    static let isConnect = true;
+    static var isConnect = false;
     
   
     
   
     private static  var  alamoFireManager = { () -> SessionManager in
-        let   configuration = URLSessionConfiguration.default
-          configuration.timeoutIntervalForResource = 6 //秒
-         return Alamofire.SessionManager(configuration: configuration)
+        let  manager = Alamofire.SessionManager.default
+               manager.session.configuration.timeoutIntervalForRequest = 1
+       
+         return manager
     }()
     
     class func download(filePath:String , hasLoaded: @escaping( _ percent:CGFloat)->(),finishedCallback:@escaping (_ result:String)->()){
@@ -71,42 +72,44 @@ class Service{
         download(path:httpPath,filePath:filePath,finishedCallback:finishedCallback)
     }
     
-    class func checkNetWork(result:@escaping (_ result:String)->()){
-        
-    }
     
-    class func currentNetReachability() {
-        let manager = NetworkReachabilityManager(host: host)
-        manager?.listener = { status in
-            var statusStr: String?
-            switch status {
-            case .unknown:
-                statusStr = "未识别的网络"
-                isConnect = false;
-                break
-            case .notReachable:
-                statusStr = "不可用的网络(未连接)"
-                isConnect = false;
-            case .reachable:
-                if (manager?.isReachableOnWWAN)! {
-                    statusStr = "2G,3G,4G...的网络"
-                } else if (manager?.isReachableOnEthernetOrWiFi)! {
-                    statusStr = "wifi的网络";
-                }
-                 isConnect = true;
-                break
-            }
-           // self.debugLog(statusStr as Any)
-        }
-        manager?.startListening()
-    }
+    //
+//    class func currentNetReachability() {
+//        let manager = NetworkReachabilityManager(host: host)
+//        manager?.listener = { status in
+//           // var statusStr: String?
+//            switch status {
+//            case .unknown:
+//               
+//                Service.isConnect = false;
+//                break
+//            case .notReachable:
+//                
+//                Service.isConnect = false;
+//            case .reachable:
+//                if (manager?.isReachableOnWWAN)! {
+//                  
+//                } else if (manager?.isReachableOnEthernetOrWiFi)! {
+//                    
+//                }
+//                
+//                Service.checkNet(resultCallback:{(b) in
+//                      Service.isConnect = b;
+//                })
+//               
+//                break
+//            }
+//           // self.debugLog(statusStr as Any)
+//        }
+//        manager?.startListening()
+//    }
   
     
     class func download(path:String,filePath:String,finishedCallback:@escaping (_ result:String)->()){
         //拼接路径
         let httpPath = "\(host)/\(path)"
         //拼接项目跟目录
-       
+      
         let fileURL = FileUtil.absulateFileUrl(filePath: filePath)
        
         //如果文件存在，就不下载文件
@@ -114,6 +117,11 @@ class Service{
             LOG.info("文件已存在")
             finishedCallback(fileURL.path)
             return
+        }
+        
+        if(!Service.isConnect){
+            finishedCallback("")
+            return;
         }
         
         let destination: DownloadRequest.DownloadFileDestination = { _, _ in
@@ -135,7 +143,9 @@ class Service{
     class  func post(path:String,params:[String:String]? = nil,finishedCallback:@escaping (_ resut :[String:NSObject])->() ){
           let httpPath = getHttpPath(path)
         
-        
+        if(!Service.isConnect){
+            return;
+        }
         Alamofire.request(httpPath, method: .post, parameters:params , encoding: JSONEncoding.default, headers: nil).responseJSON(){  (response) in
 
             guard let result = response.result.value as? [String : NSObject] else {
@@ -152,6 +162,9 @@ class Service{
     }
     
     class func put(path:String,params:[String:String]? = nil, finishedCallback:@escaping (_ resut :[String:NSObject])->()){
+        if(!Service.isConnect){
+            return;
+        }
          request(method: .put, path: path, params: params, finishedCallback: finishedCallback)
     }
     
@@ -159,9 +172,10 @@ class Service{
     private class func request(method: HTTPMethod, path:String,params:[String:String]? = nil, finishedCallback:@escaping (_ resut :[String:NSObject])->()){
           let httpPath = getHttpPath(path)
         
+        if(!Service.isConnect){
+            return;
+        }
         
-       
-
         
         alamoFireManager.request(httpPath, method: method, parameters:params , encoding: JSONEncoding.default, headers: nil).responseJSON(){  (response) in
             
@@ -177,6 +191,25 @@ class Service{
         }
     }
     
+    //检查网络能不能连接到服务段
+    class func checkNet(resultCallback:@escaping (_ result :Bool)->()){
+        let httpPath = getHttpPath("/check/check")
+      
+        
+        alamoFireManager.request(httpPath, method: .get, encoding: URLEncoding.httpBody, headers: nil).responseJSON{
+            (response) in
+            
+            guard let result = response.result.value as? [String : NSObject] else {
+                LOG.error(response.result.description)
+                 Service.isConnect = false
+                resultCallback(false)
+                return
+            }
+            Service.isConnect = true
+            resultCallback(true)
+        }
+    }
+    
    
     
     //调用Get方法
@@ -184,6 +217,9 @@ class Service{
         
         let httpPath = getHttpPath(path)
     
+        if(!Service.isConnect){
+            return;
+        }
         
         Alamofire.request(httpPath, method: .get, encoding: URLEncoding.httpBody, headers: nil).responseJSON{
             (response) in

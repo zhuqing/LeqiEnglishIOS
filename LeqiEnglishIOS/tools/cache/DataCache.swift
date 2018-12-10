@@ -24,12 +24,17 @@ class DataCache<T> :RefreshDataCacheDelegate{
     
     //加载数据
     func load(finished:@escaping (_ ts:T?)->()){
+        if(!Service.isConnect){
+            loadDataFromCache(finished: finished)
+            return
+        }
         
         //是否需要刷新，如需要直接从服务端加载并
         if(!isRefresh()){//isRefresh = false ,不需要刷新
             
             if(cacheData != nil){//有已经加载的缓存数据
                 finished(cacheData!)
+                checkAndLoadNewset(finished: finished)
                 return
             }
             
@@ -39,6 +44,7 @@ class DataCache<T> :RefreshDataCacheDelegate{
             }, callback: {() in
                 if(self.cacheData != nil){
                      finished(self.cacheData)
+                     self.checkAndLoadNewset(finished: finished)
                 }else{
                     //从服务端加载并放入缓存
                     self.getFromService(finished: {
@@ -52,21 +58,46 @@ class DataCache<T> :RefreshDataCacheDelegate{
             })
             return
            
-        }else{//isRefresh = true ,需要刷新缓存
-            self.claerData()
+        }else{//isRefresh = true ,需要刷新缓存,先从缓存中加载数据，然后从服务端加载数据
+            
+            loadDataFromCache(finished: finished)
+        }
+        
+        if(!Service.isConnect){
+            return;
         }
         
         //从服务端加载并放入缓存
         getFromService(finished: {
             (ts) in
-           
-           
             self.cacheData(data: ts)
             self.cacheData = ts
             finished(ts)
         })
     }
     
+    func checkAndLoadNewset(finished:@escaping (_ ts:T?)->())  {
+      
+    }
+    
+    private func loadDataFromCache(finished:@escaping (_ ts:T?)->()){
+        if(cacheData != nil){//有已经加载的缓存数据
+            finished(cacheData!)
+            return
+        }
+        
+        
+        //异步从缓存中加载
+        DispatchQueueUtil.run(excutor: {() in
+            self.cacheData =  self.getFromCache()
+        }, callback: {() in
+            if(self.cacheData != nil){
+                finished(self.cacheData)
+            }
+            
+        })
+        
+    }
     
     //加载数据
     func loadAndThenRefresh(finished:@escaping (_ ts:T?)->()){
@@ -107,11 +138,11 @@ class DataCache<T> :RefreshDataCacheDelegate{
         }
         
         let update = self.getUpdateTime(updateTimeType)
-       
+        self.insertUpdateTime(updateTimeType)
         if(update == 0){
             return true
         }
-        self.insertUpdateTime(updateTimeType)
+       
         return self.compareCouldRefresh(oldTime: update, newTime: NSDate.getTime())
        
         
@@ -185,6 +216,11 @@ class DataCache<T> :RefreshDataCacheDelegate{
     
     //重新刷新缓存中的数据
     func refresh(){
+        
+        if(!Service.isConnect){
+            return;
+        }
+        
         DispatchQueueUtil.run(excutor: {() in
             self.getFromService(){
                 (data) in

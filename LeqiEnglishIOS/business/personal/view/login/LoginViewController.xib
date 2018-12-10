@@ -21,6 +21,7 @@
                 <outlet property="quickRegistButton" destination="G8f-ET-WfE" id="I00-sp-5YM"/>
                 <outlet property="userNameField" destination="jIT-0R-eS8" id="eBs-MP-Tvm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="weixinButton" destination="G7M-th-dDR" id="iIx-Od-tbb"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -121,18 +122,28 @@
                             <rect key="frame" x="0.0" y="503" width="375" height="100"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZvB-R6-7Nd">
-                                    <rect key="frame" x="157.5" y="0.0" width="60" height="60"/>
+                                    <rect key="frame" x="240" y="0.0" width="60" height="60"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="60" id="8RP-Qs-dbx"/>
                                         <constraint firstAttribute="width" constant="60" id="cXL-P4-s46"/>
                                     </constraints>
                                     <state key="normal" title="Button" image="qq_p"/>
                                 </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G7M-th-dDR">
+                                    <rect key="frame" x="75" y="0.0" width="60" height="60"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="60" id="Fg7-9K-zZp"/>
+                                        <constraint firstAttribute="width" constant="60" id="e1h-J5-Rob"/>
+                                    </constraints>
+                                    <state key="normal" title="Button" image="weixin_1"/>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="100" id="5T1-B6-gl1"/>
-                                <constraint firstItem="ZvB-R6-7Nd" firstAttribute="centerX" secondItem="7dq-Hs-oQ1" secondAttribute="centerX" id="8cs-XB-A8q"/>
+                                <constraint firstItem="G7M-th-dDR" firstAttribute="centerY" secondItem="ZvB-R6-7Nd" secondAttribute="centerY" id="7Uf-6x-arZ"/>
+                                <constraint firstItem="G7M-th-dDR" firstAttribute="leading" secondItem="7dq-Hs-oQ1" secondAttribute="leading" constant="75" id="9W8-fP-YZR"/>
+                                <constraint firstAttribute="trailing" secondItem="ZvB-R6-7Nd" secondAttribute="trailing" constant="75" id="M95-Qe-L3d"/>
                                 <constraint firstItem="ZvB-R6-7Nd" firstAttribute="top" secondItem="7dq-Hs-oQ1" secondAttribute="top" id="p33-ux-VPe"/>
                             </constraints>
                         </view>
@@ -191,5 +202,6 @@
         <image name="le_210" width="210" height="210"/>
         <image name="pre_pressed" width="32" height="32"/>
         <image name="qq_p" width="200" height="200"/>
+        <image name="weixin_1" width="200" height="200"/>
     </resources>
 </document>

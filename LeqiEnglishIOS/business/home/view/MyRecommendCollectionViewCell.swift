@@ -16,7 +16,7 @@ class MyRecommendCollectionViewCell: UICollectionViewCell {
     
     static let MY_RECOMMEND_VIEW_REUSE_IDENTIFIRE = "MY_RECOMMEND_VIEW_REUSE_IDENTIFIRE"
     
-   
+    static let REFRESH_ID = "MyRecommendCollectionViewCell"
     
     @IBOutlet weak var moreLabel: UILabel!
     
@@ -51,7 +51,7 @@ class MyRecommendCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         setupUI()
-        AppRefreshManager.instance.regist(id: "MyRecommendCollectionViewCell", self)
+        AppRefreshManager.instance.regist(id: MyRecommendCollectionViewCell.REFRESH_ID, self)
     }
 }
 
@@ -134,7 +134,7 @@ extension MyRecommendCollectionViewCell : RefreshDataCacheDelegate{
     }
     
     func refresh() {
-      MyRecommendViewModel.instance.claerData()
+     /// MyRecommendViewModel.instance.claerData()
        loadData()
     }
     

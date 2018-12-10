@@ -18,6 +18,8 @@ protocol MyRecitedCollectionViewCellDelegate {
 class MyRecitedCollectionViewCell: UICollectionViewCell {
     static let  MYRECITEING_COLLECTION_REUSE_IDENTIFIRE = "MYRECITEING_COLLECTION_REUSE_IDENTIFIRE"
     
+    static let REFRESH_ID = "MyRecitedCollectionViewCell"
+    
     @IBOutlet weak var myRecitNumberLabel: UILabel!
     @IBOutlet weak var add2MyReciteButton: UIButton!
     @IBOutlet weak var moreLabel: UILabel!
@@ -67,7 +69,7 @@ extension MyRecitedCollectionViewCell : RefreshDataCacheDelegate{
     }
     
     private func regist(){
-        AppRefreshManager.instance.regist(id: "MyRecitedCollectionViewCell", self)
+        AppRefreshManager.instance.regist(id: MyRecitedCollectionViewCell.REFRESH_ID, self)
        
     }
     

@@ -29,5 +29,39 @@ extension  UIViewController {
         //释放所有下级视图
         rootVC?.dismiss(animated: false, completion: nil)
     }
+    
+    func checkUpdate(){
+        VersionDataCache.instance.checkUpdate(){
+            (version) in
+            guard let ver = version else{
+                return
+            }
+            let alert = UIAlertController(title: "是否更新", message: ver.message ?? "", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "忽略", style: .cancel, handler:{
+                (_) in
+               VersionDataCache.instance.cacheData(data: version)
+                
+            }))
+            
+           
+            
+            alert.addAction(UIAlertAction(title: "下次更新", style:.default, handler: nil))
+            alert.addAction(UIAlertAction(title: "更新", style: .default, handler: {
+                (_) in
+                self.updateApp(appId: ver.versionCode ?? "")
+                  VersionDataCache.instance.cacheData(data: version)
+            }))
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    
+    //调用更新APP
+    func updateApp(appId:String) {
+        let updateUrl:URL = URL.init(string: "http://itunes.apple.com/app/id" + appId)!
+        UIApplication.shared.open(updateUrl, options: [:], completionHandler: nil)
+    }
 
 }

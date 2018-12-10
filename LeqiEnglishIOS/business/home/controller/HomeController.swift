@@ -24,6 +24,8 @@ class HomeViewController: UIViewController {
     
     var  refresher:UIRefreshControl?
     
+    private var isFirstLoader: Bool = true;
+    
     private lazy var collectionView:UICollectionView = {
         var layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: self.view.bounds.width, height: USER_BORDER_VIEW)
@@ -56,15 +58,30 @@ class HomeViewController: UIViewController {
         return collectionView
     }()
     
+   
     override func viewDidLoad() {
-        
+       
         super.viewDidLoad()
+        
         self.view.addSubview(collectionView)
         collectionView.frame = CGRect(x: 0, y: 50, width: SCREEN_WIDTH, height: self.view.bounds.height-50)
-        //addrefresh()
-        
-        //collectionView.addGestureRecognizer()
+
+       
+        Service.checkNet(resultCallback: {(b) in
+            Service.isConnect = b
+            if(!b){
+                self.showAlert(message: "无法连接到服务端")
+                
+            }else{
+                self.checkUpdate()
+                 AppRefreshManager.instance.refresh()
+            }
+        })
+       
+        self.isFirstLoader = false
     }
+    
+    
     
     
 }
@@ -75,8 +92,13 @@ extension HomeViewController{
     // @objc private func
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        AppRefreshManager.instance.refresh()
+        if(!isFirstLoader){
+             AppRefreshManager.instance.refresh(UserBoardView.REFRESH_ID,MyRecitedCollectionViewCell.REFRESH_ID,MyRecommendCollectionViewCell.REFRESH_ID)
+
+        }else{
+            
+        }
+      
     }
     
     private func initHeader(_ collectionView:UICollectionView){
@@ -104,8 +126,16 @@ extension HomeViewController{
     
     @objc private func refresh(){
         
-     
-        AppRefreshManager.instance.clearCacheThenRefresh()
+        if(!Service.isConnect){
+            closeRefresh()
+            self.showAlert(message: "无法连接到服务器！！")
+            return;
+        }
+       AppRefreshManager.instance.clearCacheThenRefresh(UserBoardView.REFRESH_ID,MyRecitedCollectionViewCell.REFRESH_ID,MyRecommendCollectionViewCell.REFRESH_ID)
+       closeRefresh()
+    }
+    
+    private func closeRefresh(){
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2){
             // self.refresher!.endRefreshing()
             self.collectionView.mj_header.endRefreshing()

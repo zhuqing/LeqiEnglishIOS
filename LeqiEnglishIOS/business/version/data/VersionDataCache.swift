@@ -14,7 +14,7 @@ class VersionDataCache: DataCache<Version> {
     
      let DATA_TYPE = "VersionDataCache"
     
-    let currentVersion:Int64 = 100
+    let currentVersion:Int64 = 100001
     
     var newVersion:Version?
     
@@ -31,18 +31,11 @@ class VersionDataCache: DataCache<Version> {
                 callback(nil)
                 return
             }
-            
-            var oldVerisonNo:Int64 = 0
-            
-            if let oldVersion = self.getFromCache() {
-                oldVerisonNo = oldVersion.versionNo ?? 0
-            }else{
-                oldVerisonNo = self.currentVersion
-            }
+           
             
             let newVersionNo = newVersion.versionNo ?? 0
             
-            if (newVersionNo > oldVerisonNo){
+            if (newVersionNo > self.currentVersion){
               
                 callback(newVersion)
             }else{
@@ -64,6 +57,7 @@ class VersionDataCache: DataCache<Version> {
     }
     
     override func claerData() {
+        
          SQLiteManager.instance.delete(type: DATA_TYPE)
     }
     

@@ -15,6 +15,8 @@ protocol UserBoardViewDelegate {
 class UserBoardView: UICollectionViewCell {
    static let USER_BOARDER_VIEW_REUSE_IDENTIFIRE = "USER_BOARDER_VIEW_REUSE_IDENTIFIRE"
    
+    static let REFRESH_ID = "UserBoardView"
+    
     @IBOutlet weak var hasRecite: UILabel!
     @IBOutlet weak var reciteWordButton: UIButton!
     
@@ -39,7 +41,7 @@ extension UserBoardView{
         initListener()
         loadData()
         loadUserImage()
-        AppRefreshManager.instance.regist(id: "UserBoardView", self)
+        AppRefreshManager.instance.regist(id: UserBoardView.REFRESH_ID, self)
     }
     
     private func loadData(){

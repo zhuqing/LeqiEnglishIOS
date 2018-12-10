@@ -70,7 +70,7 @@ extension LoginViewController{
         
 //        weiboButton.addTarget(self, action: #selector(LoginViewController.weiboHandler), for: .touchDown)
 //        
-//        weixinButton.addTarget(self, action: #selector(LoginViewController.weixinHandler), for: .touchDown)
+        weixinButton.addTarget(self, action: #selector(LoginViewController.weixinHandler), for: .touchDown)
         
         qqButton.addTarget(self, action: #selector(LoginViewController.qqHandler), for: .touchDown)
    navigation()
@@ -107,7 +107,7 @@ extension LoginViewController{
     }
     
     @objc private func weixinHandler(){
-        // thirdPartLoginHandler(SSDKPlatformType.typeWechat,type: 2)
+        thirdPartLoginHandler(SSDKPlatformType.typeWechat,type: 2)
        // SharePlateformUtil.share()
     }
     
@@ -125,7 +125,14 @@ extension LoginViewController{
             switch state{
                 
             case SSDKResponseState.success:
-                self.register(user!,type: type)
+                Service.checkNet(){
+                    (check) in
+                    
+                    if(check){
+                         self.register(user!,type: type)
+                    }
+                }
+               
                 
             case SSDKResponseState.fail:
                  self.showAlert(message: "授权失败")

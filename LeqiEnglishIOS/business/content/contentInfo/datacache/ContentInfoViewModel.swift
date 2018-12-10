@@ -57,6 +57,21 @@ class ContentInfoViewModel: DataCache<[Segment]> {
         
     }
     
+    override func checkAndLoadNewset(finished:@escaping (_ ts:[Segment]?)->())  {
+       let contentCache = SingleContent(contentId: self.content?.id ?? "")
+        contentCache.getFromService(finished: {(c) in
+            guard let con = c else{
+                return
+            }
+            
+            if(con.updateDate ?? 0  <= self.content?.updateDate ?? 0){
+                return;
+            }
+            
+           self.getFromService(finished: finished)
+        })
+    }
+    
     override func cacheData(data: [Segment]?) {
         guard let arr = data else{
             return

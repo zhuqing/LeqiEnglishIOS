@@ -27,14 +27,35 @@ class AppRefreshManager{
     }
     
     func refresh(){
+       
         for (_,ref) in refreshDic {
             ref.refresh()
         }
     }
     
+    func refresh(_ ids:String ...){
+        
+        for id in ids{
+            refreshDic[id]?.refresh()
+        }
+    }
+    
     func clearCacheThenRefresh(){
+        if(!Service.isConnect){
+            return;
+        }
         for (_,ref) in refreshDic {
             ref.clearnCacheThenRefresh()
         }
+    }
+    
+    func clearCacheThenRefresh(_ ids:String ...){
+        if(!Service.isConnect){
+            return;
+        }
+        for id in ids{
+            refreshDic[id]?.clearnCacheThenRefresh()
+        }
+        
     }
 }

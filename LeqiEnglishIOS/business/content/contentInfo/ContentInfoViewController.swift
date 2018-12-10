@@ -182,7 +182,7 @@ extension ContentInfoViewController{
             (segments) in
             if let ss = segments {
                 self.segments = ss
-                self.segments.insert(self.createContentWords(), at: 0)
+                //self.segments.insert(self.createContentWords(), at: 0)
             }else{
                 self.segments = [Segment]()
             }
@@ -198,10 +198,10 @@ extension ContentInfoViewController{
         UserSegmentDataCache(contentId: content.id ?? "").load(finished: {
             (userAndSegments) in
             guard let us = userAndSegments else{
-                 self.finishedLabel.text = "已完成0/\( self.segments.count - 1)"
+                 self.finishedLabel.text = "已完成0/\( self.segments.count)"
                 return
             }
-            self.finishedLabel.text = "已完成\(us.count)/\( self.segments.count - 1)"
+            self.finishedLabel.text = "已完成\(us.count)/\( self.segments.count)"
         })
     }
 }
@@ -211,17 +211,17 @@ extension ContentInfoViewController : UICollectionViewDataSource,UICollectionVie
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
        
       
-        if(indexPath.item == 0){
-            let word = WordListViewController()
-            self.present(word, animated: true){
-                word.loadData(content:self.content!)
-                //self.insertWordsToUser(self.content?.id ?? "")
-            }
-        }else{
+//        if(indexPath.item == 0){
+//            let word = WordListViewController()
+//            self.present(word, animated: true){
+//                word.loadData(content:self.content!)
+//                //self.insertWordsToUser(self.content?.id ?? "")
+//            }
+//        }else{
            let segment =  segments[indexPath.item]
             
            toSegment(segment: segment)
-        }
+        //}
        
     }
     
