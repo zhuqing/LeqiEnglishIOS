@@ -14,7 +14,8 @@ class VersionDataCache: DataCache<Version> {
     
      let DATA_TYPE = "VersionDataCache"
     
-    let currentVersion:Int64 = 100001
+    let currentVersion:Int64 = 1001
+    let currentVersionCODE = "1.00.1"
     
     var newVersion:Version?
     
@@ -31,12 +32,14 @@ class VersionDataCache: DataCache<Version> {
                 callback(nil)
                 return
             }
-           
+            var oldVersionNum:Int64 = self.currentVersion
+            if let oldVersion = self.getFromCache() {
+                oldVersionNum = oldVersion.versionNo ?? 0
+            }
             
             let newVersionNo = newVersion.versionNo ?? 0
             
-            if (newVersionNo > self.currentVersion){
-              
+            if (newVersionNo > oldVersionNum){
                 callback(newVersion)
             }else{
                 callback(nil)

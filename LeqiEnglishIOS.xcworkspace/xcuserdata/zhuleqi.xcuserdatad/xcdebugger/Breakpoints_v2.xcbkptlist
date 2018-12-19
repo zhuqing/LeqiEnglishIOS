@@ -90,7 +90,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/tools/sf/Service.swift"
-            timestampString = "566128288.556155"
+            timestampString = "566746389.793726"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "133"
@@ -106,7 +106,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/tools/sf/Service.swift"
-            timestampString = "566128288.557252"
+            timestampString = "566746389.797725"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "144"
@@ -122,7 +122,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/tools/sf/Service.swift"
-            timestampString = "566128288.5576119"
+            timestampString = "566746389.7984231"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "151"
@@ -138,7 +138,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/tools/sf/Service.swift"
-            timestampString = "566128288.55823"
+            timestampString = "566746389.798956"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "152"
@@ -250,7 +250,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/personal/data/UserDataCache.swift"
-            timestampString = "564740645.21796"
+            timestampString = "566208669.340052"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "30"
@@ -266,7 +266,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/data/SQLiteManager.swift"
-            timestampString = "564740645.218244"
+            timestampString = "566744995.19863"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "109"
@@ -282,7 +282,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/data/SQLiteManager.swift"
-            timestampString = "564740645.218593"
+            timestampString = "566744995.198836"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "101"
@@ -298,7 +298,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/data/SQLiteManager.swift"
-            timestampString = "564740645.218998"
+            timestampString = "566744995.199002"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "184"
@@ -330,7 +330,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/content/contentInfo/datacache/ContentInfoViewModel.swift"
-            timestampString = "566128288.561667"
+            timestampString = "566742606.049925"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "41"
@@ -346,7 +346,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/content/contentInfo/datacache/ContentInfoViewModel.swift"
-            timestampString = "566128288.562138"
+            timestampString = "566742606.0508209"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "76"
@@ -362,7 +362,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/personal/data/UserDataCache.swift"
-            timestampString = "564740645.22276"
+            timestampString = "566208669.348176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "27"
@@ -378,7 +378,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/data/SQLiteManager.swift"
-            timestampString = "564740645.223026"
+            timestampString = "566744995.1992019"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "60"
@@ -394,7 +394,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/data/SQLiteManager.swift"
-            timestampString = "564740645.223534"
+            timestampString = "566744995.199316"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "64"
@@ -470,7 +470,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/word/datacache/ShortWordsInSegmentDataCache.swift"
@@ -554,7 +554,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/word/view/shortword/shortwordcell/ShortWordCollectionViewCell.swift"
-            timestampString = "564842273.687794"
+            timestampString = "566208669.348626"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "90"
@@ -570,11 +570,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/word/view/sentence/SentenceCollectionViewCell.swift"
-            timestampString = "564842273.687863"
+            timestampString = "566208669.34878"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87">
+            startingLineNumber = "95"
+            endingLineNumber = "95">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -584,11 +584,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/word/view/sentence/SentenceCollectionViewCell.swift"
-            timestampString = "564842273.6879179"
+            timestampString = "566208669.348899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87">
+            startingLineNumber = "95"
+            endingLineNumber = "95">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -614,7 +614,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/tools/sf/Service.swift"
-            timestampString = "566128288.562987"
+            timestampString = "566746389.801769"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "73"
@@ -726,11 +726,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/home/controller/HomeController.swift"
-            timestampString = "566128288.5634741"
+            timestampString = "566746389.803265"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
             landmarkName = "refresh()"
             landmarkType = "7">
          </BreakpointContent>
@@ -742,7 +742,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/tools/sf/Service.swift"
-            timestampString = "566128288.563972"
+            timestampString = "566746389.804127"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "202"
@@ -758,7 +758,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/tools/sf/Service.swift"
-            timestampString = "566128288.564545"
+            timestampString = "566746389.804943"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "203"
@@ -774,7 +774,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/home/controller/HomeController.swift"
-            timestampString = "566128288.564845"
+            timestampString = "566746389.805794"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "66"
@@ -790,7 +790,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/home/controller/HomeController.swift"
-            timestampString = "566128288.565194"
+            timestampString = "566746389.80627"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "93"
@@ -838,7 +838,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/home/controller/HomeController.swift"
-            timestampString = "566128288.5680749"
+            timestampString = "566746389.806939"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "71"
@@ -918,7 +918,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/personal/data/UserDataCache.swift"
-            timestampString = "566119222.680692"
+            timestampString = "566208669.349475"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "119"
@@ -934,7 +934,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/tools/sf/Service.swift"
-            timestampString = "566128288.569724"
+            timestampString = "566746389.8082089"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "208"
@@ -950,7 +950,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/tools/sf/Service.swift"
-            timestampString = "566128288.569925"
+            timestampString = "566746389.808664"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "218"
@@ -982,11 +982,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/version/data/VersionDataCache.swift"
-            timestampString = "566128288.570623"
+            timestampString = "566208669.349679"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
             landmarkName = "checkUpdate(callback:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -998,11 +998,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/version/data/VersionDataCache.swift"
-            timestampString = "566128288.5712301"
+            timestampString = "566208669.349751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "getFromService(finished:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1014,11 +1014,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/version/data/VersionDataCache.swift"
-            timestampString = "566128288.571661"
+            timestampString = "566208669.349811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
             landmarkName = "getFromService(finished:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1030,7 +1030,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/content/contentInfo/datacache/ContentInfoViewModel.swift"
-            timestampString = "566128288.571934"
+            timestampString = "566742606.055078"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "61"
@@ -1078,7 +1078,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/home/controller/HomeController.swift"
-            timestampString = "566128288.573391"
+            timestampString = "566746389.810122"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "77"
@@ -1090,11 +1090,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/home/view/MyRecommendCollectionViewCell.swift"
-            timestampString = "566127540.232208"
+            timestampString = "566186615.057507"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "138"
@@ -1158,7 +1158,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/content/contentInfo/datacache/ContentInfoViewModel.swift"
-            timestampString = "566128288.578804"
+            timestampString = "566742606.055719"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "63"
@@ -1174,7 +1174,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/content/contentInfo/datacache/ContentInfoViewModel.swift"
-            timestampString = "566128288.579286"
+            timestampString = "566742606.0558439"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "67"
@@ -1196,6 +1196,214 @@
             startingLineNumber = "43"
             endingLineNumber = "43"
             landmarkName = "load(finished:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeqiEnglishIOS/business/word/controller/WordViewController.swift"
+            timestampString = "566746389.811413"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "loadData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LeqiEnglishIOS.WordViewController.loadData() -&gt; ()"
+                  moduleName = "LeqiEnglishIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhuleqi/GitHub/LeqiEnglishIOS/LeqiEnglishIOS/business/word/controller/WordViewController.swift"
+                  timestampString = "566743349.5811549"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "96"
+                  endingLineNumber = "96"
+                  offsetFromSymbolStart = "56">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;LeqiEnglishIOS.Word&gt;&gt;) -&gt; () in LeqiEnglishIOS.WordViewController.loadData() -&gt; ()"
+                  moduleName = "LeqiEnglishIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhuleqi/GitHub/LeqiEnglishIOS/LeqiEnglishIOS/business/word/controller/WordViewController.swift"
+                  timestampString = "566743349.6002049"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "48">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeqiEnglishIOS/business/word/controller/WordViewController.swift"
+            timestampString = "566746389.8683701"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "loadMoreData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LeqiEnglishIOS.WordViewController.loadMoreData() -&gt; ()"
+                  moduleName = "LeqiEnglishIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhuleqi/GitHub/LeqiEnglishIOS/LeqiEnglishIOS/business/word/controller/WordViewController.swift"
+                  timestampString = "566745618.738171"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "123"
+                  endingLineNumber = "123"
+                  offsetFromSymbolStart = "56">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;LeqiEnglishIOS.Word&gt;&gt;) -&gt; () in LeqiEnglishIOS.WordViewController.loadMoreData() -&gt; ()"
+                  moduleName = "LeqiEnglishIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhuleqi/GitHub/LeqiEnglishIOS/LeqiEnglishIOS/business/word/controller/WordViewController.swift"
+                  timestampString = "566745618.7435451"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "125"
+                  endingLineNumber = "125"
+                  offsetFromSymbolStart = "40">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeqiEnglishIOS/business/word/controller/WordViewController.swift"
+            timestampString = "566746389.871677"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "loadMoreData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeqiEnglishIOS/business/word/controller/WordViewController.swift"
+            timestampString = "566746389.8746229"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "loadMoreData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeqiEnglishIOS/business/word/controller/WordViewController.swift"
+            timestampString = "566746389.878251"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "loadData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeqiEnglishIOS/business/word/controller/WordViewController.swift"
+            timestampString = "566746389.88097"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "loadData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeqiEnglishIOS/business/word/controller/WordViewController.swift"
+            timestampString = "566746389.883695"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "loadMoreData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeqiEnglishIOS/business/word/controller/WordViewController.swift"
+            timestampString = "566746389.886135"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "loadMoreData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeqiEnglishIOS/business/word/controller/WordViewController.swift"
+            timestampString = "566746389.888622"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "loadMoreData()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

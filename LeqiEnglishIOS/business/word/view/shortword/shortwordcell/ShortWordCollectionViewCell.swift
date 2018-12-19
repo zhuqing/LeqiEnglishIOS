@@ -31,15 +31,15 @@ class ShortWordCollectionViewCell: UICollectionViewCell {
     
     private lazy var collectionView:UICollectionView = {
         var layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: SCREEN_WIDTH-40, height: 70)
+       
         layout.minimumLineSpacing = 2
-        layout.minimumInteritemSpacing = 0
+        layout.minimumInteritemSpacing = 2
         layout.scrollDirection = .vertical
         
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.showsVerticalScrollIndicator = true
         collectionView.isPagingEnabled = false
-        collectionView.bounces = true
+        collectionView.bounces = false
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -136,7 +136,7 @@ extension ShortWordCollectionViewCell: UICollectionViewDataSource,UICollectionVi
         let cell =    collectionView.dequeueReusableCell(withReuseIdentifier: SentenceCollectionViewCell.INDENTIFER, for: indexPath) as? SentenceCollectionViewCell
 
         
-        cell?.sentence = self.sentences[indexPath.item]
+        cell?.updateItem(sentence: self.sentences[indexPath.item], index: indexPath.item+1) 
 
         return cell!
     }

@@ -85,4 +85,9 @@ class ContentInfoViewModel: DataCache<[Segment]> {
         }
    
     }
+    
+    override func claerData() {
+       super.claerData()
+         SQLiteManager.instance.delete(type: TYPE, parentId: self.content?.id ?? "")
+    }
 }

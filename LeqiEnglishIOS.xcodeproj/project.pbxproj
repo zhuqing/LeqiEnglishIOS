@@ -144,6 +144,7 @@
 		4EC98139217079FE001A2E9B /* WordListSimpleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EC98137217079FD001A2E9B /* WordListSimpleViewController.xib */; };
 		4EC9813B21708261001A2E9B /* RefreshDataCacheDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC9813A21708261001A2E9B /* RefreshDataCacheDelegate.swift */; };
 		4EDAFEF8218F10A800700E7C /* SimpleWordInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDAFEF7218F10A800700E7C /* SimpleWordInfo.swift */; };
+		4EDB86E421C782CF0013D71F /* PageDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDB86E321C782CF0013D71F /* PageDataCache.swift */; };
 		4EE198D621AAC7490063B82B /* SentenceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE198D421AAC7490063B82B /* SentenceCollectionViewCell.swift */; };
 		4EE198D721AAC7490063B82B /* SentenceCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EE198D521AAC7490063B82B /* SentenceCollectionViewCell.xib */; };
 		4EE46725216B3AED005232FF /* LongDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE46724216B3AED005232FF /* LongDataCache.swift */; };
@@ -162,10 +163,6 @@
 		4EF2F06220710C1500B7F447 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2F06120710C1500B7F447 /* Content.swift */; };
 		4EF2F06520710C7A00B7F447 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2F06420710C7A00B7F447 /* Entity.swift */; };
 		4EF2F088207196BC00B7F447 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2F087207196BC00B7F447 /* Service.swift */; };
-		4EFB895521A28591008C25DC /* launchImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EFB895421A28591008C25DC /* launchImage.png */; };
-		4EFB895721A285E0008C25DC /* slogan.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EFB895621A285DF008C25DC /* slogan.png */; };
-		4EFB895921A285FB008C25DC /* le_240.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EFB895821A285FB008C25DC /* le_240.png */; };
-		4EFB895B21A286A9008C25DC /* userSet.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EFB895A21A286A9008C25DC /* userSet.xcassets */; };
 		4EFB895F21A287DC008C25DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EFB895E21A287DC008C25DC /* LaunchScreen.storyboard */; };
 		4EFB896721A29722008C25DC /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFB896621A29722008C25DC /* ShareView.swift */; };
 		4EFB896921A2C459008C25DC /* ShareViewActionSheetDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFB896821A2C459008C25DC /* ShareViewActionSheetDelegate.swift */; };
@@ -323,6 +320,7 @@
 		4EC98137217079FD001A2E9B /* WordListSimpleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordListSimpleViewController.xib; sourceTree = "<group>"; };
 		4EC9813A21708261001A2E9B /* RefreshDataCacheDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshDataCacheDelegate.swift; sourceTree = "<group>"; };
 		4EDAFEF7218F10A800700E7C /* SimpleWordInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleWordInfo.swift; sourceTree = "<group>"; };
+		4EDB86E321C782CF0013D71F /* PageDataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageDataCache.swift; sourceTree = "<group>"; };
 		4EE198D421AAC7490063B82B /* SentenceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentenceCollectionViewCell.swift; sourceTree = "<group>"; };
 		4EE198D521AAC7490063B82B /* SentenceCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SentenceCollectionViewCell.xib; sourceTree = "<group>"; };
 		4EE46724216B3AED005232FF /* LongDataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongDataCache.swift; sourceTree = "<group>"; };
@@ -338,15 +336,11 @@
 		4EF2EFD6206909D900B7F447 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EF2EFD8206909D900B7F447 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4EF2EFDB206909D900B7F447 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		4EF2EFDD206909D900B7F447 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../../../../../GitHub/LeqiEnglishIOS/LeqiEnglishIOS/Assets.xcassets; sourceTree = BUILT_PRODUCTS_DIR; };
+		4EF2EFDD206909D900B7F447 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "/Users/zhuleqi/Library/Developer/Xcode/DerivedData/LeqiEnglishIOS-bpofepcoizydxcapewptfgwsxwnr/Build/Products/Debug-iphoneos/../../../../../../../../GitHub/LeqiEnglishIOS/LeqiEnglishIOS/Assets.xcassets"; sourceTree = "<absolute>"; };
 		4EF2EFE2206909D900B7F447 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EF2F06120710C1500B7F447 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		4EF2F06420710C7A00B7F447 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		4EF2F087207196BC00B7F447 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
-		4EFB895421A28591008C25DC /* launchImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchImage.png; sourceTree = "<group>"; };
-		4EFB895621A285DF008C25DC /* slogan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slogan.png; sourceTree = "<group>"; };
-		4EFB895821A285FB008C25DC /* le_240.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = le_240.png; sourceTree = "<group>"; };
-		4EFB895A21A286A9008C25DC /* userSet.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = userSet.xcassets; sourceTree = "<group>"; };
 		4EFB895E21A287DC008C25DC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4EFB896021A29100008C25DC /* LeqiEnglishIOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LeqiEnglishIOS.entitlements; sourceTree = "<group>"; };
 		4EFB896621A29722008C25DC /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
@@ -456,9 +450,6 @@
 		4E3C2B1F21A24E9900854B24 /* welcome */ = {
 			isa = PBXGroup;
 			children = (
-				4EFB895821A285FB008C25DC /* le_240.png */,
-				4EFB895421A28591008C25DC /* launchImage.png */,
-				4EFB895621A285DF008C25DC /* slogan.png */,
 				4E3C2B2621A2630E00854B24 /* LaunchViewController.swift */,
 				4EFB895E21A287DC008C25DC /* LaunchScreen.storyboard */,
 			);
@@ -837,6 +828,7 @@
 				4E8E9CE0214CFBAB0004F39B /* common */,
 				4E8E9CDD214CF8790004F39B /* DataCache.swift */,
 				4EC9813A21708261001A2E9B /* RefreshDataCacheDelegate.swift */,
+				4EDB86E321C782CF0013D71F /* PageDataCache.swift */,
 			);
 			path = cache;
 			sourceTree = "<group>";
@@ -1250,7 +1242,6 @@
 				4EF2EFD8206909D900B7F447 /* ViewController.swift */,
 				4EF2EFDD206909D900B7F447 /* Assets.xcassets */,
 				4EF2EFE2206909D900B7F447 /* Info.plist */,
-				4EFB895A21A286A9008C25DC /* userSet.xcassets */,
 			);
 			path = LeqiEnglishIOS;
 			sourceTree = "<group>";
@@ -1376,14 +1367,10 @@
 				4E8E9CD1214C96990004F39B /* UserBoardView.xib in Resources */,
 				4E45FB5E2154D7F100A5F03F /* WordInfoViewController.xib in Resources */,
 				4E891F8D2160AF1400A1893A /* SimpleTextCollectionViewCell.xib in Resources */,
-				4EFB895B21A286A9008C25DC /* userSet.xcassets in Resources */,
 				4E5E3AA42147A52400E88554 /* ContentItemPrecentCollectionViewCell.xib in Resources */,
-				4EFB895721A285E0008C25DC /* slogan.png in Resources */,
 				4EFB895F21A287DC008C25DC /* LaunchScreen.storyboard in Resources */,
 				4EF2EFDE206909D900B7F447 /* Assets.xcassets in Resources */,
 				4E8E9CF6214F9E880004F39B /* playsegment.storyboard in Resources */,
-				4EFB895921A285FB008C25DC /* le_240.png in Resources */,
-				4EFB895521A28591008C25DC /* launchImage.png in Resources */,
 				4EC2E655218C32200036D48E /* SimpleWordInfoViewController.xib in Resources */,
 				4E8E9CF2214F58BA0004F39B /* SegmentViewItem.xib in Resources */,
 				4EF12114218AA1FF007BFDD8 /* ActionSheetDialogViewController.xib in Resources */,
@@ -1519,6 +1506,7 @@
 				4E87709921A95E0700BD6F92 /* ShortWordsSampleViewController.swift in Sources */,
 				4E2DF4A5214B8C0100FA9BB0 /* String_extension.swift in Sources */,
 				4E9C5BB62151091C0079F985 /* SegmentPlayItem.swift in Sources */,
+				4EDB86E421C782CF0013D71F /* PageDataCache.swift in Sources */,
 				4E8E9CD8214CE9D60004F39B /* MyRecommendCollectionViewCell.swift in Sources */,
 				4E45FB4121532D9600A5F03F /* RecordManager.swift in Sources */,
 				4EF2EFD9206909D900B7F447 /* ViewController.swift in Sources */,
@@ -1642,6 +1630,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1649,6 +1638,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1700,6 +1690,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1707,6 +1698,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1744,7 +1736,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HFKQZU25VP;
 				INFOPLIST_FILE = LeqiEnglishIOS/Info.plist;
@@ -1753,12 +1745,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.leqienglish;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Leqienglish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "CommonCrypto-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s arm64e arm64 armv6";
 			};
 			name = Debug;
@@ -1769,7 +1761,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HFKQZU25VP;
 				INFOPLIST_FILE = LeqiEnglishIOS/Info.plist;
@@ -1778,12 +1770,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.leqienglish;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Leqienglish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "CommonCrypto-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s arm64e arm64 armv6";
 			};
 			name = Release;

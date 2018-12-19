@@ -11,103 +11,299 @@ import UIKit
 
 
 class WordViewController:UIViewController{
+     private let LOG = LOGGER("WordViewController")
+    
+    private var currentPage = 0;
+    private var lastSize = 0
+    
+    private var loading = false;
+    
     @IBOutlet weak var rootView: UIView!
-    private lazy var pageTitleView:PageTitleView = { [weak self] in
-        let titleFrame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: TITLE_VIEW_HEIGHT)
-        let titles=["已背" , "未背"]
-        let pageTitleView = PageTitleView(frame:titleFrame,titles:titles)
-        pageTitleView.pageTitleViewDelegate = self
-        return pageTitleView
-        }()
+   
+    var wordDic = [Int:[Word]]()
+    
+    // 顶部刷新
+    let header = MJRefreshNormalHeader()
+    // 底部刷新
+    let footer = MJRefreshAutoNormalFooter()
     
     
-    private lazy var pageContentView:PageContentView = { [weak self] in
-        let contentViewH:CGFloat = SCREEN_HEIGHT - (STATUS_BAR_HEIGHT+NAVIGATION_BAR_HEIGHT+TITLE_VIEW_HEIGHT)
+    
+    private var wordList:[Word]? = [Word]();
+    
+    
+    
+    private lazy var collectionView:UICollectionView = {
+        var layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: SCREEN_WIDTH-40, height: 160)
+        layout.minimumLineSpacing = 2
+        layout.minimumInteritemSpacing = 0
+        layout.scrollDirection = .vertical
+        layout.headerReferenceSize = CGSize(width: SCREEN_WIDTH-10, height: 40)
         
-        let frame = CGRect(x: 0, y: TITLE_VIEW_HEIGHT, width: SCREEN_WIDTH, height: contentViewH)
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        collectionView.showsVerticalScrollIndicator = true
+        collectionView.isPagingEnabled = false
+        collectionView.bounces = true
         
-        var childVCS = [UIViewController]()
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.backgroundColor = UIColor.white
+        collectionView.autoresizingMask = [.flexibleHeight,.flexibleWidth]
         
+        collectionView.register(UINib(nibName: "WordInfoCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: WordInfoCollectionViewCell.WORD_INFO_CELL_INDENTIFY)
         
-        let unrecite = WordListSimpleViewController()
-        self?.loadUnReciteData(unrecite)
-        childVCS.append(unrecite)
-        
-        
-        let hasRecite = WordListSimpleViewController()
-        self?.loadHasReciteData(hasRecite)
-        childVCS.append(hasRecite)
-        
-        
-        let pageContentView = PageContentView(frame: frame, childVCs: childVCS, parentVC: self)
-        
-        pageContentView.delegate = self
-  
-        return pageContentView
+        collectionView.register(UINib(nibName: "WordHeaderCollectionViewCell", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: WordHeaderCollectionViewCell.WORD_HEADER_INDENTIFY)
+        // collectionView
+        return collectionView
     }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+        self.rootView.addSubview(collectionView)
+        collectionView.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: rootView.bounds.height)
+        self.addHeaderRefresh(collectionView)
+        self.addFooterRefresh(collectionView)
+        loadData()
+        
     }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 extension WordViewController{
-    private func loadUnReciteData(_ wordListViewController:WordListSimpleViewController){
-    //    wordListViewController.navigationBar.isHidden = true
-        guard let user = UserDataCache.instance.getFromCache() else{
-            return
+    @objc func loadData(){
+        if(loading){
+            return;
+        }
+        loading = true
+       
+        MyWords.instance.load(){
+            (words) in
+            self.wordList?.removeAll()
+             self.header.endRefreshing()
+            guard let wordList = words else {
+                self.collectionView.reloadData()
+                 self.loading = false
+                return
+            }
+            
+            self.wordList?.append(contentsOf: wordList)
+            self.resetWords()
+           
+            
+            self.collectionView.reloadData()
+            self.currentPage = (self.wordList?.count ?? 0) / PAGE_SIZE + 1
+            self.lastSize = (self.wordList?.count ?? 0 ) % PAGE_SIZE
+             self.loading = false
         }
         
-        let dataCache = LoadWordsDataCache(path: "english/word/findUnReciteByUserId?userId=\(user.id ?? "")")
-        
-        dataCache.load(finished: {
-            (words) in
-            wordListViewController.wordList = words
-        })
     }
     
-    private func loadHasReciteData(_ wordListViewController:WordListSimpleViewController){
-       //  wordListViewController.navigationBar.isHidden = true
-        guard let user = UserDataCache.instance.getFromCache() else{
-            return
+    func loadMoreData(){
+        if(loading){
+            return;
         }
-        
-        let dataCache = LoadWordsDataCache(path: "english/word/findHasReciteByUserId?userId=\(user.id ?? "")")
-        
-        dataCache.load(finished: {
+        loading = true
+        MyWords.instance.loadMore(page: currentPage, pageSize: PAGE_SIZE){
             (words) in
-            wordListViewController.wordList = words
-        })
+            self.loading = false
+            self.footer.endRefreshing()
+            guard let wordList = words else {
+                return
+            }
+            //没有数据
+            if(wordList.count == 0){
+             
+                self.footer.setTitle("没有更多数据了", for: .idle)
+                return;
+            }
+            if(self.lastSize != 0){
+                self.wordList?.append(contentsOf:  wordList.dropFirst(self.lastSize))
+                self.lastSize = 0;
+             
+            }else{
+              self.wordList?.append(contentsOf:    wordList)
+            }
+            if(wordList.count == PAGE_SIZE){
+                self.currentPage += 1
+            }else{
+                self.lastSize = wordList.count
+                self.footer.setTitle("没有更多数据了", for: .idle)
+            }
+                
+            
+            self.resetWords()
+          
+            self.collectionView.reloadData()
+            
+        }
     }
+    
+    private func addHeaderRefresh(_ collection:UICollectionView){
+        header.setRefreshingTarget(self, refreshingAction: #selector(WordViewController.refreshHandler))
+        header.backgroundColor = UIColor.white
+        // 设置自动切换透明度(在导航栏下面自动隐藏)
+        header.isAutomaticallyChangeAlpha = true;
+        header.setTitle("下拉刷新", for: .idle)
+        header.setTitle("释放刷新", for: .pulling)
+        header.setTitle("正在刷新", for: .refreshing)
+        
+        //修改字体
+        header.stateLabel.font = UIFont.systemFont(ofSize: 15)
+        header.lastUpdatedTimeLabel.font = UIFont.systemFont(ofSize: 13)
+        
+        //修改文字颜色
+        header.stateLabel.textColor = UIColor.red
+        //  header.lastUpdatedTimeLabel.textColor = UIColor.blue
+        
+        collectionView.mj_header  = header
+    }
+    
+    private func addFooterRefresh(_ collection:UICollectionView){
+        footer.setRefreshingTarget(self, refreshingAction: #selector(WordViewController.addMoreHandler))
+        footer.backgroundColor = UIColor.white
+        // 设置自动切换透明度(在导航栏下面自动隐藏)
+        footer.isAutomaticallyChangeAlpha = true;
+        footer.setTitle("上滑刷新", for: .idle)
+        footer.setTitle("释放刷新", for: .pulling)
+        footer.setTitle("正在刷新", for: .refreshing)
+        
+        //修改字体
+        footer.stateLabel.font = UIFont.systemFont(ofSize: 15)
+        
+        //修改文字颜色
+        footer.stateLabel.textColor = UIColor.red
+        //  header.lastUpdatedTimeLabel.textColor = UIColor.blue
+        
+        collectionView.mj_footer = footer
+    }
+    
+    @objc private func refreshHandler(){
+          MyWords.instance.claerData()
+        loadData()
+    }
+    
+    @objc private func addMoreHandler(){
+        loadMoreData()
+    }
+    
+    
+    
 }
 
-//MARK 界面和数据
+//MARK 实现 UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
+extension WordViewController: UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let wordInfoView = WordInfoViewController()
+        
+        self.present(wordInfoView, animated: true){
+            wordInfoView.word = self.wordDic[indexPath.section]?[indexPath.item]
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        let header:WordHeaderCollectionViewCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: WordHeaderCollectionViewCell.WORD_HEADER_INDENTIFY, for: indexPath) as! WordHeaderCollectionViewCell
+        
+        let word = self.wordDic[indexPath.section]![indexPath.item]
+        
+        header.setHeader((word.word?.first?.description.uppercased())!)
+        header.backgroundColor = UIColor.lightGray
+        return header
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return self.wordDic.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        LOG.error("section = \(section) ")
+        return  (self.wordDic[section]?.count)!
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell =    collectionView.dequeueReusableCell(withReuseIdentifier: WordInfoCollectionViewCell.WORD_INFO_CELL_INDENTIFY, for: indexPath) as? WordInfoCollectionViewCell
+        
+        LOG.error("\(indexPath.section) , \(indexPath.item)")
+        
+        cell?.word = self.wordDic[indexPath.section]?[indexPath.item]
+        
+        if(self.wordDic[indexPath.section]?.count == indexPath.item+1){
+            cell?.hiddenBottomView()
+        }else{
+            cell?.showBottomView()
+        }
+        
+        return cell!
+    }
+    
+    
+}
+
 extension WordViewController{
-    private func setupUI(){
-      
-      // automaticallyAdjustsScrollViewInsets = false
-
-        rootView.addSubview(pageTitleView)
-      
-        rootView.addSubview(pageContentView)
-    }
-    
-    private func loadData(){
+    private  func toDic(words:[Word]) ->[Int:[Word]]{
+        var wordDic = [Int:[Word]]()
+        
+        let wordList = words.sorted(by: {
+            (w1,w2) in
+            
+            return (w1.word?.compare(w2.word!))! != ComparisonResult.orderedDescending
+        })
+        
+        var section  = 0
+        var lastChar = wordList[0].word?.lowercased().first!
+        
+        for word in wordList {
+            guard let firstLetter = word.word?.lowercased().first else {
+                continue
+            }
+            
+            if (firstLetter != lastChar){
+                section += 1
+                lastChar = firstLetter
+            }
+            
+            if(wordDic[section] == nil){
+                wordDic[section]  = [Word]()
+            }
+            
+            wordDic[section]!.append(word)
+        }
+        
+        return wordDic
         
     }
+    
+    private func resetWords(){
+        self.wordDic.removeAll()
+        if(self.wordList?.count == 0){
+            
+            return
+        }
+        
+        self.wordDic = toDic(words: self.wordList!)
+        
+        
+    }
+    
+    
 }
 
-extension WordViewController :PageTitleViewDelegate {
-    func pageTitleView(pageTitleView: PageTitleView, selectIndex index: Int) {
-        pageContentView.setPageIndex(index: index)
-    }
-}
-
-//MARK: 实现PageContentViewDelegate
-extension WordViewController:PageContentViewDelegate{
-    func pageContentView(pageContentView: PageContentView, progress: CGFloat, sourceIdex: Int, targetIndex: Int) {
-        pageTitleView.moveScrollLine(progress: progress, sourceIndex: sourceIdex, targetIndex: targetIndex)
-    }
-}

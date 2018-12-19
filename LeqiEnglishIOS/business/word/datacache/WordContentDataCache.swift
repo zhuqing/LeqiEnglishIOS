@@ -8,6 +8,7 @@
 
 import UIKit
 
+//没有加载缓存
 class WordContentDataCache: DataCache<[Word]> {
     var content:Content
     

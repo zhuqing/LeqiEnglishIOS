@@ -111,11 +111,9 @@ extension PersonalViewController{
         
         catalogs.append(createCatalog(id:"03",title:"演讲背诵"))
         catalogs.append(createCatalog(id:"04",title:"单词背诵"))
-        if let version = VersionDataCache.instance.getFromCache() {
-             catalogs.append(createCatalog(id:"02",title:"当前版本\t\(version.versionCode ?? "1.0.1")"))
-        }else{
-             catalogs.append(createCatalog(id:"02",title:"当前版本\t 1.0.1"))
-        }
+      
+             catalogs.append(createCatalog(id:"02",title:"当前版本\t \(VersionDataCache.instance.currentVersionCODE)"))
+        
        
        
         

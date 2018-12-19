@@ -73,6 +73,8 @@ class MyRecommendViewModel: DataCache<[Content]> {
         super.claerData()
         SQLiteManager.instance.delete(type: DATA_TYPE, parentId: UserDataCache.instance.getUserId())
         
+        
+        
     }
 }
     

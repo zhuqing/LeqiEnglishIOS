@@ -19,7 +19,7 @@ class ShortWordsSampleViewController: UIViewController {
     
     private lazy var collectionView:UICollectionView = {
         var layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: SCREEN_WIDTH-40, height: 300)
+        layout.itemSize = CGSize(width: SCREEN_WIDTH-40, height: 320)
         layout.minimumLineSpacing = 2
         layout.minimumInteritemSpacing = 0
       
@@ -28,7 +28,7 @@ class ShortWordsSampleViewController: UIViewController {
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.isPagingEnabled = false
-        collectionView.bounces = false
+        collectionView.bounces = true
         
         collectionView.dataSource = self
         collectionView.delegate = self

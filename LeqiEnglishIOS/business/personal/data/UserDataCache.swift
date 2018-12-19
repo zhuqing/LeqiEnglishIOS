@@ -175,6 +175,7 @@ class UserDataCache: DataCache<User> {
         claerData()
         SQLiteManager.instance.insertData(id: user.id!, json: String.toString(user.toDictionary())!, type: UserDataCache.USER_TYPE)
         self.user = data
+        AppRefreshManager.instance.clearCacheThenRefresh()
     }
     
     

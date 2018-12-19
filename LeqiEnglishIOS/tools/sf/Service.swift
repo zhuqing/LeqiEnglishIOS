@@ -9,9 +9,9 @@
 import Foundation
 import Alamofire
 class Service{
-    static let host = "http://www.leqienglish.com"
+//    static let host = "http://www.leqienglish.com"
     
-//    static let host = "http://192.168.43.9:8080"
+    static let host = "http://192.168.43.9:8080"
     
     static let LOG = LOGGER("Service")
     

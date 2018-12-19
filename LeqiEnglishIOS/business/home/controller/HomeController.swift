@@ -93,7 +93,7 @@ extension HomeViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if(!isFirstLoader){
-             AppRefreshManager.instance.refresh(UserBoardView.REFRESH_ID,MyRecitedCollectionViewCell.REFRESH_ID,MyRecommendCollectionViewCell.REFRESH_ID)
+        AppRefreshManager.instance.refresh(UserBoardView.REFRESH_ID,MyRecitedCollectionViewCell.REFRESH_ID,MyRecommendCollectionViewCell.REFRESH_ID)
 
         }else{
             
@@ -119,6 +119,7 @@ extension HomeViewController{
       //  header.lastUpdatedTimeLabel.textColor = UIColor.blue
         
         collectionView.mj_header  = header
+      
         
     }
     

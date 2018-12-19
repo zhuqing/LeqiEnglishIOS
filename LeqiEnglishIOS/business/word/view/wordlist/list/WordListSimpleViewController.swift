@@ -16,6 +16,11 @@ class WordListSimpleViewController: UIViewController {
     
     var wordDic = [Int:[Word]]()
     
+    // 顶部刷新
+    let header = MJRefreshNormalHeader()
+    // 底部刷新
+    let footer = MJRefreshAutoNormalFooter()
+    
     var wordList:[Word]? = [Word](){
         didSet{
             self.resetWords()
@@ -46,7 +51,7 @@ class WordListSimpleViewController: UIViewController {
         collectionView.register(UINib(nibName: "WordInfoCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: WordInfoCollectionViewCell.WORD_INFO_CELL_INDENTIFY)
         
         collectionView.register(UINib(nibName: "WordHeaderCollectionViewCell", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: WordHeaderCollectionViewCell.WORD_HEADER_INDENTIFY)
-        
+       // collectionView
         return collectionView
     }()
     
@@ -54,6 +59,8 @@ class WordListSimpleViewController: UIViewController {
         super.viewDidLoad()
         self.rootView.addSubview(collectionView)
         collectionView.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: rootView.bounds.height)
+      //  self.addHeaderRefresh(collectionView)
+       // self.addFooterRefresh(collectionView)
        
     }
     
@@ -85,6 +92,52 @@ extension WordListSimpleViewController{
         }
     }
     
+   private func addHeaderRefresh(_ collection:UICollectionView){
+        header.setRefreshingTarget(self, refreshingAction: #selector(WordListSimpleViewController.refreshHandler))
+        header.backgroundColor = UIColor.white
+        // 设置自动切换透明度(在导航栏下面自动隐藏)
+        header.isAutomaticallyChangeAlpha = true;
+        header.setTitle("下拉刷新", for: .idle)
+        header.setTitle("释放刷新", for: .pulling)
+        header.setTitle("正在刷新", for: .refreshing)
+        
+        //修改字体
+        header.stateLabel.font = UIFont.systemFont(ofSize: 15)
+        header.lastUpdatedTimeLabel.font = UIFont.systemFont(ofSize: 13)
+        
+        //修改文字颜色
+        header.stateLabel.textColor = UIColor.red
+        //  header.lastUpdatedTimeLabel.textColor = UIColor.blue
+        
+        collectionView.mj_header  = header
+    }
+    
+    private func addFooterRefresh(_ collection:UICollectionView){
+        footer.setRefreshingTarget(self, refreshingAction: #selector(WordListSimpleViewController.addMoreHandler))
+        footer.backgroundColor = UIColor.white
+        // 设置自动切换透明度(在导航栏下面自动隐藏)
+        footer.isAutomaticallyChangeAlpha = true;
+        footer.setTitle("上滑刷新", for: .idle)
+        footer.setTitle("释放刷新", for: .pulling)
+        footer.setTitle("正在刷新", for: .refreshing)
+        
+        //修改字体
+        footer.stateLabel.font = UIFont.systemFont(ofSize: 15)
+      
+        //修改文字颜色
+        footer.stateLabel.textColor = UIColor.red
+        //  header.lastUpdatedTimeLabel.textColor = UIColor.blue
+        
+        collectionView.mj_footer = footer
+    }
+    
+    @objc private func refreshHandler(){
+    
+    }
+    
+    @objc private func addMoreHandler(){
+        
+    }
    
     
     
@@ -147,13 +200,14 @@ extension WordListSimpleViewController{
         
         let wordList = words.sorted(by: {
             (w1,w2) in
-            
-            return (w1.word?.compare(w2.word!))! != ComparisonResult.orderedDescending
+            let word1Str = w1.word?.lowercased()
+            let word2Str = w2.word?.lowercased()
+            return (word1Str!.compare(word2Str!)) != ComparisonResult.orderedDescending
         })
         
         var section  = 0
         var lastChar = wordList[0].word?.lowercased().first!
-        
+       
         for word in wordList {
             guard let firstLetter = word.word?.lowercased().first else {
                 continue

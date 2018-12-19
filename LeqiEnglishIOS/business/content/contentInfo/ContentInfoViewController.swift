@@ -141,6 +141,7 @@ extension ContentInfoViewController{
             self.LOG.info(result.description)
             self.hasAdd2Recited()
             MyRecitingContentDataCache.instance.claerData()
+            MyRecommendViewModel.instance.claerData()
             
         }
     }
