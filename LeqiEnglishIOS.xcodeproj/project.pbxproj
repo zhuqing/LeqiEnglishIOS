@@ -111,6 +111,12 @@
 		4E990628214264EA00EE0D55 /* word.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E990626214264EA00EE0D55 /* word.storyboard */; };
 		4E99062A2142650600EE0D55 /* personal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E9906292142650600EE0D55 /* personal.storyboard */; };
 		4E9906332142779E00EE0D55 /* NavigationBarItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9906322142779E00EE0D55 /* NavigationBarItemExtension.swift */; };
+		4E9B8B9021CC8DEB00B5AED3 /* PlayBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9B8B8F21CC8DEB00B5AED3 /* PlayBarView.swift */; };
+		4E9B8B9221CC8E3D00B5AED3 /* SegmentPlayEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9B8B9121CC8E3D00B5AED3 /* SegmentPlayEntity.swift */; };
+		4E9B8B9921CC98E100B5AED3 /* PlayContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9B8B9721CC98E100B5AED3 /* PlayContentViewController.swift */; };
+		4E9B8B9A21CC98E100B5AED3 /* PlayContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E9B8B9821CC98E100B5AED3 /* PlayContentViewController.xib */; };
+		4E9B8B9D21CC9CDC00B5AED3 /* AllFloatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9B8B9C21CC9CDC00B5AED3 /* AllFloatButton.swift */; };
+		4E9B8BA021CCA4B100B5AED3 /* MyContentDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9B8B9F21CCA4B100B5AED3 /* MyContentDataCache.swift */; };
 		4E9C5B9D2150A18C0079F985 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9C5B9C2150A18B0079F985 /* Logger.swift */; };
 		4E9C5B9F2150A4950079F985 /* MyRecitingContentDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9C5B9E2150A4950079F985 /* MyRecitingContentDataCache.swift */; };
 		4E9C5BA32150D2E70079F985 /* UserDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9C5BA22150D2E70079F985 /* UserDataCache.swift */; };
@@ -287,6 +293,12 @@
 		4E990627214264EA00EE0D55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LeqiEnglishIOS/storyboard/Base.lproj/word.storyboard; sourceTree = "<group>"; };
 		4E9906292142650600EE0D55 /* personal.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = personal.storyboard; sourceTree = "<group>"; };
 		4E9906322142779E00EE0D55 /* NavigationBarItemExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarItemExtension.swift; sourceTree = "<group>"; };
+		4E9B8B8F21CC8DEB00B5AED3 /* PlayBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayBarView.swift; sourceTree = "<group>"; };
+		4E9B8B9121CC8E3D00B5AED3 /* SegmentPlayEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentPlayEntity.swift; sourceTree = "<group>"; };
+		4E9B8B9721CC98E100B5AED3 /* PlayContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayContentViewController.swift; sourceTree = "<group>"; };
+		4E9B8B9821CC98E100B5AED3 /* PlayContentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayContentViewController.xib; sourceTree = "<group>"; };
+		4E9B8B9C21CC9CDC00B5AED3 /* AllFloatButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFloatButton.swift; sourceTree = "<group>"; };
+		4E9B8B9F21CCA4B100B5AED3 /* MyContentDataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyContentDataCache.swift; sourceTree = "<group>"; };
 		4E9C5B9C2150A18B0079F985 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		4E9C5B9E2150A4950079F985 /* MyRecitingContentDataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRecitingContentDataCache.swift; sourceTree = "<group>"; };
 		4E9C5BA22150D2E70079F985 /* UserDataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataCache.swift; sourceTree = "<group>"; };
@@ -955,6 +967,7 @@
 		4E9906222142648C00EE0D55 /* main */ = {
 			isa = PBXGroup;
 			children = (
+				4E9B8B9B21CC9CBE00B5AED3 /* floatButton */,
 				4E21D3C5218FD78E00B9C02A /* load */,
 				4EF12110218AA1C7007BFDD8 /* sheetdialog */,
 				4E891F892160AEDC00A1893A /* collectioncell */,
@@ -998,6 +1011,41 @@
 			path = extension;
 			sourceTree = "<group>";
 		};
+		4E9B8B8D21CC8D3C00B5AED3 /* player */ = {
+			isa = PBXGroup;
+			children = (
+				4E9B8B9E21CCA47400B5AED3 /* model */,
+				4E9B8B8E21CC8DB600B5AED3 /* playbar */,
+				4E9B8B9721CC98E100B5AED3 /* PlayContentViewController.swift */,
+				4E9B8B9821CC98E100B5AED3 /* PlayContentViewController.xib */,
+			);
+			path = player;
+			sourceTree = "<group>";
+		};
+		4E9B8B8E21CC8DB600B5AED3 /* playbar */ = {
+			isa = PBXGroup;
+			children = (
+				4E9B8B8F21CC8DEB00B5AED3 /* PlayBarView.swift */,
+			);
+			path = playbar;
+			sourceTree = "<group>";
+		};
+		4E9B8B9B21CC9CBE00B5AED3 /* floatButton */ = {
+			isa = PBXGroup;
+			children = (
+				4E9B8B9C21CC9CDC00B5AED3 /* AllFloatButton.swift */,
+			);
+			path = floatButton;
+			sourceTree = "<group>";
+		};
+		4E9B8B9E21CCA47400B5AED3 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				4E9B8B9F21CCA4B100B5AED3 /* MyContentDataCache.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		4E9C5B9B2150A16F0079F985 /* log */ = {
 			isa = PBXGroup;
 			children = (
@@ -1017,6 +1065,7 @@
 		4E9C5BA42150FC110079F985 /* business */ = {
 			isa = PBXGroup;
 			children = (
+				4E9B8B8D21CC8D3C00B5AED3 /* player */,
 				4EFB896521A296E6008C25DC /* share */,
 				4E3C2B1F21A24E9900854B24 /* welcome */,
 				4E99062B2142676D00EE0D55 /* home */,
@@ -1051,6 +1100,7 @@
 				4E8E9CEC214F4FB70004F39B /* Segment.swift */,
 				4E9C5BB52151091C0079F985 /* SegmentPlayItem.swift */,
 				4E56EB7621782290000AE4C9 /* UserAndSegment.swift */,
+				4E9B8B9121CC8E3D00B5AED3 /* SegmentPlayEntity.swift */,
 			);
 			path = segment;
 			sourceTree = "<group>";
@@ -1314,6 +1364,7 @@
 				TargetAttributes = {
 					4EF2EFD2206909D900B7F447 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.HealthKit = {
@@ -1378,6 +1429,7 @@
 				4E21D3C9218FD7B300B9C02A /* LoadingViewController.xib in Resources */,
 				4E5A56EC21730498004AB28C /* ContentSearchViewController.xib in Resources */,
 				4E87709A21A95E0700BD6F92 /* ShortWordsSampleViewController.xib in Resources */,
+				4E9B8B9A21CC98E100B5AED3 /* PlayContentViewController.xib in Resources */,
 				4EC0C3DA215A042C004CE967 /* ReciteWordViewController.xib in Resources */,
 				4EF2EFDC206909D900B7F447 /* Main.storyboard in Resources */,
 				4E957DBC216C911300BCF9E4 /* FeedbackViewController.xib in Resources */,
@@ -1474,6 +1526,7 @@
 			files = (
 				4E781B502176DA11003EFE3B /* Version.swift in Sources */,
 				4E8CCDA6216DA37D0040C8B9 /* UIViewController_extension.swift in Sources */,
+				4E9B8BA021CCA4B100B5AED3 /* MyContentDataCache.swift in Sources */,
 				4E2DF4A1214B507700FA9BB0 /* NSDate_extension.swift in Sources */,
 				4E9C5B9D2150A18C0079F985 /* Logger.swift in Sources */,
 				4E8CCDAA216DA9280040C8B9 /* UserRegistViewController.swift in Sources */,
@@ -1490,6 +1543,7 @@
 				4E45FB6E2155088300A5F03F /* WordAndSegment.swift in Sources */,
 				4EC2E654218C32200036D48E /* SimpleWordInfoViewController.swift in Sources */,
 				4EC0C3D62159CCF5004CE967 /* SingleContent.swift in Sources */,
+				4E9B8B9D21CC9CDC00B5AED3 /* AllFloatButton.swift in Sources */,
 				4E5ED41E2143B9A100AC709F /* UIColorExtension.swift in Sources */,
 				4E09352E2140CBBB00592DE2 /* Catalog.swift in Sources */,
 				4E5ED413214362EB00AC709F /* PersonalViewController.swift in Sources */,
@@ -1527,11 +1581,13 @@
 				4E83205B2155EF1100CD84C0 /* WordUtil.swift in Sources */,
 				4EC98134217045EA001A2E9B /* LoadWordsDataCache.swift in Sources */,
 				4EC2A81821A9796D00FE3793 /* ShortWordsInSegmentDataCache.swift in Sources */,
+				4E9B8B9921CC98E100B5AED3 /* PlayContentViewController.swift in Sources */,
 				4E87709221A95A5600BD6F92 /* ShortWordsViewController.swift in Sources */,
 				4EC98138217079FD001A2E9B /* WordListSimpleViewController.swift in Sources */,
 				4EEDD1152174A2B000AFF170 /* ContentListViewController.swift in Sources */,
 				4E8E9CF1214F58BA0004F39B /* SegmentViewItem.swift in Sources */,
 				4EA4668621953D9C003A6533 /* SharePlateformUtil.swift in Sources */,
+				4E9B8B9221CC8E3D00B5AED3 /* SegmentPlayEntity.swift in Sources */,
 				4E9C5B9F2150A4950079F985 /* MyRecitingContentDataCache.swift in Sources */,
 				4E891F8C2160AF1400A1893A /* SimpleTextCollectionViewCell.swift in Sources */,
 				4E64265C2148EB3B00D2B3FF /* AppRefreshManager.swift in Sources */,
@@ -1545,6 +1601,7 @@
 				4EC0C3D9215A042C004CE967 /* ReciteWordViewController.swift in Sources */,
 				4E8E9CDE214CF8790004F39B /* DataCache.swift in Sources */,
 				4E781B5A21771B0A003EFE3B /* MyWordListView.swift in Sources */,
+				4E9B8B9021CC8DEB00B5AED3 /* PlayBarView.swift in Sources */,
 				4E67DB4F216ED6010057D606 /* WordHeaderCollectionViewCell.swift in Sources */,
 				4EFB896721A29722008C25DC /* ShareView.swift in Sources */,
 				4E87708D21A9564C00BD6F92 /* SegmentWordViewController.swift in Sources */,
@@ -1739,11 +1796,29 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HFKQZU25VP;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ShareSDK3/ShareSDK/Support/Required",
+					"$(PROJECT_DIR)/Pods/ShareSDK3/ShareSDK/Support/Optional",
+					"$(PROJECT_DIR)/Pods/ShareSDK3/ShareSDK/Support/PlatformConnector",
+					"$(PROJECT_DIR)/Pods/ShareSDK3/ShareSDK",
+					"$(PROJECT_DIR)/Pods/MOBFoundation",
+					"$(PROJECT_DIR)/Pods/mob_sharesdk/SDK/ShareSDK/Support/PlatformSDK/QQSDK",
+					"$(PROJECT_DIR)/Pods/mob_sharesdk/SDK/ShareSDK/Support/Required",
+					"$(PROJECT_DIR)/Pods/mob_sharesdk/SDK/ShareSDK/Support/Optional",
+					"$(PROJECT_DIR)/Pods/mob_sharesdk/SDK/ShareSDK/Support/PlatformConnector",
+					"$(PROJECT_DIR)/Pods/mob_sharesdk/SDK/ShareSDK",
+				);
 				INFOPLIST_FILE = LeqiEnglishIOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/mob_sharesdk/SDK/ShareSDK/Support/PlatformSDK/SinaWeiboSDK",
+					"$(PROJECT_DIR)/Pods/mob_sharesdk/SDK/ShareSDK/Support/PlatformSDK/WeChatSDK",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Leqienglish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1764,11 +1839,29 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HFKQZU25VP;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/ShareSDK3/ShareSDK/Support/Required",
+					"$(PROJECT_DIR)/Pods/ShareSDK3/ShareSDK/Support/Optional",
+					"$(PROJECT_DIR)/Pods/ShareSDK3/ShareSDK/Support/PlatformConnector",
+					"$(PROJECT_DIR)/Pods/ShareSDK3/ShareSDK",
+					"$(PROJECT_DIR)/Pods/MOBFoundation",
+					"$(PROJECT_DIR)/Pods/mob_sharesdk/SDK/ShareSDK/Support/PlatformSDK/QQSDK",
+					"$(PROJECT_DIR)/Pods/mob_sharesdk/SDK/ShareSDK/Support/Required",
+					"$(PROJECT_DIR)/Pods/mob_sharesdk/SDK/ShareSDK/Support/Optional",
+					"$(PROJECT_DIR)/Pods/mob_sharesdk/SDK/ShareSDK/Support/PlatformConnector",
+					"$(PROJECT_DIR)/Pods/mob_sharesdk/SDK/ShareSDK",
+				);
 				INFOPLIST_FILE = LeqiEnglishIOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/mob_sharesdk/SDK/ShareSDK/Support/PlatformSDK/SinaWeiboSDK",
+					"$(PROJECT_DIR)/Pods/mob_sharesdk/SDK/ShareSDK/Support/PlatformSDK/WeChatSDK",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Leqienglish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
