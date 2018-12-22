@@ -242,7 +242,7 @@ extension PlaySegmentBar{
     
 }
 
-//MARK 播放mp3，录音，播放录音
+//MARK: 播放mp3，录音，播放录音
 extension PlaySegmentBar : AVAudioPlayerDelegate , RecordManagerDelegate{
     
     

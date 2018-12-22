@@ -33,3 +33,12 @@ let SEGMENT_TYPE = 302;
 let CATALOG_TYPE = 303;
 
 let PAGE_SIZE = 15
+
+
+let SLIP_TIME_AND_TEXT = "-->";
+let SLIP_START_AND_END = "==>";
+let SLIP_EN_AND_CH = ">::<";
+let SLIP_END = "<=====>";
+let SLIP_SENTENCE = "\n";
+
+let APP_ROOT_PATH = "leqienglish"

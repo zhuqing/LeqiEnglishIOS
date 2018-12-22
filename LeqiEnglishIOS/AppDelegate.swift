@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import AVFoundation
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -51,11 +51,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         return true
     }
-    
+
     func application(application: UIApplication,didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         //设置启动图片停留时间
-        Thread.sleep(forTimeInterval: 6.0)
+       // Thread.sleapplication: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?ep(forTimeInterval: 6.0)
+        
+        let session = AVAudioSession.sharedInstance()
+        do {
+            try session.setActive(true)
+            try session.setCategory(AVAudioSessionCategoryPlayback)
+        } catch {
+            print(error)
+        }
         return true
+       
     }
     
 //

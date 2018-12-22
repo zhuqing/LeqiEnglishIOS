@@ -66,7 +66,7 @@ class HomeViewController: UIViewController {
         self.view.addSubview(collectionView)
         collectionView.frame = CGRect(x: 0, y: 50, width: SCREEN_WIDTH, height: self.view.bounds.height-50)
 
-       
+       addFloatButton()
         Service.checkNet(resultCallback: {(b) in
             Service.isConnect = b
             if(!b){
@@ -123,6 +123,14 @@ extension HomeViewController{
         
     }
     
+    private func addFloatButton(){
+        let floatButton = AllFloatButton(frame: CGRect(x: SCREEN_WIDTH-100, y: SCREEN_HEIGHT-160, width: 60, height: 60),radiuOfButton:30)
+        floatButton.setBackgroundImage(UIImage(named: "play_red"), for: .normal)
+        floatButton.radiuOfButton = 30
+        floatButton.delegate = self
+        self.view.addSubview(floatButton)
+    }
+    
   
     
     @objc private func refresh(){
@@ -143,6 +151,18 @@ extension HomeViewController{
         }
     }
     
+}
+
+extension HomeViewController:FloatButtonDelegate{
+    func singleClick(){
+        let playView = PlayContentViewController()
+        
+        self.present(playView, animated: true, completion: nil)
+    }
+    
+    func repeatClick(){
+        
+    }
 }
 
 extension HomeViewController:UICollectionViewDataSource , UICollectionViewDelegateFlowLayout{
