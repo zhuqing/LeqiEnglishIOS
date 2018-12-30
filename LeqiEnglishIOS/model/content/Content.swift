@@ -1,20 +1,15 @@
-//
-//  File.swift
-//  LeqiEnglishIOS
-//
-//  Created by zhuleqi on 2018/4/1.
-//  Copyright © 2018年 zhuleqi. All rights reserved.
-//
+
 import Foundation
 
 class Content : Entity{
-    
     
     var content:String?
     
     var userId:String?
     
     var imagePath:String?
+    
+    var widthImagePath:String?
     
     var audioPath:String?
     
@@ -26,9 +21,12 @@ class Content : Entity{
     
     var readNum:Int64?
     
+    var awesomeNum:Int64?
+    
     override init() {
         
     }
+    
     convenience init(data:[String:AnyObject]) {
         self.init()
         setValuesForKeys(data)
@@ -42,6 +40,8 @@ class Content : Entity{
             self.userId = value as? String
         case "imagePath":
             self.imagePath = value as? String
+        case "widthImagePath":
+            self.widthImagePath = value as? String
         case "audioPath":
             self.audioPath = value as? String
         case "title":
@@ -52,6 +52,8 @@ class Content : Entity{
             self.catalogId = value as? String
         case "readNum":
             self.readNum = value as? Int64
+        case "awesomeNum":
+            self.awesomeNum = value as? Int64
             
         default:
             super.setValue(value, forKey: key)
@@ -71,6 +73,9 @@ class Content : Entity{
         if  let v = self.imagePath{
             dic["imagePath"] = v as NSObject
         }
+        if  let v = self.widthImagePath{
+            dic["widthImagePath"] = v as NSObject
+        }
         if  let v = self.audioPath{
             dic["audioPath"] = v as NSObject
         }
@@ -85,6 +90,9 @@ class Content : Entity{
         }
         if  let v = self.readNum{
             dic["readNum"] = v as NSObject
+        }
+        if  let v = self.awesomeNum{
+            dic["awesomeNum"] = v as NSObject
         }
         
         return dic
