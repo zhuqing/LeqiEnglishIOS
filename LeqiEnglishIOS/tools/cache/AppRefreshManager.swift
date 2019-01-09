@@ -1,4 +1,4 @@
-//
+//缓存
 //  HomeViewMode.swift
 //  LeqiEnglishIOS
 //
@@ -16,6 +16,10 @@ class AppRefreshManager{
     
     private init(){
         
+    }
+    
+    func get(id:String)->RefreshDataCacheDelegate?{
+       return refreshDic[id]
     }
     
     func regist(id:String , _ refreshDataCache:RefreshDataCacheDelegate){

@@ -34,7 +34,7 @@ class PlaySementItemCollectionViewCell: UICollectionViewCell {
         return line
     }()
   
-    private lazy  var englishTextView: UITextView? = {
+    lazy  var englishTextView: UITextView? = {
        let uiTextView = UITextView(frame: CGRect.zero)
         uiTextView.font = UIFont.boldSystemFont(ofSize: 18)
         uiTextView.isEditable = false

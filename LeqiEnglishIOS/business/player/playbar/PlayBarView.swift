@@ -1,7 +1,7 @@
 //
 //  PlayBarView.swift
 //  LeqiEnglishIOS
-//
+// 播放器
 //  Created by zhuleqi on 2018/12/21.
 //  Copyright © 2018 zhuleqi. All rights reserved.
 //
@@ -12,8 +12,10 @@ import AVFoundation
 protocol PlayBarViewDelegate {
     func next(playBarView:PlayBarView)
     func previous(playBarView:PlayBarView)
-    func finished(playBarView:PlayBarView)
     func play(playBarView:PlayBarView)
+    func pause(playBarView:PlayBarView)
+    //进度条值改变
+    func progressValueChange(playBarView:PlayBarView,value:Float)
 }
 
 class PlayBarView: UIView {
@@ -23,44 +25,44 @@ class PlayBarView: UIView {
     var playDatas:[SegmentPlayEntity]?
     
     private var playingIndex = 0
-    private var max = 0
+    //播放时间的总长度
+    private var max = 0.0
     
     private var userInterface = false
-    
-    let session = AVAudioSession.sharedInstance()
+
     
    // private var playDatas:[SegmentPlayEntity] = [SegmentPlayEntity]()
     
+    var contentPlayer:ContentPlayer?
     
      var delegate:PlayBarViewDelegate?
     
     private var playStatus = PLAY_STATUS.STOP
-    private var avAudioPlayer:AVAudioPlayer?
+
     private lazy var progressView:UISlider = {
         let progressView = UISlider()
         progressView.tintColor = UIColor.red
-      //  progressView.progressTintColor = UIColor.blue
         progressView.accessibilityActivate()
+     
         progressView.addTarget(self, action: #selector(PlayBarView.progressValueChange), for:UIControlEvents.valueChanged)
-      //  progressView.trackTintColor = UIColor.blue
         return progressView
     }();
     
     private lazy var playButton:UIButton = {
         let play = UIButton()
-        play.setBackgroundImage(UIImage(named: "play_red") , for: UIControlState.normal)
+        play.setBackgroundImage(UIImage(named: "play_new") , for: UIControlState.normal)
         return play
     }();
     
     private lazy var priviousButton:UIButton = {
         let play = UIButton()
-        play.setBackgroundImage(UIImage(named: "previous_play") , for: UIControlState.normal)
+        play.setBackgroundImage(UIImage(named: "previous_new") , for: UIControlState.normal)
         return play
     }();
     
     private lazy var nextButton:UIButton = {
         let play = UIButton()
-        play.setBackgroundImage(UIImage(named: "next_play") , for: UIControlState.normal)
+        play.setBackgroundImage(UIImage(named: "next_new") , for: UIControlState.normal)
         return play
     }();
     
@@ -68,55 +70,20 @@ class PlayBarView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setUI()
-        initAV()
+     
         //beginReceivingRemoteControlEvents();
     }
-    
-    private func initAV(){
-        do{
-            //  设置会话类别
-            try session.setCategory(AVAudioSessionCategoryPlayback)
-            //  激活会话
-            try session.setActive(true)
-        }catch {
-            print(error)
-            return
-        }
-        
-
-    }
-    
-    
-    
-    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-  
-    
   
     
 }
 
-extension PlayBarView{
-//    func setBackground() {
-//
-//        //大标题 - 小标题  - 歌曲总时长 - 歌曲当前播放时长 - 封面
-//        let settings = [MPMediaItemPropertyTitle: "大标题",MPMediaItemPropertyArtist: "小标题", MPMediaItemPropertyPlaybackDuration: "\(max)",MPNowPlayingInfoPropertyElapsedPlaybackTime: "\(getCurrentTime())",MPMediaItemPropertyArtwork: MPMediaItemArtwork(image: UIImage(named: "play_red")!)]
-//
-//        MPNowPlayingInfoCenter.defaultCenter().setValue(settings, forKey: "nowPlayingInfo")
-//    }
-    
-    
-    
 
-}
-
+//MARK: 设置UI
 extension PlayBarView{
-    
-   
     
     private func setUI(){
         self.addSubview(self.progressView)
@@ -136,11 +103,13 @@ extension PlayBarView{
         
     }
     
+    //点击播放按钮事件
     @objc private func playEventHandler(){
         
         play()
     }
     
+    //点击上一个按钮的时间
     @objc private func previousEventHandler(){
         guard let delegate = self.delegate else {
             return
@@ -148,7 +117,7 @@ extension PlayBarView{
         
         delegate.previous(playBarView: self)
     }
-    
+    //点击下一个按钮事件
     @objc private func nextEventHandler(){
         guard let delegate = self.delegate else {
             return
@@ -157,90 +126,41 @@ extension PlayBarView{
         delegate.next(playBarView: self)
     }
     
+    //进度条值改变
     @objc private func progressValueChange(){
-        if(userInterface){
-            return
-        }
-        let currentTime = Int(Float(max) * self.progressView.value)
-        
-        var i = 0 ;
-        
-        var atTime:Double = 0;
-        for segmentPlayEntity in self.playDatas!{
-            if(currentTime >= segmentPlayEntity.startTime! && currentTime <= segmentPlayEntity.endTime!){
-                playingIndex = i
-                atTime = Double(currentTime - segmentPlayEntity.startTime!)
-                break
-            }
-            i += 1
-        }
-        
-        self.playNext()
-        self.avAudioPlayer?.play(atTime: atTime)
-        
-    }
-    
-    
-    private func initAudioPlay(filePath:String){
-        do {
-            self.avAudioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: filePath))
-      
-                //AVAudioSessionCategoryPlayback扬声器模式
-            try session.setCategory(AVAudioSessionCategoryPlayback)
-           
-
-         
-                self.avAudioPlayer?.prepareToPlay()
-                self.avAudioPlayer?.delegate = self
-                self.avAudioPlayer?.play()
-          
-            // NSObject.cancelPreviousPerformRequests(withTarget: self)
-            //let length  = self.avAudioPlayer?.duration
-            
-           // self.perform(#selector(PlayBarView.playFinished), with: nil, afterDelay:length!)
-           
-        } catch let err {
-            print("创建失败:\(err.localizedDescription)")
-        }
-        // self.avAudioPlayer.sett
-    }
-    
-    
-    @objc private func updateProgress(){
-        guard let player = self.avAudioPlayer else{
+        if(!userInterface){
             return
         }
         
-        if(!player.isPlaying){
+        guard let delegate = self.delegate else{
             return
         }
         
-        let progress = CGFloat(getCurrentTime())/CGFloat(self.max)
-        self.setProgerssValue(value: Float(progress))
-        self.perform(#selector(PlayBarView.updateProgress), with: nil, afterDelay:0.1)
+        delegate.progressValueChange(playBarView: self, value: self.progressView.value)
     }
     
-    private func getCurrentTime()->Int{
-        guard let player = self.avAudioPlayer else{
-            return 0
-        }
-        let currentTime = player.currentTime
-        let lastEndTime = self.playDatas?[self.playingIndex-1].endTime!;
-        
-        return Int(currentTime) + lastEndTime!
-    }
     
-    func play(){
-        
+    //更新进度条
+    func updateProgress(value:Float){
+        userInterface = false
+        self.setProgerssValue(value:value)
+        userInterface = true
        
+    }
+    
+    //修改当前时间，和最大时间
+    func currentTimeAndMaxTime(currentTime:TimeInterval,maxTime:TimeInterval)  {
+        
+    }
+    
+  
+    func play(){
         switch self.playStatus {
         case .STOP:
             playStatus = .PLAY
-            self.playButton.setBackgroundImage(UIImage(named: "pause_red"), for: .normal)
-            self.playNext()
-            self.perform(#selector(PlayBarView.updateProgress), with: nil, afterDelay:0.2)
-           // self.forma
+            self.startPlay()
         case .PLAY:
+            playStatus = .STOP
            stop()
         case .RECORD:
            LOG.info("RECORD")
@@ -250,8 +170,8 @@ extension PlayBarView{
         
     }
     
-    func play(segmentPlayEnties:[SegmentPlayEntity]){
-        if let player = self.avAudioPlayer {
+    private func play(segmentPlayEnties:[SegmentPlayEntity]){
+        if let player = self.contentPlayer {
             if(player.isPlaying){
                 play()
             }
@@ -271,73 +191,32 @@ extension PlayBarView{
         self.userInterface = false
     }
     
-    @objc private func playFinished(){
-        if( self.playingIndex == self.playDatas?.count){
-            callPlayFinished()
-            return
-        }
-        
-        playNext()
-    }
+
     
-    private func playNext(){
+     func startPlay(){
         //没有数据时，加载数据
-        if(self.playDatas == nil && self.delegate != nil){
+       toPlayStatus()
+        if( self.delegate != nil){
             self.delegate?.play(playBarView: self)
             return
         }
-        let segmentPlayEntity = self.playDatas?[self.playingIndex]
-        
-        if(segmentPlayEntity  == nil){
-            self.callPlayFinished()
-            return
-        }
-        
-        guard let filePath =  segmentPlayEntity?.filePath else{
-            return
-        }
-        
-        let filePathNS = NSString(string: filePath)
-       
-        
-        if(filePathNS.contains(APP_ROOT_PATH)){
-           self.initAudioPlay(filePath: filePath)
-           self.playingIndex += 1
-        }else{
-            Service.download(filePath: filePath, finishedCallback: {
-                (path) in
-                self.playingIndex += 1
-                segmentPlayEntity?.filePath = path
-                self.initAudioPlay(filePath: path)
-              
-                
-            })
-        }
        
     }
     
-    private func callPlayFinished(){
-        guard let delegate = self.delegate else{
-            return
-        }
-        delegate.finished(playBarView: self)
+    func toPlayStatus(){
+        playStatus = .PLAY
+        self.playButton.setBackgroundImage(UIImage(named: "pause_new"), for: .normal)
     }
+    
+   
     
     func stop(){
         playStatus = .STOP
-        self.playButton.setBackgroundImage(UIImage(named: "play_red"), for: .normal)
-        guard let player = self.avAudioPlayer else {
+        self.playButton.setBackgroundImage(UIImage(named: "play_new"), for: .normal)
+        if( self.delegate != nil){
+            self.delegate?.pause(playBarView: self)
             return
         }
-        player.pause()
     }
 }
 
-
-extension PlayBarView:AVAudioPlayerDelegate{
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        if(flag){
-            self.playFinished()
-        }
-    }
-}

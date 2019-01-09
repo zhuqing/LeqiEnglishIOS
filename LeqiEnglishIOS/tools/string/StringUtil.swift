@@ -67,12 +67,29 @@ class StringUtil: NSObject {
         
         let size = CGSize(width:fixedWidth, height:CGFloat(Int64.max))
         let nsText = NSString(string: text)
-   let uiTextView = UITextView(frame: CGRect.zero)
+        let uiTextView = UITextView(frame: CGRect.zero)
         uiTextView.text = text
         uiTextView.font = font
-  let realSize = uiTextView.sizeThatFits(size)
+        let realSize = uiTextView.sizeThatFits(size)
         let rect = nsText.boundingRect(with: size, options:.usesLineFragmentOrigin, attributes: [   NSAttributedStringKey.font: font], context:nil)
         
         return realSize.height
+    }
+    
+    class func computerWidth(text:String ,font : UIFont , fixedHeight : CGFloat)-> CGFloat {
+        guard text.count > 0 && fixedHeight > 0 else {
+            
+            return 0
+        }
+        
+        let size = CGSize(width:CGFloat(Int64.max), height:fixedHeight)
+        let nsText = NSString(string: text)
+        let uiTextView = UITextView(frame: CGRect.zero)
+        uiTextView.text = text
+        uiTextView.font = font
+        let realSize = uiTextView.sizeThatFits(size)
+        let rect = nsText.boundingRect(with: size, options:.usesLineFragmentOrigin, attributes: [   NSAttributedStringKey.font: font], context:nil)
+        
+        return realSize.width
     }
 }

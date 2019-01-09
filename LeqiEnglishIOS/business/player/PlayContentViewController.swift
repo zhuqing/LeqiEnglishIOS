@@ -11,12 +11,20 @@ import AVFoundation
 
 class PlayContentViewController: UIViewController {
 
+    @IBOutlet weak var operationBarViewRoot: UIView!
     @IBOutlet weak var addRciteButton: UIButton!
     @IBOutlet weak var playBarRoot: UIView!
     @IBOutlet weak var contentListRoot: UIView!
     @IBOutlet weak var nav: UIBarButtonItem!
     
     private var currentPlayIndex = -1;
+    
+    
+    
+    //当前播放的Content的最长时间
+    private var currentMax:TimeInterval = 0;
+    
+    private var contentPlayer:ContentPlayer?
     
     private lazy var playBarView:PlayBarView = {
         let playBar = PlayBarView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: 90))
@@ -56,15 +64,21 @@ class PlayContentViewController: UIViewController {
         super.viewDidLoad()
          load()
          navigation()
-        initEventHandler()
-           beginReceivingRemoteControlEvents()
+         initEventHandler()
+         beginReceivingRemoteControlEvents()
         // Do any additional setup after loading the view.
     }
 
 
     override func viewWillDisappear(_ animated: Bool) {
      endReceivingRemoteControlEvents()
-        self.playBarView.stop()
+       
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if(self.contentPlayer != nil){
+            self.contentPlayer?.delegate = self
+        }
     }
     
     override func becomeFirstResponder() -> Bool {
@@ -75,7 +89,7 @@ class PlayContentViewController: UIViewController {
     
     func beginReceivingRemoteControlEvents(){
         UIApplication.shared.beginReceivingRemoteControlEvents()
-        self.becomeFirstResponder()
+       self.becomeFirstResponder()
         
     }
     
@@ -115,11 +129,8 @@ class PlayContentViewController: UIViewController {
     }
     
     private func initEventHandler(){
-        addRciteButton.addTarget(self, action: #selector(PlayContentViewController.backEventHandler), for: .touchDown)
+        addRciteButton.addTarget(self, action: #selector(PlayContentViewController.returnEventHandler), for: .touchDown)
     }
-    
-    
-    
     
     /*
     // MARK: - Navigation
@@ -132,50 +143,139 @@ class PlayContentViewController: UIViewController {
     */
 
 }
-
+//MARK: UI OPeration
 extension PlayContentViewController{
+    
     private func setUI(){
+    
         self.playBarRoot.addSubview(self.playBarView)
         self.contentListRoot.addSubview(self.collectionView)
         collectionView.frame = CGRect(x: 5, y: 0, width:SCREEN_WIDTH-10, height: self.contentListRoot.bounds.height)
        
+        
+        let operations:[(String,String,Selector)] = [("返回","arrow-return-left",#selector(PlayContentViewController.returnEventHandler)),
+                                                     ("文稿","content",#selector(PlayContentViewController.tapContentHandler)),
+                                                     ("赞","heart",#selector(PlayContentViewController.tapHeartHandler)),
+                                                     ("分享","share32",#selector(PlayContentViewController.tapShareHandler))]
+        
+        ViewUtil.addOperation(target:self,root: operationBarViewRoot, operations: operations)
+    }
+    
+    @objc private func tapContentHandler(){
+        if(self.currentPlayIndex < 0){
+            self.showAlert(message: "还没有选择播放的数据")
+            return
+        }
+        
+        let playSegmentViewController = PlaySegmentViewController()
+        
+        playSegmentViewController.currentSegmentPlayIndex = self.contentPlayer?.currentPlayIndex ?? 0
+        
+        self.present(playSegmentViewController, animated: true){
+            () in
+            playSegmentViewController.contentPlayer = self.contentPlayer
+            playSegmentViewController.content = self.datas![self.currentPlayIndex]
+        }
+    }
+    
+    @objc private func tapHeartHandler(){
+        if(self.currentPlayIndex < 0 || self.currentPlayIndex >= self.datas?.count ?? 0){
+            self.showAlert(message: "还没有选择播放数据")
+            return
+        }
+        guard let content = self.datas?[self.currentPlayIndex] else {
+            self.showAlert(message: "还没有选择播放数据")
+            return
+        }
+        DispatchQueueUtil.run {
+              HeartedDataCache.contentHeated(targetId: content.id ?? "")
+        }
+      
+        content.awesomeNum? += Int64(1)
+        updateHearted(content: content,userInteract: true)
        
     }
     
+    private func updateHearted(content:Content?,userInteract:Bool = false){
+        guard let s = content else{
+            ViewUtil.updateOperationItemTitle(target: self, root: self.operationBarViewRoot, index: 2, itemData:("赞","heart"))
+            return
+        }
+        
+        if((s.awesomeNum ?? 0) == 0){
+            ViewUtil.updateOperationItemTitle(target: self, root: self.operationBarViewRoot, index: 2, itemData:("赞","heart"))
+            return
+        }
+        
+        if(userInteract){
+            ViewUtil.updateOperationItemTitle(target: self, root: self.operationBarViewRoot, index: 2, itemData:("\(s.awesomeNum ?? 0)","heart_red"))
+            return
+        }
+        
+        ViewUtil.updateOperationItemTitle(target: self, root: self.operationBarViewRoot, index: 2, itemData:("\(s.awesomeNum ?? 0)","heart"))
+        
+        let cache = UserHeartedDataCache(segmentId: s.id ?? "")
+        
+        cache.load(){
+            
+            (userHearted) in
+            guard userHearted != nil else{
+                ViewUtil.updateOperationItemTitle(target: self, root: self.operationBarViewRoot, index: 2, itemData:("\(s.awesomeNum ?? 0)","heart"))
+                return
+            }
+            
+            ViewUtil.updateOperationItemTitle(target: self, root: self.operationBarViewRoot, index: 2, itemData:("\(s.awesomeNum ?? 0)","heart_red"))
+            
+        }
+        
+    }
+    
+    @objc private func tapShareHandler(){
+        let share = ActionSheetDialogViewController()
+        share.modalPresentationStyle = .overCurrentContext
+        share.delegate = ShareViewActionSheetDelegate( segment:Segment())
+        
+        self.present(share, animated: true, completion: nil)
+    }
+    
+   
+    
+    //加载content
     private func load(){
         MyContentDataCache.instance.load(){
             (contents) in
             self.datas?.removeAll()
             if let list = contents {
                    self.datas?.append(contentsOf: list)
-            }else{
-                
             }
             
             if(self.datas == nil  || (self.datas?.isEmpty)! ){
-               
+               //没有加载到数据什么都不做
             }else{
                 self.setUI();
+                self.contentPlayer = ContentPlayer()
+                self.contentPlayer?.delegate = self
                 self.collectionView.reloadData()
             }
-         
             
         }
     }
     
     private func navigation(){
-        self.nav.action = #selector(PlayContentViewController.backEventHandler)
+        self.nav.action = #selector(PlayContentViewController.returnEventHandler)
     }
     
-    @objc private func backEventHandler(){
+    //返回触发的事件
+    @objc  override func returnEventHandler(){
+        self.playBarView.stop()
+        self.contentPlayer?.destory()
         self.dismiss(animated: true, completion: nil)
     }
     
    
    //加载content下的段
     private func loadSegments(content:Content)  {
-       
-        let contentInfoViewModel = ContentInfoViewModel(content: content)
+        let contentInfoViewModel = ContentInfoDataCache(content: content)
         contentInfoViewModel.load(){
             (segments) in
             guard let arr = segments else{
@@ -189,6 +289,7 @@ extension PlayContentViewController{
     
     private func createSegmentPlayEntity(segments:[Segment]){
         var segmentPlayEntities = [SegmentPlayEntity]()
+        
         for segment in segments {
             guard let entity = SegmentPlayEntity.createSegmentPlayEntity(segment: segment) else{
                 continue
@@ -205,23 +306,29 @@ extension PlayContentViewController{
         var lastPlayEntity:SegmentPlayEntity?
         
         for playEntity in segmentPlayEntities {
+            
             if(lastPlayEntity != nil){
-                
-                playEntity.startTime = Int(lastPlayEntity!.endTime!)
-                playEntity.endTime =  Int(lastPlayEntity!.endTime! + playEntity.endTime!)
+                playEntity.startTime = (lastPlayEntity!.endTime!)
+                playEntity.endTime =  (lastPlayEntity!.endTime! + playEntity.endTime!)
             }
             
             lastPlayEntity = playEntity
         }
         
+        //设置当前播放的最大的值
+        self.currentMax = lastPlayEntity?.endTime ?? 0
+        self.contentPlayer?.playDatas = segmentPlayEntities
+        
         Service.download(filePath: segmentPlayEntities[0].filePath ?? "") { (filePath) in
             segmentPlayEntities[0].filePath = filePath
-            
-            self.playBarView.play(segmentPlayEnties: segmentPlayEntities)
+            self.playBarView.updateProgress(value: 0)
+            self.playBarView.toPlayStatus()
+            self.contentPlayer?.play()
             self.loadFile(segmentPlayEntities: segmentPlayEntities, index: 1)
         }
     }
     
+    //加载SegmentPlayEntity的文件
     private func loadFile( segmentPlayEntities:[SegmentPlayEntity],index:Int){
         if(index < 0 || index >= segmentPlayEntities.count){
             return ;
@@ -235,6 +342,51 @@ extension PlayContentViewController{
     }
     
     
+    private func play(index:Int){
+        guard let datas = self.datas else{
+            return
+        }
+        
+        deselected(index: currentPlayIndex)
+        self.currentPlayIndex = index
+     
+        if(currentPlayIndex < 0){
+            currentPlayIndex =  datas.count - 1
+        }else if(currentPlayIndex >= datas.count){
+            currentPlayIndex = 0
+        }
+        
+        
+        selected(index: currentPlayIndex)
+        self.loadSegments(content: datas[self.currentPlayIndex])
+    }
+    
+    private func selected(index:Int){
+        if(index < 0){
+            return
+        }
+        let indexPath = IndexPath(item: index, section: 0)
+        guard let cell = self.collectionView.cellForItem(at: indexPath) else{
+            return
+        }
+        
+        let simpleTextCollectionViewCell:SimpleTextCollectionViewCell = cell  as! SimpleTextCollectionViewCell
+        simpleTextCollectionViewCell.selectCell()
+        updateHearted(content: self.datas![index])
+    }
+    
+    private func deselected(index:Int){
+        if(index < 0){
+            return
+        }
+        let indexPath = IndexPath(item: index, section: 0)
+        guard let cell = self.collectionView.cellForItem(at: indexPath) else{
+            return
+        }
+        
+        let simpleTextCollectionViewCell:SimpleTextCollectionViewCell = cell  as! SimpleTextCollectionViewCell
+        simpleTextCollectionViewCell.deselectCell()
+    }
     
 }
 
@@ -268,16 +420,15 @@ extension PlayContentViewController:UICollectionViewDataSource,UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
        
-        let cell:SimpleTextCollectionViewCell = self.collectionView.cellForItem(at: indexPath) as! SimpleTextCollectionViewCell
-        cell.selectCell()
-        self.currentPlayIndex = indexPath.item
-        self.loadSegments(content: self.datas![indexPath.item])
+       
+        self.play(index: indexPath.item)
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell:SimpleTextCollectionViewCell = self.collectionView.cellForItem(at: indexPath) as! SimpleTextCollectionViewCell
-        
-        cell.deselectCell()
+//        let cell:SimpleTextCollectionViewCell = self.collectionView.cellForItem(at: indexPath) as! SimpleTextCollectionViewCell
+//
+//        cell.deselectCell()
     }
 }
 
@@ -287,50 +438,103 @@ extension PlayContentViewController:UICollectionViewDataSource,UICollectionViewD
 extension PlayContentViewController:SimpleTextCollectionViewCellDelegate{
      func selected(cell: SimpleTextCollectionViewCell) {
         cell.textLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        cell.textLabel.textColor = UIColor(r: CGFloat(0xed), b: CGFloat(0x74), y: CGFloat(0x2e))
     }
     
     
      func deSelected(cell: SimpleTextCollectionViewCell) {
         cell.textLabel.font = UIFont.systemFont(ofSize: 17)
+        cell.textLabel.textColor = UIColor.black
     }
 }
 
+
+//MARK:  PlayBarViewDelegate
 extension PlayContentViewController:PlayBarViewDelegate{
+    
+   
+
     func next(playBarView: PlayBarView) {
-      
-        
-        self.currentPlayIndex  += 1
-        if(self.currentPlayIndex >= (self.datas?.count)! ){
-            self.currentPlayIndex = 0
-        }
-        self.play(index: currentPlayIndex)
+        self.play(index: self.currentPlayIndex+1)
     }
     
     func play(playBarView: PlayBarView) {
-        next(playBarView: playBarView)
+        if(self.contentPlayer?.playDatas == nil){
+              self.play(index: self.currentPlayIndex)
+        }else{
+             self.contentPlayer?.start()
+        }
+       
+        
+      
     }
     
     func previous(playBarView: PlayBarView) {
-        self.currentPlayIndex  -=  1
-        if(currentPlayIndex < 0){
-            currentPlayIndex = (self.datas?.count)! - 1
-        }
-        
-        self.play(index: currentPlayIndex)
+        self.play(index: self.currentPlayIndex - 1)
     }
     
-    func finished(playBarView: PlayBarView) {
-        self.next(playBarView: playBarView)
-    }
-    
-    private func play(index:Int){
-       
-        if(index<0 || index >= (self.datas?.count)!){
+  
+    func pause(playBarView:PlayBarView){
+        guard let contentPlayer = self.contentPlayer else {
             return
         }
         
-         self.collectionView.reloadData()
-        self.loadSegments(content: (self.datas?[index])!)
+        contentPlayer.pause()
+        
     }
+    
+    func progressValueChange(playBarView:PlayBarView,value:Float){
+       let currentTime = Double(value) * self.currentMax
+        guard let contentPlayer = self.contentPlayer else {
+            return
+        }
+        
+        
+        var i = 0 ;
+        
+        //播放的时间点
+        var atTime:Double = 0;
+        //播放的索引
+        var playingIndex = 0;
+        
+        for segmentPlayEntity in contentPlayer.playDatas! {
+            if(currentTime >= segmentPlayEntity.startTime! && currentTime <= segmentPlayEntity.endTime!){
+                playingIndex = i
+                atTime = Double(currentTime - segmentPlayEntity.startTime!)
+                break
+            }
+            i += 1
+        }
+        
+    
+        
+        contentPlayer.play(index:playingIndex, atTime: atTime)
+    }
+    
+    
 }
 
+//MARK:ContentPlayer
+extension PlayContentViewController:ContentPlayerDelegate{
+    //当前播放时间改变
+    func currentTimeChange(contentPlayer:ContentPlayer,currentTime:TimeInterval){
+        var hasPlayedTime = 0.0
+        if(contentPlayer.currentPlayIndex != 0){
+            hasPlayedTime = contentPlayer.getSegmentPlayEntity(index: contentPlayer.currentPlayIndex-1)?.endTime ?? 0
+        }
+        let value = Float((hasPlayedTime + currentTime)/self.currentMax)
+        self.playBarView.updateProgress(value: value)
+    }
+    
+    func currentPlayIndexChange(contentPlayer:ContentPlayer, index:Int){
+       //self.playBarView.startPlay()
+    }
+    //播放完成,自动播放下一个
+    func finish(contentPlayer:ContentPlayer){
+        self.play(index: self.currentPlayIndex+1)
+    }
+    
+    func error(contentPlayer:ContentPlayer,message:String){
+        
+    }
+}

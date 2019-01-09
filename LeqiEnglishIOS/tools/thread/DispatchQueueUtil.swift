@@ -10,7 +10,7 @@ import Foundation
 class DispatchQueueUtil{
     
     //异步执行完成后调用回调
-    class func run(excutor:@escaping ()->(),callback:(()->())?){
+    class func run(excutor:@escaping (()->()),callback:(()->())?){
         let queue = DispatchQueue(label: "DispatchQueueUtil")
         queue.async {
             //异步执行
@@ -18,7 +18,7 @@ class DispatchQueueUtil{
             if(callback == nil){
                 return
             }
-            
+           
             //在主线程执行
             DispatchQueue.main.async {
                 guard let call = callback else{
@@ -28,5 +28,15 @@ class DispatchQueueUtil{
             }
          }
 
+    }
+    
+    //异步执行
+    class func run(runner:@escaping (()->())){
+        let queue = DispatchQueue(label: "DispatchQueueUtil runner")
+        queue.async {
+            //异步执行
+            runner()
+        }
+        
     }
 }

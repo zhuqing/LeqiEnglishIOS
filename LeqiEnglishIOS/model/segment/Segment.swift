@@ -25,6 +25,8 @@ class Segment : Entity{
     
     var indexNo:Int?
     
+    var awesomeNum:Int?
+    
     override init() {
         
     }
@@ -49,6 +51,8 @@ class Segment : Entity{
             self.readNum = value as? Int64
         case "indexNo":
             self.indexNo = value as? Int
+        case "awesomeNum":
+            self.awesomeNum = value as? Int
             
         default:
             super.setValue(value, forKey: key)
@@ -79,6 +83,9 @@ class Segment : Entity{
         }
         if  let v = self.indexNo{
             dic["indexNo"] = v as NSObject
+        }
+        if  let v = self.awesomeNum{
+            dic["awesomeNum"] = v as NSObject
         }
         
         return dic

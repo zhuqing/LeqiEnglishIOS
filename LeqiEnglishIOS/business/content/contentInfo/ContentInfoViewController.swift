@@ -179,7 +179,7 @@ extension ContentInfoViewController{
 extension ContentInfoViewController{
     //加载数据
     private func loadData(){
-        let segmentDatas = ContentInfoViewModel(content: self.content)
+        let segmentDatas = ContentInfoDataCache(content: self.content)
         segmentDatas.load(){
             (segments) in
             if let ss = segments {

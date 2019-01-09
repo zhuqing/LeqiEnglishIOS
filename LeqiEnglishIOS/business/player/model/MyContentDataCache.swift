@@ -1,7 +1,7 @@
 //
 //  MyContentDataCache.swift
 //  LeqiEnglishIOS
-//
+//用户关联的所有Content
 //  Created by zhuleqi on 2018/12/21.
 //  Copyright © 2018 zhuleqi. All rights reserved.
 //
@@ -10,7 +10,7 @@ import UIKit
 
 class MyContentDataCache: DataCache<[Content]> {
     public static let instance  = MyContentDataCache()
-     var LOG = LOGGER("MyContentDataCache");
+    var LOG = LOGGER("MyContentDataCache");
     
     private let DATA_TYPE = "MyContentDataCache"
     private let UPDATE_TYPE = "MyContentDataCache_UPDATE_TYPE"
@@ -54,6 +54,18 @@ class MyContentDataCache: DataCache<[Content]> {
         }
         
         
+    }
+    
+    func update(content:Content){
+        guard let datas =  self.cacheData else{
+            return
+        }
+       
+        let index =  CollectionUtils.indexof(datas: datas, d: content)
+        if(index == -1){
+            return
+        }
+        self.cacheData?[index] = content
     }
     
     

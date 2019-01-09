@@ -7,11 +7,13 @@
 //
 class SegmentPlayEntity : Entity{
     
-    var startTime:Int?
+    var startTime:Double?
     
-    var endTime:Int?
+    var endTime:Double?
     
     var filePath:String?
+    
+    var path:String?
     
     var segmentId:String?
     
@@ -26,13 +28,15 @@ class SegmentPlayEntity : Entity{
     override func setValue(_ value: Any?, forKey key: String) {
         switch key {
         case "startTime":
-            self.startTime = value as? Int
+            self.startTime = value as? Double
         case "endTime":
-            self.endTime = value as? Int
+            self.endTime = value as? Double
         case "filePaht":
             self.filePath = value as? String
         case "segmentId":
             self.segmentId = value as? String
+        case "path":
+            self.path = value as? String
             
         default:
             super.setValue(value, forKey: key)
@@ -63,8 +67,8 @@ class SegmentPlayEntity : Entity{
         let segmentPlayEntity =  SegmentPlayEntity()
         
         segmentPlayEntity.segmentId = segment.id ?? ""
-        segmentPlayEntity.filePath = segment.audioPath
-        
+        segmentPlayEntity.filePath = segment.audioPath ?? ""
+        segmentPlayEntity.path = segment.audioPath ?? ""
         guard let contentStr =  segment.content else{
             return nil
         }
@@ -81,7 +85,7 @@ class SegmentPlayEntity : Entity{
       
         let firstStr:NSString = NSString(string: first)
         let startAndEndArr = firstStr.components(separatedBy: SLIP_START_AND_END)
-        segmentPlayEntity.startTime = Int(startAndEndArr[0])!/1000
+        segmentPlayEntity.startTime = Double(startAndEndArr[0])!/1000
         
         let lastStr:NSString = NSString(string: last)
         let lastStartAndEndArr = lastStr.components(separatedBy: SLIP_START_AND_END)
@@ -92,7 +96,7 @@ class SegmentPlayEntity : Entity{
         let lastTimeStr = NSString(string: lastStartAndEndArr[1])
         let lastTimeStrArr = lastTimeStr.components(separatedBy: SLIP_TIME_AND_TEXT)
         
-        segmentPlayEntity.endTime = Int(lastTimeStrArr[0])!/1000
+        segmentPlayEntity.endTime = Double(lastTimeStrArr[0])!/1000
         
         return segmentPlayEntity
     }

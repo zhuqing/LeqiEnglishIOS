@@ -188,7 +188,7 @@ struct SQLiteManager {
             
             return datas
         }catch{
-            print(error)
+            print(error.localizedDescription)
         }
         return nil
     }

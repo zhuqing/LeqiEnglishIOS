@@ -30,6 +30,12 @@ extension  UIViewController {
         rootVC?.dismiss(animated: false, completion: nil)
     }
     
+    //关闭当前界面
+    @objc func returnEventHandler(){
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
     func checkUpdate(){
         VersionDataCache.instance.checkUpdate(){
             (version) in

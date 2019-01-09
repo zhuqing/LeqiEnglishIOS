@@ -34,6 +34,19 @@ class UserDataCache: DataCache<User> {
         return user.id ?? ""
     }
     
+    //用户是否已经注册
+    func hasRegist()->Bool{
+        guard let user = self.getFromCache() else{
+            return false
+        }
+        
+        if(user.status == 0){
+            return false
+        }else{
+            return true
+        }
+    }
+    
     func getUserName()->String{
         guard let user = self.getFromCache() else{
             return ""

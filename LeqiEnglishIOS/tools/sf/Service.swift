@@ -9,9 +9,9 @@
 import Foundation
 import Alamofire
 class Service{
-    static let host = "http://www.leqienglish.com"
+//    static let host = "http://www.leqienglish.com"
     
-//    static let host = "http://192.168.43.9:8080"
+    static let host = "http://192.168.43.9:8080"
     
     static let LOG = LOGGER("Service")
     
@@ -69,6 +69,19 @@ class Service{
         //拼接路径
         let httpPath = "file/download?path=\(filePath)"
 
+        download(path:httpPath,filePath:filePath,finishedCallback:finishedCallback)
+    }
+    
+    
+    class func reDownload(filePath:String,finishedCallback:@escaping (_ result:String)->()){
+        //拼接路径
+        let httpPath = "file/download?path=\(filePath)"
+        let fileURL = FileUtil.absulateFileUrl(filePath: filePath)
+        do{
+        try FileManager.default.removeItem(atPath: fileURL.path)
+        }catch{
+           print(filePath)
+        }
         download(path:httpPath,filePath:filePath,finishedCallback:finishedCallback)
     }
     

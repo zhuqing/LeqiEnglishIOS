@@ -32,5 +32,16 @@ class SingleContent: DataCache<Content> {
         }
     }
     
+    func updateDatabase(){
+        self.getFromService(){
+            (content) in
+            guard let c = content else{
+                return
+            }
+            MyContentDataCache.instance.update(content: c)
+            SQLiteManager.instance.update(entity: c)
+        }
+    }
+    
    
 }

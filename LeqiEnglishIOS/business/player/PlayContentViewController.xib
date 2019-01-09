@@ -15,6 +15,7 @@
                 <outlet property="addRciteButton" destination="qN1-QF-E66" id="z5Y-j0-3Ya"/>
                 <outlet property="contentListRoot" destination="1b4-WJ-uUe" id="x6s-1T-gvb"/>
                 <outlet property="nav" destination="4hn-NM-4ae" id="rtp-vQ-Fmd"/>
+                <outlet property="operationBarViewRoot" destination="nrf-2B-Shm" id="LUE-os-ifJ"/>
                 <outlet property="playBarRoot" destination="Aka-qa-BRp" id="cZ4-xM-WkP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -33,7 +34,7 @@
                     </items>
                 </navigationBar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1b4-WJ-uUe" userLabel="contentListRoot">
-                    <rect key="frame" x="0.0" y="64" width="375" height="533"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="450"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qN1-QF-E66">
                             <rect key="frame" x="95.5" y="33" width="184" height="30"/>
@@ -47,20 +48,30 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aka-qa-BRp" userLabel="playRoot">
-                    <rect key="frame" x="0.0" y="602" width="375" height="65"/>
+                    <rect key="frame" x="0.0" y="515" width="375" height="100"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="65" id="bf0-D9-VGt"/>
+                        <constraint firstAttribute="height" constant="100" id="enZ-wb-Fob"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nrf-2B-Shm" userLabel="operationViewRoot">
+                    <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="gae-Pu-12D"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="nrf-2B-Shm" firstAttribute="top" secondItem="Aka-qa-BRp" secondAttribute="bottom" constant="2" id="32z-pY-SP1"/>
                 <constraint firstItem="q5O-BP-1sW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="98x-je-xIN"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Aka-qa-BRp" secondAttribute="bottom" id="E55-p9-ESA"/>
-                <constraint firstItem="Aka-qa-BRp" firstAttribute="top" secondItem="1b4-WJ-uUe" secondAttribute="bottom" constant="5" id="Ehd-16-3yi"/>
+                <constraint firstItem="Aka-qa-BRp" firstAttribute="top" secondItem="1b4-WJ-uUe" secondAttribute="bottom" constant="1" id="Ehd-16-3yi"/>
+                <constraint firstItem="nrf-2B-Shm" firstAttribute="trailing" secondItem="Aka-qa-BRp" secondAttribute="trailing" id="Hpo-oP-idU"/>
                 <constraint firstItem="Aka-qa-BRp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Mej-aE-pOA"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="nrf-2B-Shm" secondAttribute="bottom" id="QTI-XC-voP"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Aka-qa-BRp" secondAttribute="trailing" id="SJW-xf-KvF"/>
+                <constraint firstItem="nrf-2B-Shm" firstAttribute="leading" secondItem="Aka-qa-BRp" secondAttribute="leading" id="STh-Fg-x3X"/>
                 <constraint firstItem="q5O-BP-1sW" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="ady-bw-KCT"/>
                 <constraint firstItem="1b4-WJ-uUe" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="duV-Aq-3hY"/>
                 <constraint firstAttribute="trailing" secondItem="q5O-BP-1sW" secondAttribute="trailing" id="kWg-2i-ti8"/>
