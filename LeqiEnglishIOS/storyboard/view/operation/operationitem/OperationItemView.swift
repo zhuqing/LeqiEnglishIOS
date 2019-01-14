@@ -10,8 +10,10 @@ import UIKit
 
 class OperationItemView: UIView {
     
-    private var title:String = ""
-    private var imageName:String = "content"
+     var title:String = ""
+     var imageName:String = "content"
+    
+    var handler:((_ id:String)->())?
     
     private lazy var imageView:UIImageView? = {
         let image = UIImageView(frame: CGRect.zero)

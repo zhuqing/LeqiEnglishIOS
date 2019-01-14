@@ -15,9 +15,7 @@
                 <outlet property="back" destination="WaY-cl-2yR" id="9Nz-eF-q1Y"/>
                 <outlet property="collectionRootView" destination="VAh-YF-DoA" id="Jl6-9N-Sxv"/>
                 <outlet property="loading" destination="aCZ-hp-Aj9" id="P79-Yb-Ckl"/>
-                <outlet property="share" destination="gSR-sD-7Ji" id="r9j-Yp-kFk"/>
-                <outlet property="showWords" destination="caF-kU-2un" id="PyN-RA-r0I"/>
-                <outlet property="startRecite" destination="y2h-gW-mbK" id="YaM-6W-CfV"/>
+                <outlet property="operationBarRootView" destination="xRs-mM-3cP" id="3Qr-Ti-nzJ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -31,15 +29,14 @@
                     <items>
                         <navigationItem id="uZ5-me-xUo">
                             <barButtonItem key="leftBarButtonItem" title="Item" image="pre_pressed" id="WaY-cl-2yR"/>
-                            <barButtonItem key="rightBarButtonItem" title="Item" image="share32" id="gSR-sD-7Ji"/>
                         </navigationItem>
                     </items>
                 </navigationBar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VAh-YF-DoA" userLabel="collectionView">
-                    <rect key="frame" x="0.0" y="64" width="375" height="473"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="528"/>
                     <subviews>
                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="aCZ-hp-Aj9">
-                            <rect key="frame" x="137.5" y="186.5" width="100" height="100"/>
+                            <rect key="frame" x="137.5" y="214" width="100" height="100"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="100" id="he0-Q5-Myj"/>
                                 <constraint firstAttribute="width" constant="100" id="mOq-nL-G7J"/>
@@ -52,51 +49,23 @@
                         <constraint firstItem="aCZ-hp-Aj9" firstAttribute="centerX" secondItem="VAh-YF-DoA" secondAttribute="centerX" id="cCY-ee-Eaf"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2h-gW-mbK">
-                    <rect key="frame" x="30" y="607" width="315" height="40"/>
-                    <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xRs-mM-3cP" userLabel="operationBarRootView">
+                    <rect key="frame" x="0.0" y="597" width="375" height="75"/>
+                    <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="MPz-65-fVp"/>
+                        <constraint firstAttribute="height" constant="75" id="1x7-RL-oxQ"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                    <state key="normal" title="开始背诵">
-                        <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="20"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="caF-kU-2un">
-                    <rect key="frame" x="30" y="552" width="315" height="40"/>
-                    <color key="backgroundColor" red="0.0" green="0.56031829119999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="4Vj-r3-blC"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                    <state key="normal" title="查看相关单词">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="20"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </button>
+                </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="ThA-nK-wk5" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="6Az-Yp-Jvc"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="y2h-gW-mbK" secondAttribute="bottom" constant="20" id="B3B-ne-Zfw"/>
                 <constraint firstItem="ThA-nK-wk5" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="BHs-Rq-eWZ"/>
-                <constraint firstItem="caF-kU-2un" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="FHz-0d-kKl"/>
-                <constraint firstItem="caF-kU-2un" firstAttribute="top" secondItem="VAh-YF-DoA" secondAttribute="bottom" constant="15" id="QOC-IF-fQs"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="y2h-gW-mbK" secondAttribute="trailing" constant="30" id="QwP-XU-N0V"/>
+                <constraint firstItem="xRs-mM-3cP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="FEU-DQ-rgm"/>
+                <constraint firstItem="xRs-mM-3cP" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" constant="5" id="OQb-ao-aBL"/>
                 <constraint firstItem="ThA-nK-wk5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="WM8-Bp-kNy"/>
-                <constraint firstItem="y2h-gW-mbK" firstAttribute="top" secondItem="caF-kU-2un" secondAttribute="bottom" constant="15" id="bY4-gX-sxI"/>
-                <constraint firstItem="y2h-gW-mbK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="pPm-DE-2in"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="caF-kU-2un" secondAttribute="trailing" constant="30" id="qq5-LF-oqt"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="xRs-mM-3cP" secondAttribute="trailing" id="fcC-7b-bOy"/>
+                <constraint firstItem="xRs-mM-3cP" firstAttribute="top" secondItem="VAh-YF-DoA" secondAttribute="bottom" constant="5" id="kZO-4J-HiW"/>
                 <constraint firstItem="VAh-YF-DoA" firstAttribute="top" secondItem="ThA-nK-wk5" secondAttribute="bottom" id="upe-oX-8Dk"/>
                 <constraint firstItem="VAh-YF-DoA" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="wi3-v2-R3v"/>
                 <constraint firstItem="VAh-YF-DoA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="xNn-vc-05k"/>
@@ -107,6 +76,5 @@
     </objects>
     <resources>
         <image name="pre_pressed" width="32" height="32"/>
-        <image name="share32" width="32" height="32"/>
     </resources>
 </document>

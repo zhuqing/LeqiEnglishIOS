@@ -158,7 +158,7 @@ extension PlayContentViewController{
                                                      ("赞","heart",#selector(PlayContentViewController.tapHeartHandler)),
                                                      ("分享","share32",#selector(PlayContentViewController.tapShareHandler))]
         
-        ViewUtil.addOperation(target:self,root: operationBarViewRoot, operations: operations)
+        OperationBarViewUtil.addOperation(target:self,root: operationBarViewRoot, operations: operations)
     }
     
     @objc private func tapContentHandler(){
@@ -188,47 +188,15 @@ extension PlayContentViewController{
             return
         }
         DispatchQueueUtil.run {
-              HeartedDataCache.contentHeated(targetId: content.id ?? "")
+              HeartedUtil.contentHeated(targetId: content.id ?? "")
         }
       
         content.awesomeNum? += Int64(1)
-        updateHearted(content: content,userInteract: true)
+        HeartedUtil.updateAwesome(root: self.operationBarViewRoot, content: content, heartedIndex: 2, userInteract: true)
        
     }
     
-    private func updateHearted(content:Content?,userInteract:Bool = false){
-        guard let s = content else{
-            ViewUtil.updateOperationItemTitle(target: self, root: self.operationBarViewRoot, index: 2, itemData:("赞","heart"))
-            return
-        }
-        
-        if((s.awesomeNum ?? 0) == 0){
-            ViewUtil.updateOperationItemTitle(target: self, root: self.operationBarViewRoot, index: 2, itemData:("赞","heart"))
-            return
-        }
-        
-        if(userInteract){
-            ViewUtil.updateOperationItemTitle(target: self, root: self.operationBarViewRoot, index: 2, itemData:("\(s.awesomeNum ?? 0)","heart_red"))
-            return
-        }
-        
-        ViewUtil.updateOperationItemTitle(target: self, root: self.operationBarViewRoot, index: 2, itemData:("\(s.awesomeNum ?? 0)","heart"))
-        
-        let cache = UserHeartedDataCache(segmentId: s.id ?? "")
-        
-        cache.load(){
-            
-            (userHearted) in
-            guard userHearted != nil else{
-                ViewUtil.updateOperationItemTitle(target: self, root: self.operationBarViewRoot, index: 2, itemData:("\(s.awesomeNum ?? 0)","heart"))
-                return
-            }
-            
-            ViewUtil.updateOperationItemTitle(target: self, root: self.operationBarViewRoot, index: 2, itemData:("\(s.awesomeNum ?? 0)","heart_red"))
-            
-        }
-        
-    }
+   
     
     @objc private func tapShareHandler(){
         let share = ActionSheetDialogViewController()
@@ -288,59 +256,38 @@ extension PlayContentViewController{
     }
     
     private func createSegmentPlayEntity(segments:[Segment]){
-        var segmentPlayEntities = [SegmentPlayEntity]()
+        var segmentPlayEntities = SegmentPlayEntity.toSegmentPlayEntitys(segments: segments)
         
-        for segment in segments {
-            guard let entity = SegmentPlayEntity.createSegmentPlayEntity(segment: segment) else{
-                continue
-            }
-            segmentPlayEntities.append(entity)
+        if(segmentPlayEntities.count == 0){
+            return
         }
         
-        
-        
-        if segmentPlayEntities.count == 0{
-            return;
+        guard  let lastPlayEntity = segmentPlayEntities.last else{
+            return
         }
         
-        var lastPlayEntity:SegmentPlayEntity?
-        
-        for playEntity in segmentPlayEntities {
-            
-            if(lastPlayEntity != nil){
-                playEntity.startTime = (lastPlayEntity!.endTime!)
-                playEntity.endTime =  (lastPlayEntity!.endTime! + playEntity.endTime!)
-            }
-            
-            lastPlayEntity = playEntity
-        }
+       
         
         //设置当前播放的最大的值
-        self.currentMax = lastPlayEntity?.endTime ?? 0
+        self.currentMax = lastPlayEntity.endTime ?? 0
         self.contentPlayer?.playDatas = segmentPlayEntities
-        
+        if (segmentPlayEntities[0].filePath ?? "").contains(APP_ROOT_PATH){
+           self.play()
+            return
+        }
         Service.download(filePath: segmentPlayEntities[0].filePath ?? "") { (filePath) in
-            segmentPlayEntities[0].filePath = filePath
-            self.playBarView.updateProgress(value: 0)
-            self.playBarView.toPlayStatus()
-            self.contentPlayer?.play()
-            self.loadFile(segmentPlayEntities: segmentPlayEntities, index: 1)
+           segmentPlayEntities[0].filePath = filePath
+           self.play()
         }
     }
     
-    //加载SegmentPlayEntity的文件
-    private func loadFile( segmentPlayEntities:[SegmentPlayEntity],index:Int){
-        if(index < 0 || index >= segmentPlayEntities.count){
-            return ;
-        }
-       
-        Service.download(filePath: segmentPlayEntities[index].filePath ?? "") { (filePath) in
-            segmentPlayEntities[index].filePath = filePath
-            self.loadFile(segmentPlayEntities: segmentPlayEntities, index: index+1)
-            
-        }
+    private func play(){
+        self.playBarView.updateProgress(value: 0)
+        self.playBarView.toPlayStatus()
+        self.contentPlayer?.play()
     }
     
+  
     
     private func play(index:Int){
         guard let datas = self.datas else{
@@ -372,7 +319,7 @@ extension PlayContentViewController{
         
         let simpleTextCollectionViewCell:SimpleTextCollectionViewCell = cell  as! SimpleTextCollectionViewCell
         simpleTextCollectionViewCell.selectCell()
-        updateHearted(content: self.datas![index])
+         HeartedUtil.updateAwesome(root: self.operationBarViewRoot, content: self.datas![index], heartedIndex: 2, userInteract: false)
     }
     
     private func deselected(index:Int){
@@ -524,6 +471,10 @@ extension PlayContentViewController:ContentPlayerDelegate{
         }
         let value = Float((hasPlayedTime + currentTime)/self.currentMax)
         self.playBarView.updateProgress(value: value)
+    }
+    
+    func finish(contentPlayer:ContentPlayer,index:Int){
+        
     }
     
     func currentPlayIndexChange(contentPlayer:ContentPlayer, index:Int){

@@ -100,4 +100,55 @@ class SegmentPlayEntity : Entity{
         
         return segmentPlayEntity
     }
+    
+    class func toSegmentPlayEntitys(segments:[Segment])->[SegmentPlayEntity]{
+        
+        var segmentPlayEntities = [SegmentPlayEntity]()
+        
+        for segment in segments {
+            guard let entity = SegmentPlayEntity.createSegmentPlayEntity(segment: segment) else{
+                continue
+            }
+            segmentPlayEntities.append(entity)
+        }
+        
+        
+        
+        if segmentPlayEntities.count == 0{
+            return segmentPlayEntities;
+        }
+        
+        var lastPlayEntity:SegmentPlayEntity?
+        
+        for playEntity in segmentPlayEntities {
+            
+            if(lastPlayEntity != nil){
+                playEntity.startTime = (lastPlayEntity!.endTime!)
+                playEntity.endTime =  (lastPlayEntity!.endTime! + playEntity.endTime!)
+            }
+            
+            lastPlayEntity = playEntity
+        }
+        
+        DispatchQueueUtil.run {
+           SegmentPlayEntity.loadFile(segmentPlayEntities: segmentPlayEntities, index: 0)
+        }
+        
+        return segmentPlayEntities
+        
+    }
+    
+    //加载SegmentPlayEntity的文件
+    private class func loadFile( segmentPlayEntities:[SegmentPlayEntity],index:Int){
+        if(index < 0 || index >= segmentPlayEntities.count){
+            return ;
+        }
+        
+        Service.download(filePath: segmentPlayEntities[index].filePath ?? "") { (filePath) in
+            segmentPlayEntities[index].filePath = filePath
+            self.loadFile(segmentPlayEntities: segmentPlayEntities, index: index+1)
+            
+        }
+    }
+    
 }

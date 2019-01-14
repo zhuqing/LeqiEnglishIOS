@@ -48,6 +48,9 @@ class PlaySegmentViewController: UIViewController {
     
     private var currentMax = 0.0
     
+    //是否自动播放下一个
+    var autoNext = true
+    
     //用户交互触发
     private var userInteract = false
     
@@ -106,6 +109,8 @@ class PlaySegmentViewController: UIViewController {
 }
 //MARK: UI
 extension PlaySegmentViewController{
+    
+    //
     private func setUI(){
         self.segmentListRootView.addSubview(self.collectionView)
        
@@ -113,76 +118,71 @@ extension PlaySegmentViewController{
         self.playBarRootView.addSubview(self.playBarView)
         self.playBarView.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: self.playBarRootView.bounds.height)
         
-        let operations:[(String,String,Selector)] = [("返回","arrow-return-left",#selector(PlaySegmentViewController.returnEventHandler)),
-                                                     ("背诵","recite_content",#selector(PlaySegmentViewController.reciteSegmentHandler)),
-                                                     ("赞","heart",#selector(PlaySegmentViewController.tapHeartHandler)),
-                                                     ("分享","share32",#selector(PlaySegmentViewController.tapShareHandler))]
-        
-        ViewUtil.addOperation(target:self,root: operationBarRootView, operations: operations)
-        
+       self.initOperationBar()
     }
     
-    //更新segment的点赞数
-    private func updateAwesome(segment:Segment?,userInteract:Bool){
-        
-        guard let s = segment else{
-            ViewUtil.updateOperationItemTitle(target: self, root: self.operationBarRootView, index: 2, itemData:("赞","heart"))
+    private func initOperationBar(){
+        let operations:[(String,String)] = [("返回","arrow-return-left"),
+                                            ("背诵","recite_content"),
+                                            ("赞","heart"),
+                                            ("分享","share32")]
+        OperationBarViewUtil.instance.addOperation(root: self.operationBarRootView, operations: operations, handler: operationTab(id: ))
+    }
+    
+    
+    private func  operationTab(id:String){
+        switch id {
+        case "arrow-return-left":
+            self.returnEventHandler()
+            
+        case "recite_content":
+            self.returnEventHandler()
+        case "heart":
+            self.updateHearted(userInteract: true)
+            
+        case "share32":
+            self.tapShareHandler()
+        default:
+            self.returnEventHandler()
+        }
+    }
+    
+    //更新点赞
+    private func updateHearted(userInteract:Bool = false){
+        if(segments.count == 0){
             return
         }
-        
-        if((s.awesomeNum ?? 0) == 0){
-             ViewUtil.updateOperationItemTitle(target: self, root: self.operationBarRootView, index: 2, itemData:("赞","heart"))
+        if(self.currentPlaySentenceIndex < 0 || self.currentPlaySentenceIndex > self.segments.count){
             return
         }
+        let segment = self.segments[self.currentSegmentPlayIndex]
         
         if(userInteract){
-            ViewUtil.updateOperationItemTitle(target: self, root: self.operationBarRootView, index: 2, itemData:("\(s.awesomeNum ?? 0)","heart_red"))
-            return
+             segment.awesomeNum = (segment.awesomeNum ?? 0) + 1
         }
-        
-        ViewUtil.updateOperationItemTitle(target: self, root: self.operationBarRootView, index: 2, itemData:("\(s.awesomeNum ?? 0)","heart"))
-        
-        let cache = UserHeartedDataCache(segmentId: s.id ?? "")
-        
-        cache.load(){
-            
-            (userHearted) in
-            guard userHearted != nil else{
-                 ViewUtil.updateOperationItemTitle(target: self, root: self.operationBarRootView, index: 2, itemData:("\(s.awesomeNum ?? 0)","heart"))
-                return
-            }
-            
-             ViewUtil.updateOperationItemTitle(target: self, root: self.operationBarRootView, index: 2, itemData:("\(s.awesomeNum ?? 0)","heart_red"))
-            
-        }
-        
-        
+       
+        HeartedUtil.updateAwesome(root: self.operationBarRootView, segment: segment, heartedIndex: 2, userInteract: userInteract)
     }
-    
     
     //背诵当前正在播放的段
     @objc private func reciteSegmentHandler(){
         
     }
-    //点赞
-    @objc private func tapHeartHandler(){
+    
+    //分享
+    @objc private func tapShareHandler(){
         
+        if(segments.count == 0){
+            return
+        }
         if(self.currentPlaySentenceIndex < 0 || self.currentPlaySentenceIndex > self.segments.count){
             return
         }
-        
         let segment = self.segments[self.currentSegmentPlayIndex]
         
-        HeartedDataCache.segmentHeated(targetId: segment.id ?? "", contentId: segment.contentId ?? "")
-        segment.awesomeNum = (segment.awesomeNum ?? 0) + 1
-        self.updateAwesome(segment: segment,userInteract: true)
-      //  ViewUtil.updateOperationItemTitle(target: self, root: self.operationBarRootView, index: 2, image: "heart_red")
-    }
-    //分享
-    @objc private func tapShareHandler(){
         let share = ActionSheetDialogViewController()
         share.modalPresentationStyle = .overCurrentContext
-        share.delegate = ShareViewActionSheetDelegate( segment:Segment())
+        share.delegate = ShareViewActionSheetDelegate( segment:segment,title:"听")
         
         self.present(share, animated: true, completion: nil)
     }
@@ -210,7 +210,7 @@ extension PlaySegmentViewController{
              self.collectionView.frame = CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: self.segmentListRootView.frame.height)
             self.segments.append(contentsOf: segmentList)
          
-            self.play(index: self.currentSegmentPlayIndex ?? 0)
+            self.play(index: self.currentSegmentPlayIndex )
             if(self.contentPlayer?.isPlaying ?? false){
                 self.playBarView.toPlayStatus()
             }
@@ -219,37 +219,47 @@ extension PlaySegmentViewController{
         AppRefreshManager.instance.regist(id: ContentInfoDataCache.CACHE_MANAGER_ID, contentInfoDataCache)
     }
     
-   private func play(index:Int){
+    private func createContentPlayer(){
+        if(self.contentPlayer != nil){
+            return
+        }
+        
+       
+       // self.contentPlayer?.playDatas = self.
+        
+    }
     
+    private func play(index:Int){
+        
+        //如果播放的内容没变，继续播放
+       
         self.currentSegmentPlayIndex = index
         self.segmentPlayItems.removeAll()
         
         if(self.segments.count <= index){
-             self.collectionView.reloadData()
+            self.collectionView.reloadData()
             return
         }
         
         let segment = self.segments[index]
-    //更新点赞
-       updateAwesome(segment: segment,userInteract: false)
-    
+        //更新点赞
+        self.updateHearted()
+        
         guard let content =  segment.content else {
-             self.collectionView.reloadData()
+            self.collectionView.reloadData()
             return
         }
         
         guard let segmentPlayItems = SegmentPlayItem.toItems(str: content) else{
-             self.collectionView.reloadData()
+            self.collectionView.reloadData()
             return
         }
-    
+        
         self.currentMax = Double((segmentPlayItems.last?.endTime ?? 0))/1000
         
         self.segmentPlayItems = segmentPlayItems
         
         self.collectionView.reloadData()
-        
-        
     }
 }
 
@@ -270,13 +280,13 @@ extension PlaySegmentViewController:PlayBarViewDelegate{
             self.showAlert(message: "已经是最后一个了")
             return;
         }
-    LOG.info("next \(currentSegmentPlayIndex)")
+
         contentPlayer.play(index: self.currentSegmentPlayIndex+1)
-        
-        
+
     }
     
     func previous(playBarView:PlayBarView){
+        
         guard let contentPlayer = self.contentPlayer else{
             return
         }
@@ -285,9 +295,8 @@ extension PlaySegmentViewController:PlayBarViewDelegate{
              self.showAlert(message: "已经是第一个了")
             return
         }
-       LOG.info("previous \(currentSegmentPlayIndex)")
+       
         contentPlayer.play(index: self.currentSegmentPlayIndex-1)
-     
     }
     
     func play(playBarView:PlayBarView){
@@ -344,6 +353,13 @@ extension PlaySegmentViewController:ContentPlayerDelegate{
        
     }
     
+    func finish(contentPlayer:ContentPlayer,index:Int){
+        if(autoNext){
+              contentPlayer.play(index: index)
+        }
+     
+    }
+    
     private func disSelect(index:Int){
         
         if(index < 0){
@@ -387,7 +403,7 @@ extension PlaySegmentViewController:ContentPlayerDelegate{
     func currentPlayIndexChange(contentPlayer:ContentPlayer, index:Int){
       
            self.play(index: index)
-         LOG.info("currentPlayIndexChange \(currentSegmentPlayIndex)")
+      
        // contentPlayer.play()
         
     }

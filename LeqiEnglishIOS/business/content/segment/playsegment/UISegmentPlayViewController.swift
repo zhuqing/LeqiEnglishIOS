@@ -10,16 +10,21 @@ import UIKit
 
 class UISegmentPlayViewController: UIViewController {
     let  LOG = LOGGER("UISegmentPlayViewController")
-    @IBOutlet weak var startRecite: UIButton!
+
     @IBOutlet weak var collectionRootView: UIView!
     @IBOutlet weak var back: UIBarButtonItem!
+    @IBOutlet weak var operationBarRootView: UIView!
     
     @IBOutlet weak var loading: UIActivityIndicatorView!
-    @IBOutlet weak var share: UIBarButtonItem!
-    @IBOutlet weak var showWords: UIButton!
+
+
     var content:Content?
     
     var segment:Segment?
+    var segmentIndex:Int = -1;
+    var segmentPlayEntities:[SegmentPlayEntity]?
+    
+    var contentPlayer:ContentPlayer?
     
     private lazy var playBar:PlaySegmentBar? = {
         
@@ -30,6 +35,8 @@ class UISegmentPlayViewController: UIViewController {
     private var lastCell:PlaySementItemCollectionViewCell?
     
     private var selectIndex:Int = -1;
+    
+
     
     var segmentPlayItems = [SegmentPlayItem]()
     
@@ -70,18 +77,24 @@ class UISegmentPlayViewController: UIViewController {
     
     func setSegment(item:Segment,mp3Path:String){
         playBar?.mp3Path = mp3Path
-        
         self.segment = item
-        let start = NSDate.getTime()
-        LOG.info("\(start)")
-        
         segmentPlayItems = SegmentPlayItem.toItems(str: item.content!)!
         
-        LOG.info("\(NSDate.getTime()-start)")
         addCollectionView()
         collectionView.reloadData()
         insertUserAndWord(item)
+        HeartedUtil.updateAwesome(root: self.operationBarRootView, segment: item, heartedIndex: 3, userInteract: false)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        guard let player = self.contentPlayer else{
+            return
+        }
+        
+        player.pause()
+    }
+    
+ 
     
     /*
      // MARK: - Navigation
@@ -101,9 +114,64 @@ extension UISegmentPlayViewController{
     private func setupUI(){
        
         navigation()
-        showWords.addTarget(self, action: #selector(UISegmentPlayViewController.showWordsEventHandler), for: .touchDown)
-        self.startRecite.addTarget(self, action: #selector(UISegmentPlayViewController.startReciteHandler), for: .touchDown)
+        initOperationBar()
+       // showWords.addTarget(self, action: #selector(UISegmentPlayViewController.showWordsEventHandler), for: .touchDown)
+       // self.startRecite.addTarget(self, action: #selector(UISegmentPlayViewController.startReciteHandler), for: .touchDown)
     }
+    
+    private func initOperationBar(){
+       
+        let operations:[(String,String)] = [("返回","arrow-return-left"),
+                                                     ("单词/短语","word_icon"),
+                                                      ("听音频","listen_icon"), ("赞","heart"),
+                                                     ("分享","share32")]
+        OperationBarViewUtil.instance.addOperation(root: self.operationBarRootView, operations: operations, handler: operationTab(id: ))
+    }
+    
+    private func  operationTab(id:String){
+        switch id {
+        case "arrow-return-left":
+            self.backEventHandler()
+        case "word_icon":
+            self.showWordsEventHandler()
+        case "listen_icon":
+            self.audioPlayHandler()
+        case "heart":
+            updateHearted(userInteract: true)
+            
+        case "share32":
+            self.shareEventHandler()
+        default:
+            self.backEventHandler()
+        }
+    }
+    
+    //播放音频
+    private func audioPlayHandler(){
+     
+        let controller = PlaySegmentViewController()
+        controller.currentSegmentPlayIndex = self.segmentIndex
+        controller.autoNext = false
+        
+        self.present(controller, animated: true, completion: {
+            () in
+            
+            controller.contentPlayer = self.contentPlayer
+            controller.contentPlayer?.autoNext = false
+            controller.contentPlayer?.play(index: self.segmentIndex)
+            controller.content = self.content
+          
+        })
+    }
+    
+    private func updateHearted(userInteract:Bool){
+        guard let segment = self.segment else{
+            return
+        }
+        segment.awesomeNum = (segment.awesomeNum ?? 0) + 1
+        HeartedUtil.updateAwesome(root: self.operationBarRootView, segment: segment, heartedIndex: 3, userInteract: userInteract)
+    }
+   
     
     private func addCollectionView(){
         collectionRootView.subviews.forEach({(view) in view.removeFromSuperview()})
@@ -113,10 +181,10 @@ extension UISegmentPlayViewController{
     }
     private func navigation(){
         self.back.action = #selector(UISegmentPlayViewController.backEventHandler)
-        self.share.action = #selector(UISegmentPlayViewController.shareEventHandler)
+       
     }
     
-    @objc private func showWordsEventHandler(){
+    private func showWordsEventHandler(){
         let words = SegmentWordViewController()
         
         self.present(words, animated: true, completion: {() in
@@ -124,7 +192,7 @@ extension UISegmentPlayViewController{
         })
     }
     
-    @objc private func shareEventHandler(){
+    private func shareEventHandler(){
         let share = ActionSheetDialogViewController()
         share.modalPresentationStyle = .overCurrentContext
         share.delegate = ShareViewActionSheetDelegate( segment:self.segment!)

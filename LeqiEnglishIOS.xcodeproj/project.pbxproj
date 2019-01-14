@@ -159,9 +159,9 @@
 		4EE198D621AAC7490063B82B /* SentenceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE198D421AAC7490063B82B /* SentenceCollectionViewCell.swift */; };
 		4EE198D721AAC7490063B82B /* SentenceCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EE198D521AAC7490063B82B /* SentenceCollectionViewCell.xib */; };
 		4EE46725216B3AED005232FF /* LongDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE46724216B3AED005232FF /* LongDataCache.swift */; };
-		4EE9865521E073EA00D52E16 /* ViewUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE9865421E073EA00D52E16 /* ViewUtil.swift */; };
+		4EE9865521E073EA00D52E16 /* OperationBarViewUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE9865421E073EA00D52E16 /* OperationBarViewUtil.swift */; };
 		4EE9865721E3077400D52E16 /* UserHearted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE9865621E3077400D52E16 /* UserHearted.swift */; };
-		4EE9865A21E3274700D52E16 /* HeartedDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE9865921E3274700D52E16 /* HeartedDataCache.swift */; };
+		4EE9865A21E3274700D52E16 /* HeartedUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE9865921E3274700D52E16 /* HeartedUtil.swift */; };
 		4EE9865D21E34DE100D52E16 /* SegmentDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE9865C21E34DE000D52E16 /* SegmentDataCache.swift */; };
 		4EE9866021E3520800D52E16 /* CollectionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE9865F21E3520700D52E16 /* CollectionUtils.swift */; };
 		4EEDD10A21745EC400AFF170 /* CatalogDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEDD10921745EC400AFF170 /* CatalogDataCache.swift */; };
@@ -351,9 +351,9 @@
 		4EE198D421AAC7490063B82B /* SentenceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentenceCollectionViewCell.swift; sourceTree = "<group>"; };
 		4EE198D521AAC7490063B82B /* SentenceCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SentenceCollectionViewCell.xib; sourceTree = "<group>"; };
 		4EE46724216B3AED005232FF /* LongDataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongDataCache.swift; sourceTree = "<group>"; };
-		4EE9865421E073EA00D52E16 /* ViewUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtil.swift; sourceTree = "<group>"; };
+		4EE9865421E073EA00D52E16 /* OperationBarViewUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationBarViewUtil.swift; sourceTree = "<group>"; };
 		4EE9865621E3077400D52E16 /* UserHearted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHearted.swift; sourceTree = "<group>"; };
-		4EE9865921E3274700D52E16 /* HeartedDataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartedDataCache.swift; sourceTree = "<group>"; };
+		4EE9865921E3274700D52E16 /* HeartedUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartedUtil.swift; sourceTree = "<group>"; };
 		4EE9865C21E34DE000D52E16 /* SegmentDataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentDataCache.swift; sourceTree = "<group>"; };
 		4EE9865F21E3520700D52E16 /* CollectionUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionUtils.swift; sourceTree = "<group>"; };
 		4EEDD10921745EC400AFF170 /* CatalogDataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogDataCache.swift; sourceTree = "<group>"; };
@@ -1281,7 +1281,7 @@
 		4EE9865321E073C200D52E16 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				4EE9865421E073EA00D52E16 /* ViewUtil.swift */,
+				4EE9865421E073EA00D52E16 /* OperationBarViewUtil.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1289,7 +1289,7 @@
 		4EE9865821E3270B00D52E16 /* data */ = {
 			isa = PBXGroup;
 			children = (
-				4EE9865921E3274700D52E16 /* HeartedDataCache.swift */,
+				4EE9865921E3274700D52E16 /* HeartedUtil.swift */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -1675,7 +1675,7 @@
 				4E9C5BA32150D2E70079F985 /* UserDataCache.swift in Sources */,
 				4EEDD11121749DA200AFF170 /* MyContentsViewController.swift in Sources */,
 				4EC2A81A21A984B700FE3793 /* WordsInSegmentDataCache.swift in Sources */,
-				4EE9865A21E3274700D52E16 /* HeartedDataCache.swift in Sources */,
+				4EE9865A21E3274700D52E16 /* HeartedUtil.swift in Sources */,
 				4E891F8321606A2B00A1893A /* WriteWordViewController.swift in Sources */,
 				4E91DD0F215C6911001F5E22 /* MyReciteWords.swift in Sources */,
 				4E957DC4216CA79800BCF9E4 /* LoginViewController.swift in Sources */,
@@ -1697,7 +1697,7 @@
 				4EC2A81621A972BE00FE3793 /* SentenceInShortWordDataCache.swift in Sources */,
 				4EF2F06220710C1500B7F447 /* Content.swift in Sources */,
 				4EF2F06520710C7A00B7F447 /* Entity.swift in Sources */,
-				4EE9865521E073EA00D52E16 /* ViewUtil.swift in Sources */,
+				4EE9865521E073EA00D52E16 /* OperationBarViewUtil.swift in Sources */,
 				4E91DD16215CCB1A001F5E22 /* MyReciteWordInfoViewController.swift in Sources */,
 				4E56EB7521782240000AE4C9 /* UserSegmentDataCache.swift in Sources */,
 				4EC0C3D9215A042C004CE967 /* ReciteWordViewController.swift in Sources */,

@@ -11,9 +11,16 @@ import UIKit
 class ShareViewActionSheetDelegate: ActionSheetDialogViewControllerDelegate {
  
     private var segment:Segment
+    private var title:String = "背诵"
+    
+    init(segment:Segment,title:String) {
+        self.segment = segment
+        self.title = title
+    }
     
     init(segment:Segment) {
         self.segment = segment
+        title = "背诵"
     }
     func getOperation(viewController: ActionSheetDialogViewController) -> [String : () -> ()]? {
        return nil
@@ -41,12 +48,13 @@ extension ShareViewActionSheetDelegate:ShareViewDelegate{
        
         let url = "\(Service.host)/html/share/shareContent.html?segmentId=\(segment.id ?? "")&userId=\(UserDataCache.instance.getUserId())"
         
-        let title = "\(UserDataCache.instance.getUserName())完成了\"\(segment.title!)\"的背诵"
+        let title = "\(UserDataCache.instance.getUserName())正在\(self.title)演讲\"\(segment.title!)\""
         switch data.0 {
         case "1":
-            SharePlateformUtil.share(.subTypeWechatTimeline, url: url, title: title)
+           SharePlateformUtil.share(.subTypeWechatTimeline, url: url, title: title)
         case "2":
-            SharePlateformUtil.share(.subTypeQZone, url:url, title: title)
+           SharePlateformUtil.share(.subTypeQZone, url:url, title: title)
+            //SharePlateformUtil.shareImage(.subTypeQZone, imagePath: <#T##String#>, title: <#T##String#>, content: <#T##String#>)
         default:
             print("ee")
         }

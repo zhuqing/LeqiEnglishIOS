@@ -17,6 +17,9 @@ protocol ContentPlayerDelegate {
     //播放完成
     func finish(contentPlayer:ContentPlayer)
     
+    //第I个播放完成播放完成
+    func finish(contentPlayer:ContentPlayer,index:Int)
+    
     func error(contentPlayer:ContentPlayer,message:String)
 }
 
@@ -26,6 +29,9 @@ class ContentPlayer: NSObject {
     private let LOG = LOGGER("contentPlayer")
     //播放器
     private var player:AVAudioPlayer?
+    
+    //是否自动播放下一个
+    var autoNext = true
     
     let session = AVAudioSession.sharedInstance()
     //播放的数据
@@ -62,23 +68,35 @@ class ContentPlayer: NSObject {
     //是否运行计时器
     private var runTimer = true
     
+    private var timer:Timer?
+    
     override init() {
         super.init()
         self.initAV()
         self.startRunTimer()
+       
     }
     
     @objc private func timerHandler(){
-        if let delegate = self.delegate {
-            if let player = self.player{
-                 delegate.currentTimeChange(contentPlayer: self, currentTime: player.currentTime)
-            }
-           
-        }
         if(!runTimer){
+            self.timer?.invalidate()
+        //return
+        }
+        guard let delegate = self.delegate else {
             return
         }
-        startRunTimer()
+        
+        guard let player = self.player else{
+            return
+        }
+        
+        if(player.isPlaying){
+            delegate.currentTimeChange(contentPlayer: self, currentTime: player.currentTime)
+        }
+           
+        
+       
+       // startRunTimer()
     }
     
     //根据索引获取SegmentPlayEntity
@@ -95,7 +113,7 @@ class ContentPlayer: NSObject {
     
     //开始运行计时器
     private func startRunTimer(){
-          Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(ContentPlayer.timerHandler), userInfo: nil, repeats: false)
+         self.timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(ContentPlayer.timerHandler), userInfo: nil, repeats: true)
     }
     
     //播放 ， index指定时间，播放的位置
@@ -155,11 +173,13 @@ class ContentPlayer: NSObject {
         }
       
         LOG.info("load \(filePath)")
+       
         do {
             self.player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: filePath))
             self.player?.prepareToPlay()
             self.player?.delegate = self
             self.player?.play()
+          
         } catch let err {
             self.LOG.info("创建失败:\(err.localizedDescription)")
             segmentPlayEntity.filePath  = segmentPlayEntity.path ?? ""
@@ -208,9 +228,11 @@ class ContentPlayer: NSObject {
     //销毁
     func destory(){
          self.runTimer = false
+          self.timer?.invalidate()
         guard let player = self.player else{
             return
         }
+      
         player.stop()
     }
     
@@ -228,6 +250,13 @@ class ContentPlayer: NSObject {
             return
         }
         
+        if let d = self.delegate {
+            d.finish(contentPlayer: self, index: self.currentPlayIndex)
+        }
+        //判断是否自动播放下一个
+        if(!autoNext){
+            return
+        }
         self.play(index: currentPlayIndex+1)
     }
 }

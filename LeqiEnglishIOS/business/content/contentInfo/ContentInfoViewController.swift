@@ -15,6 +15,7 @@ class ContentInfoViewController: UIViewController {
     @IBOutlet weak var collectionRootView: UIView!
     @IBOutlet weak var finishedLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var operationBarRootView: UIView!
     
     @IBOutlet weak var back: UIBarButtonItem!
     let LOG = LOGGER("ContentInfoViewController")
@@ -28,6 +29,11 @@ class ContentInfoViewController: UIViewController {
             resetUI()
         }
     }
+    
+    private var contentPlayer:ContentPlayer?
+    
+    //可以播放的segment数据
+    private var segmentPlayEntities:[SegmentPlayEntity]?
     
     static var isMyRecite:Bool? = false{
         didSet{
@@ -77,9 +83,16 @@ class ContentInfoViewController: UIViewController {
         super.viewWillAppear(animated)
         
         self.refresh()
+        guard let player = self.contentPlayer else{
+            return
+        }
+        
+        player.pause()
     }
+    
+   
 }
-
+//MARK: UI EVENT
 extension ContentInfoViewController{
     private func setupUI(){
         // self.navigationController.navigationBar.trans
@@ -89,7 +102,74 @@ extension ContentInfoViewController{
         collectionView.frame = CGRect(x: 10, y: 0, width: SCREEN_WIDTH-20, height: collectionRootView.frame.height)
         addListener()
         resetUI()
-       
+        initOperationBar()
+     
+    }
+    
+    private func initOperationBar(){
+        let operations:[(String,String)] = [("返回","arrow-return-left"),
+                                            ("听音频","listen_icon"), ("赞","heart"),
+                                            ("分享","share32")]
+        OperationBarViewUtil.instance.addOperation(root: self.operationBarRootView, operations: operations, handler: operationTab(id: ))
+    }
+    
+    
+    private func  operationTab(id:String){
+        switch id {
+        case "arrow-return-left":
+            self.backEventHandler()
+
+        case "listen_icon":
+            self.audioPlayHandler()
+        case "heart":
+            self.updateHearted(userInteract: true)
+            
+        case "share32":
+            self.shareEventHandler()
+        default:
+            self.backEventHandler()
+        }
+    }
+    
+    //分享按钮事件
+    private func shareEventHandler(){
+        let share = ActionSheetDialogViewController()
+        if(self.segments.count == 0){
+            return
+        }
+        share.modalPresentationStyle = .overCurrentContext
+        
+        share.delegate = ShareViewActionSheetDelegate( segment:self.segments.first!,title:"听")
+        
+        self.present(share, animated: true, completion: nil)
+    }
+    //播放音频事件
+    private func audioPlayHandler(){
+        guard let content = self.content else{
+            return
+        }
+        
+        guard let player = self.contentPlayer else{
+            return
+        }
+        
+        let playSegment = PlaySegmentViewController()
+        playSegment.contentPlayer = self.contentPlayer
+        
+        playSegment.currentSegmentPlayIndex = 0
+        self.present(playSegment, animated: true, completion: {
+            player.play(index: 0)
+            playSegment.content = content
+        })
+    }
+    
+    //更新点赞
+    private func updateHearted(userInteract:Bool = false){
+        guard let content = self.content else{
+            return
+        }
+        content.awesomeNum = (content.awesomeNum ?? 0) + 1
+        HeartedUtil.updateAwesome(root: self.operationBarRootView, content: content, heartedIndex: 2, userInteract: userInteract)
     }
     
     private func navigation(){
@@ -98,6 +178,12 @@ extension ContentInfoViewController{
     
     @objc private func backEventHandler(){
         self.dismiss(animated: true, completion: nil)
+        guard  let player = self.contentPlayer else {
+            return
+        }
+        
+        player.destory()
+        
     }
     //按钮时间监听
     private func addListener(){
@@ -111,6 +197,7 @@ extension ContentInfoViewController{
         }else{
              self.add2MyReciteButton.isHidden = false
         }
+          updateHearted()
     }
     
     @objc private func btnClickEventHandler(){
@@ -191,12 +278,25 @@ extension ContentInfoViewController{
             
             self.collectionView.reloadData()
             self.loadHasRecitedSegmentData(self.content!)
+            self.loadSegmentPlayEntitys(segments: self.segments)
         }
+    }
+    
+    private func loadSegmentPlayEntitys(segments:[Segment]){
+        
+        self.segmentPlayEntities = SegmentPlayEntity.toSegmentPlayEntitys(segments: segments)
+        if(self.contentPlayer == nil){
+            self.contentPlayer = ContentPlayer()
+        }
+        
+        self.contentPlayer?.playDatas = self.segmentPlayEntities
+        
+        
     }
     
     //加载已经背诵的段的数据
     private func loadHasRecitedSegmentData(_ content:Content){
-      LOG.info("loadHasRecitedSegmentData")
+
         UserSegmentDataCache(contentId: content.id ?? "").load(finished: {
             (userAndSegments) in
             guard let us = userAndSegments else{
@@ -211,20 +311,7 @@ extension ContentInfoViewController{
 extension ContentInfoViewController : UICollectionViewDataSource,UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       
-      
-//        if(indexPath.item == 0){
-//            let word = WordListViewController()
-//            self.present(word, animated: true){
-//                word.loadData(content:self.content!)
-//                //self.insertWordsToUser(self.content?.id ?? "")
-//            }
-//        }else{
-           let segment =  segments[indexPath.item]
-            
-           toSegment(segment: segment)
-        //}
-       
+        toSegment(segment: segments[indexPath.item],index:indexPath.item)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -235,7 +322,7 @@ extension ContentInfoViewController : UICollectionViewDataSource,UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:SegmentViewItem = collectionView.dequeueReusableCell(withReuseIdentifier: SegmentViewItem.SEGMENT_VIEW_ITEM_CELL, for: indexPath) as! SegmentViewItem
-        //   cell.backgroundColor = UIColor.blue
+       
         cell.segment = segments[indexPath.item]
         return cell
     }
@@ -248,14 +335,13 @@ extension ContentInfoViewController : RefreshDataCacheDelegate{
     }
     
     func refresh() {
-        
        self.loadData()
     }
 }
 
 extension ContentInfoViewController{
     
-    private func toSegment(segment:Segment){
+    private func toSegment(segment:Segment,index:Int){
         var path:String = ""
         if(segment.audioPath != nil){
             path = segment.audioPath!
@@ -264,37 +350,37 @@ extension ContentInfoViewController{
         }
         
         if(path.count == 0){
-            toSegmentInfo(segment: segment)
+            toSegmentInfo(segment: segment,index: index)
             return
         }
         
         if(FileUtil.hasFile(path: path)){
-            toSegmentInfo(segment: segment)
+            toSegmentInfo(segment: segment,index: index)
         }else{
-            toLoadView(segment: segment, path: path)
+            toLoadView(segment: segment,index: index, path: path)
         }
       
     }
     
-    private func toLoadView(segment:Segment,path:String){
+    private func toLoadView(segment:Segment,index:Int,path:String){
         let loadView = LoadingViewController()
         self.present(loadView, animated: true, completion: {
             () in
             loadView.load(path: path, callback: {() in
                 loadView.dismiss(animated: false, completion: nil)
-                self.toSegmentInfo(segment: segment)
+                self.toSegmentInfo(segment: segment,index:index)
             })
         })
     }
     
-    private func toSegmentInfo(segment:Segment){
+    private func toSegmentInfo(segment:Segment,index:Int){
         let uiView = UISegmentPlayViewController()
+        uiView.segmentIndex = index
+        uiView.segmentPlayEntities = self.segmentPlayEntities
+        uiView.contentPlayer = self.contentPlayer
         self.present(uiView, animated: true){
-            var audioPath = self.content?.audioPath
-            if(audioPath == nil){
-                audioPath = segment.audioPath
-            }
-            uiView.setSegment(item: segment,mp3Path: (audioPath)!)
+     
+            uiView.setSegment(item: segment,mp3Path: segment.audioPath ?? "")
             uiView.content = self.content
         }
     }
