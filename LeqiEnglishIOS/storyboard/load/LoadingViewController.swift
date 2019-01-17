@@ -19,7 +19,7 @@ class LoadingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        progressView.setProgress(0, animated: true)
         load()
     }
 

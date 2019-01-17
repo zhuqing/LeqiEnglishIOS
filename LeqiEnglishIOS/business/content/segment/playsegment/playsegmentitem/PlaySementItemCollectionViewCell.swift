@@ -13,6 +13,7 @@ protocol PlaySementItemCollectionViewCellDelegate {
 }
 
 class PlaySementItemCollectionViewCell: UICollectionViewCell {
+    
     let LOG = LOGGER("PlaySementItemCollectionViewCell")
     static let PALY_SEGMENT_ITEM_CELL = "PALY_SEGMENT_ITEM_CELL"
     
@@ -157,6 +158,16 @@ class PlaySementItemCollectionViewCell: UICollectionViewCell {
         delegate.showWord(word:  (self.englishTextView?.text(in: (self.englishTextView?.selectedTextRange!)!)!)!)
     }
 
+}
+
+extension PlaySementItemCollectionViewCell{
+    func selectCell(){
+        self.englishTextView?.textColor =  UIColor(r: CGFloat(0xed), b: CGFloat(0x74), y: CGFloat(0x2e))
+    }
+    
+    func disSelectCell(){
+         self.englishTextView?.textColor =  UIColor.black
+    }
 }
 
 

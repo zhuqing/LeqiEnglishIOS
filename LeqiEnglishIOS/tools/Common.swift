@@ -22,7 +22,7 @@ import UIKit
     let SPACING:CGFloat = 5
 
 let CONTENT_CELL_HEIGHT:CGFloat = 220
-let CONTENT_CELL_WIDTH:CGFloat = 140
+let CONTENT_CELL_WIDTH:CGFloat = 150
 
 let SEGMENT_CELL_HEIGHT:CGFloat = 320
 let SEGMENT_CELL_WIDTH:CGFloat = 220
@@ -40,5 +40,8 @@ let SLIP_START_AND_END = "==>";
 let SLIP_EN_AND_CH = ">::<";
 let SLIP_END = "<=====>";
 let SLIP_SENTENCE = "\n";
+
+//Pi
+let M_PI_F = CGFloat(Double.pi)
 
 let APP_ROOT_PATH = "leqienglish"

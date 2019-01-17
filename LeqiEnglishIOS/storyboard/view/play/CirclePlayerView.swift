@@ -1,31 +1,30 @@
 //
-//  AllFloatButton.swift
+//  CirclePlayerView.swift
 //  LeqiEnglishIOS
 //
-//  Created by zhuleqi on 2018/12/21.
-//  Copyright © 2018 zhuleqi. All rights reserved.
+//  Created by zhuleqi on 2019/1/17.
+//  Copyright © 2019 zhuleqi. All rights reserved.
 //
 
 import UIKit
 
-
-// 声明协议
-protocol FloatButtonDelegate {
-    func singleClick()
-    
-    func repeatClick()
+protocol CirclePlayerViewDelegate {
+   
+    func play(playBarView:CirclePlayerView)
+    func pause(playBarView:CirclePlayerView)
+   
 }
 
-class AllFloatButton: UIButton {
+
+
+class CirclePlayerView: PercentView {
     
     // 是否可拖拽
     var isDragEnable: Bool = true
     
     // 拖拽后是否自动移到边缘
     var isAbsortEnable: Bool = true
-    
-    // 背景颜色
-    var bgColor: UIColor? = UIColor.white
+
     
     // 正常情况下 透明度
     var alphaOfNormol: CGFloat = 0.8
@@ -46,7 +45,7 @@ class AllFloatButton: UIButton {
     var paddingOfbutton: CGFloat = 2
     
     // 代理
-    var delegate: FloatButtonDelegate? = nil
+    var delegate: CirclePlayerViewDelegate? = nil
     
     // 计时器
     fileprivate var timer: Timer? = nil
@@ -59,25 +58,51 @@ class AllFloatButton: UIButton {
     
     fileprivate var isFirstClick: Bool = true
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.backgroundColor = self.bgColor
-        self.alpha =  self.alphaOfNormol
-        self.layer.cornerRadius = self.radiuOfButton
-        
-    }
+    private var playStatus:PlayStatus = PlayStatus.STOP
     
-    init(frame: CGRect,radiuOfButton:CGFloat) {
-        super.init(frame: frame)
-        self.radiuOfButton = radiuOfButton
-        self.backgroundColor = self.bgColor
+    private var playImage = UIImageView(image: UIImage(named: "play_orange"))
+    
+    private var innerColor = UIColor.lightGray
+
+
+    override init(frame: CGRect) {
+        super.init(frame:frame)
+        self.backgroundColor = UIColor.clear
+        self.bgColor = UIColor.darkGray
+        self.percentColor = UIColor.red
         self.alpha =  self.alphaOfNormol
-        self.layer.cornerRadius = self.radiuOfButton
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        innerColor.set()
+        let ovalIn = CGRect(x: 2, y: 2, width: self.frame.width - 4, height: self.frame.width - 4)
+        let path = UIBezierPath(ovalIn: ovalIn)
+        path.fill()
+        
+        let radius = self.frame.width/2
+        if(playStatus == PlayStatus.PLAY){
+            playImage.image = UIImage(named: "pause_orange")
+        }else{
+             playImage.image = UIImage(named: "play_orange")
+        }
+        
+        playImage.frame = CGRect(x: radius/2, y: radius/2, width: radius, height: radius)
+        self.addSubview(playImage)
+    }
+    
+    func play(){
+        self.playStatus = PlayStatus.PLAY
+          self.setNeedsDisplay()
+    }
+    func stop(){
+        self.playStatus = PlayStatus.STOP
+        self.setNeedsDisplay()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -166,14 +191,25 @@ class AllFloatButton: UIButton {
         }
     }
     
-   @objc func singleClick() {
-        self.delegate?.singleClick()
+    @objc func singleClick() {
+        if(self.delegate == nil){
+            return
+        }
+        if(playStatus == PlayStatus.PLAY){
+            playStatus = PlayStatus.STOP
+            self.delegate?.pause(playBarView: self)
+        }else if(playStatus == PlayStatus.STOP){
+              playStatus = PlayStatus.PLAY
+              self.delegate?.play(playBarView: self)
+        }
+        
+        self.setNeedsDisplay()
+      
     }
     
-     @objc func repeatClick() {
+    @objc func repeatClick() {
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(singleClick), object: nil)
-        self.delegate?.repeatClick()
+       // self.delegate?.repeatClick()
     }
+
 }
-
-

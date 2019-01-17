@@ -111,6 +111,14 @@ class ContentPlayer: NSObject {
         return datas[index]
     }
     
+    func getMaxDuration()  -> TimeInterval{
+        if(self.playDatas == nil || self.playDatas?.isEmpty ?? true){
+            return 0
+        }
+        
+        return self.playDatas!.last!.endTime ?? 0
+    }
+    
     //开始运行计时器
     private func startRunTimer(){
          self.timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(ContentPlayer.timerHandler), userInfo: nil, repeats: true)
@@ -209,6 +217,7 @@ class ContentPlayer: NSObject {
     //开始播放
     func start(){
         guard let player = self.player else{
+            self.play()
             return
         }
         
@@ -232,7 +241,7 @@ class ContentPlayer: NSObject {
         guard let player = self.player else{
             return
         }
-      
+     
         player.stop()
     }
     

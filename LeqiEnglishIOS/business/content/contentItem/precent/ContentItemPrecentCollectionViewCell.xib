@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,12 +20,10 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="obma" translatesAutoresizingMaskIntoConstraints="NO" id="623-IH-bEw">
-                        <rect key="frame" x="0.0" y="0.0" width="147" height="176"/>
+                        <rect key="frame" x="0.0" y="7.5" width="150" height="176"/>
                         <constraints>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="147" id="KkE-Yo-JL7"/>
-                            <constraint firstAttribute="width" constant="147" id="Suv-Kb-w1o"/>
-                            <constraint firstAttribute="height" constant="176" id="XG0-AM-S7w"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="176" id="pEj-M7-LHH"/>
+                            <constraint firstAttribute="width" constant="150" id="Suv-Kb-w1o"/>
+                            <constraint firstAttribute="height" constant="176" id="pEj-M7-LHH"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
@@ -34,33 +32,38 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="乔布斯英语演讲：斯坦福大学2005年毕业典礼上的演讲" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Pu-Id-15D">
-                        <rect key="frame" x="0.0" y="178" width="147" height="39"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="39" id="HRM-6E-yEa"/>
-                        </constraints>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="乔布斯英语演讲：斯坦福大学2005年毕业典礼上的演讲" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Pu-Id-15D">
+                        <rect key="frame" x="0.0" y="185.5" width="147" height="31.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A3t-sP-TdH">
-                        <rect key="frame" x="113" y="156" width="29" height="19"/>
+                        <rect key="frame" x="113" y="160.5" width="29" height="19"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v7G-jw-1KR">
+                        <rect key="frame" x="81" y="160.5" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="vT0-SZ-YZy"/>
+                            <constraint firstAttribute="height" constant="20" id="wSQ-AN-f9B"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="A3t-sP-TdH" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="156" id="4FE-yi-ZOb"/>
-                <constraint firstItem="0Pu-Id-15D" firstAttribute="leading" secondItem="623-IH-bEw" secondAttribute="leading" id="5Ye-ve-jPf"/>
-                <constraint firstAttribute="bottom" secondItem="A3t-sP-TdH" secondAttribute="bottom" constant="42" id="AEM-X0-YbJ"/>
-                <constraint firstItem="0Pu-Id-15D" firstAttribute="trailing" secondItem="623-IH-bEw" secondAttribute="trailing" id="IAc-BJ-LQt"/>
+                <constraint firstItem="0Pu-Id-15D" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="1Er-0n-wGa"/>
+                <constraint firstItem="0Pu-Id-15D" firstAttribute="top" secondItem="v7G-jw-1KR" secondAttribute="bottom" constant="5" id="Aed-0c-Qa0"/>
+                <constraint firstItem="0Pu-Id-15D" firstAttribute="top" secondItem="A3t-sP-TdH" secondAttribute="bottom" constant="6" id="DWu-3x-Mn1"/>
+                <constraint firstItem="v7G-jw-1KR" firstAttribute="top" secondItem="A3t-sP-TdH" secondAttribute="top" id="Mge-Mq-1yI"/>
                 <constraint firstAttribute="bottom" secondItem="0Pu-Id-15D" secondAttribute="bottom" id="SaW-K1-hUK"/>
                 <constraint firstAttribute="trailing" secondItem="A3t-sP-TdH" secondAttribute="trailing" constant="5" id="SwN-4g-YAW"/>
-                <constraint firstAttribute="trailing" secondItem="0Pu-Id-15D" secondAttribute="trailing" id="dws-pu-8aC"/>
-                <constraint firstItem="0Pu-Id-15D" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="llV-gk-utD"/>
+                <constraint firstItem="623-IH-bEw" firstAttribute="leading" secondItem="0Pu-Id-15D" secondAttribute="leading" id="b0P-C4-wpG"/>
+                <constraint firstAttribute="trailing" secondItem="0Pu-Id-15D" secondAttribute="trailing" id="bRB-wx-k3K"/>
+                <constraint firstItem="A3t-sP-TdH" firstAttribute="leading" secondItem="v7G-jw-1KR" secondAttribute="trailing" constant="12" id="jF6-y4-yhr"/>
                 <constraint firstItem="0Pu-Id-15D" firstAttribute="top" secondItem="623-IH-bEw" secondAttribute="bottom" constant="2" id="qJg-jn-6sy"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
@@ -68,6 +71,7 @@
             <connections>
                 <outlet property="imageView" destination="623-IH-bEw" id="wln-nm-7YN"/>
                 <outlet property="precentLabel" destination="A3t-sP-TdH" id="6qZ-7R-hFH"/>
+                <outlet property="precentRootView" destination="v7G-jw-1KR" id="gLx-V1-68E"/>
                 <outlet property="titleLabel" destination="0Pu-Id-15D" id="OhT-ck-3tj"/>
             </connections>
             <point key="canvasLocation" x="112.5" y="143.5"/>

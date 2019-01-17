@@ -19,6 +19,8 @@ class PlayContentViewController: UIViewController {
     
     private var currentPlayIndex = -1;
     
+    private var waiting:WaitingViewController?
+    
     
     
     //当前播放的Content的最长时间
@@ -282,6 +284,8 @@ extension PlayContentViewController{
     }
     
     private func play(){
+      //  self.waiting?.close()
+       // self.waiting = nil
         self.playBarView.updateProgress(value: 0)
         self.playBarView.toPlayStatus()
         self.contentPlayer?.play()
@@ -302,8 +306,11 @@ extension PlayContentViewController{
         }else if(currentPlayIndex >= datas.count){
             currentPlayIndex = 0
         }
-        
-        
+         self.contentPlayer?.pause()
+       // if(waiting != nil){
+           // waiting?.close()
+       // }
+    //  waiting = self.startWaiting()
         selected(index: currentPlayIndex)
         self.loadSegments(content: datas[self.currentPlayIndex])
     }

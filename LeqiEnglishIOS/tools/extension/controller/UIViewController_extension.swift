@@ -9,6 +9,7 @@
 import UIKit
 
 extension  UIViewController {
+    
     func  showAlert(message:String,closeHandler:(()->Swift.Void)? = nil)  {
         let alert = UIAlertController(title: message, message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "关闭", style: .cancel, handler:{
@@ -34,6 +35,18 @@ extension  UIViewController {
     @objc func returnEventHandler(){
         self.dismiss(animated: true, completion: nil)
     }
+    
+    func startWaiting() -> WaitingViewController{
+        let waiting = WaitingViewController()
+         waiting.modalPresentationStyle = .overCurrentContext
+        self.present(waiting, animated: false, completion: {
+            waiting.startWaiting()
+        })
+        
+        return waiting
+    }
+    
+
     
     
     func checkUpdate(){

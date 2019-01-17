@@ -154,6 +154,12 @@
 		4EC98138217079FD001A2E9B /* WordListSimpleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC98136217079FD001A2E9B /* WordListSimpleViewController.swift */; };
 		4EC98139217079FE001A2E9B /* WordListSimpleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EC98137217079FD001A2E9B /* WordListSimpleViewController.xib */; };
 		4EC9813B21708261001A2E9B /* RefreshDataCacheDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC9813A21708261001A2E9B /* RefreshDataCacheDelegate.swift */; };
+		4ED1382521F00DE4000B3555 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED1382421F00DE4000B3555 /* CircleView.swift */; };
+		4ED1382721F00F22000B3555 /* PercentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED1382621F00F22000B3555 /* PercentView.swift */; };
+		4ED1382A21F02390000B3555 /* CirclePlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED1382921F02390000B3555 /* CirclePlayerView.swift */; };
+		4ED1382C21F025CC000B3555 /* PlayStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED1382B21F025CC000B3555 /* PlayStatus.swift */; };
+		4ED1383021F06FC2000B3555 /* WaitingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED1382E21F06FC1000B3555 /* WaitingViewController.swift */; };
+		4ED1383121F06FC2000B3555 /* WaitingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ED1382F21F06FC1000B3555 /* WaitingViewController.xib */; };
 		4EDAFEF8218F10A800700E7C /* SimpleWordInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDAFEF7218F10A800700E7C /* SimpleWordInfo.swift */; };
 		4EDB86E421C782CF0013D71F /* PageDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDB86E321C782CF0013D71F /* PageDataCache.swift */; };
 		4EE198D621AAC7490063B82B /* SentenceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE198D421AAC7490063B82B /* SentenceCollectionViewCell.swift */; };
@@ -346,6 +352,12 @@
 		4EC98136217079FD001A2E9B /* WordListSimpleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListSimpleViewController.swift; sourceTree = "<group>"; };
 		4EC98137217079FD001A2E9B /* WordListSimpleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WordListSimpleViewController.xib; sourceTree = "<group>"; };
 		4EC9813A21708261001A2E9B /* RefreshDataCacheDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshDataCacheDelegate.swift; sourceTree = "<group>"; };
+		4ED1382421F00DE4000B3555 /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
+		4ED1382621F00F22000B3555 /* PercentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentView.swift; sourceTree = "<group>"; };
+		4ED1382921F02390000B3555 /* CirclePlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclePlayerView.swift; sourceTree = "<group>"; };
+		4ED1382B21F025CC000B3555 /* PlayStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayStatus.swift; sourceTree = "<group>"; };
+		4ED1382E21F06FC1000B3555 /* WaitingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingViewController.swift; sourceTree = "<group>"; };
+		4ED1382F21F06FC1000B3555 /* WaitingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WaitingViewController.xib; sourceTree = "<group>"; };
 		4EDAFEF7218F10A800700E7C /* SimpleWordInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleWordInfo.swift; sourceTree = "<group>"; };
 		4EDB86E321C782CF0013D71F /* PageDataCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageDataCache.swift; sourceTree = "<group>"; };
 		4EE198D421AAC7490063B82B /* SentenceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentenceCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -458,6 +470,7 @@
 		4E21D3C5218FD78E00B9C02A /* load */ = {
 			isa = PBXGroup;
 			children = (
+				4ED1382D21F06F6F000B3555 /* wait */,
 				4E21D3C6218FD7B300B9C02A /* LoadingViewController.swift */,
 				4E21D3C7218FD7B300B9C02A /* LoadingViewController.xib */,
 			);
@@ -664,6 +677,8 @@
 		4E5ED41421436F3800AC709F /* view */ = {
 			isa = PBXGroup;
 			children = (
+				4ED1382821F0235A000B3555 /* play */,
+				4ED1382321F00D9C000B3555 /* circle */,
 				4E8A8E6E21DC7D41007E80E9 /* operation */,
 				4E9B8B9B21CC9CBE00B5AED3 /* floatButton */,
 				4E5ED41521436F6E00AC709F /* PageTitleView.swift */,
@@ -1278,6 +1293,33 @@
 			path = contentwordList;
 			sourceTree = "<group>";
 		};
+		4ED1382321F00D9C000B3555 /* circle */ = {
+			isa = PBXGroup;
+			children = (
+				4ED1382421F00DE4000B3555 /* CircleView.swift */,
+				4ED1382621F00F22000B3555 /* PercentView.swift */,
+			);
+			path = circle;
+			sourceTree = "<group>";
+		};
+		4ED1382821F0235A000B3555 /* play */ = {
+			isa = PBXGroup;
+			children = (
+				4ED1382921F02390000B3555 /* CirclePlayerView.swift */,
+				4ED1382B21F025CC000B3555 /* PlayStatus.swift */,
+			);
+			path = play;
+			sourceTree = "<group>";
+		};
+		4ED1382D21F06F6F000B3555 /* wait */ = {
+			isa = PBXGroup;
+			children = (
+				4ED1382E21F06FC1000B3555 /* WaitingViewController.swift */,
+				4ED1382F21F06FC1000B3555 /* WaitingViewController.xib */,
+			);
+			path = wait;
+			sourceTree = "<group>";
+		};
 		4EE9865321E073C200D52E16 /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -1524,6 +1566,7 @@
 				4E781B572177193E003EFE3B /* MyWordListViewController.xib in Resources */,
 				4E21D3C9218FD7B300B9C02A /* LoadingViewController.xib in Resources */,
 				4E5A56EC21730498004AB28C /* ContentSearchViewController.xib in Resources */,
+				4ED1383121F06FC2000B3555 /* WaitingViewController.xib in Resources */,
 				4E87709A21A95E0700BD6F92 /* ShortWordsSampleViewController.xib in Resources */,
 				4E9B8B9A21CC98E100B5AED3 /* PlayContentViewController.xib in Resources */,
 				4EC0C3DA215A042C004CE967 /* ReciteWordViewController.xib in Resources */,
@@ -1674,6 +1717,7 @@
 				4E957DB2216C40EB00BCF9E4 /* ReciteSegmentViewController.swift in Sources */,
 				4E9C5BA32150D2E70079F985 /* UserDataCache.swift in Sources */,
 				4EEDD11121749DA200AFF170 /* MyContentsViewController.swift in Sources */,
+				4ED1382521F00DE4000B3555 /* CircleView.swift in Sources */,
 				4EC2A81A21A984B700FE3793 /* WordsInSegmentDataCache.swift in Sources */,
 				4EE9865A21E3274700D52E16 /* HeartedUtil.swift in Sources */,
 				4E891F8321606A2B00A1893A /* WriteWordViewController.swift in Sources */,
@@ -1694,9 +1738,11 @@
 				4E64265C2148EB3B00D2B3FF /* AppRefreshManager.swift in Sources */,
 				4E1EB60F21757F5B0070E064 /* UserReciteRecord.swift in Sources */,
 				4E5ED40F214361F500AC709F /* WordViewController.swift in Sources */,
+				4ED1382A21F02390000B3555 /* CirclePlayerView.swift in Sources */,
 				4EC2A81621A972BE00FE3793 /* SentenceInShortWordDataCache.swift in Sources */,
 				4EF2F06220710C1500B7F447 /* Content.swift in Sources */,
 				4EF2F06520710C7A00B7F447 /* Entity.swift in Sources */,
+				4ED1382721F00F22000B3555 /* PercentView.swift in Sources */,
 				4EE9865521E073EA00D52E16 /* OperationBarViewUtil.swift in Sources */,
 				4E91DD16215CCB1A001F5E22 /* MyReciteWordInfoViewController.swift in Sources */,
 				4E56EB7521782240000AE4C9 /* UserSegmentDataCache.swift in Sources */,
@@ -1727,6 +1773,7 @@
 				4E9906332142779E00EE0D55 /* NavigationBarItemExtension.swift in Sources */,
 				4E891F872160A9BE00A1893A /* WriteWordResultViewController.swift in Sources */,
 				4EE9865D21E34DE100D52E16 /* SegmentDataCache.swift in Sources */,
+				4ED1383021F06FC2000B3555 /* WaitingViewController.swift in Sources */,
 				4E8E9CEB214F4F6B0004F39B /* ContentInfoDataCache.swift in Sources */,
 				4EF2EFD7206909D900B7F447 /* AppDelegate.swift in Sources */,
 				4E8E9CED214F4FB70004F39B /* Segment.swift in Sources */,
@@ -1745,6 +1792,7 @@
 				4E9C5BBC215240520079F985 /* FileUtil.swift in Sources */,
 				4E45FB5D2154D7F100A5F03F /* WordInfoViewController.swift in Sources */,
 				4E45FB462153B49100A5F03F /* WordInfoCollectionViewCell.swift in Sources */,
+				4ED1382C21F025CC000B3555 /* PlayStatus.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

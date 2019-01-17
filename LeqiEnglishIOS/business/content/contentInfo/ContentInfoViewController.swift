@@ -375,9 +375,9 @@ extension ContentInfoViewController{
     
     private func toSegmentInfo(segment:Segment,index:Int){
         let uiView = UISegmentPlayViewController()
-        uiView.segmentIndex = index
-        uiView.segmentPlayEntities = self.segmentPlayEntities
-        uiView.contentPlayer = self.contentPlayer
+   
+      //  uiView.segmentPlayEntities = self.segmentPlayEntities
+       // uiView.contentPlayer = self.contentPlayer
         self.present(uiView, animated: true){
      
             uiView.setSegment(item: segment,mp3Path: segment.audioPath ?? "")

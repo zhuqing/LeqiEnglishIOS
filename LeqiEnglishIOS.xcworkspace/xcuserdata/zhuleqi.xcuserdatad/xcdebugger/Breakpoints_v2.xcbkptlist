@@ -582,11 +582,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/content/contentItem/ContentItemCollectionViewCell.swift"
-            timestampString = "565531566.4374"
+            timestampString = "569406650.620262"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
             landmarkName = "setItem(item:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -614,11 +614,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/content/contentItem/ContentItemCollectionViewCell.swift"
-            timestampString = "565531566.444369"
+            timestampString = "569406650.632048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "setItem(item:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -710,7 +710,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/home/controller/HomeController.swift"
-            timestampString = "567162774.369144"
+            timestampString = "569402189.616047"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "138"
@@ -758,7 +758,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/home/controller/HomeController.swift"
-            timestampString = "567162774.376771"
+            timestampString = "569402189.616303"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "66"
@@ -774,7 +774,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/home/controller/HomeController.swift"
-            timestampString = "567162774.3776619"
+            timestampString = "569402189.616437"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "93"
@@ -822,7 +822,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/home/controller/HomeController.swift"
-            timestampString = "567162774.378757"
+            timestampString = "569402189.616629"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "71"
@@ -1062,7 +1062,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/home/controller/HomeController.swift"
-            timestampString = "567162774.381097"
+            timestampString = "569402189.617626"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "77"
@@ -1286,11 +1286,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/player/PlayContentViewController.swift"
-            timestampString = "568782084.353327"
+            timestampString = "569406650.6340671"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "387"
-            endingLineNumber = "387"
+            startingLineNumber = "394"
+            endingLineNumber = "394"
             landmarkName = "selected(cell:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1302,11 +1302,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/player/PlayContentViewController.swift"
-            timestampString = "568782084.353424"
+            timestampString = "569406650.648878"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "259"
-            endingLineNumber = "259"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
             landmarkName = "createSegmentPlayEntity(segments:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1350,11 +1350,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/player/PlayContentViewController.swift"
-            timestampString = "568782084.353532"
+            timestampString = "569406650.6499521"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "265"
-            endingLineNumber = "265"
+            startingLineNumber = "267"
+            endingLineNumber = "267"
             landmarkName = "createSegmentPlayEntity(segments:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1396,11 +1396,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/player/PlayContentViewController.swift"
-            timestampString = "568782084.353633"
+            timestampString = "569406650.650931"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "370"
-            endingLineNumber = "370"
+            startingLineNumber = "377"
+            endingLineNumber = "377"
             landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1412,11 +1412,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/player/PlayContentViewController.swift"
-            timestampString = "568782084.353681"
+            timestampString = "569406650.651791"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "379"
-            endingLineNumber = "379"
+            startingLineNumber = "386"
+            endingLineNumber = "386"
             landmarkName = "collectionView(_:didDeselectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1428,11 +1428,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/player/PlayContentViewController.swift"
-            timestampString = "568782084.353727"
+            timestampString = "569406650.655802"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
             landmarkName = "loadSegments(content:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1476,7 +1476,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/player/playsegment/PlaySegmentViewController.swift"
-            timestampString = "568788575.951728"
+            timestampString = "569404884.537398"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "333"
@@ -1492,7 +1492,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/player/playsegment/PlaySegmentViewController.swift"
-            timestampString = "568788575.951795"
+            timestampString = "569404884.538057"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "343"
@@ -1508,7 +1508,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/player/playsegment/PlaySegmentViewController.swift"
-            timestampString = "568788575.9518501"
+            timestampString = "569404884.5391639"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "339"
@@ -1524,11 +1524,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/player/PlayContentViewController.swift"
-            timestampString = "568782084.3549221"
+            timestampString = "569406650.6568739"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "469"
-            endingLineNumber = "469"
+            startingLineNumber = "476"
+            endingLineNumber = "476"
             landmarkName = "currentTimeChange(contentPlayer:currentTime:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1540,7 +1540,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/player/playsegment/PlaySegmentViewController.swift"
-            timestampString = "568788575.951925"
+            timestampString = "569404884.539573"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "324"
@@ -1556,7 +1556,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/player/playsegment/PlaySegmentViewController.swift"
-            timestampString = "568788575.951979"
+            timestampString = "569404884.5398459"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "303"
@@ -1588,11 +1588,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/player/PlayContentViewController.swift"
-            timestampString = "568782084.355598"
+            timestampString = "569406650.657833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "293"
-            endingLineNumber = "293"
+            startingLineNumber = "297"
+            endingLineNumber = "297"
             landmarkName = "play(index:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1604,7 +1604,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/player/playsegment/PlaySegmentViewController.swift"
-            timestampString = "568788575.952065"
+            timestampString = "569404884.5403351"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "171"
@@ -1652,7 +1652,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/player/playsegment/PlaySegmentViewController.swift"
-            timestampString = "568788575.952153"
+            timestampString = "569404884.541629"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "284"
@@ -1668,7 +1668,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/player/playsegment/PlaySegmentViewController.swift"
-            timestampString = "568788575.952207"
+            timestampString = "569404884.541947"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "405"
@@ -1684,7 +1684,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/player/playsegment/PlaySegmentViewController.swift"
-            timestampString = "568788575.9522589"
+            timestampString = "569404884.542292"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "236"
@@ -1700,7 +1700,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/player/playsegment/PlaySegmentViewController.swift"
-            timestampString = "568788575.95231"
+            timestampString = "569404884.542542"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "352"
@@ -1972,7 +1972,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/tools/view/OperationBarViewUtil.swift"
-            timestampString = "568714549.297079"
+            timestampString = "569406650.659629"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "43"
@@ -1988,7 +1988,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/player/playsegment/PlaySegmentViewController.swift"
-            timestampString = "568788575.9525729"
+            timestampString = "569404884.544767"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "213"
@@ -2004,7 +2004,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/player/playsegment/PlaySegmentViewController.swift"
-            timestampString = "568788575.952628"
+            timestampString = "569404884.545205"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "22"
@@ -2020,7 +2020,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/tools/player/ContentPlayer.swift"
-            timestampString = "568714549.298731"
+            timestampString = "569406650.659995"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "93"
@@ -2036,11 +2036,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/tools/player/ContentPlayer.swift"
-            timestampString = "568714549.2992899"
+            timestampString = "569406650.660385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "play(index:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2052,7 +2052,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/tools/player/ContentPlayer.swift"
-            timestampString = "568714549.299713"
+            timestampString = "569406650.660591"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "85"
@@ -2068,11 +2068,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/tools/player/ContentPlayer.swift"
-            timestampString = "568714549.300043"
+            timestampString = "569406650.660749"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "235"
-            endingLineNumber = "235"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
             landmarkName = "destory()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2084,11 +2084,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/tools/player/ContentPlayer.swift"
-            timestampString = "568714549.300265"
+            timestampString = "569406650.660884"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
             landmarkName = "startRunTimer()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2100,7 +2100,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/content/contentInfo/ContentInfoViewController.swift"
-            timestampString = "568788575.952758"
+            timestampString = "569406650.661063"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "289"
@@ -2116,11 +2116,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/tools/player/ContentPlayer.swift"
-            timestampString = "568714549.302509"
+            timestampString = "569406650.66126"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "230"
-            endingLineNumber = "230"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
             landmarkName = "destory()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2132,11 +2132,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/player/PlayContentViewController.swift"
-            timestampString = "568782084.3579921"
+            timestampString = "569406650.661433"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "238"
-            endingLineNumber = "238"
+            startingLineNumber = "240"
+            endingLineNumber = "240"
             landmarkName = "returnEventHandler()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2148,7 +2148,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/tools/player/ContentPlayer.swift"
-            timestampString = "568714549.303035"
+            timestampString = "569406650.662156"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "81"
@@ -2164,12 +2164,188 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LeqiEnglishIOS/business/content/contentInfo/ContentInfoViewController.swift"
-            timestampString = "568788575.952866"
+            timestampString = "569406650.662385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "269"
             endingLineNumber = "269"
             landmarkName = "loadData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeqiEnglishIOS/storyboard/view/play/CirclePlayerView.swift"
+            timestampString = "569406650.662598"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
+            landmarkName = "singleClick()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeqiEnglishIOS/business/content/segment/playsegment/UISegmentPlayViewController.swift"
+            timestampString = "569406650.662962"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "423"
+            endingLineNumber = "423"
+            landmarkName = "currentTimeChange(contentPlayer:currentTime:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeqiEnglishIOS/business/content/segment/playsegment/UISegmentPlayViewController.swift"
+            timestampString = "569406650.663367"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "421"
+            endingLineNumber = "421"
+            landmarkName = "currentTimeChange(contentPlayer:currentTime:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeqiEnglishIOS/business/content/segment/playsegment/UISegmentPlayViewController.swift"
+            timestampString = "569406650.663656"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "416"
+            endingLineNumber = "416"
+            landmarkName = "finish(contentPlayer:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeqiEnglishIOS/business/content/segment/playsegment/UISegmentPlayViewController.swift"
+            timestampString = "569406650.663995"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "493"
+            endingLineNumber = "493"
+            landmarkName = "audioPlayHandler()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeqiEnglishIOS/business/content/segment/playsegment/UISegmentPlayViewController.swift"
+            timestampString = "569406650.664257"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "284"
+            endingLineNumber = "284"
+            landmarkName = "collectionView(_:didSelectItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeqiEnglishIOS/business/content/segment/playsegment/UISegmentPlayViewController.swift"
+            timestampString = "569406650.664479"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "285"
+            endingLineNumber = "285"
+            landmarkName = "collectionView(_:didSelectItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeqiEnglishIOS/business/content/segment/playsegment/UISegmentPlayViewController.swift"
+            timestampString = "569406650.664709"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "427"
+            endingLineNumber = "427"
+            landmarkName = "currentTimeChange(contentPlayer:currentTime:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeqiEnglishIOS/business/content/segment/playsegment/UISegmentPlayViewController.swift"
+            timestampString = "569406650.6648459"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "453"
+            endingLineNumber = "453"
+            landmarkName = "select(index:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeqiEnglishIOS/business/content/segment/playsegment/playsegmentitem/PlaySementItemCollectionViewCell.swift"
+            timestampString = "569406650.665048"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
+            landmarkName = "selectCell()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LeqiEnglishIOS/business/content/segment/playsegment/playsegmentitem/PlaySementItemCollectionViewCell.swift"
+            timestampString = "569406650.665273"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
+            landmarkName = "disSelectCell()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -22,7 +22,7 @@ class Service{
   
     private static  var  alamoFireManager = { () -> SessionManager in
         let  manager = Alamofire.SessionManager.default
-               manager.session.configuration.timeoutIntervalForRequest = 1
+               manager.session.configuration.timeoutIntervalForRequest = 10
        
          return manager
     }()

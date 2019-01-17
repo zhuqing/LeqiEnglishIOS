@@ -18,13 +18,14 @@ class UISegmentPlayViewController: UIViewController {
     @IBOutlet weak var loading: UIActivityIndicatorView!
 
 
+    private var circlePlayBar = CirclePlayerView()
+    
     var content:Content?
     
     var segment:Segment?
-    var segmentIndex:Int = -1;
-    var segmentPlayEntities:[SegmentPlayEntity]?
+
     
-    var contentPlayer:ContentPlayer?
+    private var contentPlayer:ContentPlayer?
     
     private lazy var playBar:PlaySegmentBar? = {
         
@@ -86,7 +87,9 @@ class UISegmentPlayViewController: UIViewController {
         HeartedUtil.updateAwesome(root: self.operationBarRootView, segment: item, heartedIndex: 3, userInteract: false)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+
+    
+    override func viewWillDisappear(_ animated: Bool) {
         guard let player = self.contentPlayer else{
             return
         }
@@ -115,15 +118,22 @@ extension UISegmentPlayViewController{
        
         navigation()
         initOperationBar()
+        self.addPlayView()
        // showWords.addTarget(self, action: #selector(UISegmentPlayViewController.showWordsEventHandler), for: .touchDown)
        // self.startRecite.addTarget(self, action: #selector(UISegmentPlayViewController.startReciteHandler), for: .touchDown)
+    }
+    
+    private func addPlayView(){
+        self.view.addSubview(circlePlayBar)
+        circlePlayBar.delegate = self
+        circlePlayBar.frame = CGRect(x: SCREEN_WIDTH - 100, y: SCREEN_HEIGHT-200, width: 70, height: 70)
     }
     
     private func initOperationBar(){
        
         let operations:[(String,String)] = [("返回","arrow-return-left"),
                                                      ("单词/短语","word_icon"),
-                                                      ("听音频","listen_icon"), ("赞","heart"),
+                                                       ("赞","heart"),
                                                      ("分享","share32")]
         OperationBarViewUtil.instance.addOperation(root: self.operationBarRootView, operations: operations, handler: operationTab(id: ))
     }
@@ -134,35 +144,20 @@ extension UISegmentPlayViewController{
             self.backEventHandler()
         case "word_icon":
             self.showWordsEventHandler()
-        case "listen_icon":
-            self.audioPlayHandler()
+            stopAllPlay()
+       
         case "heart":
             updateHearted(userInteract: true)
             
         case "share32":
             self.shareEventHandler()
+            stopAllPlay()
         default:
             self.backEventHandler()
         }
     }
     
-    //播放音频
-    private func audioPlayHandler(){
-     
-        let controller = PlaySegmentViewController()
-        controller.currentSegmentPlayIndex = self.segmentIndex
-        controller.autoNext = false
-        
-        self.present(controller, animated: true, completion: {
-            () in
-            
-            controller.contentPlayer = self.contentPlayer
-            controller.contentPlayer?.autoNext = false
-            controller.contentPlayer?.play(index: self.segmentIndex)
-            controller.content = self.content
-          
-        })
-    }
+  
     
     private func updateHearted(userInteract:Bool){
         guard let segment = self.segment else{
@@ -201,8 +196,14 @@ extension UISegmentPlayViewController{
     }
     
     @objc private func backEventHandler(){
-        self.playBar?.reset()
+       self.stopAllPlay()
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    private func stopAllPlay(){
+        self.playBar?.reset()
+        self.contentPlayer?.pause()
+        self.circlePlayBar.stop()
     }
     
     //跳转到背诵界面
@@ -267,13 +268,11 @@ extension UISegmentPlayViewController : UICollectionViewDataSource,UICollectionV
         if let chstr = item.chineseSenc {
             let chStrHeight = StringUtil.computerHeight(text: chstr, font: UIFont.systemFont(ofSize: 13), fixedWidth: SCREEN_WIDTH-10)+10
             
-            
             height += chStrHeight
         }
         
         if(indexPath.item == selectIndex){
             height += PlaySegmentBar.HEIGHT+10
-            
         }
         
         
@@ -286,13 +285,12 @@ extension UISegmentPlayViewController : UICollectionViewDataSource,UICollectionV
             return
         }
         
-        self.playBar?.reset()
+        self.stopAllPlay()
+        
         if let lastCell = self.lastCell{
             lastCell.stop(bar: playBar!)
         }
         let cell:PlaySementItemCollectionViewCell = collectionView.cellForItem(at: indexPath) as! PlaySementItemCollectionViewCell
-        
-        
         
         self.selectIndex = indexPath.item
         collectionView.reloadData()
@@ -311,14 +309,16 @@ extension UISegmentPlayViewController : UICollectionViewDataSource,UICollectionV
         
         if(indexPath.item == self.selectIndex){
             cell.play(bar: playBar!)
+            cell.selectCell()
             playBar?.segmentPlayItem = segmentPlayItems[indexPath.item]
         }else{
+            cell.disSelectCell()
             cell.removeIfHave(bar: playBar!)
         }
         return cell
     }
 }
-
+//MARK:点击中文或英文文本
 extension UISegmentPlayViewController : PlaySementItemCollectionViewCellDelegate{
     func textViewClick(cell:PlaySementItemCollectionViewCell){
         guard let index = collectionView.indexPath(for: cell) else{
@@ -328,7 +328,7 @@ extension UISegmentPlayViewController : PlaySementItemCollectionViewCellDelegate
         if( self.selectIndex == index.item){
             return
         }
-        
+          self.stopAllPlay()
         
         self.selectIndex = index.item
         self.lastCell = cell
@@ -394,6 +394,120 @@ extension UISegmentPlayViewController :ActionSheetDialogViewControllerDelegate{
         
     }
     
+    
+  
+    
+}
+
+extension UISegmentPlayViewController : ContentPlayerDelegate{
+    func currentPlayIndexChange(contentPlayer: ContentPlayer, index: Int) {
+        
+    }
+    
+    func finish(contentPlayer: ContentPlayer, index: Int) {
+        
+    }
+    
+    func error(contentPlayer: ContentPlayer, message: String) {
+        
+    }
+    
+    func finish(contentPlayer: ContentPlayer) {
+       self.circlePlayBar.stop()
+    }
+    
+    func currentTimeChange(contentPlayer: ContentPlayer, currentTime: TimeInterval) {
+        if(!contentPlayer.isPlaying){
+            return
+        }
+        self.circlePlayBar.perscent = CGFloat(currentTime/contentPlayer.getMaxDuration())
+    
+        for index in (0 ..< self.segmentPlayItems.count) {
+            let segemtItem = self.segmentPlayItems[index]
+            if(currentTime >= TimeInterval(segemtItem.startTime ?? 0)/1000 && currentTime <= TimeInterval(segemtItem.endTime ?? 0)/1000){
+                select(index: index)
+            }
+        }
+    }
+    
+    
+    private func disSelect(index:Int){
+        
+        if(index < 0){
+            return
+        }
+        
+        let indexPath = IndexPath(row: index, section: 0)
+        
+        guard let cell = self.collectionView.cellForItem(at: indexPath) else{
+            return
+        }
+        
+        let selectedCell =  cell as! PlaySementItemCollectionViewCell
+        selectedCell.disSelectCell()
+    }
+    
+    
+    private func select(index:Int){
+        
+        if(index < 0){
+            return
+        }
+        
+        if(index>=self.segmentPlayItems.count){
+            return
+        }
+        disSelect(index: self.selectIndex)
+        self.selectIndex = index
+        let indexPath = IndexPath(row: index, section: 0)
+        
+        self.collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+        
+        guard let cell = self.collectionView.cellForItem(at: indexPath) else{
+            return
+        }
+        
+        let selectedCell =  cell as! PlaySementItemCollectionViewCell
+        selectedCell.selectCell()
+    }
+}
+
+extension UISegmentPlayViewController : CirclePlayerViewDelegate{
+    func play(playBarView: CirclePlayerView) {
+      
+         self.playBar?.reset()
+        
+         audioPlayHandler()
+        
+    }
+    
+    func pause(playBarView: CirclePlayerView) {
+        guard let player = self.contentPlayer else {
+            return
+        }
+        
+        player.pause()
+    }
+    //播放音频
+    private func audioPlayHandler(){
+        if(self.segment == nil ){
+            return
+        }
+        
+        // let controller = PlaySegmentViewController()
+        if(self.contentPlayer == nil){
+            self.contentPlayer = ContentPlayer()
+            self.contentPlayer?.delegate = self
+            
+            self.contentPlayer?.playDatas = [SegmentPlayEntity.createSegmentPlayEntity(segment: self.segment!)!]
+            self.contentPlayer?.play()
+        }else{
+              self.contentPlayer?.start()
+        }
+        
+      
+        self.circlePlayBar.play()
+    }
     
 }
 
